@@ -12,13 +12,11 @@
 <body>
 	<video id="my-video" class="video-js" controls preload="auto"
 		width="640" height="264" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
-		<%-- <source src="<c:out value="${dto.att_file }"></c:out>" type="video/webm"> --%>
-		<%-- <source src="<c:out value="${dto.att_file }"></c:out>" type="video/mp4"> --%>
-		<%-- <source src="${ROOT }/movie/sample.mp4" type="video/mp4"> --%>
-		<%-- <source src="${dto.att_file }" type="video/webm"> --%>
-	</video>
-	<%-- <img src="displayFile?fileName=${}" /> --%>
-	<img src="resources/upload/displayFile?${dto.att_file }" />
+		<%-- <source src="<c:out value="displayFile?fileName=${dto.att_file }"></c:out>" type="video/webm"> --%>
+		<source src="displayFile?fileName=${dto.att_file }" type='video/webm'>
+		<%-- <source src="${dto.att_file }" type='video/webm'> --%>
+	</video>	
+	
 	<script src="http://vjs.zencdn.net/6.1.0/video.js"></script>
 </body>
 </html>

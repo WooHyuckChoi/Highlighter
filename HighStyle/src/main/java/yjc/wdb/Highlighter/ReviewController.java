@@ -33,7 +33,7 @@ public class ReviewController
 	{
 		//String ext_id=(String) session.getAttribute("ext_id");
 		model.addAttribute("ext_id",ext_id);
-		System.out.println("�ʼ� �����Ҽ�����"+ext_id);
+		
 		int countPostId=service.selectPostId(ext_id);
 		String postId="";
 		if(countPostId>0)
