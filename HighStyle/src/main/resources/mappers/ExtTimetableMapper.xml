@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.Ext_TimetableMapper">
+<select id="AlectureSchedule" resultType="Ext_TimetableVO">
+select * from 
+ext_timetable
+where ext_id = #{ext_id}
+and user_id = (select user_id
+from ext_info 
+where ext_id = #{ext_id})
+</select>
+
+<!-- 학생이 강의 취소시, 신청한 과외 시간대가 있는지 파악 -->
+<select id="cancelClassCount" resultType = "int">
+select count(*)
+from ext_timetable
+where user_id = #{user_id} and ext_id = #{ext_id}
+</select>
+
+<!-- 학생이  강의 취소시, 신청한 과외 시간대가 있다면 삭제 -->
+<delete id="deleteTimetable">
+delete from ext_timetable where user_id = #{user_id} and ext_id = #{ext_id}
+</delete>
+</mapper>

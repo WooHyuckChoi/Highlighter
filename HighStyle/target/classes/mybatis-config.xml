@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="User_InfoVO" type="yjc.wdb.Highlighter.domain.User_InfoVO"/>
+		<typeAlias alias="Ext_InfoVO" type="yjc.wdb.Highlighter.domain.Ext_InfoVO"/>
+		<typeAlias alias="CarrerVO" type="yjc.wdb.Highlighter.domain.CarrerVO"/>
+		<typeAlias alias="App_ClassVO" type="yjc.wdb.Highlighter.domain.App_ClassVO"/>
+		<typeAlias alias="test_InfoVO" type="yjc.wdb.Highlighter.domain.test_InfoVO"/>
+		<typeAlias alias="test_resultVO" type="yjc.wdb.Highlighter.domain.test_resultVO"/>
+		<typeAlias alias="Ext_TimetableVO" type="yjc.wdb.Highlighter.domain.Ext_TimetableVO"/>
+		<typeAlias alias="reviewVO" type="yjc.wdb.Highlighter.domain.reviewVO"/>
+		<typeAlias alias="MessageVO" type="yjc.wdb.Highlighter.domain.MessageVO"/>
+		<typeAlias alias="stu_infoVO" type="yjc.wdb.Highlighter.domain.stu_infoVO"/>
+			<typeAlias alias="jindan_evalVO" type="yjc.wdb.Highlighter.domain.jindan_evalVO"/>
+		<typeAlias alias="jindan_resultVO" type="yjc.wdb.Highlighter.domain.jindan_resultVO"/>
+	</typeAliases>
+</configuration>

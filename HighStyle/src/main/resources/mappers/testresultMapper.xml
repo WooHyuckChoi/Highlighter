@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="yjc.wdb.Highlighter.testresultMapper">
+
+<insert id="tcreate">
+	insert into test_result (prob_id, user_id, date_gaze,stu_result,test_id) values (#{prob_id},#{user_id}, #{date_gaze}, #{stu_result}, #{test_id}) 
+</insert>
+
+<select id="stu_answ" resultType="String">
+	select stu_result
+	from test_result
+	where prob_id = #{prob_id}
+</select>
+
+<update id="w_answ_note_cont">
+	update test_result set w_answ_note_cont=#{w_answ_note_cont}
+	where user_id=#{user_id}
+	and prob_id=#{prob_id}
+</update>
+
+<select id="correctAnswercount" resultType="int">
+
+select count(*)
+from test_result a, prob_info b
+where a.prob_id = b.prob_id
+and a.stu_result = b. prob_answ
+and a.user_id =#{user_id}
+and a.test_id =#{test_id}
+</select>
+
+<select id="WrongNote" resultType="String">
+	select w_answ_note_cont
+	from test_result
+	where prob_id=#{prob_id}
+	and user_id=#{user_id}
+</select>
+
+
+	<resultMap id="ListweeksCorrectAnsw" type="java.util.HashMap">
+		<result property="test_id" column="test_id"></result>
+		<result property="correctCount" column="correctCount"></result>
+	</resultMap>
+
+	<select id="ListWeeksCorrect" resultMap="ListweeksCorrectAnsw">
+		select SUBSTR(a.test_id,9) AS test_id, count(a.test_id) AS correctCount
+		from test_result a, prob_info b,test_info c
+		where a.prob_id = b.prob_id
+		and c.test_id = b.test_id
+		and a.stu_result = b.prob_answ
+		and a.user_id = #{user_id}
+		and c.ext_id = #{ext_id}
+		group by a.test_id
+	</select>
+	
+		<select id="weekCorrectAnsw" resultType="test_resultVO">
+		select SUBSTR(a.test_id,9) AS test_id, count(a.test_id) AS correctCount
+		from test_result a, prob_info b,test_info c
+		where a.prob_id = b.prob_id
+		and c.test_id = b.test_id
+		and a.stu_result = b.prob_answ
+		and a.user_id = #{user_id}
+		and c.ext_id = #{ext_id}
+		group by a.test_id
+	</select>
+ 
+</mapper>

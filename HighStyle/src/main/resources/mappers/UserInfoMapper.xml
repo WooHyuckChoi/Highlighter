@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.User_InfoMapper">
+<insert id="create">
+	insert into user_info (user_id, user_pw, user_name, user_email, gender, birth_date, address, phone,
+	prof_photo, ext_exp, bank, bank_ac_num, college, college_dept, par_id, user_grade) 
+	values(#{user_id}, #{user_pw}, #{user_name}, #{user_email}, #{gender}, #{birth_date}, #{address}, #{phone},
+	#{prof_photo}, #{ext_exp}, #{bank}, #{bank_ac_num}, #{college}, #{college_dept}, #{par_id}, #{user_grade})
+</insert>
+<select id="read" resultType="User_InfoVO">
+	select * 
+	from user_info
+	where user_id = #{user_id}
+</select>
+<select id="checkid" resultType="int">
+	select count(*)
+	from user_info
+	where user_id = #{user_id}
+</select>
+<select id="login" resultType="int">
+	select count(*)
+	from user_info 
+	where user_id = #{user_id} and user_pw = #{user_pw}
+</select>
+<select id="carrer" resultType="int">
+<![CDATA[
+select count(*)
+from carrer
+where user_id = #{user_id}
+]]>
+</select>
+<select id="classCount" resultType="int">
+select count(*)
+from ext_info
+where user_id = #{user_id}
+</select>
+<select id="user_grade" resultType="User_InfoVO">
+	select user_grade, user_name from user_info
+	where user_id = #{user_id}
+</select>
+
+<!-- 시간표 등록(수강 신청시) -->
+<insert id="ext_timetable_create">
+	insert into ext_timetable (user_id, ext_id, day_week, class_str_time, class_end_time)
+	values(#{user_id}, #{ext_id}, #{day_week}, #{class_str_time}, #{class_end_time})
+</insert>
+
+<select id="ext_id_select" resultType="String">
+<![CDATA[
+	select ifnull(max(substr(ext_id, 5, 3)),'0') from ext_info;
+]]>
+</select>
+
+<insert id="ext_create">
+<![CDATA[
+	insert into ext_info (ext_id, end_rc_date, str_class_date, class_poss_area, ext_obj, class_lev, intro_class, ext_way, tuit_fees, user_id)
+	values(#{ext_id}, date_add(sysdate(), interval +7 day), date_add(sysdate(), interval +8 day), #{class_poss_area}, #{ext_obj}, #{class_lev}, #{intro_class}, #{ext_way}, #{tuit_fees}, #{user_id})
+]]>
+</insert>
+
+<!-- 태훈 수강학생관리 학생 프로필 출력 -->
+<select id="profile" resultType="User_InfoVO">
+	select prof_photo,user_name, birth_date, college, address, user_email, phone
+	from user_info
+	where user_id = #{user_id} 
+</select>
+
+<!-- 강사 이미지 출력 -->
+<select id="T_image" resultType="String">
+	select a.prof_photo
+	from user_info a, ext_info b
+	where b.ext_id=#{ext_id}
+	and a.user_grade='teacher'
+</select>
+
+
+
+
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.proInfoMapper">
+<insert id="create">
+	insert into prob_info (prob_id, prob_answ, test_id) values (#{prob_id},#{prob_answ}, #{test_id}) 
+</insert>
+
+<select id = "correctAnsw" resultType="String">
+	select prob_answ
+	from prob_info
+	where prob_id=#{prob_id}
+</select>
+
+
+</mapper>

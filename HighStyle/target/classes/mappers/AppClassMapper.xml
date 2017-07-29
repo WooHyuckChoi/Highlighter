@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.AppClassMapper">
+<!-- 강사의 수강 신청 목록 -->
+<select id="appClassList" resultMap="appClassMap">
+<![CDATA[
+select u.user_id, u.user_name, u.reg_date, u.reg_stus, e.ext_id
+from ext_info e, 
+(select u.user_id, u.user_name, a.reg_date, a.reg_stus, a.ext_id as ext_id
+from user_info u, app_class a
+where u.user_id = a.user_id) u
+where e.ext_id = u.ext_id
+and e.user_id = #{user_id}
+and sysdate() < e.str_class_date
+]]>
+</select>
+
+<!-- 강사의 수강 신청 목록 Map으로 던짐 -->
+<resultMap id="appClassMap" type="java.util.HashMap">
+	<result property ="user_id" column = "user_id"></result>
+	<result property ="user_name" column = "user_name"></result>
+	<result property ="reg_date" column = "reg_date"></result>
+	<result property ="reg_stus" column = "reg_stus"></result>
+</resultMap>
+
+<!-- 강사가 수강 모집 중인 강의 불러옴 -->
+<select id="appClassOne" resultType="Ext_InfoVO">
+<![CDATA[
+select * from 
+ext_info
+where sysdate() < str_class_date
+AND user_id = #{user_id};
+]]>
+</select>
+
+<!-- 학생이 수강 신청 시,수강 신청 등록 -->
+<insert id="appClass_create">
+	insert into app_class (ext_id, user_id, reg_date, reg_stus)
+	values(#{ext_id}, #{user_id}, now(), "수락대기");
+</insert>
+
+<!-- 학생의 수강 신청 목록 (home.jsp) -->
+<select id="appClassList_Stu" resultMap="appClassList_StuMap">
+<![CDATA[
+select s.user_id, s.user_name, a.reg_date, a.reg_stus, s.ext_id
+from app_class a, (select u.user_id, u.user_name, e.ext_id, e.str_class_date 
+from user_info u, ext_info e
+where u.user_id = e.user_id) s
+where a.user_id = #{user_id}
+and a.ext_id = s.ext_id
+and sysdate() < s.str_class_date
+]]>
+</select>
+
+<!-- 학생의 수강 신청 목록 (home.jsp) Map형식으로 불러옴  -->
+<resultMap id="appClassList_StuMap" type="java.util.HashMap">
+<result property="user_id" column="user_id"></result>
+<result property="user_name" column="user_name"></result>
+<result property="reg_date" column="reg_date"></result>
+<result property="reg_stus" column="reg_stus"></result>
+</resultMap>
+
+<!-- 학생의 수강 취소 -->
+<delete id="cancelClass">
+delete from app_class where user_id = #{user_id} and ext_id = #{ext_id}
+</delete>
+
+<!-- 해당 학생의 신청 수락  -->
+<update id="acceptClass">
+update app_class set reg_stus = '결제완료' where user_id = #{user_id} and ext_id = #{ext_id}
+</update>
+
+<!-- 해당 학생의 신청 수락 취소 -->
+<update id="cancelAcceptClass">
+update app_class set reg_stus = '수락대기' where user_id = #{user_id} and ext_id = #{ext_id}
+</update>
+</mapper>

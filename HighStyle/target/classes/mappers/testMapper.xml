@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.testMapper">
+<insert id="create">
+	insert into test_info (test_id, ext_id, test_file, test_time, test_date) values (#{test_id},#{ext_id}, #{test_file}, #{test_time}, #{test_date}) 
+</insert>
+<select id="extidse" resultType="string">
+	select test_id
+	from test_info
+	order by test_id desc
+	limit 0,1
+</select>
+
+<resultMap id="testListMap" type="java.util.HashMap">
+	<result property="test_id" column="test_id"></result>
+	<result property="test_time" column="test_time"></result>
+	<result property="test_date" column="test_date"></result>
+	<result property="test_state" column="test_state"></result>
+</resultMap>
+<select id="testList" resultMap = "testListMap">
+	select t.test_id, t.test_time, t.test_date, e.test_state
+	from test_info t, exam_info e
+	where t.test_id= e.test_id 
+	and t.ext_id = #{ext_id}
+	and e.user_id = #{user_id}
+</select>
+
+<select id="testImage" resultType="test_InfoVO">
+	select test_id, test_time, test_file
+	from test_info
+	where test_id= #{test_id}
+</select>
+ 
+ <!-- 모든 아이디 가져와 ㅅㅂ -->
+<select id="allid" resultType="string">
+select a.user_id
+from app_class a, ext_info e
+where a.ext_id = e.ext_id
+and a.ext_id = #{ext_id}
+</select>
+ 
+ <!-- 강사 시험출력 -->
+<select id="teachertestList" resultType="test_InfoVO">
+	select SUBSTR(test_id,9) AS test_id, test_time, test_date
+	from test_info
+	where ext_id=#{ext_id}
+</select>
+
+
+<select id="TImage" resultType="String">
+select a.prof_photo
+from user_info a, ext_info b
+where a.user_id=b.user_id
+and b.ext_id=#{ext_id}
+and a.user_grade='teacher'
+</select>
+
+
+ 
+</mapper>

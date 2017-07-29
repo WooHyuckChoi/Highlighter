@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.MyPageInfoMapper">
+	<select id="selectId" resultType="User_InfoVO">
+		select *
+		from user_info
+		where user_id=#{user_id}
+	</select>
+	
+	<update id="modifyInfo">
+		update user_info set user_pw=#{user_pw},user_email=#{user_email},address=#{address},phone=#{phone},bank=#{bank},
+		bank_ac_num=#{bank_ac_num},college=#{college},college_dept=#{college_dept},ext_exp=#{ext_exp}
+		where user_id=#{user_id}
+	</update>
+	
+	<select id="attendingLectureList" resultMap ="LectureListMap">
+	<![CDATA[
+		select a.ext_id,a.str_class_date,a.end_class_date, c.user_name
+		from ext_info a, app_class b, user_info c
+		where a.ext_id=b.ext_id and
+			  a.user_id=c.user_id and
+			  b.user_id=#{user_id} and
+			  b.reg_stus="결제완료" and
+			  a.end_class_date > now()
+	]]>
+	</select>
+	<resultMap id="LectureListMap" type="java.util.HashMap">
+		<result property="ext_id" column="ext_id"></result>
+		<result property="str_class_date" column="str_class_date"></result>
+		<result property="end_class_date" column="end_class_date"></result>
+		<result property="user_name" column="user_name"></result>
+	</resultMap>
+	
+	<select id="endLectureList" resultMap="LectureListMap">
+	<![CDATA[
+		select a.ext_id,a.str_class_date,a.end_class_date, c.user_name
+		from ext_info a, app_class b, user_info c
+		where a.ext_id=b.ext_id and
+			  a.user_id=c.user_id and
+			  b.user_id=#{user_id} and
+			  b.reg_stus="결제완료" and
+			  a.end_class_date < now()
+	]]>
+	</select>
+	
+	<resultMap type="java.util.HashMap" id="applicationListMap">
+		<result property="user_name" column="user_name"></result>
+		<result property="reg_stus" column="reg_stus"></result>
+		<result property="reg_date" column="reg_date"></result>
+		<result property="ext_id" column="ext_id"></result>
+	</resultMap>
+	<select id="applicationList" resultMap="applicationListMap">
+	<![CDATA[
+		select c.user_name,b.reg_stus,b.reg_date,a.ext_id
+		from ext_info a, app_class b, user_info c
+		where a.ext_id=b.ext_id and
+			  a.user_id=c.user_id and
+			  b.user_id=#{user_id}
+	]]>
+	</select>
+	
+	<insert id="instCalendar">
+		<![CDATA[insert into stu_info (ext_id,user_id,post_date,learn_att) values (#{ext_id},#{user_id},#{post_date},#{learn_att})]]>
+	</insert>
+	
+	<select id="calendarList" resultType="stu_infoVO">
+		<![CDATA[
+			select *
+			from stu_info
+			where ext_id=#{ext_id} and
+				  user_id=#{user_id}
+		]]>
+	</select>
+	
+	<select id="selectStuId" resultType="String">
+		select user_id
+		from app_class
+		where ext_id=#{ext_id}
+	</select>
+	
+	<update id="modifyTitle">
+		update stu_info set learn_att=#{learn_att} 
+		where ext_id=#{ext_id} and user_id=#{user_id} and post_date=#{post_date}
+	</update>
+	
+	<delete id="deleteList">
+		delete from stu_info where ext_id=#{ext_id} and user_id=#{user_id} and post_date=#{post_date}
+	</delete>
+	
+	<select id="selectMessage" resultMap="selectMessageMap">
+		select u.user_id, u.user_name, m.sent_time, m.msg_cont, m.addr_id
+		from msg_rec m, user_info u
+		where m.user_id = u.user_id
+		and addr_id = #{user_id};
+	</select>
+	<resultMap id="selectMessageMap" type="java.util.HashMap">
+		<result property="user_id" column="user_id"></result>
+		<result property="user_name" column="user_name"></result>
+		<result property="sent_time" column="sent_time"></result>
+		<result property="msg_cont" column="msg_cont"></result>
+		<result property="addr_id" column="addr_id"></result>
+	</resultMap>
+	
+	<select id="extInStu" resultType="User_InfoVO">
+		select c.*
+		from app_class a, ext_info b, user_info c
+		where a.ext_id = b.ext_id and
+			  a.user_id = c.user_id and
+			  a.ext_id=#{ext_id}
+	</select>
+	
+	
+</mapper>

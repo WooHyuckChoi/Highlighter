@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.Ext_InfoMapper">
+
+<!-- 검색 알고리즘 결과 (HashMap으로 값 던짐) -->
+<resultMap id="Ext_listAll" type="java.util.HashMap">
+	<result property="user_id" column="userid"></result>
+	<result property="user_name" column="username"></result>
+	<result property="onoff" column="onoff"></result>
+	<result property="pg" column="pg"></result>
+	<result property="subject" column="subject"></result>
+	<result property="college" column="college"></result>
+	<result property="college_dept" column="college_dept"></result>
+	<result property="class_poss_area" column="class_poss_area"></result>
+	<result property="subject" column="subject"></result>
+	<result property="tuit_fees" column="tuit_fees"></result>
+	<result property="ext_obj" column="ext_obj"></result>
+	<result property="ext_exp" column="ext_exp"></result>
+	<result property="gender" column="gender"></result>
+	<result property="ext_id" column="ext_id"></result>
+	<result property="prof_photo" column="prof_photo"></result>
+</resultMap>
+
+<!-- 검색 알고리즘 -->
+<select id="listAll" resultMap="Ext_listAll">
+<![CDATA[
+	select u.user_id AS user_id, u.user_name AS user_name, u.college AS college, 
+	u.college_dept AS college_dept, substr(e.ext_id,1,1) AS onoff, 
+	substr(e.ext_id,2,1) AS pg, substr(e.ext_id,3,2) AS subject,
+	e.class_poss_area AS class_poss_area,
+	SUBSTR(e.ext_id,3,2) AS subject, e.tuit_fees AS tuit_fees, e.ext_obj AS ext_obj,
+	u.ext_exp AS ext_exp, u.gender AS gender, e.ext_id AS ext_id, u.prof_photo AS prof_photo
+	from ext_info e, user_info u 
+	where e.user_id = u.user_id
+	and sysdate() < e.str_class_date 
+	order by e.ext_id > 0
+]]>
+	<!-- <if test="onoff != null">
+		<if test="onoff == 'on'.toString()">
+			, SUBSTR(e.ext_id, 1,1) = '1' desc
+		</if>
+		<if test="onoff == 'off'.toString()">
+			, SUBSTR(e.ext_id, 1,1) = '0' desc
+		</if>
+	</if>
+	<if test="pg != null">
+		<if test="pg == 'p'.toString()">
+			, SUBSTR(e.ext_id, 2,1) = '1' desc
+		</if>
+		<if test="pg == 'g'.toString()">
+			, SUBSTR(e.ext_id, 2,1) != '1' desc
+		</if>
+	</if>
+	<if test="subject != null">
+		<if test="subject == 'kor'.toString()">
+			, SUBSTR(e.ext_id, 3,2) = '01' desc
+		</if>
+		<if test="subject == 'eng'.toString()">
+			, SUBSTR(e.ext_id, 3,2) = '02' desc
+		</if>
+		<if test="subject == 'mat'.toString()">
+			, SUBSTR(e.ext_id, 3,2) = '03' desc
+		</if>
+	</if>
+	<if test="location2 != null">
+		<if test="location2 == '제주특별자치도'.toString()">
+		    , e.class_poss_area like '%제주특별자치도%' desc
+		</if>
+	</if>
+	<if test="lo17 != null">
+		<if test="lo17 == '제주시'.toString()">
+			, e.class_poss_area like '%제주시%' desc
+		</if>
+		<if test="lo17 == '서귀포시'.toString()">
+			, e.class_poss_area like '%서귀포시%' desc
+		</if>
+	</if>
+	<if test="college != null">
+		, u.college like CONCAT('%', #{college}, '%') desc
+	</if>
+	<if test="(tuit_fees != null) and (tuit_fees != 0)">
+		, e.tuit_fees = #{tuit_fees} desc
+	</if>
+	<if test="ext_obj != null">
+		, e.ext_obj = #{ext_obj} desc
+	</if>
+	<if test="(ext_exp_y != null || ext_exp_m != null) and (ext_exp_y != 0 || ext_exp_m != 0)">
+		, u.ext_exp = CONCAT(#{ext_exp_y},',',#{ext_exp_m}) desc
+	</if>
+	<if test="gender != null">
+		, u.gender = #{ext_obj} desc
+	</if>
+	<if test="ext_way != null">
+		, e.ext_way = #{ext_way} desc
+	</if>
+	<if test="class_lev != null">
+		, e.class_lev = #{class_lev} desc
+	</if>
+	 -->
+ 	 <!-- limit #{pageStart}, #{perPageNum}   -->
+
+</select>
+
+<!-- pagination -->
+<select id="countPage" resultType="int">
+select count(e.ext_id)
+from ext_info e, user_info u 
+where e.user_id = u.user_id 
+order by ext_id > 0
+		<if test="onoff != null">
+		<if test="onoff == 'on'.toString()">
+			, SUBSTR(e.ext_id, 1,1) = '1' desc
+		</if>
+		<if test="onoff == 'off'.toString()">
+			, SUBSTR(e.ext_id, 1,1) = '0' desc
+		</if>
+	</if>
+	<if test="pg != null">
+		<if test="pg == 'p'.toString()">
+			, SUBSTR(e.ext_id, 2,1) = '1' desc
+		</if>
+		<if test="pg == 'g'.toString()">
+			, SUBSTR(e.ext_id, 2,1) != '1' desc
+		</if>
+	</if>
+	<if test="subject != null">
+		<if test="subject == 'kor'.toString()">
+			, SUBSTR(e.ext_id, 3,2) = '01' desc
+		</if>
+		<if test="subject == 'eng'.toString()">
+			, SUBSTR(e.ext_id, 3,2) = '02' desc
+		</if>
+		<if test="subject == 'mat'.toString()">
+			, SUBSTR(e.ext_id, 3,2) = '03' desc
+		</if>
+	</if>
+	<if test="location2 != null">
+		<if test="location2 == '제주특별자치도'.toString()">
+		    , e.class_poss_area like '%제주특별자치도%' desc
+		</if>
+	</if>
+	<if test="lo17 != null">
+		<if test="lo17 == '제주시'.toString()">
+			, e.class_poss_area like '%제주시%' desc
+		</if>
+		<if test="lo17 == '서귀포시'.toString()">
+			, e.class_poss_area like '%서귀포시%' desc
+		</if>
+	</if>
+	<if test="college != null">
+		, u.college like CONCAT('%', #{college}, '%') desc
+	</if>
+	<if test="(tuit_fees != null) and (tuit_fees != 0)">
+		, e.tuit_fees = #{tuit_fees} desc
+	</if>
+	<if test="ext_obj != null">
+		, e.ext_obj = #{ext_obj} desc
+	</if>
+	<if test="(ext_exp_y != null || ext_exp_m != null) and (ext_exp_y != 0 || ext_exp_m != 0)">
+		, u.ext_exp = CONCAT(#{ext_exp_y},',',#{ext_exp_m}) desc
+	</if>
+	<if test="gender != null">
+		, u.gender = #{ext_obj} desc
+	</if>
+	<if test="ext_way != null">
+		, e.ext_way = #{ext_way} desc
+	</if>
+	<if test="class_lev != null">
+		, e.class_lev = #{class_lev} desc
+	</if>
+</select>
+
+<!-- 해당 과외의 정보 불러오기 -->
+<select id="read" resultType="Ext_InfoVO">
+select * 
+from ext_info
+where ext_id = #{ext_id}
+</select>
+
+<!-- [강사]가 수강 중인 강의(메인홈에서 불러오기)
+<select id="onGoingExt" resultMap="onGoingExtMap">
+<![CDATA[
+select b.ext_id, GROUP_CONCAT(distinct a.user_name) AS user_name, GROUP_CONCAT(distinct concat(day_week, class_str_time, '~', class_end_time,'시')) 'timetable',
+count(distinct a.user_name) count_Stu, (select str_class_date from ext_info where ext_id = c.ext_id) str_class_date
+from user_info a, ext_timetable b, (select user_id, ext_id
+               from app_class
+               where reg_stus = '결제완료'
+               and ext_id in (
+                  select distinct ext_id
+                  from ext_info
+                  where user_id = #{user_id}
+                  and now() >= str_class_date    
+                  )) c
+where a.user_id = c.user_id
+and b.ext_id = c.ext_id
+]]>
+</select> 
+-->
+
+<!-- [강사]가 수강 중인 강의(메인홈에서 불러오기)-->
+<select id="onGoingExt" resultMap="onGoingExtMap">
+<![CDATA[
+select c.ext_id, GROUP_CONCAT(u.user_name) 'user_name',
+count(u.user_name) count_Stu, c.str_class_date
+from user_info u, (select e.ext_id, a.user_id, e.str_class_date
+						from ext_info e,app_class a
+						where e.user_id = #{user_id}
+						and e.ext_id = a.ext_id
+						and a.reg_stus = '결제완료'
+						and sysdate() >= e.str_class_date ) c
+where u.user_id = c.user_id
+group by ext_id
+]]>
+</select> 
+<!-- [강사]가 수강 중인 강의(메인홈에서 불러오기) -->
+<resultMap id="onGoingExtMap" type="java.util.HashMap">
+	<result property="ext_id" column="ext_id"></result>
+	<result property="user_name" column="user_name"></result>
+	<result property="count_Stu" column="count_Stu"></result>
+	<result property="str_class_date" column="str_class_date"></result>
+</resultMap>
+
+<!-- [학생]이 수강 중인 강의(메인홈에서 불러오기) -->
+<select id="onGoingExt_Stu" resultMap="onGoingExt_StuMap">
+<![CDATA[
+select c.ext_id, GROUP_CONCAT(DISTINCT c.user_name ORDER BY c.user_name) 'user_name', 
+count(c.user_name) count_Stu, (select str_class_date from ext_info where ext_id = c.ext_id) str_class_date, c.prof_photo AS prof_photo
+from app_class a, (select b.user_id, u.user_name, b.ext_id, e.str_class_date, u.prof_photo
+                  from app_class b, user_info u, ext_info e
+                  where b.user_id = u.user_id
+						and b.reg_stus = '결제완료'
+						and b.ext_id = e.ext_id) c	
+where a.ext_id = c.ext_id
+and c.user_id = #{user_id}
+and sysdate() >= c.str_class_date					
+group by c.ext_id
+]]>
+</select>
+
+<resultMap id="onGoingExt_StuMap" type="java.util.HashMap">
+	<result property="ext_id" column ="ext_id"></result>
+	<result property="user_name" column ="user_name"></result>
+	<result property="count_Stu" column ="count_Stu"></result>
+	<result property="str_class_date" column ="str_class_date"></result>
+	<result property="prof_photo" column ="prof_photo"></result>
+</resultMap>
+<!-- [강사]가 개인 과외에 신청한 학생을 수락했을 경우 -->
+<update id="acceptPrivateClass">
+<![CDATA[
+update ext_info set str_class_date = sysdate() where ext_id = #{ext_id}
+]]>
+</update>
+</mapper>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.jindanMapper">
+	
+	<insert id="createEval">
+	insert into jindan_eval (ext_id, eval_code, eval_content) values (#{ext_id},#{eval_code}, #{eval_content}) 
+	</insert>
+	
+	<select id="jindanResiNot" resultType="String">
+	select ext_id
+	from jindan_eval
+	where ext_id=#{ext_id}
+	</select>
+	
+	<select id="jindanContent" resultType="String">
+	select eval_content
+	from jindan_eval
+	where ext_id=#{ext_id}
+	</select>
+	
+	<insert id="createResult">
+	insert into jindan_result (ext_id, user_id,jindan_result, eval_code) values (#{ext_id},#{user_id}, #{jindan_result}, #{eval_code}) 
+	</insert> 
+</mapper>
