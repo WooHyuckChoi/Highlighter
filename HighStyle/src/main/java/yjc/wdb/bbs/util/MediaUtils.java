@@ -2,6 +2,8 @@ package yjc.wdb.bbs.util;
 
 import java.util.*;
 
+import javax.activation.MimeType;
+
 import org.springframework.http.MediaType;
 
 public class MediaUtils {
@@ -16,4 +18,5 @@ public class MediaUtils {
 	public static MediaType getMediaType(String type){
 		return mediaMap.get(type.toUpperCase());
 	}
+	
 }

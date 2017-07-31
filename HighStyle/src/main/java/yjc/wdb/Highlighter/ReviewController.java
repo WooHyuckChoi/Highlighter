@@ -91,12 +91,8 @@ public class ReviewController
 	@RequestMapping(value="listAll", method=RequestMethod.GET)
 	public String reviewList(Model model,HttpSession session, @RequestParam("ext_id") String ext_id) throws Exception
 	{
-		System.out.println(session.getAttribute("id"));
-		
-		//System.out.println(session.getAttribute("ext_id"));
 		model.addAttribute("list",service.listAll(ext_id));
 		model.addAttribute("ext_id",ext_id);
-		System.out.println("��� ��� ����� ����Ʈ�� �̻�"+ext_id);
 		return "reviewList";
 	}
 	
