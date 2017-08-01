@@ -464,8 +464,9 @@ div#locationSelect2{margin:0;}
 			<div style="position:relative; top:10px; left:10px; color:gray;">${list.subject}</div>
 			<div style="position:relative; top:10px; left:10px; color:gray;">
 				<a style="position:relative; float:left; width:130px; overflow: hidden; text-overflow : ellipsis; white-space: nowrap; overflow:">${list.str_class_date} ~ </a>
-				<a href="classMain?ext_id=${list.ext_id}" style="color:white; border:1px solid #626262; padding:4px; font-size:14px;">강의입장</a>
-			</div>
+				<%-- <a href="classMain?ext_id=${list.ext_id}" style="color:white; border:1px solid #626262; padding:4px; font-size:14px;">강의입장</a> --%>
+				<a href="newLecturePage?ext_id=${list.ext_id}" style="color:white; border:1px solid #626262; padding:4px; font-size:14px;">강의입장</a>
+			</div><!-- newLecturePage classMain -->
 		</div>
 		</c:forEach>
 		</div>
@@ -761,7 +762,7 @@ div#locationSelect2{margin:0;}
 			<div style="position:relative; top:10px; left:10px;">${list.user_name}<a style="color:white;">(총 인원 : ${list.count_Stu}명)</a></div>
 			<div style="position:relative; top:10px; left:10px; color:gray;">${list.subject}</div>
 			<div style="position:relative; top:10px; left:10px; color:gray;">${list.str_class_date} ~ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="classMain?ext_id=${list.ext_id}&prof_photo=${list.prof_photo}" style="color:white; border:1px solid #626262; padding:4px; font-size:14px; margin_left:40px;">강의입장</a>
+				<a href="newLecturePage?ext_id=${list.ext_id}" style="color:white; border:1px solid #626262; padding:4px; font-size:14px; margin_left:40px;">강의입장</a>
 			</div>
 		</div>
 		</c:forEach>

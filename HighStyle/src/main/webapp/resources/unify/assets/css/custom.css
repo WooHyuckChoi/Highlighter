@@ -1,0 +1,77 @@
+/* Add here all your css styles (customizations) */
+#classIntro{
+	height: 50px;
+	background: #fff;
+    position: relative;
+    padding: 15px 10px 5px 15px;
+    border-radius: 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid #cfcfcf;
+}
+#StudyRoom a{
+	font-size: 16px;
+}
+.panel-body td:NTH-CHILD(odd){
+	color: #336199;
+	background-color: #EDF3F4;
+	
+	
+}
+#teacherInfo table{
+	text-align: center;
+	border-bottom-width: 2px;
+}
+.tableDiv{
+	width:100%; 
+	height:100%; 
+	float:left; 
+	clear:both;
+}
+
+#base{
+	width: 100%; height: 100%; margin-top:5%; margin-left:15%;}
+    #base > .line {clear: both;}
+    #base > .line > .null{width:4%; height:4%; border: 1px solid gray; text-align:right; float: left;}
+    #base > .line > .tableColumn{width:4%; height:8%; border-right: 1px solid gray; border-left: 1px solid gray; border-bottom: 1px solid gray;  text-align:right; float: left;}
+    #base > .line > .tableRow{width:10%; height:4%; border-top: 1px solid gray; border-right: 1px solid gray; border-bottom: 1px solid gray; float: left;}
+    #base > .line > .block{width:10%; height:8%; border-right: 1px solid gray; border-bottom: 1px solid gray; float: left;}
+    .timeActive{background-color: #FC9312;}
+    .textalign{text-align:center;
+}
+
+#classGoIn {
+	float: right;
+	width:90px;
+	background-color:#ff6600;
+	padding-top:5px;
+	padding-left:10px;
+	padding-bottom:5px;
+	margin-top:-5px;
+	color:white;
+	border-radius:5px;
+	border:solid 1px #ff6600;
+}
+
+#classExit{
+	float: right;
+	width:90px;
+	background-color:#ff6600;
+	padding-top:5px;
+	padding-left:10px;
+	padding-bottom:5px;
+	margin-top:-5px;
+	color:white;
+	border-radius:5px;
+	border:solid 1px #ff6600;
+}
+
+#classIntro span{
+	font-size: 20px;
+	font-weight: bold;
+}
+li a:AFTER {
+	display: none;
+}
+.footer{
+	padding:0;
+}

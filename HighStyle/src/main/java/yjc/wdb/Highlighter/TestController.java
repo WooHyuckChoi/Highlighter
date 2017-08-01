@@ -102,7 +102,7 @@ public class TestController {
 
 	}
 
-	@RequestMapping(value = "/classMain", method = RequestMethod.GET)
+	@RequestMapping(value = "/newLecturePage", method = RequestMethod.GET)//classMain newLecturePage
 	public void classMain(@RequestParam("ext_id") String ext_id, Model model, HttpSession session) throws Exception {
 		model.addAttribute("classMainList", service3.Ext_read(ext_id));
 		model.addAttribute("ext_id", ext_id);
@@ -120,7 +120,7 @@ public class TestController {
 		model.addAttribute("TImage",TImage);
 	}
 	
-	@RequestMapping(value="/classMain", method = RequestMethod.POST)
+	@RequestMapping(value="/newLecturePage", method = RequestMethod.POST)
 	@ResponseBody
 	public String classMain(@RequestBody JSONObject json) throws Exception
 	{
@@ -189,8 +189,6 @@ public class TestController {
 		model.addAttribute("ext_id",ext_id);
 		
 		model.addAttribute("list", service3.Ext_read(ext_id));
-		System.out.println("占쏙옙占쏙옙占쌘듸옙 :"+ext_id);
-		System.out.println("占쏙옙占쏙옙 占쏙옙占싱듸옙 占쏙옙占쏙옙占�:"+user_id);
 		
 		
 		List<String> allid = service4.allid(ext_id);
@@ -658,7 +656,7 @@ public class TestController {
 		return null;
 	}
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping("/displayVideoFile2")
 	public ResponseEntity<byte[]> displayVideoFile(String fileName,@RequestHeader("Range") String rangeValue) throws Exception
 	{
@@ -728,7 +726,7 @@ public class TestController {
 	      // 사용자 취소 Exception 은 콘솔 출력 제외
 	      if (!e.getClass().getName().equals("org.apache.catalina.connector.ClientAbortException")) e.printStackTrace();
 	    }
-	  }
+	  }*/
 		@RequestMapping(value = "classTestFinish", method = RequestMethod.GET)
 		public void classTestFinish(Model model, HttpServletRequest req, test_resultVO vo3,exam_InfoVO vo4) throws Exception {
 				

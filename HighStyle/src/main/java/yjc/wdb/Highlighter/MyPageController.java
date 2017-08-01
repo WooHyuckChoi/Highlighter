@@ -213,5 +213,4 @@ public class MyPageController
 		service.deleteList(vo);
 		return "calendar";
 	}
-	
 }
