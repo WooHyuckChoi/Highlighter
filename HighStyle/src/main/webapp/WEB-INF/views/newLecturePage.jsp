@@ -78,7 +78,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="/Highlighter">
-					<img src="./resources/img/logo.png" alt="Logo">
+					<img src="./resources/img/blue_Logo.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
