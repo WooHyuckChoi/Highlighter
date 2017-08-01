@@ -5,14 +5,10 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -33,13 +29,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import yjc.wdb.Highlighter.domain.EvaVO;
 import yjc.wdb.Highlighter.domain.Ext_TimetableVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.domain.exam_InfoVO;
@@ -49,6 +46,7 @@ import yjc.wdb.Highlighter.domain.prob_InfoVO;
 import yjc.wdb.Highlighter.domain.test_InfoVO;
 import yjc.wdb.Highlighter.domain.test_resultVO;
 import yjc.wdb.Highlighter.service.ClassIntroListService;
+import yjc.wdb.Highlighter.service.EvaService;
 import yjc.wdb.Highlighter.service.Ext_InfoService;
 import yjc.wdb.Highlighter.service.Ext_TimetableService;
 import yjc.wdb.Highlighter.service.MyPageInfoService;
@@ -61,7 +59,6 @@ import yjc.wdb.Highlighter.service.prob_InfoService;
 import yjc.wdb.Highlighter.service.testResultService;
 import yjc.wdb.Highlighter.service.test_InfoService;
 import yjc.wdb.bbs.util.MediaUtils;
-import yjc.wdb.bbs.util.MultipartFileSender;
 
 @Controller
 public class TestController {
@@ -90,6 +87,8 @@ public class TestController {
 	jindan_evalService service9;
 	@Inject
 	jindan_resultService service10;
+	@Inject 
+	EvaService service11;
 	
 	@Inject
 	private MyPageInfoService myPageService;
@@ -1782,7 +1781,17 @@ public class TestController {
 		  			
 		  			service10.createResult(intojindan[i]);
 		  		}
-		  		
-		  
 		  	}
+		  //학생or강사 매칭용 진단평가!
+			@RequestMapping(value = "/eva", method = RequestMethod.GET)
+			public void evaGET()throws Exception{
+				
+				
+			}
+			@RequestMapping(value = "/evafinish", method = RequestMethod.POST)
+			public void evaPOST(EvaVO board, RedirectAttributes rttr)throws Exception{
+				
+				service11.regist(board);
+				
+			}
 }

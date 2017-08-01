@@ -16,5 +16,6 @@
 		<typeAlias alias="stu_infoVO" type="yjc.wdb.Highlighter.domain.stu_infoVO"/>
 			<typeAlias alias="jindan_evalVO" type="yjc.wdb.Highlighter.domain.jindan_evalVO"/>
 		<typeAlias alias="jindan_resultVO" type="yjc.wdb.Highlighter.domain.jindan_resultVO"/>
+		<typeAlias alias="EvaVO" type="yjc.wdb.Highlighter.domain.EvaVO"/>
 	</typeAliases>
 </configuration>

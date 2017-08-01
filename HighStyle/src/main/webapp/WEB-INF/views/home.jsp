@@ -1187,7 +1187,7 @@ $(document).ready(function () {
    });
 });
 //진단평가
-if("${id}" != "" && "${user_grade}" == 'student'){
+if("${id}" != "" && "${user_grade}" == 'student' && "${eva_id}" == '0'){
 	
 	window.open("/Highlighter/eva?id=${id}", "pop", "width=860,height=970,history=no,resizable=no,status=no,scrollbars=yes,menubar=no");
 }
