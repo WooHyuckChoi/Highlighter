@@ -44,30 +44,9 @@
 	<link rel="stylesheet" href="./resources/unify/assets/css/theme-skins/dark.css">
 
 	<!-- CSS Customization -->
-	<link rel="stylesheet" href="./resources/unify/assets/css/custom.css">
+	<link rel="stylesheet" href="./resources/unify/assets/css/stu_custom.css">
 	<style>
-		#noticeResi {
-			float: right;
-			width: 90px;
-			background-color: #1279ff;
-			padding-top: 5px;
-			padding-left: 10px;
-			padding-bottom: 5px;
-			margin-top: -5px;
-			color: white;
-			border-radius: 5px;
-			border: solid 1px #1279ff;
-			margin-top: 2px;
-		}
 		
-		#StudyRoom {
-			background-color: #1279ff;
-		}
-		
-		#StudyRoom a {
-			color: white;
-			font-size: 16px;
-		}
 	</style>
 </head>
 
@@ -224,237 +203,39 @@
 					<div class="profile-body">
 						<!-- Lecture introduce and enter -->
 						<div id="classIntro">
-							<span>과외 소개</span>
-							<c:if test="${user_grade eq 'teacher' }">
-								<c:if test="${open_stus eq 'y'}">
-									<button id="classExit">강의 닫기</button>
-								</c:if>
-								<c:if test="${open_stus eq 'n'}">
-									<button id="classGoIn">강의 열기</button>
-								</c:if>
-							</c:if>
-							<c:if test="${user_grade eq 'student' }">
-								<c:if test="${open_stus eq 'y'}">
-									<button id="classGoIn">강의 입장</button>
-								</c:if>
-							</c:if>
+							<span>수강 학생 목록</span>
 						</div>
 						<!-- end row -->
 						<div class="profile-bio">
 							<div class="row">
 								<div class="col-md-12">
-									<!-- 강사 정보 -->
 									<div id="teacherInfo" class="panel margin-bottom-40">
-										<div class="panel-heading">
-											<h3 class="panel-title">
-												강사 정보
-											</h3>
-										</div>
 										<div class="panel-body">
-											<table class="table table-bordered">
-												<thead>
-													<tr>
-														<td>과목</td>
-														<td>
-															<script>
-																var classCode = '${classMainList.ext_id}';
-																var subject = classCode.substr(2,2);
-																if (subject == "01") 
-																{
-																	document.write("국어");
-																}
-																else if (subject == "02") 
-																{
-																	document.write("영어");
-																} 
-																else if (subject == "03") 
-																{
-																	document.write("수학");
-																}
-															</script>
-														</td>
-														<td class="hidden-sm">온/오프라인</td>
-														<td>
-															<script>
-																var classCode = '${classMainList.ext_id}';
-																var subject = classCode.substr(0,1);
-																if (subject = "1") 
-																{
-																	document.write("온라인");
-																} 
-																else if (subject = "2") 
-																{
-																	document.write("오프라인");
-																}
-															</script>
-														</td>														
-													</tr>
-												</thead>	
-												<tbody>
-													<tr>
-														<td>수강학생 수</td>
-														<td>
-															<script>
-																var numclassReq = '${classMainList.num_class_req}';
-																document.write(numclassReq);
-															</script>
-														</td>
-														<td class="hidden-sm">과외 대상</td>
-														<td>
-															<script>
-																var extObj = '${classMainList.ext_obj}';
-																document.write(extObj);
-															</script>
-														</td>
-													</tr>
-													<tr>
-														<td>수업난이도</td>
-														<td>
-															<script>
-																var classlev = '${classMainList.class_lev}';
-																document.write(classlev);
-															</script>
-														</td>
-														<td class="hidden-sm">과외 형태</td>
-														<td>
-															<script>
-																var extWay = '${classMainList.ext_way}';
-																document.write(extWay)
-															</script>
-														</td>
-													</tr>
-													<tr>
-														<td>강의시작날짜</td>
-														<td>
-															<script>
-																var startdate = '${classMainList.str_class_date}';
-																document.write(startdate)
-															</script>
-														</td>
-														<td class="hidden-sm">강의종료날짜</td>
-														<td>
-															<script>
-																var enddate = '${classMainList.end_class_date}';
-																document.write(enddate)
-															</script>
-														</td>
-													</tr>
-												</tbody>
-											</table>
+											<c:forEach items="${info }" var="info">
+												<div>
+													<a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">
+														<img src="displayFile?fileName=${info.prof_photo }" /></a>
+													<p>${info.user_name }</p>
+												</div>
+											</c:forEach>
 										</div>
 									</div>
-									<!-- 강사 정보 끝 -->
 								</div>
 							</div>
 						</div><!--/end row-->
 
 						<hr>
 
-						<div class="row">
-							<!-- Lecture intro -->
-							<div class="col-sm-6 sm-margin-bottom-30">
-								<div class="panel panel-profile">
-									<div class="panel-heading overflow-h">
-										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> 수업소개 </h2>
-									</div>
-									<div class="panel-body">
-										${classMainList.intro_class}
-									</div>
-								</div>
-							</div>
-							<!--End Lecture intro-->
-
-							<!-- preview -->
-							<div class="col-sm-6 sm-margin-bottom-30">
-								<div class="panel panel-profile">
-									<div class="panel-heading overflow-h">
-										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> 공지사항</h2>
-										<form method="post">
-											<button id="noticeResi"> 등록 </button>
-										</form>
-										<script>
-											$("#noticeResi").on("click",function(){
-														$("form").attr("action","noticeResi");
-														$("form").attr("method","get");
-														$("form").submit();
-													});
-										</script>
-									</div>
-									<div class="panel-body">
-									
-									</div>
-								</div>
-							</div>
-							<!--End preview-->
-						</div>
-						<!--/end row-->
-
-						<hr>
-
-						<!--Schedule-->
+						<!--graph-->
 						<div class="panel panel-profile">
 							<div class="panel-heading overflow-h">
-								<h2 class="panel-title heading-sm pull-left"> 시간표 </h2>
+								<h2 class="panel-title heading-sm pull-left"> 성적 그래프 </h2>
 							</div>
 							<div class="panel-body margin-bottom-40">
-								<div id="timeTable" class="tableDiv">
-		    		<div id="base">
-					    <div class="line">
-					      <div class="null">&nbsp</div>	<div class="textalign tableRow">월</div><div class="textalign tableRow">화</div><div class="textalign tableRow">수</div><div class="textalign tableRow">목</div><div class="textalign tableRow">금</div><div class="textalign tableRow">토</div><div class="textalign tableRow">일</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">9</div>	<div id="a9" class="block">&nbsp</div><div id="b9" class="block">&nbsp</div><div id="c9" class="block">&nbsp</div><div id="d9" class="block">&nbsp</div><div id="e9" class="block">&nbsp</div><div id="f9" class="block">&nbsp</div><div id="g9" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">10</div>  <div id="a10" class="block">&nbsp</div><div id="b10" class="block">&nbsp</div><div id="c10" class="block">&nbsp</div><div id="d10" class="block">&nbsp</div><div id="e10" class="block">&nbsp</div><div id="f10" class="block">&nbsp</div><div id="g10" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">11</div>  <div id="a11" class="block">&nbsp</div><div id="b11" class="block">&nbsp</div><div id="c11" class="block">&nbsp</div><div id="d11" class="block">&nbsp</div><div id="e11" class="block">&nbsp</div><div id="f11" class="block">&nbsp</div><div id="g11" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">12</div>  <div id="a12" class="block">&nbsp</div><div id="b12" class="block">&nbsp</div><div id="c12" class="block">&nbsp</div><div id="d12" class="block">&nbsp</div><div id="e12" class="block">&nbsp</div><div id="f12" class="block">&nbsp</div><div id="g12" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">1</div>  <div id="a13" class="block">&nbsp</div><div id="b13" class="block">&nbsp</div><div id="c13" class="block">&nbsp</div><div id="d13" class="block">&nbsp</div><div id="e13" class="block">&nbsp</div><div id="f13" class="block">&nbsp</div><div id="g13" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">2</div>  <div id="a14" class="block">&nbsp</div><div id="b14" class="block">&nbsp</div><div id="c14" class="block">&nbsp</div><div id="d14" class="block">&nbsp</div><div id="e14" class="block">&nbsp</div><div id="f14" class="block">&nbsp</div><div id="g14" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">3</div>  <div id="a15" class="block">&nbsp</div><div id="b15" class="block">&nbsp</div><div id="c15" class="block">&nbsp</div><div id="d15" class="block">&nbsp</div><div id="e15" class="block">&nbsp</div><div id="f15" class="block">&nbsp</div><div id="g15" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">4</div>  <div id="a16" class="block">&nbsp</div><div id="b16" class="block">&nbsp</div><div id="c16" class="block">&nbsp</div><div id="d16" class="block">&nbsp</div><div id="e16" class="block">&nbsp</div><div id="f16" class="block">&nbsp</div><div id="g16" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">5</div>  <div id="a17" class="block">&nbsp</div><div id="b17" class="block">&nbsp</div><div id="c17" class="block">&nbsp</div><div id="d17" class="block">&nbsp</div><div id="e17" class="block">&nbsp</div><div id="f17" class="block">&nbsp</div><div id="g17" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">6</div>  <div id="a18" class="block">&nbsp</div><div id="b18" class="block">&nbsp</div><div id="c18" class="block">&nbsp</div><div id="d18" class="block">&nbsp</div><div id="e18" class="block">&nbsp</div><div id="f18" class="block">&nbsp</div><div id="g18" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">7</div>  <div id="a19" class="block">&nbsp</div><div id="b19" class="block">&nbsp</div><div id="c19" class="block">&nbsp</div><div id="d19" class="block">&nbsp</div><div id="e19" class="block">&nbsp</div><div id="f19" class="block">&nbsp</div><div id="g19" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">8</div>  <div id="a20" class="block">&nbsp</div><div id="b20" class="block">&nbsp</div><div id="c20" class="block">&nbsp</div><div id="d20" class="block">&nbsp</div><div id="e20" class="block">&nbsp</div><div id="f20" class="block">&nbsp</div><div id="g20" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">9</div>  <div id="a21" class="block">&nbsp</div><div id="b21" class="block">&nbsp</div><div id="c21" class="block">&nbsp</div><div id="d21" class="block">&nbsp</div><div id="e21" class="block">&nbsp</div><div id="f21" class="block">&nbsp</div><div id="g21" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">10</div>  <div id="a22" class="block">&nbsp</div><div id="b22" class="block">&nbsp</div><div id="c22" class="block">&nbsp</div><div id="d22" class="block">&nbsp</div><div id="e22" class="block">&nbsp</div><div id="f22" class="block">&nbsp</div><div id="g22" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">11</div>  <div id="a23" class="block">&nbsp</div><div id="b23" class="block">&nbsp</div><div id="c23" class="block">&nbsp</div><div id="d23" class="block">&nbsp</div><div id="e23" class="block">&nbsp</div><div id="f23" class="block">&nbsp</div><div id="g23" class="block">&nbsp</div>
-					    </div>
-					    <div class="line">
-					      <div class="tableColumn">12</div>  <div id="a24" class="block">&nbsp</div><div id="b24" class="block">&nbsp</div><div id="c24" class="block">&nbsp</div><div id="d24" class="block">&nbsp</div><div id="e24" class="block">&nbsp</div><div id="f24" class="block">&nbsp</div><div id="g24" class="block">&nbsp</div>
-					    </div>
-	  				</div>
-		    	</div>
+								
 							</div>
 						</div>
-						<!--End Schedule-->
+						<!--End graph-->
 					</div>
 				</div>
 				<!-- End Profile Content -->
