@@ -56,7 +56,7 @@
 			margin-top: -5px;
 			color: white;
 			border-radius: 5px;
-			border: solid 1px #ff6600;
+			border: solid 1px #1279ff;
 			margin-top:2px;
 		}
 		#StudyRoom{

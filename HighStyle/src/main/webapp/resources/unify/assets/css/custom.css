@@ -42,27 +42,27 @@
 #classGoIn {
 	float: right;
 	width:90px;
-	background-color:#ff6600;
+	background-color:#1279ff;
 	padding-top:5px;
 	padding-left:10px;
 	padding-bottom:5px;
 	margin-top:-5px;
 	color:white;
 	border-radius:5px;
-	border:solid 1px #ff6600;
+	border:solid 1px #1279ff;
 }
 
 #classExit{
 	float: right;
 	width:90px;
-	background-color:#ff6600;
+	background-color:#1279ff;
 	padding-top:5px;
 	padding-left:10px;
 	padding-bottom:5px;
 	margin-top:-5px;
 	color:white;
 	border-radius:5px;
-	border:solid 1px #ff6600;
+	border:solid 1px #1279ff;
 }
 
 #classIntro span{

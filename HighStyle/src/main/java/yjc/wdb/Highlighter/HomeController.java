@@ -131,7 +131,7 @@ public class HomeController {
 				}
 				
 				model.addAttribute("onGoingExt_Stu", onGoingExt_Stu);
-			
+				
 				//System.out.println("�̰�"+onGoingExt_Stu);
 				/* �л��� ���� ��û�� ��� */
 				List<HashMap> appClassList_Stu = service2.appClassList_Stu(user_id);

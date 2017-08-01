@@ -733,7 +733,7 @@
 		    				day_week = "g";
 		    			}
 						var strBlock = day_week+k;
-						$("#"+strBlock).css("background-color","#ff6600");
+						$("#"+strBlock).css("background-color","#1279ff");
 					}
 					
 				}
