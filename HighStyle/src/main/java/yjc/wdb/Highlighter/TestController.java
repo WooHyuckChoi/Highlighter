@@ -114,9 +114,6 @@ public class TestController {
 		model.addAttribute("user_grade",enterRoomService.selectGrade(user_id));
 		model.addAttribute("classMainList", service3.Ext_read(ext_id));
 		String TImage = service4.TImage(ext_id);
-		
-		System.out.println("占싱거뱄옙占쏙옙:"+TImage);
-		
 		model.addAttribute("TImage",TImage);
 	}
 	
