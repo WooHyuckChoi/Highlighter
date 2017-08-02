@@ -24,3 +24,18 @@
 .footer{
 	padding:0;
 }
+
+.news-v2-desc h3{
+	text-align: center;
+}
+
+.profile-bio a{
+	left: initial !important;
+	bottom: initial !important;
+	margin-left: initial !important;
+	text-align: initial !important;
+	position: initial !important;
+	color: initial !important;
+	text-decoration: none !important;
+}
+   
