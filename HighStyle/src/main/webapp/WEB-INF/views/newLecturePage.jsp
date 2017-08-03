@@ -43,8 +43,10 @@
 	<link rel="stylesheet" href="./resources/unify/assets/css/theme-colors/default.css" id="style_color">
 	<link rel="stylesheet" href="./resources/unify/assets/css/theme-skins/dark.css">
 
-	<!-- CSS Customization -->
+	<!-- CSS Customization : 시간표 -->
 	<link rel="stylesheet" href="./resources/unify/assets/css/custom.css">
+	<!-- ico -->
+	<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
 	<style>
 		#noticeResi {
 			float: right;
