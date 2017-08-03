@@ -24,16 +24,78 @@
 	float:left; 
 	clear:both;
 }
-
 #base{
-	width: 100%; height: 100%; margin-top:5%; margin-left:15%;}
-    #base > .line {clear: both;}
-    #base > .line > .null{width:4%; height:4%; border: 1px solid gray; text-align:right; float: left;}
-    #base > .line > .tableColumn{width:4%; height:8%; border-right: 1px solid gray; border-left: 1px solid gray; border-bottom: 1px solid gray;  text-align:right; float: left;}
-    #base > .line > .tableRow{width:10%; height:4%; border-top: 1px solid gray; border-right: 1px solid gray; border-bottom: 1px solid gray; float: left;}
-    #base > .line > .block{width:10%; height:8%; border-right: 1px solid gray; border-bottom: 1px solid gray; float: left;}
-    .timeActive{background-color: #FC9312;}
-    .textalign{text-align:center;
+	width: 100%; 
+	height: 100%; 
+	margin-top:0%; 
+	margin-left:0%;
+}
+#base > .line {
+	clear: both;
+}
+#base > .line > .null{ /* calendar table - blank space */
+	width:12%; 
+	height:4%; 
+	/* border: 1px solid lightgray;  */
+	border-top:1px solid lightgray;
+	border-left:1px solid lightgray;
+	border-bottom:1px solid lightgray;
+	text-align:right; 
+	float: left;
+	background-color:#ebf5fb;
+	color:#0f366b;
+}
+#base > .line > .tableColumn{ /* calendar table - time Menu */
+	width:12%; 
+	height:50px; 
+	/* border-right: 1px solid lightgray;  */
+	border-left: 1px solid lightgray; 
+	border-bottom: 1px solid lightgray;  
+	text-align:center; 
+	float: left;
+	background-color:#ebf5fb;
+	color:#0f366b;
+	padding-right:10px;
+	line-height:20px;
+}
+.tableColumn > a:first-child {
+	float:left;
+	color:#0f366b;
+}
+#base > .line > .tableRow:not(:last-child){ /* calendar table - week Menu */
+	width:12.5%; 
+	height:4%; 
+	border-top: 1px solid lightgray; 
+	/* border-right: 1px solid lightgray;  */
+	border-bottom: 1px solid lightgray; 
+	float: left;
+	background-color:#ebf5fb;
+	color:#0f366b;
+}
+#base > .line > .tableRow:last-child{
+	width:12.5%; 
+	height:4%; 
+	border-top: 1px solid lightgray; 
+	border-right: 1px solid lightgray; 
+	border-bottom: 1px solid lightgray; 
+	float: left;
+	background-color:#ebf5fb;
+	color:#0f366b;
+}
+#base > .line > .block{
+	width:12.5%; 
+	height:50px; 
+	border-right: 1px solid lightgray;  
+	border-bottom: 1px solid lightgray; 
+	float: left;
+}
+/* calendar table - DIV : END */
+
+.timeActive{
+	background-color: #FC9312;
+}
+.textalign{
+	text-align:center;
 }
 
 #classGoIn {
