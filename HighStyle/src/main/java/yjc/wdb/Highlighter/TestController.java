@@ -1618,14 +1618,14 @@ public class TestController {
 		
 		}
 		
-		@RequestMapping(value="classSTManagementList", method= RequestMethod.GET)
+		@RequestMapping(value="classSTManagementList", method= RequestMethod.GET) //studentManagement
 		public String classSTManagementList(@RequestParam("ext_id") String ext_id,Model model) throws Exception
 		{
 			
 			List<User_InfoVO> info = myPageService.getUserInfo(ext_id);
 			model.addAttribute("ext_id",ext_id);
 			model.addAttribute("info",info);
-			return "classSTManagementList";
+			return "studentManagement";
 		}
 		
 		@RequestMapping(value = "classSTManagement", method = RequestMethod.GET)

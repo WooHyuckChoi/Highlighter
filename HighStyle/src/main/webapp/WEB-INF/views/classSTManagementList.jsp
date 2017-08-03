@@ -103,7 +103,7 @@ img{
 				<c:forEach items="${info }" var="info">
 					<div>
 						<a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}"><img src="displayFile?fileName=${info.prof_photo }" /></a>
-						<p>${info.user_name }
+						<p>${info.user_name }</p>
 					</div>
 				</c:forEach>
 		</div>

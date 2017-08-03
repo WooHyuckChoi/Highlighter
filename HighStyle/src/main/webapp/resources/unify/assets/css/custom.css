@@ -8,9 +8,6 @@
     box-sizing: border-box;
     border-bottom: 1px solid #cfcfcf;
 }
-#StudyRoom a{
-	font-size: 16px;
-}
 .panel-body td:NTH-CHILD(odd){
 	color: #336199;
 	background-color: #EDF3F4;
@@ -68,9 +65,6 @@
 #classIntro span{
 	font-size: 20px;
 	font-weight: bold;
-}
-li a:AFTER {
-	display: none;
 }
 .footer{
 	padding:0;

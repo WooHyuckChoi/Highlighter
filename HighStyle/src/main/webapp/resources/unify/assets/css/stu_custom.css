@@ -1,0 +1,41 @@
+/* Add here all your css styles (customizations) */
+#classIntro{
+	height: 50px;
+	background: #fff;
+    position: relative;
+    padding: 15px 10px 5px 15px;
+    border-radius: 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid #cfcfcf;
+}
+#StudyRoom a{
+	font-size: 16px;
+	color: white;
+}
+#StudyRoom{
+	background-color: #1279ff;
+}
+
+#classIntro span{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.footer{
+	padding:0;
+}
+
+.news-v2-desc h3{
+	text-align: center;
+}
+
+.profile-bio a{
+	left: initial !important;
+	bottom: initial !important;
+	margin-left: initial !important;
+	text-align: initial !important;
+	position: initial !important;
+	color: initial !important;
+	text-decoration: none !important;
+}
+   
