@@ -174,13 +174,10 @@
 					<!-- src="displayFile?fileName=${list.prof_photo }" -->
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 						<li id="StudyRoom" class="list-group-item">
-							<a href="/Highlighter/classMain?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
+							<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
 						</li>
 						<li class="list-group-item">
 							<a href="#"><i class="fa fa-user"></i> 숙제</a>
-						</li>
-						<li class="list-group-item">
-							<a href="#"><i class="fa fa-cubes"></i> 강의자료</a>
 						</li>
 						<li class="list-group-item">
 							<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
@@ -313,115 +310,9 @@
 			CirclesMaster.initCirclesMaster1();
 			StyleSwitcher.initStyleSwitcher();
 		});
-	</script>
-	<script>
-	$("#logout").on("click", function(){
-		window.location.href="logout";
-	});
-	
-	$(document).ready(function() {
-	$("#classGoIn").click(function(){
-				var ext_id = '${ext_id}';
-				var user_id = '${user_id}';
-				var user_grade='${user_grade}';
-				
-				if(user_grade=="teacher")
-				{
-					$.ajax({
-							url : "classMain",
-							type:"POST",
-							dataType : "text",
-							contentType: "application/json; charset=UTF-8",
-							data: JSON.stringify({
-								ext_id : ext_id,
-								user_id : user_id
-							}),
-							success : function(data) {
-								if(data=="success"){
-									alert("성공!");
-									window.location.reload();
-									window.open("https://192.168.43.136/?ext_id=${ext_id}&id=${user_id}"); //106.249.38.98,192.168.43.136
-								}
-							},
-							error : function(data) {
-								alert("실패!");
-							}
-						});
-				}
-				else if(user_grade=="student")
-				{
-					window.open("https://192.168.43.136/?ext_id=${ext_id}&id=${user_id}"); //192.168.51.19
-				}
-			});
-			$("#classExit").click(function(){ //이거 추가해야함 그리고 버튼도 만들고 css도 추가같이 해야함
-				var ext_id = '${ext_id}';
-				var user_id = '${user_id}';
-				$.ajax({
-						url : "classMain2",
-						type : "post",
-						dataType : "text",
-						contentType : "application/json",
-						data : JSON.stringify({
-							ext_id : ext_id,
-							user_id : user_id
-
-						}),
-						success : function(data) {
-							if (data == "success"){
-								alert("성공!");
-								window.location.reload();
-							}
-						},
-						error : function(data) {
-							alert("실패!");
-						}
-					});
-				});
-			});
-	</script>
-	<script>
-	$(document).ready(function(){
-		$.ajax({
-			type : "GET",
-			url : "lectureSchedule",
-			data : {
-				ext_id : '${ext_id}'
-			},
-			contentType : "text",
-			dataType : "json",
-			success : function(data){
-				for(var i = 0 ; i < data.length; i++){
-					var day_week = data[i].day_week;
-					var class_str_time = data[i].class_str_time;
-					var class_end_time = data[i].class_end_time;	
-					for(var k = class_str_time; k < class_end_time; k++){
-						if(day_week == "월"){
-							day_week = "a";
-		    			} else if(day_week == "화"){
-		    				day_week = "b";
-		    			} else if(day_week == "수"){
-		    				day_week = "c";
-		    			} else if(day_week == "목"){
-		    				day_week = "d";
-		    			} else if(day_week == "금"){
-		    				day_week = "e";
-		    			} else if(day_week == "토"){
-		    				day_week = "f";
-		    			} else if(day_week == "일"){
-		    				day_week = "g";
-		    			}
-						var strBlock = day_week+k;
-						$("#"+strBlock).css("background-color","#ff6600");
-					}
-					
-				}
-				
-			},
-			error : function(data){
-				alert("에러 시바아아아아알");
-			}
+		$("#logout").on("click", function(){
+			window.location.href="logout";
 		});
-	});
 	</script>
 	<%-- 차트 그려여기서어 --%>
 	<script type="text/javascript">

@@ -196,7 +196,7 @@
 					<!-- src="displayFile?fileName=${list.prof_photo }" -->
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 						<li id="StudyRoom" class="list-group-item">
-							<a href="/Highlighter/classMain?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
+							<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
 						</li>
 						<li class="list-group-item">
 							<a href="#"><i class="fa fa-user"></i> 숙제</a>
