@@ -6,6 +6,8 @@ public class Ext_TimetableVO {
 	private String day_week;
 	private int class_str_time;
 	private int class_end_time;
+	private String user_name;
+	
 	public String getUser_id() {
 		return user_id;
 	}
@@ -36,6 +38,13 @@ public class Ext_TimetableVO {
 	public void setClass_end_time(int class_end_time) {
 		this.class_end_time = class_end_time;
 	}
+	public String getUser_name() {
+		return user_name;
+	}
+	public void setUser_name(String user_name) {
+		this.user_name = user_name;
+	}
+
 	
 	
 }

@@ -4,12 +4,13 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="yjc.wdb.Highlighter.Ext_TimetableMapper">
 <select id="AlectureSchedule" resultType="Ext_TimetableVO">
-select * from 
-ext_timetable
-where ext_id = #{ext_id}
-and user_id = (select user_id
-from ext_info 
-where ext_id = #{ext_id})
+select e.*, u.user_name 
+from ext_timetable e, user_info u
+where ext_id = #{ext_id} 
+and e.user_id = (select user_id
+				from ext_info 
+				where ext_id = #{ext_id})
+and e.user_id = u.user_id
 </select>
 
 <!-- 학생이 강의 취소시, 신청한 과외 시간대가 있는지 파악 -->

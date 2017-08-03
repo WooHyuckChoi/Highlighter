@@ -36,7 +36,6 @@
 #base > .line > .null{ /* calendar table - blank space */
 	width:12%; 
 	height:4%; 
-	/* border: 1px solid lightgray;  */
 	border-top:1px solid lightgray;
 	border-left:1px solid lightgray;
 	border-bottom:1px solid lightgray;
@@ -48,31 +47,25 @@
 #base > .line > .tableColumn{ /* calendar table - time Menu */
 	width:12%; 
 	height:50px; 
-	/* border-right: 1px solid lightgray;  */
 	border-left: 1px solid lightgray; 
 	border-bottom: 1px solid lightgray;  
 	text-align:center; 
 	float: left;
 	background-color:#ebf5fb;
 	color:#0f366b;
-	padding-right:10px;
-	line-height:20px;
-}
-.tableColumn > a:first-child {
-	float:left;
-	color:#0f366b;
+	line-height:50px;
 }
 #base > .line > .tableRow:not(:last-child){ /* calendar table - week Menu */
 	width:12.5%; 
 	height:4%; 
 	border-top: 1px solid lightgray; 
-	/* border-right: 1px solid lightgray;  */
 	border-bottom: 1px solid lightgray; 
 	float: left;
 	background-color:#ebf5fb;
 	color:#0f366b;
+	font-weight:bold;
 }
-#base > .line > .tableRow:last-child{
+#base > .line > .tableRow:last-child{ /* calendar table - week Menu */
 	width:12.5%; 
 	height:4%; 
 	border-top: 1px solid lightgray; 
@@ -81,16 +74,16 @@
 	float: left;
 	background-color:#ebf5fb;
 	color:#0f366b;
+	font-weight:bold;
 }
-#base > .line > .block{
+#base > .line > .block{ /* calendar table - real time */
 	width:12.5%; 
 	height:50px; 
 	border-right: 1px solid lightgray;  
 	border-bottom: 1px solid lightgray; 
 	float: left;
+	text-align:center;
 }
-/* calendar table - DIV : END */
-
 .timeActive{
 	background-color: #FC9312;
 }

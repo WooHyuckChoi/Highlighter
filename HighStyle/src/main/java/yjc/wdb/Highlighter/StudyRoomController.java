@@ -127,4 +127,19 @@ public class StudyRoomController
 
 		return weekCorrectAnsw;
 	}
+	
+	/* lecturePage - 강의 닫기 버튼 클릭 동작 */
+	@RequestMapping(value="/classMain2", method = RequestMethod.POST) 
+	@ResponseBody
+	public String classMain2(@RequestBody JSONObject json) throws Exception
+	{
+		/*System.out.println("�씠嫄몃줈 �삤�깘");*/
+		System.out.println(json.get("user_id") +","+ json.get("ext_id"));
+		HashMap<String, String> vo= new HashMap<String, String>();
+		vo.put("user_id", json.get("user_id").toString());
+		vo.put("ext_id", json.get("ext_id").toString());
+		System.out.println(vo);
+		studyRoomService.updateCloseStat(vo);
+		return "success";
+	}
 }
