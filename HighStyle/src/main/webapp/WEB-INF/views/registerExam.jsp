@@ -222,10 +222,11 @@
 				<!-- Profile Content -->
 				<div class="col-md-9">
 					<div class="profile-body">
-						<!-- Lecture introduce and enter -->
 						<div id="classIntro">
-							<span>시험 <a href="registerExam">시험 등록</a><button>삭제</button></span>
+							<span>시험 등록</span>
 						</div>
+					</div>
+					<div class="profile-body">
 						<!-- end row -->
 						<div class="profile-bio">
 							<div class="row">
@@ -233,11 +234,163 @@
 									<!-- 강사 정보 -->
 									<div id="teacherInfo" class="panel margin-bottom-40">
 										<div class="panel-body">
-											<div class="teacher-testInfo">
-												<!-- <div>최근 친 시험:</div>
-												<div>전체 학생 수:</div>
-												<div>시험 평균:</div> -->
+											<div class="file-upload">
+												<button class="file-upload-btn" type="button" onclick="$('.file-upload-input').trigger( 'click' )">시험지 등록</button>
+												<input style="display:none;" class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+												<div class="image-upload-wrap" style="display:none">
+													<div class="image-title-wrap"><span class="image-title">Uploaded Image</span><button type="button" onclick="removeUpload()" class="remove-image">X</button></div>
+													<img class="file-upload-image" src="#" alt="your image"/>
+												</div>
 											</div>
+										<!--  -->
+									         <div id="div1">
+									            <div id="homework">
+									               <h3 id="h3home">시험</h3>
+									               <!-- 시험 레이어 팝업  -->
+									               <div class="dim-layer">
+									                  <!-- 겉 화면 어둡게 -->
+									                  <div class="dimBg"></div>
+									                  <div id="layer2" class="pop-layer">
+									                     <div class="pop-container">
+									                        <div class="pop-conts">
+									                           <!-- 시험출제 내용  -->
+									                           <form id="form1" method="post" enctype="multipart/form-data">
+									                              <c:forEach items="${allid}" var="allid">
+									                                 ${allid}
+									                                 <input type="hidden" name="allid" value="${allid}">
+									                              </c:forEach>
+									
+									                              <p id="popupTitle" class="ctxt mb20">
+									                                 시험출제<a href="#" class="btn-layerClose">X</a>
+									                              </p>
+									                              <p id="testDate">
+									                                 ｜시험날짜 : <input type="date" name="testdate" required>
+									                              </p>
+									                              <p id="fileUpload">
+									                                 ｜시험지 업로드 : <input type="file" name="file"> <input
+									                                    type="hidden" value="${list.ext_id}" name="ext_id">
+									                              </p>
+									                              <p class="testTime">
+									                                 ｜시험 시간 입력 : <input type="text" id="testTime2" name="testTime"
+									                                    required>분
+									                              </p>
+									                              <p class="correctansw">
+									                                 ｜정답 입력<br>
+									                              </p>
+									
+									                              <table class="table-style-one">
+									                                 <thead>
+									                                    <tr>
+									                                       <th>문제번호</th>
+									                                       <th>정답</th>
+									                                       <th>문제번호</th>
+									                                       <th>정답</th>
+									                                    </tr>
+									                                 </thead>
+									                                 <tbody>
+									                                    <tr>
+									                                       <td>1</td>
+									                                       <td><input type="text" id="qjs1" name="answ1"></td>
+									                                       <td>11</td>
+									                                       <td><input type="text" id="qjs11" name="answ11"></td>
+									                                    </tr>
+									                                    <tr>
+									                                       <td>2</td>
+									                                       <td><input type="text" id="qjs2" name="answ2"></td>
+									                                       <td>12</td>
+									                                       <td><input type="text" id="qjs12" name="answ12"></td>
+									                                    </tr>
+									                                    <tr>
+									                                       <td>3</td>
+									                                       <td><input type="text" id="qjs3" name="answ3"></td>
+									                                       <td>13</td>
+									                                       <td><input type="text" id="qjs13" name="answ13"></td>
+									                                    </tr>
+									                                    <tr>
+									                                       <td>4</td>
+									                                       <td><input type="text" id="qjs4" name="answ4"></td>
+									                                       <td>14</td>
+									                                       <td><input type="text" id="qjs14" name="answ14"></td>
+									                                    </tr>
+									                                    <tr>
+									                                       <td>5</td>
+									                                       <td><input type="text" id="qjs5" name="answ5"></td>
+									                                       <td>15</td>
+									                                       <td><input type="text" id="qjs15" name="answ15"></td>
+									                                    </tr>
+									                                    <tr>
+									                                       <td>6</td>
+									                                       <td><input type="text" id="qjs6" name="answ6"></td>
+									                                       <td>16</td>
+									                                       <td><input type="text" id="qjs16" name="answ16"></td>
+									                                    </tr>
+									                                    <tr>
+									                                       <td>7</td>
+									                                       <td><input type="text" id="qjs7" name="answ7"></td>
+									                                       <td>17</td>
+									                                       <td><input type="text" id="qjs17" name="answ17"></td>
+									                                    </tr>
+									                                    <tr>
+									                                       <td>8</td>
+									                                       <td><input type="text" id="qjs8" name="answ8"></td>
+									                                       <td>18</td>
+									                                       <td><input type="text" id="qjs18" name="answ18"></td>
+									                                    </tr>
+									                                    <tr>
+									                                       <td>9</td>
+									                                       <td><input type="text" id="qjs9" name="answ9"></td>
+									                                       <td>19</td>
+									                                       <td><input type="text" id="qjs19" name="answ19"></td>
+									                                    </tr>
+									                                    <tr>
+									                                       <td>10</td>
+									                                       <td><input type="text" id="qjs10" name="answ10"></td>
+									                                       <td>20</td>
+									                                       <td><input type="text" id="qjs20" name="answ20"></td>
+									                                    </tr>
+									                                 </tbody>
+									                              </table>
+									                              <p id="testSubmit">
+									                                 <input type="submit" value="등록">
+									                              </p>
+									                           </form>
+									                           <!-- 시험출제 내용  끝-->
+									                        </div>
+									                     </div>
+									                  </div>
+									               </div>
+									               <!-- 시험 레이어 팝업 끝 -->
+									            </div>
+									
+									            <br>
+									            <!-- 시험 테이블 영역  -->
+									            <div class="w3-container">
+									               <a href="#layer2" class="btn-del">삭제</a> <a href="#layer2"
+									                  class="btn-example">시험등록</a>
+									               <table class="w3-table w3-bordered">
+									                  <tr>
+									                     <th>주차</th>
+									                     <th>시험시간</th>
+									                     <th>시험날짜</th>
+									                  </tr>
+									
+									                  <c:forEach items="${teacherList}" var="teacherList">
+									                     <tr>
+									
+									                        <td>${teacherList.test_id}</td>
+									                        <td>${teacherList.test_time}</td>
+									                        <td>${teacherList.test_date}</td>
+									
+									                     </tr>
+									                  </c:forEach>
+									
+									               </table>
+									               <c:if test="${empty teacherList}">
+									                  <div id="notExist">시험 정보가 없습니다.</div>
+									               </c:if>
+									            </div>
+									            <!-- 시험 테이블 영역 끝 -->
+									         </div>
 										</div>
 									</div>
 									<!-- 강사 정보 끝 -->
@@ -245,18 +398,6 @@
 							</div>
 						</div><!--/end row-->
 			
-						<hr>
-						<!--/end row-->
-									
-						<!--Schedule-->
-						<div class="panel panel-profile">
-							<div class="panel-heading overflow-h">
-								<h2 class="panel-title heading-sm pull-left"> 시간표 </h2>
-							</div>
-							<div class="panel-body margin-bottom-40">
-											
-							</div>
-						</div>
 						<!--End Schedule-->
 					</div>
 				</div>
@@ -296,7 +437,8 @@
 		</div>
 		<!--=== End Footer Version 1 ===-->
 	</div><!--/wrapper-->
-
+	<!-- file upload -->
+	<script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 	<!-- JS Global Compulsory -->
 	<script type="text/javascript" src="./resources/unify/assets/plugins/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="./resources/unify/assets/plugins/jquery/jquery-migrate.min.js"></script>
@@ -323,6 +465,30 @@
 			StyleSwitcher.initStyleSwitcher();
 		});
 	
+	</script>
+	<script>
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				$('.file-upload-image').attr('src', e.target.result);
+				$('.image-upload-wrap').show();
+				$('.image-title').html(input.files[0].name);
+			};
+
+			reader.readAsDataURL(input.files[0]);
+
+		}  else {
+			$('.image-upload-wrap').hide();
+		}
+	}
+
+	function removeUpload(){
+		$('.file-upload-input').replaceWith($('.file-upload-input').clone());
+		$('.image-upload-wrap').hide();
+	}
 	</script>
 </body>
 </html>

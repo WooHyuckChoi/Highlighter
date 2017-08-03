@@ -1,15 +1,17 @@
 /* ---------------------------------------------------------------
 --------------------------testPage.jsp----------------------------
 -----------------------------------------------------------------*/
+.profile-bio{
+	/* border: 1px solid #cfcfcf; */
+}
 #classIntro{
 	height: 50px;
 	background: #fff;
     position: relative;
-    padding: 10px 10px 5px 15px;
+    padding: 10px 5px 5px 15px;
     border-radius: 0;
     box-sizing: border-box;
-    border-bottom: 1px solid #cfcfcf;
-    margin-top:20px;
+    /* border: 1px solid #cfcfcf; */
 }
 .teacher-testInfo{
 	border:1px solid gray;
@@ -25,5 +27,52 @@
 	margin-right:10px;
 }
 .col-md-9{
-	background-color:#f7f7f7;
+	padding:0px;
+}
+#classIntro > span{
+	font-size:20px;
+}
+<!-- -->
+.file-upload { 
+		background-color: #ffffff;
+		width: 600px;
+		margin: 0 auto;
+		padding: 20px;
+	}
+
+.file-upload-btn{
+	width: 100%;
+	padding: 15px;
+	text-transform: uppercase;
+	color: #fff;
+	background-color: #1279FF;
+	border: 2px solid #1279FF;
+}
+.file-upload-input{
+	display: none;
+}
+
+.image-upload-wrap {
+	margin-top: 20px;
+	border: 2px solid #1279FF;
+}
+.image-title-wrap {
+	padding: 15px;
+	background-color: #1279FF;
+	color: #ffffff; 
+}
+.file-upload-image{
+	display: block;
+	max-height: 300px;
+	width: auto;
+	margin: auto;
+	padding: 20px;
+}
+
+.remove-image {
+	float: right;
+	background-color: transparent;
+	border: 1px solid #ffffff;
+	color: #ffffff;
+	font-weight: 700;
 }
