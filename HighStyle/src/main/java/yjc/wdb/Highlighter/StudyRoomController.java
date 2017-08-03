@@ -76,11 +76,24 @@ public class StudyRoomController
 		model.addAttribute("info",info);
 		
 		List<HashMap> list = studyRoomService.selectTestResult(ext_id);
+	
+		JSONObject jsonMain = new JSONObject();
 		JSONArray jArray = new JSONArray();
 		for(int i=0 ; i<list.size() ; i++)
 		{
+			JSONObject row = new JSONObject();
 			
+			String substr = list.get(i).get("test_id").toString();
+			row.put("times",substr.substring(8, 9));
+			
+			for(int j=0; j<list.size() ; j++)
+				row.put(list.get(j).get("user_id").toString() , list.get(i).get("count").toString());
+			
+			jArray.add(i,row);
 		}
+		jsonMain.put("sendData",jArray);
+		System.out.println(jArray);
+		model.addAttribute("json",jsonMain.get("sendData"));
 		return "studentManagement";
 	}
 

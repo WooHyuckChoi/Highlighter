@@ -321,20 +321,20 @@
 			  element: 'myfirstchart',
 			  // Chart data records -- each entry in this array corresponds to a point on
 			  // the chart.
-			  data: [
+			  data: /* [
 			    { year: '2008', Avalue: 30, Bvalue: 18 },
 			    { year: '2009', Avalue: 10, Bvalue: 15 },
 			    { year: '2010', Avalue: 5, Bvalue: 5 },
 			    { year: '2011', Avalue: 5, Bvalue: 10 },
 			    { year: '2012', Avalue: 20, Bvalue: 12 }
-			  ],
+			  ] */${json},
 			  // The name of the data record attribute that contains x-values.
-			  xkey: 'year',
+			  xkey: 'times',
 			  // A list of names of data record attributes that contain y-values.
-			  ykeys: ['Avalue','Bvalue'],
+			  ykeys: ['s','ss'],
 			  // Labels for the ykeys -- will be displayed when you hover over the
 			  // chart.
-			  labels: ['Avalue','Bvalue']
+			  labels: ['s','ss']
 			});
 	</script>
 	
