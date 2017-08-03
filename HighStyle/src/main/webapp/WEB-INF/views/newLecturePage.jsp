@@ -597,7 +597,14 @@
 				for(var i = 0 ; i < data.length; i++){
 					var day_week = data[i].day_week;
 					var class_str_time = data[i].class_str_time;
-					var class_end_time = data[i].class_end_time;	
+					var class_end_time = data[i].class_end_time;
+					
+					var ext_id = '${ext_id}';
+					var subject = "";
+					if(ext_id.substr(2,2) == "01"){subject = "국어"}
+					else if(ext_id.substr(2,2) == "02"){subject = "영어"}
+					else if(ext_id.substr(2,2) == "03"){subject = "수학"}
+					
 					for(var k = class_str_time; k < class_end_time; k++){
 						if(day_week == "월"){
 							day_week = "a";
@@ -616,13 +623,14 @@
 		    			}
 						var strBlock = day_week+k;
 						$("#"+strBlock).css("background-color","#f5f5f5");
+						$("#"+strBlock).html('<a style="color:gray;">'+subject+'</a><br/><a style="font-size:11px; color:gray;">'+"("+data[i].user_name+" 강사님)</a>");
 					}
 					
 				}
 				
 			},
 			error : function(data){
-				alert("에러 시바아아아아알");
+				alert("강의 시간표 DB 불러오기 실패!");
 			}
 		});
 	});

@@ -145,23 +145,7 @@ public class TestController {
 		return "success";
 	}//異붽��빐�빞�븿
 */	
-	@RequestMapping(value = "/lectureSchedule", method = RequestMethod.GET)
-	@ResponseBody
-	public Object lectureSchedule(HttpServletRequest req)throws Exception{
-		String ext_id = req.getParameter("ext_id");
-		List<Ext_TimetableVO> ALectureSchedule = service7.ALectureSchedule(ext_id);
-		JSONArray jsonarr = new JSONArray();
-		JSONObject jsonObj = null;
-		for(int i = 0; i < ALectureSchedule.size(); i++){
-			jsonObj = new JSONObject();
-			jsonObj.put("day_week",ALectureSchedule.get(i).getDay_week());
-			jsonObj.put("class_str_time",ALectureSchedule.get(i).getClass_str_time());
-			jsonObj.put("class_end_time",ALectureSchedule.get(i).getClass_end_time());
-			jsonarr.add(jsonObj);
-		}
-		
-		return jsonarr;
-	}
+	
 	
 	@RequestMapping(value = "homework", method = RequestMethod.GET)
 	public void homework() throws Exception {

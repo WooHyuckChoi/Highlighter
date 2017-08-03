@@ -82,6 +82,7 @@
 	border-right: 1px solid lightgray;  
 	border-bottom: 1px solid lightgray; 
 	float: left;
+	text-align:center;
 }
 .timeActive{
 	background-color: #FC9312;
