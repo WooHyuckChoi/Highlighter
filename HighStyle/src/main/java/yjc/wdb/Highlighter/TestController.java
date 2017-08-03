@@ -1,3 +1,4 @@
+
 package yjc.wdb.Highlighter;
 
 import java.io.File;
@@ -539,7 +540,7 @@ public class TestController {
 		
 	}
 	
-	@ResponseBody
+	/*@ResponseBody
 	@RequestMapping("/displayFile")
 	public ResponseEntity<byte[]>  displayFile(String fileName)throws Exception{
 
@@ -649,7 +650,7 @@ public class TestController {
 			randomFile.close();
 		}
 		return null;
-	}
+	}*/
 	
 	/*@ResponseBody
 	@RequestMapping("/displayVideoFile2")
@@ -1617,7 +1618,7 @@ public class TestController {
 		
 		}
 		
-		@RequestMapping(value="classSTManagementList", method= RequestMethod.GET) //studentManagement
+		/*@RequestMapping(value="classSTManagementList", method= RequestMethod.GET) //studentManagement
 		public String classSTManagementList(@RequestParam("ext_id") String ext_id,Model model) throws Exception
 		{
 			
@@ -1625,9 +1626,9 @@ public class TestController {
 			model.addAttribute("ext_id",ext_id);
 			model.addAttribute("info",info);
 			return "studentManagement";
-		}
+		}*/
 		
-		@RequestMapping(value = "classSTManagement", method = RequestMethod.GET)
+		/*@RequestMapping(value = "classSTManagement", method = RequestMethod.GET)
 	      public void classSTManagement(@RequestParam("ext_id") String ext_id,@RequestParam("user_id") String user_id,Model model,HttpSession session) throws Exception {
 	         //String userid =req.getParameter("user_id");
 			 String userid=(String) session.getAttribute("id");//로그인 한 사람의 아이디
@@ -1652,9 +1653,9 @@ public class TestController {
 
 	        session.setAttribute("ListWeeksCorrect", ListWeeksCorrect);
 	         
-	      }
+	      }*/
 	     
-	      @RequestMapping(value = "classSTManagementAjax", method = RequestMethod.POST)
+	      /*@RequestMapping(value = "classSTManagementAjax", method = RequestMethod.POST)
 	      @ResponseBody
 	      public List<test_resultVO> classSTManagementAjax(HttpServletRequest req,Model model,HttpSession session) throws Exception {
 	         String userid =req.getParameter("user_id");
@@ -1672,7 +1673,7 @@ public class TestController {
 	         System.out.println("占싱거는뱄옙占쏙옙:"+weekCorrectAnsw);
 	         
 	         return weekCorrectAnsw;
-	      }
+	      }*/
 		  	@RequestMapping(value = "classDeval", method = RequestMethod.GET)
 			public void classDeval(HttpServletRequest req, Model model) throws Exception {
 		  		String user_id =req.getParameter("user_id");
