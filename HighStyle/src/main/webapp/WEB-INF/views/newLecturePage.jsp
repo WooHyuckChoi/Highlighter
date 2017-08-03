@@ -202,9 +202,6 @@
 							<a href="#"><i class="fa fa-user"></i> 숙제</a>
 						</li>
 						<li class="list-group-item">
-							<a href="#"><i class="fa fa-cubes"></i> 강의자료</a>
-						</li>
-						<li class="list-group-item">
 							<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
 						</li>
 						<li class="list-group-item">

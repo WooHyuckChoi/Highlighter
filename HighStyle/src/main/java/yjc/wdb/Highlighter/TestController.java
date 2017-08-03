@@ -45,13 +45,12 @@ import yjc.wdb.Highlighter.domain.jindan_resultVO;
 import yjc.wdb.Highlighter.domain.prob_InfoVO;
 import yjc.wdb.Highlighter.domain.test_InfoVO;
 import yjc.wdb.Highlighter.domain.test_resultVO;
-import yjc.wdb.Highlighter.service.ClassIntroListService;
 import yjc.wdb.Highlighter.service.EvaService;
 import yjc.wdb.Highlighter.service.Ext_InfoService;
 import yjc.wdb.Highlighter.service.Ext_TimetableService;
 import yjc.wdb.Highlighter.service.MyPageInfoService;
+import yjc.wdb.Highlighter.service.StudyRoomService;
 import yjc.wdb.Highlighter.service.User_InfoService;
-import yjc.wdb.Highlighter.service.enterRoomService;
 import yjc.wdb.Highlighter.service.exam_InfoService;
 import yjc.wdb.Highlighter.service.jindan_evalService;
 import yjc.wdb.Highlighter.service.jindan_resultService;
@@ -69,8 +68,7 @@ public class TestController {
 	User_InfoService service;
 	@Inject
 	Ext_InfoService service2;
-	@Inject
-	ClassIntroListService service3;
+	
 	@Inject
 	test_InfoService service4;
 	@Inject
@@ -81,8 +79,7 @@ public class TestController {
 	Ext_TimetableService service7;
 	@Inject
 	exam_InfoService service8;
-	@Inject
-	private enterRoomService enterRoomService;
+
 	@Inject
 	jindan_evalService service9;
 	@Inject
@@ -92,6 +89,8 @@ public class TestController {
 	
 	@Inject
 	private MyPageInfoService myPageService;
+	@Inject
+	private StudyRoomService studyRoomService;
 	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
@@ -101,7 +100,7 @@ public class TestController {
 
 	}
 
-	@RequestMapping(value = "/newLecturePage", method = RequestMethod.GET)//classMain newLecturePage
+	/*@RequestMapping(value = "/newLecturePage", method = RequestMethod.GET)//classMain newLecturePage
 	public void classMain(@RequestParam("ext_id") String ext_id, Model model, HttpSession session) throws Exception {
 		model.addAttribute("classMainList", service3.Ext_read(ext_id));
 		model.addAttribute("ext_id", ext_id);
@@ -114,9 +113,9 @@ public class TestController {
 		model.addAttribute("classMainList", service3.Ext_read(ext_id));
 		String TImage = service4.TImage(ext_id);
 		model.addAttribute("TImage",TImage);
-	}
+	}*/
 	
-	@RequestMapping(value="/newLecturePage", method = RequestMethod.POST)
+	/*@RequestMapping(value="/newLecturePage", method = RequestMethod.POST)
 	@ResponseBody
 	public String classMain(@RequestBody JSONObject json) throws Exception
 	{
@@ -131,8 +130,8 @@ public class TestController {
 		enterRoomService.updateOpenStat(vo);
 		//return enterRoomService.selectGrade(user_id);
 		return "success";
-	}
-	@RequestMapping(value="/classMain2", method = RequestMethod.POST)
+	}*/
+	/*@RequestMapping(value="/classMain2", method = RequestMethod.POST)
 	@ResponseBody
 	public String classMain2(@RequestBody JSONObject json) throws Exception
 	{
@@ -145,7 +144,7 @@ public class TestController {
 		enterRoomService.updateCloseStat(vo);
 		return "success";
 	}//異붽��빐�빞�븿
-	
+*/	
 	@RequestMapping(value = "/lectureSchedule", method = RequestMethod.GET)
 	@ResponseBody
 	public Object lectureSchedule(HttpServletRequest req)throws Exception{
@@ -184,7 +183,7 @@ public class TestController {
 	
 		model.addAttribute("ext_id",ext_id);
 		
-		model.addAttribute("list", service3.Ext_read(ext_id));
+		model.addAttribute("list", studyRoomService.Ext_read(ext_id));
 		
 		
 		List<String> allid = service4.allid(ext_id);
@@ -240,7 +239,7 @@ public class TestController {
 
 		/* String qjs1 = req.getParameter("qjs1"); */
 
-		model.addAttribute("list", service3.Ext_read(ext_id));
+		model.addAttribute("list", studyRoomService.Ext_read(ext_id));
 
 		String test_id = "T" + ext_id;
 
