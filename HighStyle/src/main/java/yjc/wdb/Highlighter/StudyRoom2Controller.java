@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -48,5 +49,22 @@ public class StudyRoom2Controller {
 		}
 		
 		return jsonarr;
+	}
+	
+	@RequestMapping(value="/testPage", method = RequestMethod.GET)
+	public void testPage(HttpServletRequest req, Model model)throws Exception{
+		String ext_id = req.getParameter("ext_id");
+		model.addAttribute("ext_id", req.getParameter("ext_id"));
+		model.addAttribute("testListPage", "testListPage");
+	}
+	
+	@RequestMapping(value="testListPage", method = RequestMethod.GET)
+	public void testListPage()throws Exception{
+		
+	}
+	
+	@RequestMapping(value="openRegisterExam", method = RequestMethod.GET)
+	public void openRegisterExam()throws Exception{
+		
 	}
 }

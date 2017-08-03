@@ -205,7 +205,7 @@
 							<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
 						</li>
 						<li class="list-group-item">
-							<a href="/Highlighter/classTest?ext_id=${ext_id}&user_id=${id}"><i class="fa fa-comments"></i> 시험</a>
+							<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
 						</li>
 						<li class="list-group-item">
 							<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
@@ -510,7 +510,7 @@
 	<script type="text/javascript" src="./resources/unify/assets/js/plugins/circles-master.js"></script>
 	<script type="text/javascript" src="./resources/unify/assets/js/plugins/style-switcher.js"></script>
 	<script type="text/javascript">
-		jQuery(document).ready(function() {
+		jQuery(document).ready(function() { /* bootstrap - scroll 최상위로 */
 			App.init();
 			App.initScrollBar();
 			Datepicker.initDatepicker();

@@ -1,0 +1,29 @@
+/* ---------------------------------------------------------------
+--------------------------testPage.jsp----------------------------
+-----------------------------------------------------------------*/
+#classIntro{
+	height: 50px;
+	background: #fff;
+    position: relative;
+    padding: 10px 10px 5px 15px;
+    border-radius: 0;
+    box-sizing: border-box;
+    border-bottom: 1px solid #cfcfcf;
+    margin-top:20px;
+}
+.teacher-testInfo{
+	border:1px solid gray;
+	display:inline-block;
+	font-size:20px;
+	font-family:'Nanum Gothic', serif;
+	padding:10px;
+}
+#classIntro button{
+	background-color:#1279FF;
+	border:1px solid #1279FF;
+	color:white;
+	margin-right:10px;
+}
+.col-md-9{
+	background-color:#f7f7f7;
+}
