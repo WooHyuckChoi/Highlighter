@@ -26,7 +26,7 @@ public class StudyRoom2Controller {
 	@ResponseBody
 	public String classMain2(@RequestBody JSONObject json) throws Exception
 	{
-		System.out.println("�씠嫄몃줈 �삤�깘");
+		/*System.out.println("�씠嫄몃줈 �삤�깘");*/
 		System.out.println(json.get("user_id") +","+ json.get("ext_id"));
 		HashMap<String, String> vo= new HashMap<String, String>();
 		vo.put("user_id", json.get("user_id").toString());
@@ -34,5 +34,5 @@ public class StudyRoom2Controller {
 		System.out.println(vo);
 		studyRoomService.updateCloseStat(vo);
 		return "success";
-	}//異붽��빐�빞�븿
+	}
 }
