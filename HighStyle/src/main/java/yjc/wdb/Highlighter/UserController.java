@@ -51,13 +51,12 @@ public class UserController {
 	@Inject App_ClassSerivce service4;
 	@Inject test_InfoService service5;
 	//진단평가 때문에 추가 한것
-		@Inject EvaService service6;
+	@Inject EvaService service6;
 	/////////////////////////////////
 	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
-	
 	/* ȸ�� ��� �� ȸ�� ���� ���� â  */
 	@RequestMapping(value = "/selectRegister", method = RequestMethod.GET)
 	public void selectRegister()throws Exception{
