@@ -48,6 +48,7 @@
 	
 	<!-- morris CSS -->
 	<link rel="stylesheet" href="./resources/morris/morris.css">
+
 </head>
 
 <body>
@@ -237,7 +238,7 @@
 								<h2 class="panel-title heading-sm pull-left"> 성적 그래프 </h2>
 							</div>
 							<div class="panel-body margin-bottom-40">
-								<div id="myfirstchart" style="height: 250px;"></div>
+								<div id="myfirstchart"></div>
 							</div>
 						</div>
 						<!--End graph-->
@@ -321,20 +322,14 @@
 			  element: 'myfirstchart',
 			  // Chart data records -- each entry in this array corresponds to a point on
 			  // the chart.
-			  data: /* [
-			    { year: '2008', Avalue: 30, Bvalue: 18 },
-			    { year: '2009', Avalue: 10, Bvalue: 15 },
-			    { year: '2010', Avalue: 5, Bvalue: 5 },
-			    { year: '2011', Avalue: 5, Bvalue: 10 },
-			    { year: '2012', Avalue: 20, Bvalue: 12 }
-			  ] */${json},
+			  data:${json},
 			  // The name of the data record attribute that contains x-values.
 			  xkey: "times",
 			  // A list of names of data record attributes that contain y-values.
-			  ykeys: ['학생','학생2','avg'],
+			  ykeys: ${nameList},
 			  // Labels for the ykeys -- will be displayed when you hover over the
 			  // chart.
-			  labels: ['학생','학생2','avg'],
+			  labels: ${nameList},
 			  parseTime : false
 			});
 	</script>

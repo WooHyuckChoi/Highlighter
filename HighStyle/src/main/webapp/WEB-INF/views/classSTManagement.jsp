@@ -136,9 +136,6 @@ img{
 	padding-right: 2%;
 }
 
-#table124 {
-	margin : 50%;
-}
 #table th{
 	padding : 10px;
 	width: 30px;
@@ -223,6 +220,9 @@ img{
 	width:80px;
 	overflow: hidden;
 }
+#statistics1{
+	float:left;
+}
 </style>
 
 </head>
@@ -283,26 +283,22 @@ img{
 	</div>
 	<!-- 통계 -->
 	<div id="statistics">
-		<div id="statistics1"></div>
+		<div id="statistics1" style=width:1012px;></div>
 		<div id="studentscore">
 			<table id="table124">
 			<tr>
 				<th>주차</th>
+				<th>시험일</th>
 				<th>점수</th>
+				<th>오답노트</th>
 			</tr>
 			
-				<c:forEach items="${ListWeeksCorrect}" var="ListWeeksCorrect">
+				<c:forEach items="${ListWeeksCorrect}" var="stuList">
 						<tr>
-							<td>
-							<script>
-								var weeks ='${ListWeeksCorrect.test_id}';
-								
-								document.write(weeks);
-								</script>
-								
-							</td>
-							<td>${ListWeeksCorrect.correctCount}/ 20</td>
-							
+							<td>${stuList.test_id }</td>
+							<td>${stuList.test_date }</td>
+							<td>${stuList.count }</td>
+							<td>${stuList.wrong_note }</td>
 						</tr>
 				</c:forEach>
 			</table>
@@ -341,10 +337,11 @@ img{
 	<script>
 		Morris.Bar({
 			  element: 'statistics1',
-				  data: ${json},
-			  xkey: 'date',
-			  ykeys: ['학생'],
-			  labels: ['학생']
+		      data: ${json},
+			  xkey: 'times',
+			  ykeys: ['점수'],
+			  labels: ['점수'],
+			  parseTime : false
 			});
 	</script>
 

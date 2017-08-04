@@ -64,5 +64,11 @@ public class StudyRoomServiceImpl implements StudyRoomService
 		// TODO Auto-generated method stub
 		return dao.selectStuTestResult(user_id);
 	}
+
+	@Override
+	public int countStudent(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countStudent(ext_id);
+	}
 	
 }
