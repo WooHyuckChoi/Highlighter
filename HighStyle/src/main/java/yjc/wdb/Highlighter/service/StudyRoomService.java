@@ -21,4 +21,5 @@ public Ext_InfoVO Ext_read(String ext_id) throws Exception;
 	
 	//시험 결과 리스트
 	public List<HashMap> selectTestResult(String ext_id) throws Exception;
+	public List<HashMap> selectStuTestResult(String user_id) throws Exception;
 }

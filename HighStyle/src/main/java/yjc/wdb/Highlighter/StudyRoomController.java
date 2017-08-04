@@ -1,5 +1,6 @@
 package yjc.wdb.Highlighter;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -75,23 +76,41 @@ public class StudyRoomController
 		model.addAttribute("ext_id",ext_id);
 		model.addAttribute("info",info);
 		
+		List<String> nameList = new ArrayList<>();
+		for(int i=0; i<info.size();i++)
+		{
+			
+			nameList.add(i,info.get(i).getUser_name().toString());
+		}
+		System.out.println(nameList);
+		model.addAttribute("nameList",nameList);
+		
 		List<HashMap> list = studyRoomService.selectTestResult(ext_id);
-	
+		
 		JSONObject jsonMain = new JSONObject();
+		
 		JSONArray jArray = new JSONArray();
 		for(int i=0 ; i<list.size() ; i++)
 		{
+			int sum=0;
 			JSONObject row = new JSONObject();
 			
 			String substr = list.get(i).get("test_id").toString();
 			row.put("times",substr.substring(8, 9));
 			
-			for(int j=0; j<list.size() ; j++)
-				row.put(list.get(j).get("user_id").toString() , list.get(i).get("count").toString());
 			
+			for(int j=0; j<list.size() ; j++)
+			{
+				row.put(list.get(j).get("user_name").toString() , list.get(j).get("count").toString());
+				sum += Integer.parseInt(list.get(j).get("count").toString());
+			}
+			int ave = sum/list.size();
+			row.put("ave", ave);
 			jArray.add(i,row);
+			System.out.println(sum);
 		}
 		jsonMain.put("sendData",jArray);
+		
 		System.out.println(jArray);
 		model.addAttribute("json",jsonMain.get("sendData"));
 		return "studentManagement";
@@ -108,7 +127,7 @@ public class StudyRoomController
 		//String stu_id=myPageService.selectStuId(ext_id);
 		List<String> userList=myPageService.selectStuId(ext_id);
 		//String stu_id=userList.get(0);
-
+		
 		model.addAttribute("ext_id",ext_id);
 		model.addAttribute("stu_id",stu_id);
 		//User_InfoVO listProfile = new User_InfoVO();
@@ -119,9 +138,21 @@ public class StudyRoomController
 		model.addAttribute("listProfile",listProfile);
 
 		List<HashMap> ListWeeksCorrect = testResultService.ListWeeksCorrect(userid,ext_id);
-
+		
 		session.setAttribute("ListWeeksCorrect", ListWeeksCorrect);
-
+		
+		List<HashMap> list = studyRoomService.selectStuTestResult(user_id);
+		JSONObject jsonMain = new JSONObject();
+		JSONArray jArray = new JSONArray();
+		for(int i=0 ; i<list.size(); i++)
+		{
+			JSONObject row = new JSONObject();
+			row.put("date", list.get(i).get("test_date"));
+			row.put(list.get(i).get("user_name").toString() , list.get(i).get("count").toString());
+			jArray.add(i,row);
+		}
+		jsonMain.put("sendData",jArray);
+		model.addAttribute("json",jsonMain.get("sendData"));
 	}
 
 	@RequestMapping(value = "classSTManagementAjax", method = RequestMethod.POST)

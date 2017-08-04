@@ -34,6 +34,9 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
  <!-- 달력2 -->
+ <!-- morris JS -->
+	<script type="text/javascript" src="./resources/morris/morris.min.js"></script>
+	<script type="text/javascript" src="./resources/morris/raphael.min.js"></script>
 <style>
 img{
 	border: none;
@@ -50,12 +53,6 @@ img{
 }
 #go_main img{
 	margin-bottom: 4px;
-}
-
-#statistics1 {
-	float: left;
-	margin-top : 10px;
-	border : 3px solid #ddd;
 }
 
 #studentscore {
@@ -294,7 +291,7 @@ img{
 				<th>점수</th>
 			</tr>
 			
-			<c:forEach items="${ListWeeksCorrect}" var="ListWeeksCorrect">
+				<c:forEach items="${ListWeeksCorrect}" var="ListWeeksCorrect">
 						<tr>
 							<td>
 							<script>
@@ -341,7 +338,15 @@ img{
 			});
 		});
 	</script>
-	
+	<script>
+		Morris.Bar({
+			  element: 'statistics1',
+				  data: ${json},
+			  xkey: 'date',
+			  ykeys: ['학생'],
+			  labels: ['학생']
+			});
+	</script>
 
 
 <%-- ${jsonObj}  --%>
@@ -352,7 +357,7 @@ ${jsonObj.weekCorrectAnsw[0].correctCount}
 	
 
 	<!-- 스크립트 로딩과 차트 초기화 -->
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script>
 $("document").ready(function(){
 	google.charts.load('current', {packages:['corechart']});
@@ -410,7 +415,7 @@ $("document").ready(function(){
 	});
 	 }
 });
-</script>
+</script> -->
 
 
 	<script src="http://platform.twitter.com/widgets.js"></script>

@@ -53,5 +53,10 @@ public class StudyRoomDAOImpl implements StudyRoomDAO
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".testResultList",ext_id);
 	}
+	@Override
+	public List<HashMap> selectStuTestResult(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".testStudentResultList",user_id);
+	}
 	
 }

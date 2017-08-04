@@ -329,12 +329,13 @@
 			    { year: '2012', Avalue: 20, Bvalue: 12 }
 			  ] */${json},
 			  // The name of the data record attribute that contains x-values.
-			  xkey: 'times',
+			  xkey: "times",
 			  // A list of names of data record attributes that contain y-values.
-			  ykeys: ['s','ss'],
+			  ykeys: ['학생','학생2','avg'],
 			  // Labels for the ykeys -- will be displayed when you hover over the
 			  // chart.
-			  labels: ['s','ss']
+			  labels: ['학생','학생2','avg'],
+			  parseTime : false
 			});
 	</script>
 	

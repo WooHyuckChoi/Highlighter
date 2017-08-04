@@ -58,5 +58,11 @@ public class StudyRoomServiceImpl implements StudyRoomService
 		// TODO Auto-generated method stub
 		return dao.selectTestResult(ext_id);
 	}
+
+	@Override
+	public List<HashMap> selectStuTestResult(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectStuTestResult(user_id);
+	}
 	
 }
