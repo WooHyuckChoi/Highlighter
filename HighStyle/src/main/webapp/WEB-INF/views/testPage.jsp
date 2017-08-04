@@ -43,13 +43,37 @@
 	<link rel="stylesheet" href="./resources/unify/assets/css/theme-colors/default.css" id="style_color">
 	<link rel="stylesheet" href="./resources/unify/assets/css/theme-skins/dark.css">
 
-	<!-- CSS Customization -->
-	<link rel="stylesheet" href="./resources/unify/assets/css/stu_custom.css">
+	<!-- CSS Customization : 시간표 -->
+	<link rel="stylesheet" href="./resources/unify/assets/css/exam_custom.css">
+	<!-- ico -->
+	<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
 	
-	<!-- morris CSS -->
-	<link rel="stylesheet" href="./resources/morris/morris.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
+	<style>
+		#noticeResi {
+			float: right;
+			width: 90px;
+			background-color: #1279ff;
+			padding-top: 5px;
+			padding-left: 10px;
+			padding-bottom: 5px;
+			margin-top: -5px;
+			color: white;
+			border-radius: 5px;
+			border: solid 1px #1279ff;
+			margin-top: 2px;
+		}
+		
+		#StudyRoom {
+			background-color: #1279ff;
+		}
+		
+		#StudyRoom a {
+			color: white;
+			font-size: 16px;
+		}
+	</style>
 </head>
-
 <body>
 	<div class="wrapper">
 		<!--=== Header ===-->
@@ -57,7 +81,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="/Highlighter">
-					<img src="./resources/img/logo.png" alt="Logo">
+					<img src="./resources/img/blue_Logo.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -200,54 +224,47 @@
 					<div class="profile-body">
 						<!-- Lecture introduce and enter -->
 						<div id="classIntro">
-							<span>수강 학생 목록</span>
+							<span>시험 <a href="registerExam">시험 등록</a><button>삭제</button></span>
 						</div>
 						<!-- end row -->
 						<div class="profile-bio">
 							<div class="row">
 								<div class="col-md-12">
+									<!-- 강사 정보 -->
 									<div id="teacherInfo" class="panel margin-bottom-40">
 										<div class="panel-body">
-											<c:forEach items="${info }" var="info">
-												<%-- <div class="stuListWrap">
-													<a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">
-														<img src="displayFile?fileName=${info.prof_photo }" /></a>
-													<p>${info.user_name }</p>
-												</div> --%>
-												<div class="col-sm-4 sm-margin-bottom-30">
-													<div class="news-v2-badge">
-														<img class="img-responsive" src="./resources/unify/assets/img/main/img3.jpg" alt="">
-													</div>
-													<div class="news-v2-desc">
-														<h3><a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">${info.user_name }</a></h3>
-													</div>
-												</div>
-											</c:forEach>
+											<div class="teacher-testInfo">
+												<!-- <div>최근 친 시험:</div>
+												<div>전체 학생 수:</div>
+												<div>시험 평균:</div> -->
+											</div>
 										</div>
 									</div>
+									<!-- 강사 정보 끝 -->
 								</div>
 							</div>
 						</div><!--/end row-->
-
+			
 						<hr>
-
-						<!--graph-->
+						<!--/end row-->
+									
+						<!--Schedule-->
 						<div class="panel panel-profile">
 							<div class="panel-heading overflow-h">
-								<h2 class="panel-title heading-sm pull-left"> 성적 그래프 </h2>
+								<h2 class="panel-title heading-sm pull-left"> 시간표 </h2>
 							</div>
 							<div class="panel-body margin-bottom-40">
-								<div id="myfirstchart" style="height: 250px;"></div>
+											
 							</div>
 						</div>
-						<!--End graph-->
+						<!--End Schedule-->
 					</div>
 				</div>
 				<!-- End Profile Content -->
 			</div>
 		</div>
 		<!--=== End Profile ===-->
-		
+
 		<!--=== Footer Version 1 ===-->
 		<div class="footer-v1">
 			<div class="footer">
@@ -297,12 +314,7 @@
 	<script type="text/javascript" src="./resources/unify/assets/js/plugins/datepicker.js"></script>
 	<script type="text/javascript" src="./resources/unify/assets/js/plugins/circles-master.js"></script>
 	<script type="text/javascript" src="./resources/unify/assets/js/plugins/style-switcher.js"></script>
-	
-	<!-- morris JS -->
-	<script type="text/javascript" src="./resources/morris/morris.min.js"></script>
-	<script type="text/javascript" src="./resources/morris/raphael.min.js"></script>
-	
-	<script type="text/javascript">
+	<script type="text/javascript"> /* bootstrap - scroll 최상위로 */
 		jQuery(document).ready(function() {
 			App.init();
 			App.initScrollBar();
@@ -310,33 +322,7 @@
 			CirclesMaster.initCirclesMaster1();
 			StyleSwitcher.initStyleSwitcher();
 		});
-		$("#logout").on("click", function(){
-			window.location.href="logout";
-		});
-	</script>
-	<%-- 차트 그려여기서어 --%>
-	<script type="text/javascript">
-		new Morris.Line({
-			  // ID of the element in which to draw the chart.
-			  element: 'myfirstchart',
-			  // Chart data records -- each entry in this array corresponds to a point on
-			  // the chart.
-			  data: /* [
-			    { year: '2008', Avalue: 30, Bvalue: 18 },
-			    { year: '2009', Avalue: 10, Bvalue: 15 },
-			    { year: '2010', Avalue: 5, Bvalue: 5 },
-			    { year: '2011', Avalue: 5, Bvalue: 10 },
-			    { year: '2012', Avalue: 20, Bvalue: 12 }
-			  ] */${json},
-			  // The name of the data record attribute that contains x-values.
-			  xkey: 'times',
-			  // A list of names of data record attributes that contain y-values.
-			  ykeys: ['s','ss'],
-			  // Labels for the ykeys -- will be displayed when you hover over the
-			  // chart.
-			  labels: ['s','ss']
-			});
-	</script>
 	
+	</script>
 </body>
 </html>
