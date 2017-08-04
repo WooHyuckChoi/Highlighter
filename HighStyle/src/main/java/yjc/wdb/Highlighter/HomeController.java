@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import yjc.wdb.Highlighter.domain.App_ClassVO;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.Ext_TimetableVO;
+import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.service.App_ClassSerivce;
 import yjc.wdb.Highlighter.service.Ext_InfoService;
 import yjc.wdb.Highlighter.service.Ext_TimetableService;
+import yjc.wdb.Highlighter.service.User_InfoService;
 
 /**
  * Handles requests for the application home page.
@@ -41,6 +43,9 @@ public class HomeController {
 	
 	@Inject
 	private Ext_TimetableService service3;
+	
+	@Inject
+	private User_InfoService service4;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -132,6 +137,11 @@ public class HomeController {
 				
 				model.addAttribute("onGoingExt_Stu", onGoingExt_Stu);
 				
+				//학생 강사용 진단평가
+				User_InfoVO vo = service4.read(user_id);
+				String eva_id = vo.getEva_id();
+				model.addAttribute("eva_id", eva_id);
+				////////////////////////////////////////////////////////////
 				//System.out.println("�̰�"+onGoingExt_Stu);
 				/* �л��� ���� ��û�� ��� */
 				List<HashMap> appClassList_Stu = service2.appClassList_Stu(user_id);

@@ -20,6 +20,16 @@ public class User_InfoVO {
 	private String college_dept;
 	private String par_id;
 	private String user_grade;
+	//진단평가용
+	private String eva_id;
+	
+	public String getEva_id() {
+		return eva_id;
+	}
+	public void setEva_id(String eva_id) {
+		this.eva_id = eva_id;
+	}
+	////////////////////////////////////////////////////
 	
 	public String getUser_id() {
 		return user_id;
