@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.evaMapper">
+	
+	<insert id="create">
+		insert into eva (user_id, book, foreigner, style, level1, student, hand)
+					values (#{user_id},#{book},#{foreigner},#{style},#{level1},#{student},#{hand})
+	</insert>
+	
+	<select id="read" resultType="EvaVO">
+		select
+			user_id, book, foreigner, style, level1, student, hand
+		from
+			eva
+		where 
+			user_id = #{user_id}
+	</select>
+		
+	<update id="update">
+		update 
+			eva 
+		set 
+			book =#{book}, foreigner =#{foreigner}, style =#{style}, level1 =#{level1}, student =#{student}, hand =#{hand}
+		where 
+			user_id = #{user_id}
+	</update>
+	
+	<update id="eva_update">
+		update 
+			user_info
+		set 
+			eva_id = "1"
+		where 
+			user_id = #{user_id}
+	</update>
+	
+	<select id="listAll" resultType="EvaVO">
+		<![CDATA[
+			select
+				user_id, book, foreigner, style, level1, student, hand
+			from
+				eva
+			where 
+				user_id > 0 
+			order by user_id desc
+		]]>
+	</select>
+</mapper>

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import yjc.wdb.Highlighter.domain.EvaVO;
+import yjc.wdb.Highlighter.domain.User_InfoVO;
 
 @Repository
 public class EvaDAOImpl implements EvaDAO{
@@ -36,5 +37,12 @@ public class EvaDAOImpl implements EvaDAO{
 	@Override
 	public List<EvaVO> listAll() throws Exception {
 		return session.selectList(namespace+".listAll");
+	}
+
+	@Override
+	public void eva_update(User_InfoVO vo) throws Exception {
+		
+		session.update(namespace +".eva_update", vo);
+		
 	}
 }
