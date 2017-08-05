@@ -1,0 +1,12 @@
+#registerTest{ /* 시험 등록 타이틀 */
+	height: 50px;
+	background: #fff;
+    position: relative;
+    padding: 10px 5px 5px 15px;
+    border-radius: 0;
+    box-sizing: border-box;
+    border: 1px solid #cfcfcf; 
+}
+#registerTest > span{ /* 시험 등록 타이틀 글씨 */
+	
+}
