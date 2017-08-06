@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.LectureEvaluationMapper">
+<!-- 강사 평가 목록 -->
+
+<select id="read" resultType="LectureEvaluationVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+from ext_info e, user_info u
+where ext_id = #{ext_id} 
+And e.user_id = u.user_id;
+]]>
+</select>
+
+<select id="read2" resultType="LectureEvaluationTutorInfoVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.str_class_date str_class_date, e.end_class_date end_class_date, e.class_poss_area class_poss_area, e.best_score best_score, count(a.ext_id) stu_num
+from user_info u, ext_info e, app_class a
+where e.ext_id in (select b.ext_id
+						from ext_info a, ext_info b
+						where a.ext_id = #{ext_id}
+						and a.user_id = b.user_id)
+AND e.ext_id != #{ext_id}					
+AND e.ext_id = a.ext_id
+AND e.user_id = u.user_id
+AND a.reg_stus = '결제완료'
+group by e.ext_id;
+]]>
+</select>
+
+<select id="read3" resultType="LectureEvaluationTutorInfoVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.str_class_date str_class_date, e.end_class_date end_class_date, e.class_poss_area class_poss_area, e.best_score best_score, count(a.ext_id) stu_num
+from user_info u, ext_info e, app_class a
+where e.ext_id = #{ext_id}					
+AND e.ext_id = a.ext_id
+AND e.user_id = u.user_id
+AND a.reg_stus = '결제완료'
+group by e.ext_id;
+]]>
+</select>
+
+<select id="search" resultType="LectureEvaluationVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+from ext_info e, user_info u
+where user_name = #{searchIp}
+AND e.user_id = u.user_id;
+]]>
+</select>
+
+<select id="listAll" resultType="LectureEvaluationVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+from ext_info e, user_info u
+where e.user_id = u.user_id; 
+]]>
+</select>
+
+<select id="listPage" resultType="LectureEvaluationVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+from ext_info e, user_info u
+where e.user_id = u.user_id
+limit #{page}, 10; 
+]]>
+</select>
+
+<select id="listCriteria" resultType="LectureEvaluationVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+from ext_info e, user_info u
+where e.user_id = u.user_id
+limit #{pageStart}, #{perPageNum};
+]]>
+</select>
+
+<select id="countPaging" resultType="int">
+<![CDATA[
+select count(CAST(substr(ext_id, 5, 3) as signed integer)) ext_id
+from ext_info
+where ext_id > 0
+order by ext_id;
+]]>
+
+
+<!-- 
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+, e.str_class_date str_class_date, t.day_week day_week
+from ext_info e, user_info u, ext_timetable t
+where e.user_id = u.user_id
+and t.ext_id = e.ext_id
+ -->
+</select>
+
+<select id="bestScore" resultType="LectureEvaluationBestScoreVO">
+<![CDATA[
+select distinct(t.day_week) day_week, e.str_class_date str_class_date
+from ext_timetable t, ext_info e
+where t.ext_id = e.ext_id
+and t.ext_id = #{ext_id}
+]]>
+</select>
+</mapper>

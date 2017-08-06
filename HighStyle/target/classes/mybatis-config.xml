@@ -17,5 +17,8 @@
 			<typeAlias alias="jindan_evalVO" type="yjc.wdb.Highlighter.domain.jindan_evalVO"/>
 		<typeAlias alias="jindan_resultVO" type="yjc.wdb.Highlighter.domain.jindan_resultVO"/>
 		<typeAlias alias="EvaVO" type="yjc.wdb.Highlighter.domain.EvaVO"/>
+		<typeAlias alias="LectureEvaluationVO" type="yjc.wdb.Highlighter.domain.LectureEvaluationVO"/>
+		<typeAlias alias="LectureEvaluationTutorInfoVO" type="yjc.wdb.Highlighter.domain.LectureEvaluationTutorInfoVO"/>
+		<typeAlias alias="LectureEvaluationBestScoreVO" type="yjc.wdb.Highlighter.domain.LectureEvaluationBestScoreVO"/>
 	</typeAliases>
 </configuration>

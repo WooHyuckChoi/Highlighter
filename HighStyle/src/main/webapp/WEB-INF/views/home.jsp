@@ -217,7 +217,7 @@ div#locationSelect2{margin:0;}
                   <ul class="dropdown-menu">
                     <li><a href="work.html">강사 이용방법</a></li>
                     <li><a href="#" onclick="NotRegister()">과외 등록</a></li>
-                    <li><a href="work-three-columns.html">강사 평가</a></li>
+                    <li><a href="/Highlighter/LectureEvaluation">강사 평가</a></li>
                   </ul>
                 </li>
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> 학생 <b class="caret"></b></a>
