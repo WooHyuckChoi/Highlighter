@@ -59,9 +59,6 @@ public class HomeController {
 		
 		/* �׻� home.jsp ��� �� ${id}�� �ִ��� ���� ��*/
 		String user_id = String.valueOf(session.getAttribute("id"));
-		/* ���� ��� ��ư (����� ���� �α�)*/
-		//System.out.println("���� ���̵� : "+user_id);
-		
 		
 		/* session���� ${id}���� �� ���� side�� DB���� �ҷ��� */
 		if(user_id != "null"){
@@ -82,11 +79,11 @@ public class HomeController {
 							String ext_id = (i.get("ext_id")).toString();
 							String subject = ext_id.substring(2,4);
 							if(subject.matches("01"))
-								i.put("subject", "����");
+								i.put("subject", "국어");
 							if(subject.matches("02"))
-								i.put("subject", "����");
+								i.put("subject", "영어");
 							if(subject.matches("03"))
-								i.put("subject", "����");
+								i.put("subject", "수학");
 							model.addAttribute("homeList", list);
 						}
 					}
@@ -102,11 +99,11 @@ public class HomeController {
 						ext_id = appClassOne.getExt_id();
 						String subject = ext_id.substring(2,4);
 						if(subject.matches("01"))
-							appClassOne.setSubject("����");
+							appClassOne.setSubject("국어");
 						if(subject.matches("02"))
-							appClassOne.setSubject("����");
+							appClassOne.setSubject("영어");
 						if(subject.matches("03"))
-							appClassOne.setSubject("����");
+							appClassOne.setSubject("수학");
 					}
 					model.addAttribute("appClassOne", appClassOne);
 					//System.out.println("���� ���� ����:"+appClassOne);
@@ -128,11 +125,11 @@ public class HomeController {
 					String subject = ext_id.substring(2,4);
 					//System.out.println(subject);
 					if(subject.matches("01"))
-						i.put("subject", "����");
+						i.put("subject", "국어");
 					if(subject.matches("02"))
-						i.put("subject", "����");
+						i.put("subject", "영어");
 					if(subject.matches("03"))
-						i.put("subject", "����");
+						i.put("subject", "수학");
 				}
 				
 				model.addAttribute("onGoingExt_Stu", onGoingExt_Stu);
@@ -170,7 +167,7 @@ public class HomeController {
 	@ResponseBody
 	public String cancelClass(HttpServletRequest req, HttpSession session)throws Exception{
 		String ext_id = req.getParameter("ext_id");
-		System.out.println("���� �ڵ�:"+ext_id);
+		
 		logger.info("cancelClass......................");
 		App_ClassVO vo = new App_ClassVO();
 		vo.setExt_id(ext_id);

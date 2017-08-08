@@ -144,12 +144,6 @@ public class TestController {
 		return "success";
 	}//異붽��빐�빞�븿
 */	
-	
-	
-	@RequestMapping(value = "homework", method = RequestMethod.GET)
-	public void homework() throws Exception {
-
-	}
 
 	@RequestMapping(value = "classData", method = RequestMethod.GET)
 	public void classData() throws Exception {

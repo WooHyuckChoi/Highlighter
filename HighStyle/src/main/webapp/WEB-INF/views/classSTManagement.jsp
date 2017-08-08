@@ -223,6 +223,11 @@ img{
 #statistics1{
 	float:left;
 }
+#calView{
+	width:1000px;
+	height:500px;
+	background-color: yellow;
+}
 </style>
 
 </head>
@@ -230,7 +235,7 @@ img{
 
 	<div id="classSTManagementheader">
 		<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font id="abcdef" size="5" color="white">수강학생 관리 페이지</font>
-		<font size="5" color="white"><a id="go_main" href="classMain?ext_id=${ext_id}">나가기 <img src="./resources/img/sign-out.png" width="35" height="40" /></a></font>
+		<font size="5" color="white"><a id="go_main" href="classSTManagementList?ext_id=${ext_id}">나가기 <img src="./resources/img/sign-out.png" width="35" height="40" /></a></font>
 	<br>&nbsp;
 		
 		</div>
@@ -309,7 +314,15 @@ img{
 <!-- 여기서 부터 캘린더 -->
 	<div id=attitude>
 		<!-- 캘린터 div를 클릭하였을때 controller의 cal에 접근하여서 view를 반환해줘야 한다. -->
-		<iframe src="/Highlighter/cal?ext_id=${ext_id }&user_id=${stu_id}" width="1000px" height="900px" frameborder="0" scrolling="no"></iframe>
+		<iframe src="/Highlighter/cal?ext_id=${ext_id }&user_id=${stu_id}" width="1000px" height="600px" frameborder="0" scrolling="no"></iframe>
+		<div id="calView">
+			<c:forEach items="${calList }" var="calList">
+				<div>
+					<div>${calList.post_date }</div>
+					<div>${calList.learn_att }</div>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 	
 <!-- 캘린더 끝이염 -->

@@ -526,6 +526,11 @@ input{
 			var formObj=$("form[role='form']");
 			formObj.submit();
 		});
+		$("#thumbnail").click(function(){
+			var formObj=$("form[role='form']");
+			formObj.submit();
+			
+		});
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function(){

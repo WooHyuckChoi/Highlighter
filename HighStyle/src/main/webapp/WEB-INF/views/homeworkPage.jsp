@@ -201,7 +201,7 @@
 								<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
 							</li>
 							<li class="list-group-item">
-								<a href="homeworkPage?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
+								<a href="homework?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
 							</li>
 							<li class="list-group-item">
 								<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
@@ -228,7 +228,7 @@
 								<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
 							</li>
 							<li class="list-group-item">
-								<a href="homeworkPage?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
+								<a href="homework?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
 							</li>
 							<li class="list-group-item">
 								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
@@ -249,20 +249,7 @@
 					<div class="profile-body">
 						<!-- Lecture introduce and enter -->
 						<div id="classIntro">
-							<span>과외 소개</span>
-							<c:if test="${user_grade eq 'teacher' }">
-								<c:if test="${open_stus eq 'y'}">
-									<button id="classExit">강의 닫기</button>
-								</c:if>
-								<c:if test="${open_stus eq 'n'}">
-									<button id="classGoIn">강의 열기</button>
-								</c:if>
-							</c:if>
-							<c:if test="${user_grade eq 'student' }">
-								<c:if test="${open_stus eq 'y'}">
-									<button id="classGoIn">강의 입장</button>
-								</c:if>
-							</c:if>
+							<span>숙제 게시판</span>
 						</div>
 						<!-- end row -->
 						<div class="profile-bio">
@@ -276,96 +263,7 @@
 											</h3>
 										</div>
 										<div class="panel-body">
-											<table class="table table-bordered">
-												<thead>
-													<tr>
-														<td>과목</td>
-														<td>
-															<script>
-																var classCode = '${classMainList.ext_id}';
-																var subject = classCode.substr(2,2);
-																if (subject == "01") 
-																{
-																	document.write("국어");
-																}
-																else if (subject == "02") 
-																{
-																	document.write("영어");
-																} 
-																else if (subject == "03") 
-																{
-																	document.write("수학");
-																}
-															</script>
-														</td>
-														<td class="hidden-sm">온/오프라인</td>
-														<td>
-															<script>
-																var classCode = '${classMainList.ext_id}';
-																var subject = classCode.substr(0,1);
-																if (subject = "1") 
-																{
-																	document.write("온라인");
-																} 
-																else if (subject = "2") 
-																{
-																	document.write("오프라인");
-																}
-															</script>
-														</td>														
-													</tr>
-												</thead>	
-												<tbody>
-													<tr>
-														<td>수강학생 수</td>
-														<td>
-															<script>
-																var numclassReq = '${classMainList.num_class_req}';
-																document.write(numclassReq);
-															</script>
-														</td>
-														<td class="hidden-sm">과외 대상</td>
-														<td>
-															<script>
-																var extObj = '${classMainList.ext_obj}';
-																document.write(extObj);
-															</script>
-														</td>
-													</tr>
-													<tr>
-														<td>수업난이도</td>
-														<td>
-															<script>
-																var classlev = '${classMainList.class_lev}';
-																document.write(classlev);
-															</script>
-														</td>
-														<td class="hidden-sm">과외 형태</td>
-														<td>
-															<script>
-																var extWay = '${classMainList.ext_way}';
-																document.write(extWay)
-															</script>
-														</td>
-													</tr>
-													<tr>
-														<td>강의시작날짜</td>
-														<td>
-															<script>
-																var startdate = '${classMainList.str_class_date}';
-																document.write(startdate)
-															</script>
-														</td>
-														<td class="hidden-sm">강의종료날짜</td>
-														<td>
-															<script>
-																var enddate = '${classMainList.end_class_date}';
-																document.write(enddate)
-															</script>
-														</td>
-													</tr>
-												</tbody>
-											</table>
+											
 										</div>
 									</div>
 									<!-- 강사 정보 끝 -->
@@ -394,18 +292,7 @@
 								<div class="panel panel-profile">
 									<div class="panel-heading overflow-h">
 										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> 공지사항</h2>
-										<form method="post">
-											<c:if test="${user_grade eq 'teacher' }">
-												<button id="noticeResi"> 등록 </button>
-											</c:if>
-										</form>
-										<script>
-											$("#noticeResi").on("click",function(){
-														$("form").attr("action","noticeResi");
-														$("form").attr("method","get");
-														$("form").submit();
-													});
-										</script>
+										
 									</div>
 									<div class="panel-body">
 									
@@ -423,63 +310,7 @@
 							<div class="panel-heading overflow-h">
 								<h2 class="panel-title heading-sm pull-left"> 시간표 </h2>
 							</div>
-							<div class="panel-body margin-bottom-40">
-								<div id="timeTable" class="tableDiv">
-						    		<div id="base">
-									    <div class="line">
-									      <div class="null">&nbsp;</div>	<div class="textalign tableRow">월</div><div class="textalign tableRow">화</div><div class="textalign tableRow">수</div><div class="textalign tableRow">목</div><div class="textalign tableRow">금</div><div class="textalign tableRow">토</div><div class="textalign tableRow">일</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">9:00~10:00</div>	<div id="a9" class="block">&nbsp;</div><div id="b9" class="block">&nbsp;</div><div id="c9" class="block">&nbsp;</div><div id="d9" class="block">&nbsp;</div><div id="e9" class="block">&nbsp;</div><div id="f9" class="block">&nbsp;</div><div id="g9" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">10:00~11:00</div>  <div id="a10" class="block">&nbsp;</div><div id="b10" class="block">&nbsp;</div><div id="c10" class="block">&nbsp;</div><div id="d10" class="block">&nbsp;</div><div id="e10" class="block">&nbsp;</div><div id="f10" class="block">&nbsp;</div><div id="g10" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">11:00~12:00</div>  <div id="a11" class="block">&nbsp;</div><div id="b11" class="block">&nbsp;</div><div id="c11" class="block">&nbsp;</div><div id="d11" class="block">&nbsp;</div><div id="e11" class="block">&nbsp;</div><div id="f11" class="block">&nbsp;</div><div id="g11" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">12:00~13:00</div>  <div id="a12" class="block">&nbsp;</div><div id="b12" class="block">&nbsp;</div><div id="c12" class="block">&nbsp;</div><div id="d12" class="block">&nbsp;</div><div id="e12" class="block">&nbsp;</div><div id="f12" class="block">&nbsp;</div><div id="g12" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">13:00~14:00</div>  <div id="a13" class="block">&nbsp;</div><div id="b13" class="block">&nbsp;</div><div id="c13" class="block">&nbsp;</div><div id="d13" class="block">&nbsp;</div><div id="e13" class="block">&nbsp;</div><div id="f13" class="block">&nbsp;</div><div id="g13" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">14:00~15:00</div>  <div id="a14" class="block">&nbsp;</div><div id="b14" class="block">&nbsp;</div><div id="c14" class="block">&nbsp;</div><div id="d14" class="block">&nbsp;</div><div id="e14" class="block">&nbsp;</div><div id="f14" class="block">&nbsp;</div><div id="g14" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">15:00~16:00</div>  <div id="a15" class="block">&nbsp;</div><div id="b15" class="block">&nbsp;</div><div id="c15" class="block">&nbsp;</div><div id="d15" class="block">&nbsp;</div><div id="e15" class="block">&nbsp;</div><div id="f15" class="block">&nbsp;</div><div id="g15" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">16:00~17:00</div>  <div id="a16" class="block">&nbsp;</div><div id="b16" class="block">&nbsp;</div><div id="c16" class="block">&nbsp;</div><div id="d16" class="block">&nbsp;</div><div id="e16" class="block">&nbsp;</div><div id="f16" class="block">&nbsp;</div><div id="g16" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">17:00~18:00</div>  <div id="a17" class="block">&nbsp;</div><div id="b17" class="block">&nbsp;</div><div id="c17" class="block">&nbsp;</div><div id="d17" class="block">&nbsp;</div><div id="e17" class="block">&nbsp;</div><div id="f17" class="block">&nbsp;</div><div id="g17" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">18:00~19:00</div>  <div id="a18" class="block">&nbsp;</div><div id="b18" class="block">&nbsp;</div><div id="c18" class="block">&nbsp;</div><div id="d18" class="block">&nbsp;</div><div id="e18" class="block">&nbsp;</div><div id="f18" class="block">&nbsp;</div><div id="g18" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">19:00~20:00</div>  <div id="a19" class="block">&nbsp;</div><div id="b19" class="block">&nbsp;</div><div id="c19" class="block">&nbsp;</div><div id="d19" class="block">&nbsp;</div><div id="e19" class="block">&nbsp;</div><div id="f19" class="block">&nbsp;</div><div id="g19" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">20:00~21:00</div>  <div id="a20" class="block">&nbsp;</div><div id="b20" class="block">&nbsp;</div><div id="c20" class="block">&nbsp;</div><div id="d20" class="block">&nbsp;</div><div id="e20" class="block">&nbsp;</div><div id="f20" class="block">&nbsp;</div><div id="g20" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">21:00~22:00</div>  <div id="a21" class="block">&nbsp;</div><div id="b21" class="block">&nbsp;</div><div id="c21" class="block">&nbsp;</div><div id="d21" class="block">&nbsp;</div><div id="e21" class="block">&nbsp;</div><div id="f21" class="block">&nbsp;</div><div id="g21" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">22:00~23:00</div>  <div id="a22" class="block">&nbsp;</div><div id="b22" class="block">&nbsp;</div><div id="c22" class="block">&nbsp;</div><div id="d22" class="block">&nbsp;</div><div id="e22" class="block">&nbsp;</div><div id="f22" class="block">&nbsp;</div><div id="g22" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">23:00~24:00</div>  <div id="a23" class="block">&nbsp;</div><div id="b23" class="block">&nbsp;</div><div id="c23" class="block">&nbsp;</div><div id="d23" class="block">&nbsp;</div><div id="e23" class="block">&nbsp;</div><div id="f23" class="block">&nbsp;</div><div id="g23" class="block">&nbsp;</div>
-									    </div>
-									    <div class="line">
-									      <div class="tableColumn">24:00~1:00</div>  <div id="a24" class="block">&nbsp;</div><div id="b24" class="block">&nbsp;</div><div id="c24" class="block">&nbsp;</div><div id="d24" class="block">&nbsp;</div><div id="e24" class="block">&nbsp;</div><div id="f24" class="block">&nbsp;</div><div id="g24" class="block">&nbsp;</div>
-									    </div>
-					  				</div>
-						    	</div>
-							</div>
+							
 						</div>
 						<!--End Schedule-->
 					</div>

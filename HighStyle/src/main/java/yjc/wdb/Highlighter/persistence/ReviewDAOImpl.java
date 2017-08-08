@@ -54,4 +54,28 @@ public class ReviewDAOImpl implements ReviewDAO
 		return session.selectOne(namespace+".listOne",post_id);
 	}
 
+	@Override
+	public thumb_infoVO thumb_infoOne(String post_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".thumb_info_one",post_id);
+	}
+
+	@Override
+	public Integer selectThumbId(String post_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".thumb_id_count",post_id);
+	}
+
+	@Override
+	public void insertThumbInfo(thumb_infoVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		session.insert(namespace+".thumb_info_insert",vo);
+	}
+
+	@Override
+	public List<thumb_infoVO> selectAllThumbInfo(String post_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".selectAllThumbInfo",post_id);
+	}
+
 }

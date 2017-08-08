@@ -2,6 +2,7 @@ package yjc.wdb.Highlighter.persistence;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.stu_infoVO;
 
 @Repository
 public class StudyRoomDAOImpl implements StudyRoomDAO 
@@ -62,6 +64,11 @@ public class StudyRoomDAOImpl implements StudyRoomDAO
 	public int countStudent(String ext_id) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace+".countStudent",ext_id);
+	}
+	@Override
+	public List<stu_infoVO> calendarList(Map<String, String> vo) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".calendarList",vo);
 	}
 	
 }
