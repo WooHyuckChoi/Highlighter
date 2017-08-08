@@ -11,6 +11,8 @@ import yjc.wdb.Highlighter.domain.Criteria;
 import yjc.wdb.Highlighter.domain.LectureEvaluationBestScoreVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationTutorInfoVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationVO;
+import yjc.wdb.Highlighter.domain.ParentVO;
+import yjc.wdb.Highlighter.domain.TutorListVO;
 
 @Repository
 public class LectureEvaluationDAOImpl implements LectureEvaluationDAO{
@@ -81,8 +83,17 @@ public class LectureEvaluationDAOImpl implements LectureEvaluationDAO{
 		return session.selectList(namespace+".bestScore", ext_id);
 	}
 
-	
+	@Override
+	public List<ParentVO> parentLogin(ParentVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".parentLogin", vo);
+	}
 
-	
+	@Override
+	public List<TutorListVO> tutorList(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".tutorSearch", user_id);
+	}
+
 
 }

@@ -191,6 +191,37 @@ div#locationSelect2{margin:0;}
 	z-index:6;
 	position:relative;
 }
+#parentLogin{
+    width: 51px;
+    height: 26px;
+    font-size: 11px;
+    line-height: 0;
+    padding: 0px;
+}
+#parentLoginDiv{
+	display:none;
+	width:300px;
+	height:350px;
+	background:white;
+}
+#parentDivHeader{
+	clear: both;
+    font-size: 20px;
+    margin-left: 30px;
+    margin-right:30px;
+}
+#parentDivClose{
+	float: right;
+    font-size: 15px;
+    margin-top: 30px;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+#parentDivChild{margin-left:30px;}
+#parentDivParent{margin-left:30px; margin-right:30px;}
+#parentLoginBtn{margin-left:110px;}
+#parentDivBirth{margin-left:30px;}
 </style>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
@@ -207,6 +238,7 @@ div#locationSelect2{margin:0;}
         <div class="container"> <a class="brand" href="/Highlighter"> <img src="./resources/img/logo.png" alt=""></a>
             <ul id="work-filter">
               <li><a data-filter="*" class="btn btn-success ione-col" id="login" onclick="go_popup()">로그인</a></li>
+              <li><input id="parentLogin" type="button" class="btn btn-success ione-col" value="학부모"></li>
               <li><a href="/Highlighter/selectRegister" data-filter=".graphics" class="btn ione-col">회원가입</a></li>
             </ul>
           <div id="main-nav">
@@ -1192,6 +1224,76 @@ if("${id}" != "" && "${user_grade}" == 'student' && "${eva_id}" == '0'){
 	window.open("/Highlighter/eva?id=${id}", "pop", "width=860,height=970,history=no,resizable=no,status=no,scrollbars=yes,menubar=no");
 }
 
+$(document).ready(function(){
+	$("#parentLogin").click(function(){
+		$("#parentLoginDiv").bPopup();
+	});
+	$(".parentDivClose").click(function(){
+		$("#childPhone").val("");
+		$("#childBirth").val("");
+		$("#parentPhone").val("");
+		$("#parentLoginDiv").bPopup().close();
+	});
+	$("#parentBeforeBtn").click(function(){
+		
+	});
+	$("#parentLoginBtn").click(function(){
+		var childPhone = $("#childPhone").val();
+		var childBirth = $("#childBirth").val();
+		var parentPhone = $("#parentPhone").val();
+		if(childPhone == ""){
+			alert("자녀 휴대전화번호를 입력해주세요.");
+		}
+		else if(parentPhone == ""){
+			alert("본인 휴대전화번호를 입력해주세요.");
+		}
+		else{
+			$.ajax({
+				url : "/Highlighter/parentLogin",
+				type : "GET",
+				data : {
+					childPhone : childPhone,
+					childBirth : childBirth,
+					parentPhone : parentPhone				
+				},
+				dataType : "json",
+				success : function(data){
+					if(data.length>0){
+						alert("'" + data[0].user_name + "' 학생의 부모님이 확인되었습니다.");
+
+						var form = $("<form></form>");
+						var user_id = $("<input type='hidden' name='user_id' value='" + data[0].user_id + "'>");
+						form.append(user_id);
+						$("body").append(form);
+						form.attr("action", "/Highlighter/classSTManagement2");
+						form.attr("method", "GET");
+						form.submit();
+						
+						
+					}
+					else{
+						alert("해당하는 계정이 존재하지 않습니다.");
+					}
+				},
+				error : function(){
+					alert("해당하는 계정이 존재하지않습니다.");
+				}
+			});	
+		}
+		
+	});
+});
+
 </script>
+<div id="parentLoginDiv">
+	<div id="parentDivClose" class="parentDivClose">X</div>
+	<div id="parentDivHeader">학부모 로그인<br /><hr /></div>
+	<div id="parentDivChild">자녀 휴대전화번호<br /><input id="childPhone" type="text"></div>
+	<div id="parentDivBirth">자녀 생년월일<br /><input id="childBirth" type="date"></div>
+	<div id="parentDivParent">본인 휴대전화번호<br /><input id="parentPhone" type="text"><br /><hr /></div>
+	<input id="parentLoginBtn" class="btn btn-success" type="button" value="로그인">
+</div>
+
+
 </body>
 </html>

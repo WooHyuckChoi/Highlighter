@@ -240,7 +240,7 @@ img{
 			<h3>프로필</h3>
 		</div>
 		<div id="profileImage">
-			<img src="displayFile?fileName=${listProfile.prof_photo}" style="width: 180px; height:200px">
+			<%-- <img src="displayFile?fileName=${listProfile.prof_photo}" style="width: 180px; height:200px"> --%>
 		</div>
 		<div id="profilecontent">
 			<table id="table123">
@@ -444,12 +444,12 @@ $("document").ready(function(){
 	
 <div id="effect" >
 	<div id="content">
-		<div style="font-size:15px;"><img src="displayFile?fileName=${list.prof_photo }" style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; ">[${user_name}] 강사님 </div>
+		<div style="font-size:15px;"><%-- <img src="displayFile?fileName=${list.prof_photo }" style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; "> --%>[${user_name}] 강사님 </div>
 		<div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px; text-align: center; ">학생목록</div>
 		<hr />
 		<c:forEach items="${info }" var="info">
 			<div id="infoWrap">
-				<img src="displayFile?fileName=${info.prof_photo }" />
+				<%-- <img src="displayFile?fileName=${info.prof_photo }" /> --%>
 				<p>${info.user_name}</p>
 				<a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">바로가기</a>
 			</div>

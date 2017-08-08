@@ -307,11 +307,11 @@ pageEncoding="UTF-8"%>
 				
 				
 			    $.ajax({
-			        url : '/Highlighter/LectureEvaluationBestScore',
+			        url : "/Highlighter/LectureEvaluationBestScore",
 			        data : {
 			            ext_id : ext_id
 			        },
-			        dataType : 'text',
+			        dataType : "text",
 			        async : false,
 			        success : function(data){
 			        	console.log(data);

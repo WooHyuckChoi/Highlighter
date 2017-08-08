@@ -6,6 +6,8 @@ import yjc.wdb.Highlighter.domain.Criteria;
 import yjc.wdb.Highlighter.domain.LectureEvaluationBestScoreVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationTutorInfoVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationVO;
+import yjc.wdb.Highlighter.domain.ParentVO;
+import yjc.wdb.Highlighter.domain.TutorListVO;
 
 public interface LectureEvaluationDAO {
 
@@ -20,4 +22,7 @@ public interface LectureEvaluationDAO {
 	public int countPaging(Criteria cri) throws Exception;
 	
 	public List<LectureEvaluationBestScoreVO> bestScore(String ext_id) throws Exception;
+	
+	public List<ParentVO> parentLogin(ParentVO vo) throws Exception;
+	public List<TutorListVO> tutorList(String user_id) throws Exception;
 }

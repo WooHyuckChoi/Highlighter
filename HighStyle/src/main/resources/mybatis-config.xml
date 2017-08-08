@@ -20,5 +20,7 @@
 		<typeAlias alias="LectureEvaluationVO" type="yjc.wdb.Highlighter.domain.LectureEvaluationVO"/>
 		<typeAlias alias="LectureEvaluationTutorInfoVO" type="yjc.wdb.Highlighter.domain.LectureEvaluationTutorInfoVO"/>
 		<typeAlias alias="LectureEvaluationBestScoreVO" type="yjc.wdb.Highlighter.domain.LectureEvaluationBestScoreVO"/>
+		<typeAlias alias="ParentVO" type="yjc.wdb.Highlighter.domain.ParentVO"/>
+		<typeAlias alias="TutorListVO" type="yjc.wdb.Highlighter.domain.TutorListVO"/>
 	</typeAliases>
 </configuration>

@@ -10,6 +10,8 @@ import yjc.wdb.Highlighter.domain.Criteria;
 import yjc.wdb.Highlighter.domain.LectureEvaluationBestScoreVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationTutorInfoVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationVO;
+import yjc.wdb.Highlighter.domain.ParentVO;
+import yjc.wdb.Highlighter.domain.TutorListVO;
 import yjc.wdb.Highlighter.persistence.LectureEvaluationDAO;
 
 @Service
@@ -67,5 +69,17 @@ public class LectureEvaluationServiceImpl implements LectureEvaluationService {
 		return dao.bestScore(ext_id);
 	}
 
-	
+	@Override
+	public List<ParentVO> parentLogin(ParentVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.parentLogin(vo);
+	}
+
+	@Override
+	public List<TutorListVO> tutorList(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.tutorList(user_id);
+	}
+
+
 }
