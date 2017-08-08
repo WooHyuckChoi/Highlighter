@@ -44,7 +44,7 @@
 	<link rel="stylesheet" href="./resources/unify/assets/css/theme-skins/dark.css">
 
 	<!-- CSS Customization : 시간표 -->
-	<link rel="stylesheet" href="./resources/unify/assets/css/exam_custom.css">
+	<link rel="stylesheet" href="./resources/unify/assets/css/registerExam.css">
 	<!-- ico -->
 	<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
 	
@@ -222,11 +222,9 @@
 				<!-- Profile Content -->
 				<div class="col-md-9">
 					<div class="profile-body">
-						<div id="classIntro">
+						<div id="registerTest">
 							<span>시험 등록</span>
 						</div>
-					</div>
-					<div class="profile-body">
 						<!-- end row -->
 						<div class="profile-bio">
 							<div class="row">

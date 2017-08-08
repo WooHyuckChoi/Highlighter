@@ -17,6 +17,14 @@
 			<typeAlias alias="jindan_evalVO" type="yjc.wdb.Highlighter.domain.jindan_evalVO"/>
 		<typeAlias alias="jindan_resultVO" type="yjc.wdb.Highlighter.domain.jindan_resultVO"/>
 		<typeAlias alias="EvaVO" type="yjc.wdb.Highlighter.domain.EvaVO"/>
+<<<<<<< HEAD
 		<typeAlias alias="thumb_infoVO" type="yjc.wdb.Highlighter.domain.thumb_infoVO"></typeAlias>
+=======
+		<typeAlias alias="LectureEvaluationVO" type="yjc.wdb.Highlighter.domain.LectureEvaluationVO"/>
+		<typeAlias alias="LectureEvaluationTutorInfoVO" type="yjc.wdb.Highlighter.domain.LectureEvaluationTutorInfoVO"/>
+		<typeAlias alias="LectureEvaluationBestScoreVO" type="yjc.wdb.Highlighter.domain.LectureEvaluationBestScoreVO"/>
+		<typeAlias alias="ParentVO" type="yjc.wdb.Highlighter.domain.ParentVO"/>
+		<typeAlias alias="TutorListVO" type="yjc.wdb.Highlighter.domain.TutorListVO"/>
+>>>>>>> branch 'master' of https://github.com/WooHyuckChoi/Highlighter.git
 	</typeAliases>
 </configuration>
