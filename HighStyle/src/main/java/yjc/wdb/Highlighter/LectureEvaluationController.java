@@ -2,6 +2,7 @@ package yjc.wdb.Highlighter;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -144,23 +145,25 @@ public class LectureEvaluationController {
 	}
 	
 	@RequestMapping(value = "classSTManagement3", method = RequestMethod.GET)
-	public @ResponseBody void classSTManagement(@RequestParam("ext_id") String ext_id,@RequestParam("user_id") String user_id,Model model,HttpSession session) throws Exception {
-		System.out.println(user_id + " " + ext_id);
+	public @ResponseBody Map<String, Object> classSTManagement(@RequestParam("ext_id") String ext_id,@RequestParam("user_id") String user_id,Model model,HttpSession session) throws Exception {
+		
 		String userid=(String) session.getAttribute("id");//로그인 한 사람의 아이디
 		String stu_id=user_id; //해당 학생의 아이디
 		List<String> userList=myPageService.selectStuId(ext_id);
 		
-		model.addAttribute("ext_id",ext_id);
-		model.addAttribute("stu_id",stu_id);
+		Map<String, Object> map = new HashMap<>();
+		
+		// model.addAttribute("ext_id",ext_id);
+		// model.addAttribute("stu_id",stu_id);
 		
 		// User_InfoVO listProfile = myPageService.selectUserInfo(stu_id);
 
-		model.addAttribute("info",myPageService.getUserInfo(ext_id));
+		// model.addAttribute("info",myPageService.getUserInfo(ext_id));
 		// model.addAttribute("listProfile",listProfile);
 
 		List<HashMap> ListWeeksCorrect = testResultService.ListWeeksCorrect(stu_id,ext_id); // 수강학생 관리 페이지 주차 시험일 점수 오답노트 가져오는것
 		
-		model.addAttribute("ListWeeksCorrect",ListWeeksCorrect);
+		// model.addAttribute("ListWeeksCorrect",ListWeeksCorrect);
 		//그래프 구하는 부분
 		List<HashMap> StudentList = studyRoomService.selectStuTestResult(user_id);
 		
@@ -177,10 +180,17 @@ public class LectureEvaluationController {
 			jArray.add(i,row);
 		}
 		jsonMain.put("sendData",jArray);
-		model.addAttribute("json",jsonMain.get("sendData"));
+		// model.addAttribute("json",jsonMain.get("sendData"));
+		
+		
+		map.put("info", myPageService.getUserInfo(ext_id));
+		map.put("ListWeeksCorrect", testResultService.ListWeeksCorrect(stu_id,ext_id));
+		map.put("json", jsonMain.get("sendData"));
 		
 		System.out.println("info : " + myPageService.getUserInfo(ext_id));
 		System.out.println("ListWeeksCorrect : " + ListWeeksCorrect);
 		System.out.println("json : " + jsonMain.get("sendData"));
+		
+		return map;
 	}
 }
