@@ -38,54 +38,61 @@
 		<div class="my-box">
 			<p>
 				&nbsp;&nbsp;1. 참고서 및 교재 필요 여부<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="book" value="1" onclick="doOpenCheck1(this);">따로 교재를 지정한게 없어 공책에 필기하게 합니다.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="book" value="2" onclick="doOpenCheck1(this);">교재나 참고서를 따로 구매하기 부담스럽습니다.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="book" value="3" onclick="doOpenCheck1(this);">강의 화면만 보고 강의하고 싶습니다.<br>
+				&nbsp;&nbsp;<input type="radio" name="book" value="1" onclick="doOpenCheck1(this);">따로 교재를 지정한게 없어 공책에 필기하게 합니다.<br>
+				&nbsp;&nbsp;<input type="radio" name="book" value="2" onclick="doOpenCheck1(this);">교재나 참고서를 따로 구매하기 부담스럽습니다.<br>
+				&nbsp;&nbsp;<input type="radio" name="book" value="3" onclick="doOpenCheck1(this);">강의 화면만 보고 강의하고 싶습니다.<br>
+				&nbsp;&nbsp;<input type="radio" name="book" value="0" onclick="doOpenCheck1(this);">해당사항 없음.<br>
 			</p>
 			<p>
 				&nbsp;&nbsp;2. 강의 가능한/하는 언어<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="foreigner" value="1" onclick="doOpenCheck2(this);">I will lecture in English.&nbsp;&nbsp;&nbsp;(영어 : 나는 영어로 강의 하겠습니다 / 할 수 있습니다.)<br>
-				&nbsp;&nbsp;<input type="checkbox" name="foreigner" value="2" onclick="doOpenCheck2(this);">私は日本語で講義します.&nbsp;(일본어 : 나는 일본어로 강의 하겠습니다 / 할 수 있습니다.)<br>
-				&nbsp;&nbsp;<input type="checkbox" name="foreigner" value="3" onclick="doOpenCheck2(this);">我将在中国讲学.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(중국어 : 나는 중국어로 강의 하겠습니다 / 할 수 있습니다.)<br>
+				&nbsp;&nbsp;<input type="radio" name="foreigner" value="1" onclick="doOpenCheck2(this);">I will lecture in English.&nbsp;&nbsp;&nbsp;(영어 : 나는 영어로 강의 하겠습니다 / 할 수 있습니다.)<br>
+				&nbsp;&nbsp;<input type="radio" name="foreigner" value="2" onclick="doOpenCheck2(this);">私は日本語で講義します.&nbsp;(일본어 : 나는 일본어로 강의 하겠습니다 / 할 수 있습니다.)<br>
+				&nbsp;&nbsp;<input type="radio" name="foreigner" value="3" onclick="doOpenCheck2(this);">我将在中国讲学.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(중국어 : 나는 중국어로 강의 하겠습니다 / 할 수 있습니다.)<br>
+				&nbsp;&nbsp;<input type="radio" name="foreigner" value="0" onclick="doOpenCheck1(this);">해당사항 없음.<br>
 			</p>
 			<p>
 				&nbsp;&nbsp;3. 본인이 생각했을 때 효율성이 높은 강의 방식<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="style" value="1" onclick="doOpenCheck3(this);">수다스럽게 친구같은게 스타일<br>
-				&nbsp;&nbsp;<input type="checkbox" name="style" value="2" onclick="doOpenCheck3(this);">편안하고 진중한 스타일<br>
-				&nbsp;&nbsp;<input type="checkbox" name="style" value="3" onclick="doOpenCheck3(this);">활기차고 즐거운게 스타일<br>
-				&nbsp;&nbsp;<input type="checkbox" name="style" value="4" onclick="doOpenCheck3(this);">철저하게 공부만 하는 스타일<br>
+				&nbsp;&nbsp;<input type="radio" name="style" value="1" onclick="doOpenCheck3(this);">수다스럽게 친구같은게 스타일<br>
+				&nbsp;&nbsp;<input type="radio" name="style" value="2" onclick="doOpenCheck3(this);">편안하고 진중한 스타일<br>
+				&nbsp;&nbsp;<input type="radio" name="style" value="3" onclick="doOpenCheck3(this);">활기차고 즐거운게 스타일<br>
+				&nbsp;&nbsp;<input type="radio" name="style" value="4" onclick="doOpenCheck3(this);">철저하게 공부만 하는 스타일<br>
+				&nbsp;&nbsp;<input type="radio" name="style" value="0" onclick="doOpenCheck1(this);">해당사항 없음.<br>
 			</p>
 			<p>
 				&nbsp;&nbsp;4. 진행하고 싶은 강의 형태<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="1" onclick="doOpenCheck4(this);"><strong>기초 위주</strong>의 강의<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="2" onclick="doOpenCheck4(this);"><strong>포괄적인</strong> 강의<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="3" onclick="doOpenCheck4(this);"><strong>교과서 중심</strong>의 강의<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="4" onclick="doOpenCheck4(this);"><strong>문제 풀이식</strong> 강의<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="5" onclick="doOpenCheck4(this);"><strong>쪽집계</strong> 강의<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="6" onclick="doOpenCheck4(this);"><strong>시험 대비용</strong> 강의<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="7" onclick="doOpenCheck4(this);"><strong>선행 학습 위주</strong>의 강의<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="1" onclick="doOpenCheck4(this);"><strong>기초 위주</strong>의 강의<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="2" onclick="doOpenCheck4(this);"><strong>포괄적인</strong> 강의<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="3" onclick="doOpenCheck4(this);"><strong>교과서 중심</strong>의 강의<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="4" onclick="doOpenCheck4(this);"><strong>문제 풀이식</strong> 강의<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="5" onclick="doOpenCheck4(this);"><strong>쪽집계</strong> 강의<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="6" onclick="doOpenCheck4(this);"><strong>시험 대비용</strong> 강의<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="7" onclick="doOpenCheck4(this);"><strong>선행 학습 위주</strong>의 강의<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="0" onclick="doOpenCheck1(this);">해당사항 없음.<br>
 			</p>
 			<p>
 				&nbsp;&nbsp;5. 강의 하고 싶은 세부 학년<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="student" value="1" onclick="doOpenCheck5(this);">초등학교 1학년
-				<input type="checkbox" name="student" value="2" onclick="doOpenCheck5(this);">초등학교 2학년
-				<input type="checkbox" name="student" value="3" onclick="doOpenCheck5(this);">초등학교 3학년<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="student" value="4" onclick="doOpenCheck5(this);">초등학교 4학년
-				<input type="checkbox" name="student" value="5" onclick="doOpenCheck5(this);">초등학교 5학년
-				<input type="checkbox" name="student" value="6" onclick="doOpenCheck5(this);">초등학교 6학년
+				&nbsp;&nbsp;<input type="radio" name="student" value="1" onclick="doOpenCheck5(this);">초등학교 1학년
+				<input type="radio" name="student" value="2" onclick="doOpenCheck5(this);">초등학교 2학년
+				<input type="radio" name="student" value="3" onclick="doOpenCheck5(this);">초등학교 3학년<br/>
+				&nbsp;&nbsp;<input type="radio" name="student" value="4" onclick="doOpenCheck5(this);">초등학교 4학년
+				<input type="radio" name="student" value="5" onclick="doOpenCheck5(this);">초등학교 5학년
+				<input type="radio" name="student" value="6" onclick="doOpenCheck5(this);">초등학교 6학년
 				<br/><br/>
-				&nbsp;&nbsp;<input type="checkbox" name="student" value="7" onclick="doOpenCheck5(this);">중학교 1학년
-				<input type="checkbox" name="student" value="8" onclick="doOpenCheck5(this);">중학교 2학년
-				<input type="checkbox" name="student" value="9" onclick="doOpenCheck5(this);">중학교 3학년
+				&nbsp;&nbsp;<input type="radio" name="student" value="7" onclick="doOpenCheck5(this);">중학교 1학년
+				<input type="radio" name="student" value="8" onclick="doOpenCheck5(this);">중학교 2학년
+				<input type="radio" name="student" value="9" onclick="doOpenCheck5(this);">중학교 3학년
 				<br/><br/>
-				&nbsp;&nbsp;<input type="checkbox" name="student" value="10" onclick="doOpenCheck5(this);">고등학교 1학년
-				<input type="checkbox" name="student" value="11" onclick="doOpenCheck5(this);">고등학교 2학년
-				<input type="checkbox" name="student" value="12" onclick="doOpenCheck5(this);">고등학교 3학년
+				&nbsp;&nbsp;<input type="radio" name="student" value="10" onclick="doOpenCheck5(this);">고등학교 1학년
+				<input type="radio" name="student" value="11" onclick="doOpenCheck5(this);">고등학교 2학년
+				<input type="radio" name="student" value="12" onclick="doOpenCheck5(this);">고등학교 3학년
+				<br/><br/>
+				&nbsp;&nbsp;<input type="radio" name="student" value="0" onclick="doOpenCheck1(this);">해당사항 없음.
 			</p>
 			<p>
 				&nbsp;&nbsp;6. (청각장애인을 위한)수화 강의 여부<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="hand" value="1" onclick="doOpenCheck6(this);">수화로 강의가 가능하다.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="hand" value="2" onclick="doOpenCheck6(this);">가능하지 않다.<br>
+				&nbsp;&nbsp;<input type="radio" name="hand" value="1" onclick="doOpenCheck6(this);">수화로 강의가 가능하다.<br>
+				&nbsp;&nbsp;<input type="radio" name="hand" value="2" onclick="doOpenCheck6(this);">가능하지 않다.<br>
+				&nbsp;&nbsp;<input type="radio" name="hand" value="0" onclick="doOpenCheck1(this);">해당사항 없음.<br>
 			</p>			
 		</div>
 		<br><br>
