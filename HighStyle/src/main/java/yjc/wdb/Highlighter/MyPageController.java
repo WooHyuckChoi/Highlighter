@@ -214,4 +214,10 @@ public class MyPageController
 		service.deleteList(vo);
 		return "calendar";
 	}
+	
+	@RequestMapping(value="trophy", method=RequestMethod.GET)
+	public void trophy() throws Exception 
+	{
+		
+	}
 }

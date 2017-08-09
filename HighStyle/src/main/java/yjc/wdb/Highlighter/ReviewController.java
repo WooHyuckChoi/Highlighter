@@ -400,10 +400,4 @@ public class ReviewController
 		}
 		return null;	
 	}
-	
-	@RequestMapping(value="thumTest", method=RequestMethod.GET)
-	public String thumTest() throws Exception
-	{
-		return "thumTestPage";
-	}
 }
