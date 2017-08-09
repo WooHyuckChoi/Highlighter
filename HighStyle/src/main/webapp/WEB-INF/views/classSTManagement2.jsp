@@ -80,6 +80,7 @@ body{width:100%; margin:0px}
 		var user_id = $("#user_id").val();
 		var ext_id;
 		$(".subBtn").click(function(){
+			$("#statistics1").empty();
 			ext_id = $(this).prev().val();
 			$.ajax({
 				url : "/Highlighter/classSTManagement3",
@@ -87,17 +88,23 @@ body{width:100%; margin:0px}
 					ext_id : ext_id,
 					user_id : user_id
 				},
-				dataType : "text",
+				dataType : "json",
 				success : function(data){
 					console.log(data);
+					console.log(data.json);
+					var info =  data.info;
+					var info = data.ListWeeksCorrect;
+					var json = data.json;
+					
 					Morris.Bar({
 						  element: 'statistics1',
-					      data: '${json}',
+					      data: json,
 						  xkey: 'times',
 						  ykeys: ['점수'],
 						  labels: ['점수'],
 						  parseTime : false
 					});
+					
 				},
 				error : function(){
 					console.log("error");
