@@ -567,7 +567,7 @@ div#locationSelect2{margin:0;}
 				</p>
 			</div>
 			<br><br>
-			<a href="eva_modify"><img src="./resources/img/modify-button.PNG" alt=""></a>
+			<a href="eva_modify?user_id=${EvaVO.user_id}"><img src="./resources/img/modify-button.PNG" alt=""></a>
 		</div>
 	</div>
 </c:if>

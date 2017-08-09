@@ -450,7 +450,7 @@ div#locationSelect2{margin:0;}
 <form role="form" method="post">	
 	<div style="width: 50%; margin: 0 auto;">
 		<div id="div1">
-			<input type='hidden' name='user_id' value="${EvaVO.user_id}">
+			<%-- <input type='hidden' name='user_id' value="${user_id}"> --%>
 			<!-- 과외 소개 및 강의 입장 타이틀 -->
 			<div id="classIntro">진단평가 수정 페이지 입니다</div>
 			<br>

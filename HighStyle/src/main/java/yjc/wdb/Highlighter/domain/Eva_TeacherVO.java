@@ -1,6 +1,6 @@
 package yjc.wdb.Highlighter.domain;
 
-public class EvaVO{
+public class Eva_TeacherVO {
 
 	private String user_id;
 	private String book;

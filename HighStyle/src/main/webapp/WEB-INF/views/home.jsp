@@ -968,6 +968,10 @@ $(".applicationList").on("click", function(){
 $(".trophy").on("click", function(){
 	window.location.href="trophy";
 });
+//진단평가
+$(".eva").on("click", function(){
+	window.location.href="eva_read";
+});
 //로그아웃
 $(".logout").on("click", function(){
 	window.location.href="logout";
