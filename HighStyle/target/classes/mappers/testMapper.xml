@@ -3,7 +3,70 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="yjc.wdb.Highlighter.testMapper">
-<insert id="create">
+<!-- 제일 최근에 등록한  test_id -->
+<select id="lastTestId" resultType="string">
+<![CDATA[
+	select test_id 
+	from test_info
+	where ext_id = #{ext_id}
+	order by test_id desc limit 1
+]]>
+</select>
+<!-- 시험 등록 : 시험지 정보  -->
+<insert id="registerTest">
+	insert into test_info (test_id, test_title, test_file, test_file2, test_file3, test_date, test_time, ext_id) 
+	values (#{test_id}, #{test_title}, #{test_file}, #{test_file2}, #{test_file3}, #{test_date}, #{test_time}, #{ext_id})
+</insert>
+<!-- 시험 등록 : 문제 정답  -->
+<insert id="registerProbAnsw">
+	insert into prob_info (prob_id, prob_answ, test_id) 
+	values (#{prob_id},#{prob_answ}, #{test_id}) 
+</insert>
+<!-- 시험 등록 : 시험 상태  -->
+<insert id="registerExamInfo">
+	insert into exam_info (user_id, test_id, test_state) 
+	values (#{user_id},#{test_id}, #{test_state}) 
+</insert>
+<!--  시험지 LIST 불러오기 -->
+<select id="selectTest" resultType="test_InfoVO">
+	select t.*, e.test_state
+	from test_info t, exam_info e
+	where ext_id = #{ext_id}
+	and t.test_id = e.test_id
+	order by t.test_id desc
+</select>
+<!-- 시험지 : 시험 정보 불러오기 -->
+<select id="selectExamInfo" resultMap="selectExamInfoMap">
+	select t.*, count(p.prob_id) AS 'prob_count'
+	from test_info t, prob_info p
+	where t.test_id= #{test_id}
+	and t.test_id = p.test_id
+</select>
+<resultMap id="selectExamInfoMap" type="java.util.HashMap">
+	<result property="test_id" column="test_id"></result>
+	<result property="test_title" column="test_title"></result>
+	<result property="test_file" column="test_file"></result>
+	<result property="test_file2" column="test_file2"></result>
+	<result property="test_file3" column="test_file3"></result>
+	<result property="test_date" column="test_date"></result>
+	<result property="test_time" column="test_time"></result>
+	<result property="ext_id" column="ext_id"></result>
+	<result property="prob_count" column="prob_count"></result>
+</resultMap>
+<insert id="registerTestResult">
+	insert into test_result (prob_id, user_id, test_id, stu_result) 
+	values (#{prob_id},#{user_id}, #{test_id}, #{stu_result})
+</insert>
+<update id="changeTestState">
+	update exam_info set test_state = "clear"
+	where test_id = #{test_id}
+</update>
+<select id="testResultCount" resultType="int">
+	select count(*)
+	from test_result
+	where test_id = #{test_id}
+</select>
+<!-- <insert id="create">
 	insert into test_info (test_id, ext_id, test_file, test_time, test_date) values (#{test_id},#{ext_id}, #{test_file}, #{test_time}, #{test_date}) 
 </insert>
 <select id="extidse" resultType="string">
@@ -27,13 +90,9 @@
 	and e.user_id = #{user_id}
 </select>
 
-<select id="testImage" resultType="test_InfoVO">
-	select test_id, test_time, test_file
-	from test_info
-	where test_id= #{test_id}
-</select>
+
  
- <!-- 모든 아이디 가져와 ㅅㅂ -->
+ 모든 아이디 가져와 ㅅㅂ
 <select id="allid" resultType="string">
 select a.user_id
 from app_class a, ext_info e
@@ -41,13 +100,13 @@ where a.ext_id = e.ext_id
 and a.ext_id = #{ext_id}
 </select>
  
- <!-- 강사 시험출력 -->
+ 강사 시험출력
 <select id="teachertestList" resultType="test_InfoVO">
 	select SUBSTR(test_id,9) AS test_id, test_time, test_date
 	from test_info
 	where ext_id=#{ext_id}
 </select>
-
+-->
 
 <select id="TImage" resultType="String">
 select a.prof_photo
@@ -55,7 +114,7 @@ from user_info a, ext_info b
 where a.user_id=b.user_id
 and b.ext_id=#{ext_id}
 and a.user_grade='teacher'
-</select>
+</select> 
 
 
  

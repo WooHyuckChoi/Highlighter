@@ -450,61 +450,68 @@ div#locationSelect2{margin:0;}
 <form role="form" method="post">	
 	<div style="width: 50%; margin: 0 auto;">
 		<div id="div1">
-			<input type='hidden' name='user_id' value="${EvaVO.user_id}">
+			<%-- <input type='hidden' name='user_id' value="${user_id}"> --%>
 			<!-- 과외 소개 및 강의 입장 타이틀 -->
 			<div id="classIntro">진단평가 수정 페이지 입니다</div>
 			<br>
 			<div class ="my-box">
 				<p>
 				&nbsp;&nbsp;1. 참고서 및 교재 필요 여부<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="book" value="1" onclick="doOpenCheck1(this);">나는 공책에 필기하는게 좋아요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="book" value="2" onclick="doOpenCheck1(this);">책을 구매하는 비용이 부담스러워요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="book" value="3" onclick="doOpenCheck1(this);">강의 화면 봤다 책 봤다하면 집중력이 떨어져요.<br>
+				&nbsp;&nbsp;<input type="radio" name="book" value="1" onclick="doOpenCheck1(this);">나는 공책에 필기하는게 좋아요.<br>
+				&nbsp;&nbsp;<input type="radio" name="book" value="2" onclick="doOpenCheck1(this);">책을 구매하는 비용이 부담스러워요.<br>
+				&nbsp;&nbsp;<input type="radio" name="book" value="3" onclick="doOpenCheck1(this);">강의 화면 봤다 책 봤다하면 집중력이 떨어져요.<br>
+				&nbsp;&nbsp;<input type="radio" name="book" value="0" onclick="doOpenCheck1(this);" checked="checked">해당사항 없음.<br>
 			</p>
 			<p>
 				&nbsp;&nbsp;2. 외국인 강의<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="foreigner" value="1" onclick="doOpenCheck2(this);">I want to hear the lecture in English(영어 : 나는 강의를 영어로 듣고 싶어요)<br>
-				&nbsp;&nbsp;<input type="checkbox" name="foreigner" value="2" onclick="doOpenCheck2(this);">私は講義を日本語で聞きたい&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(일본어 : 나는 강의를 일본어로 듣고 싶어요)<br>
-				&nbsp;&nbsp;<input type="checkbox" name="foreigner" value="3" onclick="doOpenCheck2(this);">我要听的讲座中国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(중국어 : 나는 강의를 중국어로 듣고 싶어요)<br>
+				&nbsp;&nbsp;<input type="radio" name="foreigner" value="1" onclick="doOpenCheck2(this);">I want to hear the lecture in English(영어 : 나는 강의를 영어로 듣고 싶어요)<br>
+				&nbsp;&nbsp;<input type="radio" name="foreigner" value="2" onclick="doOpenCheck2(this);">私は講義を日本語で聞きたい&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(일본어 : 나는 강의를 일본어로 듣고 싶어요)<br>
+				&nbsp;&nbsp;<input type="radio" name="foreigner" value="3" onclick="doOpenCheck2(this);">我要听的讲座中国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(중국어 : 나는 강의를 중국어로 듣고 싶어요)<br>
+				&nbsp;&nbsp;<input type="radio" name="foreigner" value="0" onclick="doOpenCheck1(this);" checked="checked">해당사항 없음.<br>
 			</p>
 			<p>
 				&nbsp;&nbsp;3. 본인이 생각했을 때 효율성이 높은 강의 스타일<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="style" value="1" onclick="doOpenCheck3(this);">수다스럽게 친구같은게 좋아요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="style" value="2" onclick="doOpenCheck3(this);">편안하고 진중한게 좋아요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="style" value="3" onclick="doOpenCheck3(this);">활기차고 즐거운게 좋아요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="style" value="4" onclick="doOpenCheck3(this);">철저하게 공부만 하는게 좋아요.<br>
+				&nbsp;&nbsp;<input type="radio" name="style" value="1" onclick="doOpenCheck3(this);">수다스럽게 친구같은게 좋아요.<br>
+				&nbsp;&nbsp;<input type="radio" name="style" value="2" onclick="doOpenCheck3(this);">편안하고 진중한게 좋아요.<br>
+				&nbsp;&nbsp;<input type="radio" name="style" value="3" onclick="doOpenCheck3(this);">활기차고 즐거운게 좋아요.<br>
+				&nbsp;&nbsp;<input type="radio" name="style" value="4" onclick="doOpenCheck3(this);">철저하게 공부만 하는게 좋아요.<br>
+				&nbsp;&nbsp;<input type="radio" name="style" value="0" onclick="doOpenCheck1(this);" checked="checked">해당사항 없음.<br>
 			</p>
 			<p>
 				&nbsp;&nbsp;4. 원하는 강의 형태<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="1" onclick="doOpenCheck4(this);">학교 수업이 너무 어렵고 따라가기 힘들어서 <strong>기초 강의</strong>가 필요해요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="2" onclick="doOpenCheck4(this);">학교 수업이 어렵지만 조금은 이해가 되기 때문에 <strong>포괄적인 강의</strong>가 필요해요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="3" onclick="doOpenCheck4(this);">학교 수업을 하면 전체적인 이해 하지만 <strong>교과서 중심</strong>의 강의가 필요해요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="4" onclick="doOpenCheck4(this);">학교에서 남들 하는 만큼은 하기때문에 <strong>문제 풀이식 강의</strong>가 필요 해요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="5" onclick="doOpenCheck4(this);">학교 수업이 이해가 쉽지만 더이상 올라가기는 힘들어서 <strong>쪽집계 강의</strong>가 필요해요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="6" onclick="doOpenCheck4(this);">학교 수업이 쉬워 <strong>시험 대비용 강의</strong>가 필요해요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="level1" value="7" onclick="doOpenCheck4(this);">학교 수업이 너무 쉬워 <strong>선행 학습</strong>이 필요해요.<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="1" onclick="doOpenCheck4(this);">학교 수업이 너무 어렵고 따라가기 힘들어서 <strong>기초 강의</strong>가 필요해요.<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="2" onclick="doOpenCheck4(this);">학교 수업이 어렵지만 조금은 이해가 되기 때문에 <strong>포괄적인 강의</strong>가 필요해요.<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="3" onclick="doOpenCheck4(this);">학교 수업을 하면 전체적인 이해 하지만 <strong>교과서 중심</strong>의 강의가 필요해요.<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="4" onclick="doOpenCheck4(this);">학교에서 남들 하는 만큼은 하기때문에 <strong>문제 풀이식 강의</strong>가 필요 해요.<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="5" onclick="doOpenCheck4(this);">학교 수업이 이해가 쉽지만 더이상 올라가기는 힘들어서 <strong>쪽집계 강의</strong>가 필요해요.<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="6" onclick="doOpenCheck4(this);">학교 수업이 쉬워 <strong>시험 대비용 강의</strong>가 필요해요.<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="7" onclick="doOpenCheck4(this);">학교 수업이 너무 쉬워 <strong>선행 학습</strong>이 필요해요.<br>
+				&nbsp;&nbsp;<input type="radio" name="level1" value="0" onclick="doOpenCheck1(this);" checked="checked">해당사항 없음.<br>
 			</p>
 			<p>
 				&nbsp;&nbsp;5. 원하는 강의 진도<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="student" value="1" onclick="doOpenCheck5(this);">초등학교 1학년
-				<input type="checkbox" name="student" value="2" onclick="doOpenCheck5(this);">초등학교 2학년
-				<input type="checkbox" name="student" value="3" onclick="doOpenCheck5(this);">초등학교 3학년<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="student" value="4" onclick="doOpenCheck5(this);">초등학교 4학년
-				<input type="checkbox" name="student" value="5" onclick="doOpenCheck5(this);">초등학교 5학년
-				<input type="checkbox" name="student" value="6" onclick="doOpenCheck5(this);">초등학교 6학년
+				&nbsp;&nbsp;<input type="radio" name="student" value="1" onclick="doOpenCheck5(this);">초등학교 1학년
+				<input type="radio" name="student" value="2" onclick="doOpenCheck5(this);">초등학교 2학년
+				<input type="radio" name="student" value="3" onclick="doOpenCheck5(this);">초등학교 3학년<br/>
+				&nbsp;&nbsp;<input type="radio" name="student" value="4" onclick="doOpenCheck5(this);">초등학교 4학년
+				<input type="radio" name="student" value="5" onclick="doOpenCheck5(this);">초등학교 5학년
+				<input type="radio" name="student" value="6" onclick="doOpenCheck5(this);">초등학교 6학년
 				<br/><br/>
-				&nbsp;&nbsp;<input type="checkbox" name="student" value="7" onclick="doOpenCheck5(this);">중학교 1학년
-				<input type="checkbox" name="student" value="8" onclick="doOpenCheck5(this);">중학교 2학년
-				<input type="checkbox" name="student" value="9" onclick="doOpenCheck5(this);">중학교 3학년
+				&nbsp;&nbsp;<input type="radio" name="student" value="7" onclick="doOpenCheck5(this);">중학교 1학년
+				<input type="radio" name="student" value="8" onclick="doOpenCheck5(this);">중학교 2학년
+				<input type="radio" name="student" value="9" onclick="doOpenCheck5(this);">중학교 3학년
 				<br/><br/>
-				&nbsp;&nbsp;<input type="checkbox" name="student" value="10" onclick="doOpenCheck5(this);">고등학교 1학년
-				<input type="checkbox" name="student" value="11" onclick="doOpenCheck5(this);">고등학교 2학년
-				<input type="checkbox" name="student" value="12" onclick="doOpenCheck5(this);">고등학교 3학년
+				&nbsp;&nbsp;<input type="radio" name="student" value="10" onclick="doOpenCheck5(this);">고등학교 1학년
+				<input type="radio" name="student" value="11" onclick="doOpenCheck5(this);">고등학교 2학년
+				<input type="radio" name="student" value="12" onclick="doOpenCheck5(this);">고등학교 3학년
+				<br/><br/>
+				&nbsp;&nbsp;<input type="radio" name="student" value="0" onclick="doOpenCheck1(this);" checked="checked">해당사항 없음.<br>
 			</p>
 			<p>
 				&nbsp;&nbsp;6. 수화 강의<br/>
-				&nbsp;&nbsp;<input type="checkbox" name="hand" value="1" onclick="doOpenCheck6(this);">나는 청각에 문제가 있어 수화강의를 듣고 싶어요.<br>
-				&nbsp;&nbsp;<input type="checkbox" name="hand" value="2" onclick="doOpenCheck6(this);">괜찮아요.<br>
+				&nbsp;&nbsp;<input type="radio" name="hand" value="1" onclick="doOpenCheck6(this);">나는 청각에 문제가 있어 수화강의를 듣고 싶어요.<br>
+				&nbsp;&nbsp;<input type="radio" name="hand" value="2" onclick="doOpenCheck6(this);">괜찮아요.<br>
+				&nbsp;&nbsp;<input type="radio" name="hand" value="0" onclick="doOpenCheck1(this);" checked="checked">해당사항 없음.<br>
 			</p>
 			</div>
 			<br>

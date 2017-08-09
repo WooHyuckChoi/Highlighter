@@ -25,8 +25,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import yjc.wdb.Highlighter.domain.App_ClassVO;
+import yjc.wdb.Highlighter.domain.EvaVO;
+import yjc.wdb.Highlighter.domain.Eva_TeacherVO;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.Ext_TimetableVO;
 import yjc.wdb.Highlighter.domain.PageMaker;
@@ -35,6 +38,7 @@ import yjc.wdb.Highlighter.domain.privateSearchCriteria;
 import yjc.wdb.Highlighter.service.App_ClassSerivce;
 import yjc.wdb.Highlighter.service.CarrerService;
 import yjc.wdb.Highlighter.service.EvaService;
+import yjc.wdb.Highlighter.service.Eva_TeacherService;
 import yjc.wdb.Highlighter.service.Ext_InfoService;
 import yjc.wdb.Highlighter.service.User_InfoService;
 import yjc.wdb.Highlighter.service.test_InfoService;
@@ -52,7 +56,51 @@ public class UserController {
 	@Inject test_InfoService service5;
 	//진단평가 때문에 추가 한것
 	@Inject EvaService service6;
-	/////////////////////////////////
+	@Inject Eva_TeacherService service7;
+		
+		@RequestMapping(value = "/eva", method = RequestMethod.GET)
+		public void evaGET()throws Exception{
+			
+		}
+		@RequestMapping(value = "/eva_finish", method = RequestMethod.POST)
+		public void evaPOST(EvaVO board, User_InfoVO eva_board, RedirectAttributes rttr)throws Exception{
+			
+			service6.regist(board);
+			service6.eva_update(eva_board);
+		}
+		
+		@RequestMapping(value = "/eva_read", method = RequestMethod.GET)
+		public void eva_readGET(HttpSession session, Model model)throws Exception{
+			
+			String user_id=(String) session.getAttribute("id");
+			model.addAttribute("EvaVO",service6.read(user_id));
+		}
+		
+		@RequestMapping(value = "/eva_modify", method = RequestMethod.GET)
+		public void eva_modifyGET()throws Exception{
+				
+		}
+		@RequestMapping(value = "/eva_modify", method = RequestMethod.POST)
+		public String eva_modifyPOST(EvaVO board, HttpSession session)throws Exception{
+			
+			String user_id = (String) session.getAttribute("id");
+			board.setUser_id(user_id);
+			service6.modify(board);
+			
+			return "redirect:/eva_read";
+		}
+		//진단평가 강사용
+		@RequestMapping(value = "/eva_teacher", method = RequestMethod.GET)
+		public void eva_teacherGET()throws Exception{
+			
+		}
+		
+		@RequestMapping(value = "/eva_teacher_finish", method = RequestMethod.POST)
+		public void eva_teacherPOST(Eva_TeacherVO board, RedirectAttributes rttr)throws Exception{
+			
+			service7.regist(board);
+		}
+		/////////////////////////////////
 	
 	@Resource(name = "uploadPath")
 	private String uploadPath;

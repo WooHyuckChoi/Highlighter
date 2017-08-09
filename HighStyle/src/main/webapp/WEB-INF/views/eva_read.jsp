@@ -465,6 +465,9 @@ div#locationSelect2{margin:0;}
 					<c:if test="${(EvaVO.book eq '3')}">
 					&nbsp;&nbsp;강의 화면 봤다 책 봤다하면 집중력이 떨어져요.<br>
 					</c:if>
+					<c:if test="${(EvaVO.book eq '0')}">
+					&nbsp;&nbsp;해당사항 없음.<br>
+					</c:if>
 				</p>
 				<p>
 					&nbsp;&nbsp;2. 외국인 강의<br/>
@@ -476,6 +479,9 @@ div#locationSelect2{margin:0;}
 					</c:if>
 					<c:if test="${(EvaVO.foreigner eq '3')}">
 					&nbsp;&nbsp;我要听的讲座中国&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(중국어 : 나는 강의를 중국어로 듣고 싶어요)<br>
+					</c:if>
+					<c:if test="${(EvaVO.foreigner eq '0')}">
+					&nbsp;&nbsp;해당사항 없음.<br>
 					</c:if>
 				</p>
 				<p>
@@ -491,6 +497,9 @@ div#locationSelect2{margin:0;}
 					</c:if>
 					<c:if test="${(EvaVO.style eq '4')}">
 					&nbsp;&nbsp;철저하게 공부만 하는게 좋아요.<br>
+					</c:if>
+					<c:if test="${(EvaVO.style eq '0')}">
+					&nbsp;&nbsp;해당사항 없음.<br>
 					</c:if>
 				</p>
 				<p>
@@ -515,6 +524,9 @@ div#locationSelect2{margin:0;}
 					</c:if>
 					<c:if test="${(EvaVO.level1 eq '7')}">
 					&nbsp;&nbsp;학교 수업이 너무 쉬워 <strong>선행 학습</strong>이 필요해요.<br>
+					</c:if>
+					<c:if test="${(EvaVO.level1 eq '0')}">
+					&nbsp;&nbsp;해당사항 없음.<br>
 					</c:if>
 				</p>
 				<p>
@@ -555,6 +567,9 @@ div#locationSelect2{margin:0;}
 					<c:if test="${(EvaVO.student eq '12')}">
 					&nbsp;&nbsp;고등학교 3학년
 					</c:if>
+					<c:if test="${(EvaVO.student eq '0')}">
+					&nbsp;&nbsp;해당사항 없음.<br>
+					</c:if>
 				</p>
 				<p>
 					&nbsp;&nbsp;6. 수화 강의<br/>
@@ -564,10 +579,13 @@ div#locationSelect2{margin:0;}
 					<c:if test="${(EvaVO.hand eq '2')}">
 					&nbsp;&nbsp;괜찮아요.<br>
 					</c:if>
+					<c:if test="${(EvaVO.hand eq '0')}">
+					&nbsp;&nbsp;해당사항 없음.<br>
+					</c:if>
 				</p>
 			</div>
 			<br><br>
-			<a href="eva_modify"><img src="./resources/img/modify-button.PNG" alt=""></a>
+			<a href="eva_modify?user_id=${EvaVO.user_id}"><img src="./resources/img/modify-button.PNG" alt=""></a>
 		</div>
 	</div>
 </c:if>
