@@ -266,8 +266,21 @@
 																	var test_date2 = (test_date.substr(0,10)).split("/");
 																	var test_date3 = (test_date.substr(10)).split(":");
 																	console.log(test_date3);
-																	var test_date4 = parseInt(test_date3[1])+test_time;
-																	var end_date = test_date2[0]+"/"+test_date2[1]+"/"+test_date2[2]+test_date3[0]+":"+test_date3[1];
+																	var test_date4 = parseInt(test_date3[1])+parseInt(test_time);
+																	if(test_date4 >= 60){
+																		test_date4 = parseInt(test_date4) - 60;
+																		if(test_date4 < 10){
+																			test_date4 = "0"+test_date4
+																		}
+																		test_date3[0] = parseInt(test_date3[0])+1;
+																		if(test_date3[0] < 10){
+																			test_date3[0] = "0"+test_date3[0];
+																		}
+																		if(test_date3[0] > 24){
+																			test_date3[0] = parseInt(test_date3[0]) - 24;
+																		}
+																	}
+																	var end_date = test_date2[0]+"/"+test_date2[1]+"/"+test_date2[2]+" "+test_date3[0]+":"+test_date4;
 																	document.write(test_date+"~"+end_date);
 																</script>
 															</td>
