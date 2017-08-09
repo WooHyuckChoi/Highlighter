@@ -13,6 +13,7 @@
 <script src='./resources/fullCalendar/fullcalendar.js'></script>
 <style>
 body{
+	width:1000px;
 	margin-top: 40px;
 	text-align: center;
 	font-size: 14px;
@@ -20,8 +21,9 @@ body{
 	background-color:#fff;
 }
 #calendar{
-	width:900px;
+	width:700px;
 	margin: 0 auto;
+	float:left;
 }
 #hidden-title{
 	display: none;
@@ -40,13 +42,16 @@ body{
 	margin-bottom: 0;
 	vertical-align: middle;
 }
+#wrap{
+	width:width:
+}
 </style>
 
 </head>
 <body>
-
-	<div id="calendar"></div>
-	
+	<div id="wrap">
+		<div id="calendar"></div>
+	</div>
 	<script>
 		$(document).ready(function(){
 			// page is now ready, initialize the calendar...

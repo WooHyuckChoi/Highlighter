@@ -21,9 +21,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import yjc.wdb.Highlighter.domain.App_ClassVO;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.Ext_TimetableVO;
+import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.service.App_ClassSerivce;
 import yjc.wdb.Highlighter.service.Ext_InfoService;
 import yjc.wdb.Highlighter.service.Ext_TimetableService;
+import yjc.wdb.Highlighter.service.User_InfoService;
 
 /**
  * Handles requests for the application home page.
@@ -41,6 +43,9 @@ public class HomeController {
 	
 	@Inject
 	private Ext_TimetableService service3;
+	
+	@Inject
+	private User_InfoService service4;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
@@ -54,9 +59,6 @@ public class HomeController {
 		
 		/* �׻� home.jsp ��� �� ${id}�� �ִ��� ���� ��*/
 		String user_id = String.valueOf(session.getAttribute("id"));
-		/* ���� ��� ��ư (����� ���� �α�)*/
-		//System.out.println("���� ���̵� : "+user_id);
-		
 		
 		/* session���� ${id}���� �� ���� side�� DB���� �ҷ��� */
 		if(user_id != "null"){
@@ -77,11 +79,11 @@ public class HomeController {
 							String ext_id = (i.get("ext_id")).toString();
 							String subject = ext_id.substring(2,4);
 							if(subject.matches("01"))
-								i.put("subject", "����");
+								i.put("subject", "국어");
 							if(subject.matches("02"))
-								i.put("subject", "����");
+								i.put("subject", "영어");
 							if(subject.matches("03"))
-								i.put("subject", "����");
+								i.put("subject", "수학");
 							model.addAttribute("homeList", list);
 						}
 					}
@@ -97,11 +99,11 @@ public class HomeController {
 						ext_id = appClassOne.getExt_id();
 						String subject = ext_id.substring(2,4);
 						if(subject.matches("01"))
-							appClassOne.setSubject("����");
+							appClassOne.setSubject("국어");
 						if(subject.matches("02"))
-							appClassOne.setSubject("����");
+							appClassOne.setSubject("영어");
 						if(subject.matches("03"))
-							appClassOne.setSubject("����");
+							appClassOne.setSubject("수학");
 					}
 					model.addAttribute("appClassOne", appClassOne);
 					//System.out.println("���� ���� ����:"+appClassOne);
@@ -123,15 +125,20 @@ public class HomeController {
 					String subject = ext_id.substring(2,4);
 					//System.out.println(subject);
 					if(subject.matches("01"))
-						i.put("subject", "����");
+						i.put("subject", "국어");
 					if(subject.matches("02"))
-						i.put("subject", "����");
+						i.put("subject", "영어");
 					if(subject.matches("03"))
-						i.put("subject", "����");
+						i.put("subject", "수학");
 				}
 				
 				model.addAttribute("onGoingExt_Stu", onGoingExt_Stu);
 				
+				//학생 강사용 진단평가
+				User_InfoVO vo = service4.read(user_id);
+				String eva_id = vo.getEva_id();
+				model.addAttribute("eva_id", eva_id);
+				////////////////////////////////////////////////////////////
 				//System.out.println("�̰�"+onGoingExt_Stu);
 				/* �л��� ���� ��û�� ��� */
 				List<HashMap> appClassList_Stu = service2.appClassList_Stu(user_id);
@@ -160,7 +167,7 @@ public class HomeController {
 	@ResponseBody
 	public String cancelClass(HttpServletRequest req, HttpSession session)throws Exception{
 		String ext_id = req.getParameter("ext_id");
-		System.out.println("���� �ڵ�:"+ext_id);
+		
 		logger.info("cancelClass......................");
 		App_ClassVO vo = new App_ClassVO();
 		vo.setExt_id(ext_id);

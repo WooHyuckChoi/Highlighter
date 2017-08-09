@@ -191,30 +191,57 @@
 		<div class="container content profile">
 			<div class="row">
 				<!--Left Sidebar-->
-				<div class="col-md-3 md-margin-bottom-40">
-					<img class="img-responsive profile-img margin-bottom-20" src="./resources/unify/assets/img/team/img32-md.jpg" alt="teacherProfile">
-					<!-- src="displayFile?fileName=${list.prof_photo }" -->
-					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
-						<li id="StudyRoom" class="list-group-item">
-							<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
-						</li>
-						<li class="list-group-item">
-							<a href="#"><i class="fa fa-user"></i> 숙제</a>
-						</li>
-						<li class="list-group-item">
-							<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
-						</li>
-						<li class="list-group-item">
-							<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
-						</li>
-						<li class="list-group-item">
-							<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
-						</li>
-						<li class="list-group-item">
-							<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
-						</li>
-					</ul>
-				</div>
+				<!-- 강사화면 -->
+				<c:if test="${user_grade eq 'teacher' }">
+					<div class="col-md-3 md-margin-bottom-40">
+						<img class="img-responsive profile-img margin-bottom-20" src="./resources/unify/assets/img/team/img32-md.jpg" alt="teacherProfile">
+						<!-- src="displayFile?fileName=${list.prof_photo }" -->
+						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+							<li id="StudyRoom" class="list-group-item">
+								<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
+							</li>
+							<li class="list-group-item">
+								<a href="homeworkPage?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
+							</li>
+							<li class="list-group-item">
+								<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
+							</li>
+							<li class="list-group-item">
+								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
+							</li>
+							<li class="list-group-item">
+								<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
+							</li>
+							<li class="list-group-item">
+								<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
+							</li>
+						</ul>
+					</div>
+				</c:if>
+				<!-- 학생 화면 -->
+				<c:if test="${user_grade ne 'teacher' }">
+					<div class="col-md-3 md-margin-bottom-40">
+						<img class="img-responsive profile-img margin-bottom-20" src="./resources/unify/assets/img/team/img32-md.jpg" alt="teacherProfile">
+						<!-- src="displayFile?fileName=${list.prof_photo }" -->
+						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+							<li id="StudyRoom" class="list-group-item">
+								<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
+							</li>
+							<li class="list-group-item">
+								<a href="homeworkPage?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
+							</li>
+							<li class="list-group-item">
+								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
+							</li>
+							<li class="list-group-item">
+								<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
+							</li>
+							<li class="list-group-item">
+								<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
+							</li>
+						</ul>
+					</div>
+				</c:if>
 				<!--End Left Sidebar-->
 
 				<!-- Profile Content -->
@@ -368,7 +395,9 @@
 									<div class="panel-heading overflow-h">
 										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> 공지사항</h2>
 										<form method="post">
-											<button id="noticeResi"> 등록 </button>
+											<c:if test="${user_grade eq 'teacher' }">
+												<button id="noticeResi"> 등록 </button>
+											</c:if>
 										</form>
 										<script>
 											$("#noticeResi").on("click",function(){
@@ -532,7 +561,7 @@
 				if(user_grade=="teacher")
 				{
 					$.ajax({
-							url : "classMain",
+							url : "classOpen",
 							type:"POST",
 							dataType : "text",
 							contentType: "application/json; charset=UTF-8",
@@ -561,7 +590,7 @@
 				var ext_id = '${ext_id}';
 				var user_id = '${user_id}';
 				$.ajax({
-						url : "classMain2",
+						url : "classClose",
 						type : "post",
 						dataType : "text",
 						contentType : "application/json",

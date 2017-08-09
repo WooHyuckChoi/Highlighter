@@ -40,30 +40,34 @@ and a.test_id =#{test_id}
 
 
 	<resultMap id="ListweeksCorrectAnsw" type="java.util.HashMap">
+		<!-- <result property="test_id" column="test_id"></result>
+		<result property="correctCount" column="correctCount"></result>	 -->
+		<result property="user_id" column="user_id"></result>
 		<result property="test_id" column="test_id"></result>
-		<result property="correctCount" column="correctCount"></result>
+		<result property="count" column="count"></result>
+		<result property="test_date" column="test_date"></result>
+		<result property="wrong_note" column="wrong_note"></result>	
 	</resultMap>
 
 	<select id="ListWeeksCorrect" resultMap="ListweeksCorrectAnsw">
-		select SUBSTR(a.test_id,9) AS test_id, count(a.test_id) AS correctCount
+		<!-- select SUBSTR(a.test_id,9) AS test_id, count(a.test_id) AS correctCount
 		from test_result a, prob_info b,test_info c
 		where a.prob_id = b.prob_id
 		and c.test_id = b.test_id
 		and a.stu_result = b.prob_answ
 		and a.user_id = #{user_id}
 		and c.ext_id = #{ext_id}
-		group by a.test_id
+		group by a.test_id -->
+		<![CDATA[
+		select a.user_id,SUBSTR(a.test_id,9) AS test_id, count(*) AS count, b.test_date, c.user_name,
+                (select count(w_answ_note) AS count from test_result where w_answ_note != '' AND test_id = a.test_id AND user_id=#{user_id}) AS wrong_note
+                from test_result a, (select b.prob_id, b.prob_answ, t.ext_id, t.test_date from prob_info b, test_info t where b.test_id = t.test_id) b,user_info c
+                where a.prob_id = b.prob_id
+                and a.user_id=c.user_id
+                and a.stu_result = b. prob_answ
+                and b.ext_id=#{ext_id}
+                and a.user_id=#{user_id}
+                group by a.user_id,a.test_id
+	]]>
 	</select>
-	
-		<select id="weekCorrectAnsw" resultType="test_resultVO">
-		select SUBSTR(a.test_id,9) AS test_id, count(a.test_id) AS correctCount
-		from test_result a, prob_info b,test_info c
-		where a.prob_id = b.prob_id
-		and c.test_id = b.test_id
-		and a.stu_result = b.prob_answ
-		and a.user_id = #{user_id}
-		and c.ext_id = #{ext_id}
-		group by a.test_id
-	</select>
- 
 </mapper>

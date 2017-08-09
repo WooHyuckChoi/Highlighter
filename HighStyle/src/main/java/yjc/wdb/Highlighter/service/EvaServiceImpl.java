@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import yjc.wdb.Highlighter.domain.EvaVO;
+import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.persistence.EvaDAO;
 
 @Service
@@ -33,5 +34,11 @@ public class EvaServiceImpl implements EvaService{
 	@Override
 	public List<EvaVO> listAll()throws Exception{
 		return dao.listAll();
+	}
+
+	@Override
+	public void eva_update(User_InfoVO eva_board) throws Exception {
+		
+		dao.eva_update(eva_board);
 	}
 }

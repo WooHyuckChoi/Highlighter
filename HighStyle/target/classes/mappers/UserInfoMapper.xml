@@ -5,9 +5,9 @@
 <mapper namespace="yjc.wdb.Highlighter.User_InfoMapper">
 <insert id="create">
 	insert into user_info (user_id, user_pw, user_name, user_email, gender, birth_date, address, phone,
-	prof_photo, ext_exp, bank, bank_ac_num, college, college_dept, par_id, user_grade) 
+	prof_photo, ext_exp, bank, bank_ac_num, college, college_dept, par_phone, user_grade) 
 	values(#{user_id}, #{user_pw}, #{user_name}, #{user_email}, #{gender}, #{birth_date}, #{address}, #{phone},
-	#{prof_photo}, #{ext_exp}, #{bank}, #{bank_ac_num}, #{college}, #{college_dept}, #{par_id}, #{user_grade})
+	#{prof_photo}, #{ext_exp}, #{bank}, #{bank_ac_num}, #{college}, #{college_dept}, #{par_phone}, #{user_grade})
 </insert>
 <select id="read" resultType="User_InfoVO">
 	select * 

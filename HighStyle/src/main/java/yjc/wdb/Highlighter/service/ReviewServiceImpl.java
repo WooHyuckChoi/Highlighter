@@ -55,4 +55,28 @@ public class ReviewServiceImpl implements ReviewService
 		return dao.listOne(post_id);
 	}
 
+	@Override
+	public thumb_infoVO thumb_infoOne(String post_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.thumb_infoOne(post_id);
+	}
+
+	@Override
+	public Integer selectThumbId(String post_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectThumbId(post_id);
+	}
+
+	@Override
+	public void insertThumbInfo(thumb_infoVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.insertThumbInfo(vo);
+	}
+
+	@Override
+	public List<thumb_infoVO> selectAllThumbInfo(String post_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectAllThumbInfo(post_id);
+	}
+
 }

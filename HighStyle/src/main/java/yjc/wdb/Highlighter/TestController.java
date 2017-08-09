@@ -85,8 +85,6 @@ public class TestController {
 	jindan_evalService service9;
 	@Inject
 	jindan_resultService service10;
-	@Inject 
-	EvaService service11;
 	
 	@Inject
 	private MyPageInfoService myPageService;
@@ -146,12 +144,6 @@ public class TestController {
 		return "success";
 	}//異붽��빐�빞�븿
 */	
-	
-	
-	@RequestMapping(value = "homework", method = RequestMethod.GET)
-	public void homework() throws Exception {
-
-	}
 
 	@RequestMapping(value = "classData", method = RequestMethod.GET)
 	public void classData() throws Exception {
@@ -1766,16 +1758,4 @@ public class TestController {
 		  			service10.createResult(intojindan[i]);
 		  		}
 		  	}
-		  //학생or강사 매칭용 진단평가!
-			@RequestMapping(value = "/eva", method = RequestMethod.GET)
-			public void evaGET()throws Exception{
-				
-				
-			}
-			@RequestMapping(value = "/evafinish", method = RequestMethod.POST)
-			public void evaPOST(EvaVO board, RedirectAttributes rttr)throws Exception{
-				
-				service11.regist(board);
-				
-			}
 }

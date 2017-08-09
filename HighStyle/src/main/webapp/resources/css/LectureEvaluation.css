@@ -1,0 +1,381 @@
+#lEcontainer{
+	width:100%;
+	height:750px;
+		
+}
+.form{
+	display:none;
+}
+header{
+	height:50px;
+}
+header > #lEHeaderDiv{
+	margin-top:;
+	margin-left:60%;
+}
+header > #lEHeaderDiv > #searchIp{
+	width:150px;
+	height:20px;
+	border:3px solid #FF6600;
+	margin-top:8px;
+}
+header > #lEHeaderDiv > #searchBtn{
+	width:80px;
+	height:35px;
+	color:white;
+	border:none;
+	border-radius:15%;
+	background:#FF6600;
+	margin-top:0px;
+}
+nav{
+	width:20%;
+	height:650px;
+	float:left;
+	both:clear;
+}
+nav > #lENavDiv{
+	width:50%;
+	height:25%;
+	background:#FF6600;
+	margin-top:15%;
+	margin-left:25%;
+}
+nav > #lENavDiv > #lENavDiv-1{
+	height:50%;
+	font-size:25px;
+	font-weight:bold;
+	text-align:center;
+	color:white;
+	line-height:80px;
+	background:#FF6600;
+}
+nav > #lENavDiv > #lENavDiv-2{
+	height:25%;
+	font-size:18px;
+	line-height:40px;
+	padding-left:15px;
+	background:#fafafa;
+	cursor:pointer;
+} 
+nav > #lENavDiv > #lENavDiv-3{
+	height:25%;
+	font-size:18px;
+	line-height:40px;
+	padding-left:15px;
+	background:#dadada;
+	cursor:pointer;
+}
+#lEcontainer > #sectionDivP{
+	width:100%;
+	height:100%;
+}
+section{
+	width:70%;
+	height:80%;
+	float:left;
+	
+}
+#sectionDiv{
+	overflow-y:scroll;
+}
+.headerFont{
+	margin-left:70px;
+	font:30px bold;
+}
+#beforeToturDiv{
+	margin-top:30px;
+}
+.lEtutorDiv{
+	width:85%;
+	height:30%;
+	border:1px dashed grey;
+	border-top:3px solid grey;
+	margin-top:15px;
+	margin-left:70px;
+}
+
+.lEtutorDiv{
+	width:85%;
+	height:30%;
+	border:1px dashed grey;
+	border-top:3px solid grey;
+	margin-top:15px;
+	margin-left:70px;
+}
+
+.lEtutorDiv2{
+	width:85%;
+	height:20%;
+	border:1px dashed grey;
+	border-top:3px solid grey;
+	margin-top:15px;
+	margin-left:70px;
+}
+
+.lEtutorDiv > .lEtutorDiv-1{
+	width:15%;
+	height:100%;
+	border-right:1px dotted grey;
+	float:left;
+	both:clear;
+}
+
+.lEtutorDiv2 > .lEtutorDiv-1{
+	width:10%;
+	height:100%;
+	border-right:1px dotted grey;
+	float:left;
+	both:clear;
+}
+.lEtutorDiv > .lEtutorDiv-1 > .lEtutorDivImg{
+	width:100%;
+	height:80%;
+	border-bottom:1px dotted grey;
+}
+.lEtutorDiv > .lEtutorDiv-1 > .lEtutorDivImg > img{
+	width:100%;
+	height:100%;
+}
+
+.lEtutorDiv2 > .lEtutorDiv-1 > .lEtutorDivImg{
+	width:100%;
+	height:80%;
+	border-bottom:1px dotted grey;
+}
+.lEtutorDiv2 > .lEtutorDiv-1 > .lEtutorDivImg > img{
+	width:100%;
+	height:100%;
+}
+.lEtutorDiv > .lEtutorDiv-1 > .lEtutorDivN{
+	width:100%;
+	height:20%;
+	font-size: 15px;
+	text-align:center;
+	line-height:40px;
+}
+
+.lEtutorDiv2 > .lEtutorDiv-1 > .lEtutorDivN{
+	width:100%;
+	height:20%;
+	font-size: 15px;
+	text-align:center;
+	line-height:30px;
+}
+
+.lEtutorDiv > .lEtutorDiv-2{
+	width:84%;
+	height:100%;
+	float:left;
+}
+
+.lEtutorDiv2 > .lEtutorDiv-2{
+	width:84%;
+	height:100%;
+	float:left;
+}
+.lEtutorDiv > .lEtutorDiv-2 > .lEtutorDivT{
+	font-size:15px;
+}
+
+.lEtutorDiv2 > .lEtutorDiv-2 > .lEtutorDivT{
+	font-size:15px;
+	margin-left:15px;
+}
+.lEtutorDiv2 > .lEtutorDiv-2 > .lEtutorDivT1{
+	width:40%;
+	float:left;
+	margin-left:50px;
+}
+.lEtutorDiv2 > .lEtutorDiv-2 > .lEtutorDivT2{
+	
+}
+
+.lEtutorDiv > .lEtutorDiv-2 > div{
+	margin-top:15px;
+	margin-left:15px;
+}
+.lEtutorDiv2 > .lEtutorDiv-2 > div{
+	margin-top:30px;
+	margin-left:15px;
+}
+.lEtutorDiv > .lEtutorDiv-2 > .tutorInfoBtn{
+	float:right;
+	margin-top:0%;
+    margin-right:8%;
+}
+.lEtutorDiv > .lEtutorDiv-2 > .tutorInfoBtn > input{
+	width:180%;
+	height:30px;
+	font-size:15px;
+	border:none;
+	border-radius:10%;
+	color:white;
+	background:#FF6600;
+	
+}
+
+#lEtutorDivBeforeInfo{
+	width:85%;
+	height:45%;
+	border:1px dashed grey;
+	border-top:3px solid grey;
+	margin-top:15px;
+	margin-left:70px;
+	overflow-y:scroll;
+}
+#lEtutorDivBeforeInfo2{
+	width:85%;
+	height:80%;
+	border:1px dashed grey;
+	border-top:3px solid grey;
+	margin-top:15px;
+	margin-left:70px;
+}
+.lEtutorDivBeforeInfoList{
+	width:100%;
+	height:33%;
+	border-bottom:1px solid pink;
+}
+.lEtutorDivBeforeInfoList2{
+	width:100%;
+	height:20%;
+	border-bottom:3px solid pink;
+}
+.lEtutorDivBeforeInfoList2-1{
+	width:100%;
+	height:20%;
+	border-bottom:1px dotted black;
+}
+.lEtutorDivBeforeInfoList2-2{
+	width:100%;
+	height:30%;
+	border-bottom:1px dotted black;
+}
+.lEtutorDivBeforeInfoList2-3{
+	width:100%;
+	height:30%;
+}
+.lEtutorDivBeforeInfoList > .BeforeInfoT1{
+	width:20%;
+	height:40%;
+	float:left;
+	margin-top:1%;
+	margin-left:2%;
+}
+.lEtutorDivBeforeInfoList2 > .BeforeInfoT1{
+	width:20%;
+	height:40%;
+	float:left;
+	margin-top:1%;
+	margin-left:2%;
+}
+.lEtutorDivBeforeInfoList > .BeforeInfoT2{
+	width:60%;
+	height:40%;
+	float:left;
+	margin-top:1%;
+}
+.lEtutorDivBeforeInfoList2 > .BeforeInfoT2{
+	width:60%;
+	height:40%;
+	float:left;
+	margin-top:1%;
+}
+.lEtutorDivBeforeInfoList > .BeforeInfoT3{
+	width:20%;
+	height:40%;
+	float:left;
+	clear:both;
+	margin-left:2%;
+}
+.lEtutorDivBeforeInfoList2 > .BeforeInfoT3{
+	width:20%;
+	height:40%;
+	float:left;
+	clear:both;
+	margin-left:2%;
+}
+.lEtutorDivBeforeInfoList > .BeforeInfoT4{
+	width:20%;
+	height:40%;
+	float:left;
+}
+.lEtutorDivBeforeInfoList2 > .BeforeInfoT4{
+	width:20%;
+	height:40%;
+	float:left;
+}
+.lEtutorDivBeforeInfoList > .BeforeInfoT5{
+	width:20%;
+	height:40%;
+	float:left;
+}
+.lEtutorDivBeforeInfoList2 > .BeforeInfoT5{
+	width:20%;
+	height:40%;
+	float:left;
+}
+.lEtutorDivBeforeInfoList > .BeforeInfoT6{
+	width:20%;
+	height:40%;
+	float:left;
+}
+.lEtutorDivBeforeInfoList2 > .BeforeInfoT6{
+	width:20%;
+	height:40%;
+	float:left;
+}
+.lEtutorDivBeforeInfoList > .BeforeInfoT7{
+	width:15%;
+	height:40%;
+	float:right;
+}
+.lEtutorDivBeforeInfoList > .BeforeInfoT7 > input{
+	width:60%;
+	height:70%;
+	margin-left:30%;
+	color:white;
+	background:#FF6600;
+	border:none;
+	border-radius:5%;
+}
+
+#notInfo-1{
+	width:35%;
+	height:25%;
+	font:30px bold;
+	margin-top:15%;
+	margin-left:25%;
+}
+#notInfo-2{
+	width:20%;
+	height:15%;
+	font:20px bold;
+	margin-top:10%;
+	margin-left:40%;
+}
+
+.pageListDiv{
+	width:20%;
+	height:5%;
+	font-size:20px;
+	clear:both;
+	margin-left:25%;
+}
+.pageListDiv > ul{
+	list-style-type:none;
+}
+.pageListDiv li{
+	width:8%;
+	height:40px;
+	float:left;
+	line-height:2;
+	text-align:center;
+	border:1px solid black;
+	
+}
+.pageListDiv a:hover{
+	text-decoration:none;
+	color:black;
+} 

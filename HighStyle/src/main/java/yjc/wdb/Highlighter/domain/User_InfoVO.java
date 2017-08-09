@@ -18,8 +18,18 @@ public class User_InfoVO {
 	private String bank_ac_num;
 	private String college;
 	private String college_dept;
-	private String par_id;
+	private String par_phone;
 	private String user_grade;
+	//진단평가용
+	private String eva_id;
+	
+	public String getEva_id() {
+		return eva_id;
+	}
+	public void setEva_id(String eva_id) {
+		this.eva_id = eva_id;
+	}
+	////////////////////////////////////////////////////
 	
 	public String getUser_id() {
 		return user_id;
@@ -105,11 +115,11 @@ public class User_InfoVO {
 	public void setCollege_dept(String college_dept) {
 		this.college_dept = college_dept;
 	}
-	public String getPar_id() {
-		return par_id;
+	public String getPar_phone() {
+		return par_phone;
 	}
-	public void setPar_id(String par_id) {
-		this.par_id = par_id;
+	public void setPar_phone(String par_phone) {
+		this.par_phone = par_phone;
 	}
 	public String getUser_grade() {
 		return user_grade;

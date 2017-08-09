@@ -1,10 +1,13 @@
 package yjc.wdb.Highlighter.persistence;
 
 import java.util.HashMap;
+
 import java.util.List;
+import java.util.Map;
 
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.stu_infoVO;
 
 public interface StudyRoomDAO 
 {
@@ -22,4 +25,10 @@ public interface StudyRoomDAO
 	//시험 결과 리스트
 	public List<HashMap> selectTestResult(String ext_id) throws Exception;
 	public List<HashMap> selectStuTestResult(String user_id) throws Exception;
+	
+	//수업을 듣는 학생의 수 가져오기
+	public int countStudent(String ext_id) throws Exception;
+	
+	//학습평가 리스트
+	public List<stu_infoVO> calendarList(Map<String,String> vo) throws Exception;
 }

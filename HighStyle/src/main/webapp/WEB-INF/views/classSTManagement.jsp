@@ -136,9 +136,6 @@ img{
 	padding-right: 2%;
 }
 
-#table124 {
-	margin : 50%;
-}
 #table th{
 	padding : 10px;
 	width: 30px;
@@ -223,6 +220,14 @@ img{
 	width:80px;
 	overflow: hidden;
 }
+#statistics1{
+	float:left;
+}
+#calView{
+	width:1000px;
+	height:500px;
+	background-color: yellow;
+}
 </style>
 
 </head>
@@ -230,7 +235,7 @@ img{
 
 	<div id="classSTManagementheader">
 		<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font id="abcdef" size="5" color="white">수강학생 관리 페이지</font>
-		<font size="5" color="white"><a id="go_main" href="classMain?ext_id=${ext_id}">나가기 <img src="./resources/img/sign-out.png" width="35" height="40" /></a></font>
+		<font size="5" color="white"><a id="go_main" href="classSTManagementList?ext_id=${ext_id}">나가기 <img src="./resources/img/sign-out.png" width="35" height="40" /></a></font>
 	<br>&nbsp;
 		
 		</div>
@@ -240,7 +245,7 @@ img{
 			<h3>프로필</h3>
 		</div>
 		<div id="profileImage">
-			<img src="displayFile?fileName=${listProfile.prof_photo}" style="width: 180px; height:200px">
+			<%-- <img src="displayFile?fileName=${listProfile.prof_photo}" style="width: 180px; height:200px"> --%>
 		</div>
 		<div id="profilecontent">
 			<table id="table123">
@@ -283,26 +288,22 @@ img{
 	</div>
 	<!-- 통계 -->
 	<div id="statistics">
-		<div id="statistics1"></div>
+		<div id="statistics1" style=width:1012px;></div>
 		<div id="studentscore">
 			<table id="table124">
 			<tr>
 				<th>주차</th>
+				<th>시험일</th>
 				<th>점수</th>
+				<th>오답노트</th>
 			</tr>
 			
-				<c:forEach items="${ListWeeksCorrect}" var="ListWeeksCorrect">
+				<c:forEach items="${ListWeeksCorrect}" var="stuList">
 						<tr>
-							<td>
-							<script>
-								var weeks ='${ListWeeksCorrect.test_id}';
-								
-								document.write(weeks);
-								</script>
-								
-							</td>
-							<td>${ListWeeksCorrect.correctCount}/ 20</td>
-							
+							<td>${stuList.test_id }</td>
+							<td>${stuList.test_date }</td>
+							<td>${stuList.count }</td>
+							<td>${stuList.wrong_note }</td>
 						</tr>
 				</c:forEach>
 			</table>
@@ -313,7 +314,15 @@ img{
 <!-- 여기서 부터 캘린더 -->
 	<div id=attitude>
 		<!-- 캘린터 div를 클릭하였을때 controller의 cal에 접근하여서 view를 반환해줘야 한다. -->
-		<iframe src="/Highlighter/cal?ext_id=${ext_id }&user_id=${stu_id}" width="1000px" height="900px" frameborder="0" scrolling="no"></iframe>
+		<iframe src="/Highlighter/cal?ext_id=${ext_id }&user_id=${stu_id}" width="1000px" height="600px" frameborder="0" scrolling="no"></iframe>
+		<div id="calView">
+			<c:forEach items="${calList }" var="calList">
+				<div>
+					<div>${calList.post_date }</div>
+					<div>${calList.learn_att }</div>
+				</div>
+			</c:forEach>
+		</div>
 	</div>
 	
 <!-- 캘린더 끝이염 -->
@@ -341,10 +350,11 @@ img{
 	<script>
 		Morris.Bar({
 			  element: 'statistics1',
-				  data: ${json},
-			  xkey: 'date',
-			  ykeys: ['학생'],
-			  labels: ['학생']
+		      data: ${json},
+			  xkey: 'times',
+			  ykeys: ['점수'],
+			  labels: ['점수'],
+			  parseTime : false
 			});
 	</script>
 
@@ -447,12 +457,12 @@ $("document").ready(function(){
 	
 <div id="effect" >
 	<div id="content">
-		<div style="font-size:15px;"><img src="displayFile?fileName=${list.prof_photo }" style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; ">[${user_name}] 강사님 </div>
+		<div style="font-size:15px;"><%-- <img src="displayFile?fileName=${list.prof_photo }" style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; "> --%>[${user_name}] 강사님 </div>
 		<div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px; text-align: center; ">학생목록</div>
 		<hr />
 		<c:forEach items="${info }" var="info">
 			<div id="infoWrap">
-				<img src="displayFile?fileName=${info.prof_photo }" />
+				<%-- <img src="displayFile?fileName=${info.prof_photo }" /> --%>
 				<p>${info.user_name}</p>
 				<a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">바로가기</a>
 			</div>

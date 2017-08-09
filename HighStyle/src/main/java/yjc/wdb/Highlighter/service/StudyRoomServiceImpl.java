@@ -2,6 +2,7 @@ package yjc.wdb.Highlighter.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.stu_infoVO;
 import yjc.wdb.Highlighter.persistence.StudyRoomDAO;
 
 @Service
@@ -63,6 +65,18 @@ public class StudyRoomServiceImpl implements StudyRoomService
 	public List<HashMap> selectStuTestResult(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.selectStuTestResult(user_id);
+	}
+
+	@Override
+	public int countStudent(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countStudent(ext_id);
+	}
+
+	@Override
+	public List<stu_infoVO> calendarList(Map<String, String> vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.calendarList(vo);
 	}
 	
 }

@@ -17,7 +17,7 @@
 </head>
 <body>
 	<div id = "header">
-		<img src="./resources/img/ev_logo.png" width="820px" align="top" alt="">
+		<img src="./resources/img/ev_logo2.png" width="820px" align="top" alt="">
 	</div>
 	<div style="float: right;">
 		<h4>${user_name}님 안녕하세요!&nbsp;</h4>
@@ -35,7 +35,7 @@
 	</div>
 	<!-- 선택 박스 -->
 	
-	<form name="form" method="post" action="evafinish">
+	<form name="form" method="post" action="eva_finish">
 		<div class="my-box">
 			<p>
 				&nbsp;&nbsp;1. 참고서 및 교재 필요 여부<br/>
@@ -92,7 +92,7 @@
 		<br><br>
 		<div>
 		<input type="hidden" name="user_id" value="${id}" />
-		&nbsp;&nbsp;<input type="submit" value="완료">
+		&nbsp;&nbsp;<input type="submit" class="submit1" value="완료">
 		<input type="reset" value="초기화">
 		</div>
 	</form>
@@ -164,8 +164,7 @@ function doOpenCheck6(chk){
         }
     }
 }
-//체크박스 한개만 체크되게는거 끝 
-/* alert('완료하였습니다.');self.close(); */
+//체크박스 한개만 체크되게는거 끝
 </script>
 </body>
 </html>

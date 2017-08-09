@@ -1,15 +1,10 @@
 package yjc.wdb.Highlighter;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -17,20 +12,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.IOUtils;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,10 +34,10 @@ import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.domain.privateSearchCriteria;
 import yjc.wdb.Highlighter.service.App_ClassSerivce;
 import yjc.wdb.Highlighter.service.CarrerService;
+import yjc.wdb.Highlighter.service.EvaService;
 import yjc.wdb.Highlighter.service.Ext_InfoService;
 import yjc.wdb.Highlighter.service.User_InfoService;
 import yjc.wdb.Highlighter.service.test_InfoService;
-import yjc.wdb.bbs.util.MediaUtils;
 import yjc.wdb.bbs.util.uploadReviewFileUtils;
 
 @Controller
@@ -63,11 +50,13 @@ public class UserController {
 	@Inject CarrerService service3;
 	@Inject App_ClassSerivce service4;
 	@Inject test_InfoService service5;
+	//진단평가 때문에 추가 한것
+	@Inject EvaService service6;
+	/////////////////////////////////
 	
 	@Resource(name = "uploadPath")
 	private String uploadPath;
 
-	
 	/* ȸ�� ��� �� ȸ�� ���� ���� â  */
 	@RequestMapping(value = "/selectRegister", method = RequestMethod.GET)
 	public void selectRegister()throws Exception{

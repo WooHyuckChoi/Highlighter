@@ -1,8 +1,11 @@
 package yjc.wdb.Highlighter;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.stu_infoVO;
 import yjc.wdb.Highlighter.domain.test_resultVO;
 import yjc.wdb.Highlighter.service.MyPageInfoService;
 import yjc.wdb.Highlighter.service.StudyRoomService;
@@ -51,10 +55,13 @@ public class StudyRoomController
 		model.addAttribute("ext_id",ext_id);
 		model.addAttribute("open_stus",studyRoomService.selectOpenStat(ext_id));
 		model.addAttribute("user_grade",studyRoomService.selectGrade(user_id));
-
+		
+		//회원 등급
+		String user_grade = studyRoomService.selectGrade(user_id);
+		model.addAttribute("user_grade",user_grade);
 	}
 
-	@RequestMapping(value="/newLecturePage", method = RequestMethod.POST)
+	@RequestMapping(value="/classOpen", method = RequestMethod.POST)
 	@ResponseBody
 	public String classMain(@RequestBody JSONObject json) throws Exception
 	{
@@ -67,7 +74,22 @@ public class StudyRoomController
 		//return enterRoomService.selectGrade(user_id);
 		return "success";
 	}
-
+	
+	/* lecturePage - 강의 닫기 버튼 클릭 동작 */
+	@RequestMapping(value="/classClose", method = RequestMethod.POST) 
+	@ResponseBody
+	public String classMain2(@RequestBody JSONObject json) throws Exception
+	{
+		/*System.out.println("�씠嫄몃줈 �삤�깘");*/
+		System.out.println(json.get("user_id") +","+ json.get("ext_id"));
+		HashMap<String, String> vo= new HashMap<String, String>();
+		vo.put("user_id", json.get("user_id").toString());
+		vo.put("ext_id", json.get("ext_id").toString());
+		System.out.println(vo);
+		studyRoomService.updateCloseStat(vo);
+		return "success";
+	}
+	
 	@RequestMapping(value="classSTManagementList", method= RequestMethod.GET) //studentManagement
 	public String classSTManagementList(@RequestParam("ext_id") String ext_id,Model model) throws Exception
 	{
@@ -80,34 +102,45 @@ public class StudyRoomController
 		for(int i=0; i<info.size();i++)
 		{
 			
-			nameList.add(i,info.get(i).getUser_name().toString());
+			nameList.add(i,"\""+info.get(i).getUser_name().toString()+"\"");
 		}
+		nameList.add(0, "\""+"평균점수"+"\"");
 		System.out.println(nameList);
 		model.addAttribute("nameList",nameList);
 		
 		List<HashMap> list = studyRoomService.selectTestResult(ext_id);
-		
+		System.out.println(list);
+		System.out.println(list.size());
 		JSONObject jsonMain = new JSONObject();
 		
 		JSONArray jArray = new JSONArray();
-		for(int i=0 ; i<list.size() ; i++)
+		
+		int studentCount = studyRoomService.countStudent(ext_id); //총 학생 수 
+		int account=0; //배열에 넣을 값들이 0으로 초기화 되지 않게 하기 위해
+		for(int i=0 ; i<studentCount ; i++)//3명이면 3번만 돌게
 		{
-			int sum=0;
+			//int sum=0;
 			JSONObject row = new JSONObject();
 			
-			String substr = list.get(i).get("test_id").toString();
-			row.put("times",substr.substring(8, 9));
+			String substr = list.get(account).get("test_id").toString();
+			row.put("times",substr.substring(8, 9)+"회차");
 			
-			
-			for(int j=0; j<list.size() ; j++)
+			int sum = 0;
+			int ave = 0;
+			for(int j=0; j<studentCount;j++)//학생수에 따라 한 배열에 모든 학생의 점수를 넣는다.
 			{
-				row.put(list.get(j).get("user_name").toString() , list.get(j).get("count").toString());
-				sum += Integer.parseInt(list.get(j).get("count").toString());
+				row.put(list.get(account).get("user_name").toString() , list.get(account).get("count").toString());
+				sum+=Integer.parseInt(list.get(account).get("count").toString());
+				
+				account++;//다음에 다시 for문을 만났을때 학생이 3명일시 0이아니라 4번째에서 시작할 수 있게
 			}
-			int ave = sum/list.size();
-			row.put("ave", ave);
+			ave = sum/studentCount;
+			row.put("평균점수", ave);
+			
+			//sum += Integer.parseInt(list.get(j).get("count").toString());
+			//int ave = sum/list.size();
+			//row.put("ave", ave);
 			jArray.add(i,row);
-			System.out.println(sum);
 		}
 		jsonMain.put("sendData",jArray);
 		
@@ -137,22 +170,37 @@ public class StudyRoomController
 		model.addAttribute("info",myPageService.getUserInfo(ext_id));
 		model.addAttribute("listProfile",listProfile);
 
-		List<HashMap> ListWeeksCorrect = testResultService.ListWeeksCorrect(userid,ext_id);
+		List<HashMap> ListWeeksCorrect = testResultService.ListWeeksCorrect(stu_id,ext_id); // 수강학생 관리 페이지 주차 시험일 점수 오답노트 가져오는것
 		
-		session.setAttribute("ListWeeksCorrect", ListWeeksCorrect);
+		//session.setAttribute("ListWeeksCorrect", ListWeeksCorrect);
+		model.addAttribute("ListWeeksCorrect",ListWeeksCorrect);
+		//그래프 구하는 부분
+		List<HashMap> StudentList = studyRoomService.selectStuTestResult(user_id);
+		/*model.addAttribute("stuName","\""+StudentList.get(0).get("user_name")+"\"");
+		System.out.println(StudentList);
+		System.out.println("\""+StudentList.get(0).get("user_name")+"\"");*/
 		
-		List<HashMap> list = studyRoomService.selectStuTestResult(user_id);
 		JSONObject jsonMain = new JSONObject();
 		JSONArray jArray = new JSONArray();
-		for(int i=0 ; i<list.size(); i++)
+		for(int i=0; i<StudentList.size(); i++)
 		{
 			JSONObject row = new JSONObject();
-			row.put("date", list.get(i).get("test_date"));
-			row.put(list.get(i).get("user_name").toString() , list.get(i).get("count").toString());
+			
+			String substr = StudentList.get(i).get("test_id").toString();
+			row.put("times",substr.substring(8, 9)+"회차");
+					
+			row.put("점수", StudentList.get(i).get("count").toString());
 			jArray.add(i,row);
 		}
 		jsonMain.put("sendData",jArray);
 		model.addAttribute("json",jsonMain.get("sendData"));
+		
+		// 학습평가 리스트
+		Map<String, String> calparam = new HashMap<>();
+		calparam.put("user_id", user_id);
+		calparam.put("ext_id", ext_id);
+		List<stu_infoVO> calList = studyRoomService.calendarList(calparam);
+		model.addAttribute("calList",calList);
 	}
 
 	@RequestMapping(value = "classSTManagementAjax", method = RequestMethod.POST)
@@ -172,18 +220,12 @@ public class StudyRoomController
 		return weekCorrectAnsw;
 	}
 	
-	/* lecturePage - 강의 닫기 버튼 클릭 동작 */
-	@RequestMapping(value="/classMain2", method = RequestMethod.POST) 
-	@ResponseBody
-	public String classMain2(@RequestBody JSONObject json) throws Exception
+	@RequestMapping(value="homeworkPage", method = RequestMethod.GET)
+	public String homeWorkPage(@RequestParam("ext_id") String ext_id,@RequestParam("user_id") String user_id,Model model) throws Exception
 	{
-		/*System.out.println("�씠嫄몃줈 �삤�깘");*/
-		System.out.println(json.get("user_id") +","+ json.get("ext_id"));
-		HashMap<String, String> vo= new HashMap<String, String>();
-		vo.put("user_id", json.get("user_id").toString());
-		vo.put("ext_id", json.get("ext_id").toString());
-		System.out.println(vo);
-		studyRoomService.updateCloseStat(vo);
-		return "success";
+		model.addAttribute(ext_id);
+		model.addAttribute(user_id);
+		System.out.println(ext_id+user_id);
+		return "homeworkPage";
 	}
 }

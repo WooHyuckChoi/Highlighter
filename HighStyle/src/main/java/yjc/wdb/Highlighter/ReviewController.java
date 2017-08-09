@@ -5,6 +5,11 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.inject.Inject;
@@ -13,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.IOUtils;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
@@ -21,6 +27,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -29,8 +37,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import yjc.wdb.Highlighter.domain.reviewVO;
+import yjc.wdb.Highlighter.domain.thumb_infoVO;
 import yjc.wdb.Highlighter.service.ReviewService;
+import yjc.wdb.Highlighter.service.StudyRoomService;
 import yjc.wdb.bbs.util.MediaUtils;
+import yjc.wdb.bbs.util.MultipartFileSender;
 import yjc.wdb.bbs.util.uploadReviewFileUtils;
 
 @Controller
@@ -39,7 +50,8 @@ public class ReviewController
 	private static final Logger logger=LoggerFactory.getLogger(ReviewController.class);
 	@Inject
 	private ReviewService service;
-	
+	@Inject
+	private StudyRoomService studyRoomService;
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
@@ -62,11 +74,16 @@ public class ReviewController
 			
 			int p3=Integer.parseInt(p2);
 			String p4="";
-			if(p3<10)
+			if(p3<9)
 			{
 				p3++;
 				p4=0+Integer.toString(p3);
 				System.out.println(p4);
+			}
+			else
+			{
+				p3++;
+				p4=Integer.toString(p3);
 			}
 			
 			postId=p1+p4;
@@ -103,15 +120,16 @@ public class ReviewController
 		return "redirect:/listAll?ext_id="+ext_id;
 	}
 	
-	@RequestMapping(value="listAll", method=RequestMethod.GET)
+	@RequestMapping(value="listAll", method=RequestMethod.GET) // 다시보기 게시판 리스트
 	public String reviewList(Model model,HttpSession session, @RequestParam("ext_id") String ext_id) throws Exception
 	{
 		model.addAttribute("list",service.listAll(ext_id));
 		model.addAttribute("ext_id",ext_id);
-		return "reviewList";
+		//return "reviewList";
+		return "reviewListPage";
 	}
 	
-	@RequestMapping(value="boardDetail", method=RequestMethod.GET)
+	/*@RequestMapping(value="boardDetail", method=RequestMethod.GET)
 	public ModelAndView boardDetail(@RequestParam String post_id) throws Exception
 	{
 		//fileName을 모델에 담아서 streamView를 반환
@@ -119,7 +137,7 @@ public class ReviewController
 		mav.setViewName("/boardDetail");
 		mav.addObject("dto",service.listOne(post_id));
 		return mav;
-	}
+	}*/
 	
 	@ResponseBody
 	@RequestMapping("/displayFile")
@@ -164,76 +182,76 @@ public class ReviewController
 		return entity;    
 	}
 
-	@RequestMapping("/displayVideoFile")
-	public String getContentMediaVideo(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception
-	{
-		File file = new File(fileName);		
-		RandomAccessFile randomFile = new RandomAccessFile(file, "r");
-		
-		long rangeStart = 0; //요청 범위의 시작 위치
-		long rangeEnd = 0; //요청 범위의 끝 위치
-		boolean isPart=false; //부분 요청일 경우 true, 전체 요청의 경우 false
-		
-		try
-		{
-			long movieSize = randomFile.length();
-			String range= request.getHeader("range");
-			
-			if(range!=null)
-			{
-				if(range.endsWith("-"))
-				{
-					range = range+(movieSize-1);
-				}
-				int idxm = range.trim().indexOf("-"); 
-				rangeStart = Long.parseLong(range.substring(6,idxm)); 
-				rangeEnd = Long.parseLong(range.substring(idxm+1));
-				if(rangeStart > 0)
-				{
-					isPart=true;
-				}
-			}
-			else
-			{
-				rangeStart = 0;
-				rangeEnd = movieSize - 1;
-			}
-			long partSize = rangeEnd - rangeStart+1;
-			
-			response.reset();
-			
-			response.setStatus(isPart?206:200);
-			response.setContentType("video/mp4");
-			
-			response.setHeader("Content-Range", "bytes "+rangeStart+"-"+rangeEnd+"/"+movieSize); 
-			response.setHeader("Accept-Ranges", "bytes"); 
-			response.setHeader("Content-Length", ""+partSize);
-			
-			OutputStream out = response.getOutputStream();
-			
-			randomFile.seek(rangeStart);
-			int bufferSize = 8*1024;
-			byte[] buf = new byte[bufferSize];
-			do
-			{
-				int block = partSize > bufferSize ? bufferSize : (int)partSize; 
-				int len = randomFile.read(buf, 0, block); 
-				out.write(buf, 0, len); 
-				partSize -= block;
-			}while(partSize>0);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		finally 
-		{
-			randomFile.close();
-		}
-		return null;
-	}
+//	@RequestMapping("/displayVideoFile") 이거 시스템적 에러!
+//	public String getContentMediaVideo(String fileName, HttpServletRequest request, HttpServletResponse response) throws Exception
+//	{
+//		File file = new File(fileName);		
+//		RandomAccessFile randomFile = new RandomAccessFile(file, "r");
+//		
+//		long rangeStart = 0; //요청 범위의 시작 위치
+//		long rangeEnd = 0; //요청 범위의 끝 위치
+//		boolean isPart=false; //부분 요청일 경우 true, 전체 요청의 경우 false
+//		
+//		try
+//		{
+//			long movieSize = randomFile.length();
+//			String range= request.getHeader("range");
+//			
+//			if(range!=null)
+//			{
+//				if(range.endsWith("-"))
+//				{
+//					range = range+(movieSize-1);
+//				}
+//				int idxm = range.trim().indexOf("-"); 
+//				rangeStart = Long.parseLong(range.substring(6,idxm)); 
+//				rangeEnd = Long.parseLong(range.substring(idxm+1));
+//				if(rangeStart > 0)
+//				{
+//					isPart=true;
+//				}
+//			}
+//			else
+//			{
+//				rangeStart = 0;
+//				rangeEnd = movieSize - 1;
+//			}
+//			long partSize = rangeEnd - rangeStart+1;
+//			
+//			response.reset();
+//			
+//			response.setStatus(isPart?206:200);
+//			response.setContentType("video/mp4");
+//			
+//			response.setHeader("Content-Range", "bytes "+rangeStart+"-"+rangeEnd+"/"+movieSize); 
+//			response.setHeader("Accept-Ranges", "bytes"); 
+//			response.setHeader("Content-Length", ""+partSize);
+//			
+//			OutputStream out = response.getOutputStream();
+//			
+//			randomFile.seek(rangeStart);
+//			int bufferSize = 8*1024;
+//			byte[] buf = new byte[bufferSize];
+//			do
+//			{
+//				int block = partSize > bufferSize ? bufferSize : (int)partSize; 
+//				int len = randomFile.read(buf, 0, block); 
+//				out.write(buf, 0, len); 
+//				partSize -= block;
+//			}while(partSize>0);
+//		}
+//		catch(Exception e)
+//		{
+//			e.printStackTrace();
+//		}
+//		finally 
+//		{
+//			randomFile.close();
+//		}
+//		return null;
+//	}
 	
-	/*@ResponseBody
+	@ResponseBody
 	@RequestMapping("/displayVideoFile2")
 	public ResponseEntity<byte[]> displayVideoFile(String fileName,@RequestHeader("Range") String rangeValue) throws Exception
 	{
@@ -293,7 +311,7 @@ public class ReviewController
 	    
 	    try {
 	      // 미디어 처리
-	      MultipartFileSender
+	    	MultipartFileSender
 	        .fromFile(getFile)
 	        .with(req)
 	        .with(res)
@@ -303,5 +321,89 @@ public class ReviewController
 	      // 사용자 취소 Exception 은 콘솔 출력 제외
 	      if (!e.getClass().getName().equals("org.apache.catalina.connector.ClientAbortException")) e.printStackTrace();
 	    }
-	  }*/
+	  }
+	
+	@RequestMapping(value="/boardDetail", method=RequestMethod.GET)
+	public ModelAndView thumb(@RequestParam String post_id,HttpSession session,@RequestParam("ext_id") String ext_id) throws Exception
+	{
+		String user_id = (String) session.getAttribute("id");
+		//회원 등급
+		String user_grade = studyRoomService.selectGrade(user_id);
+		
+		//fileName을 모델에 담아서 streamView를 반환
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("thumbNail");
+		mav.addObject("dto",service.listOne(post_id));
+		mav.addObject("thumb_info",service.selectAllThumbInfo(post_id));
+		mav.addObject("user_grade",user_grade);
+		mav.addObject("ext_id",ext_id);
+		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/thumb", method=RequestMethod.POST)
+	public Object thumb(@RequestBody JSONObject json) throws Exception
+	{
+		//String curT = json.get("curT").toString();
+		int curT = Integer.parseInt(json.get("curT").toString());
+		String location = json.get("location").toString();
+		String destination = json.get("destination").toString();
+		System.out.println("추출시간 : "+curT+"\n"+"추출할 영상 : "+location+"\n"+"저장할 지역 : "+destination);
+		
+		//섬네일 번호 만들자!
+		String post_id = json.get("post_id").toString();
+		System.out.println(post_id);
+		
+		thumb_infoVO thumbVO=new thumb_infoVO();
+		int thumbCount = service.selectThumbId(post_id);
+		thumb_infoVO thumbInfo = service.thumb_infoOne(post_id);
+		String thumb_id="";
+		if(thumbCount>0)
+		{
+			String t1 = thumbInfo.getThumb_id().substring(0,10); //앞에 게시코드 부분
+			String t2 = thumbInfo.getThumb_id().substring(10,12); //뒤에 00~09까지 증가해야하는 부분
+			int t3 = Integer.parseInt(t2); //t2를 숫자로 형변환
+			String t4 = ""; // 숫자로 형변환시 00은 0이되고 01은 1이 되므로 앞에 0을 붙여서 다시 만든 t3
+			if(t3<9)
+			{
+				t3++;
+				t4=0+Integer.toString(t3);
+			}
+			else
+			{
+				t3++;
+				t4=Integer.toString(t3);
+			}
+			thumb_id=t1+t4;
+		}
+		else if(thumbCount==0)
+		{
+			thumb_id=post_id+"00";
+			
+		}
+		System.out.println("안뽑힘?"+thumb_id);
+		//섬네일 번호 끝
+		if(curT != 0 && location != null && destination!=null)
+		{
+			String result = uploadReviewFileUtils.extractImage(location, curT, destination,post_id);
+			
+			//DB등록
+			thumbVO.setThumb_id(thumb_id);
+			thumbVO.setPost_id(post_id);
+			thumbVO.setThumb_name(result);
+			thumbVO.setThumb_time(curT);
+			thumbVO.setThumb_memo(null);
+			service.insertThumbInfo(thumbVO);
+			//끝
+			//return result;
+			return result;
+		}
+		return null;	
+	}
+	
+	@RequestMapping(value="thumTest", method=RequestMethod.GET)
+	public String thumTest() throws Exception
+	{
+		return "thumTestPage";
+	}
 }

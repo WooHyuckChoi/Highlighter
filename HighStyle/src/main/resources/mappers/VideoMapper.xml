@@ -40,4 +40,28 @@
   	from posting_list
   	where post_id=#{post_id}
   </select>
+  
+  <select id="thumb_info_one" resultType="thumb_infoVO">
+  	select *
+  	from thumb_info
+  	where post_id=#{post_id}
+  	order by thumb_id desc limit 1
+  </select>
+  
+  <select id="thumb_id_count" resultType="int">
+  	select count(thumb_id)
+  	from thumb_info
+  	where post_id=#{post_id}
+  </select>
+  
+  <insert id="thumb_info_insert">
+  	insert into thumb_info (thumb_id,thumb_time,thumb_memo,post_id,thumb_name)
+  		values(#{thumb_id},#{thumb_time},#{thumb_memo},#{post_id},#{thumb_name})
+  </insert>
+  
+  <select id="selectAllThumbInfo" resultType="thumb_infoVO">
+  	select *
+  	from thumb_info
+  	where post_id=#{post_id}
+  </select>
 </mapper>
