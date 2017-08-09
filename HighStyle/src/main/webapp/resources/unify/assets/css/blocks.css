@@ -150,7 +150,9 @@
 ----------------------------------------------------*/
 /*Promo Background Images*/
 .promo-bg-pattern-v1-dark {
-  background: url(../img/patterns/5.png) repeat;
+  /* background: url(../img/patterns/5.png) repeat; */
+  padding:0px; 
+  background-color:#efefef;
 }
 
 .promo-bg-pattern-v1-light {
@@ -1393,7 +1395,7 @@
 
 /*Team Discription*/
 .team-v1 li > h3 {
-  color: #000;
+  color: #fff;
   font-size: 18px;
   line-height: 20px;
   margin: 15px 0 7px;
@@ -2767,12 +2769,12 @@
 }
 
 .flat-testimonials .flat-testimonials-in p:before {
-  content: "“";
+  content: "��";
   padding-right: 5px;
 }
 
 .flat-testimonials .flat-testimonials-in p:after {
-  content: "”";
+  content: "��";
   padding-left: 5px;
 }
 
@@ -7840,5 +7842,5 @@ img.img-mouse {
 
 /*Team v1*/
 .team-v1 li > h3 {
-	color: #555;
+	color: #fff;
 }
