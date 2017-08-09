@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 </head>
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
 <style>
 body{width:100%; margin:0px}
 #classSTManagementheader {background-color: #00CC99; width: 100%;}
@@ -33,6 +33,29 @@ body{width:100%; margin:0px}
 .selectMenu{background:#C5C5C5;}
 
 </style>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="./resources/morris/morris.min.js"></script>
+<script type="text/javascript" src="./resources/morris/raphael.min.js"></script>
+<script src="http://platform.twitter.com/widgets.js"></script>
+<script src="./resources/js/jquery.js"></script>
+<script src="./resources/js/google-code-prettify/prettify.js"></script>
+<script src="./resources/js/bootstrap-transition.js"></script>
+<script src="./resources/js/bootstrap-alert.js"></script>
+<script src="./resources/js/bootstrap-modal.js"></script>
+<script src="./resources/js/bootstrap-dropdown.js"></script>
+<script src="./resources/js/bootstrap-scrollspy.js"></script>
+<script src="./resources/js/bootstrap-tab.js"></script>
+<script src="./resources/js/bootstrap-tooltip.js"></script>
+<script src="./resources/js/bootstrap-popover.js"></script>
+<script src="./resources/js/bootstrap-button.js"></script>
+<script src="./resources/js/bootstrap-collapse.js"></script>
+<script src="./resources/js/bootstrap-carousel.js"></script>
+<script src="./resources/js/bootstrap-typeahead.js"></script>
+<script src="./resources/js/bootstrap-affix.js"></script>
+<script src="./resources/js/application.js"></script>
+<script src="./resources/js/superfish.js"></script>
+<script src="./resources/js/custom.js"></script>
+
 <script>
 	$(document).ready(function(){
 		var searchTrue = $("#tutorList").children().is(".tutor");
@@ -66,10 +89,18 @@ body{width:100%; margin:0px}
 				},
 				dataType : "text",
 				success : function(data){
-					alert("1");
+					console.log(data);
+					Morris.Bar({
+						  element: 'statistics1',
+					      data: '${json}',
+						  xkey: 'times',
+						  ykeys: ['점수'],
+						  labels: ['점수'],
+						  parseTime : false
+					});
 				},
 				error : function(){
-					alert("2");
+					console.log("error");
 				}
 			});	
 		});

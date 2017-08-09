@@ -145,6 +145,7 @@ public class LectureEvaluationController {
 	
 	@RequestMapping(value = "classSTManagement3", method = RequestMethod.GET)
 	public @ResponseBody void classSTManagement(@RequestParam("ext_id") String ext_id,@RequestParam("user_id") String user_id,Model model,HttpSession session) throws Exception {
+		System.out.println(user_id + " " + ext_id);
 		String userid=(String) session.getAttribute("id");//로그인 한 사람의 아이디
 		String stu_id=user_id; //해당 학생의 아이디
 		List<String> userList=myPageService.selectStuId(ext_id);
@@ -177,5 +178,9 @@ public class LectureEvaluationController {
 		}
 		jsonMain.put("sendData",jArray);
 		model.addAttribute("json",jsonMain.get("sendData"));
+		
+		System.out.println("info : " + myPageService.getUserInfo(ext_id));
+		System.out.println("ListWeeksCorrect : " + ListWeeksCorrect);
+		System.out.println("json : " + jsonMain.get("sendData"));
 	}
 }
