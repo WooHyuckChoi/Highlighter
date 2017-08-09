@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ page session="true" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -221,22 +222,94 @@
 
 				<!-- Profile Content -->
 				<div class="col-md-9">
-					<div class="profile-body">
+					<div class="profile-body" style="border: 1px solid lightgray;">
 						<!-- Lecture introduce and enter -->
-						<div id="classIntro">
-							<span>시험 <a href="registerExam">시험 등록</a><button>삭제</button></span>
+						<div id="classIntro" style="border-left: 1px solid lightgray; border-top: 1px solid lightgray;border-right: 1px solid lightgray;">
+							<span>시험 <a href="registerExam?ext_id=${ext_id}">시험 등록</a><button id="deleteExam">삭제</button></span>
 						</div>
 						<!-- end row -->
-						<div class="profile-bio">
+						<div class="profile-bio" style="border-left: 1px solid lightgray; border-right: 1px solid lightgray;border-bottom: 1px solid lightgray;">
 							<div class="row">
 								<div class="col-md-12">
 									<!-- 강사 정보 -->
-									<div id="teacherInfo" class="panel margin-bottom-40">
+									<div id="teacherInfo" class="panel margin-bottom-40" >
 										<div class="panel-body">
 											<div class="teacher-testInfo">
 												<!-- <div>최근 친 시험:</div>
 												<div>전체 학생 수:</div>
 												<div>시험 평균:</div> -->
+												<c:if test="${test_InfoVO ne '[]'}">
+												<table id="test_InfoTable">
+													<tr>
+														<th></th>
+														<th>주차</th>
+														<th>제목</th>
+														<th>시험 기간</th>
+														<th>시험 시간(분)</th>
+														<th>상태</th>
+													</tr>
+													<c:forEach items="${test_InfoVO}" var="list">
+														<tr>
+															<td><input type="checkbox" id = "${list.test_id}" name="${list.test_id}"></td>
+															<td>
+																<script>
+																	var test_id = '${list.test_id}';
+																	var test_id2 = parseInt(test_id.substr(8,9));
+																	document.write(test_id2+"주차");
+																</script>
+															</td>
+															<td>${list.test_title}</td>
+															<td style="font-size:12px;">
+																<script>
+																	var test_time = '${list.test_time}';
+																	var test_date = '${list.test_date}';
+																	var test_date2 = (test_date.substr(0,10)).split("/");
+																	var test_date3 = (test_date.substr(10)).split(":");
+																	console.log(test_date3);
+																	var test_date4 = parseInt(test_date3[1])+test_time;
+																	var end_date = test_date2[0]+"/"+test_date2[1]+"/"+test_date2[2]+test_date3[0]+":"+test_date3[1];
+																	document.write(test_date+"~"+end_date);
+																</script>
+															</td>
+															<td>${list.test_time}</td>
+															<td class="test_Stus">
+																<script>
+																	var test_id = '${list.test_id}';
+																	var test_Minute = '${list.test_time}';
+																	var test_date = '${list.test_date}';
+																	var test_date2 = (test_date.substr(0,10)).split("/");
+																	var test_date3 = (test_date.substr(11)).split(":");
+																	var insertTime = new Date( Number(test_date2[0]), Number(test_date2[1])-1,Number(test_date2[2]),Number(test_date3[0]),Number(test_date3[1]),0);
+																	var insertTime2 = new Date(Date.parse(insertTime) + 1000 * 60 * test_Minute);     // 1분후
+																	console.log(insertTime);
+																	console.log(insertTime2);
+																	var now = new Date();
+																	console.log(now);
+																	if(insertTime.getTime() > now.getTime()){
+																	    document.write('<div id="'+test_id+'"class="stus">시험대기</div>');
+																	}
+																	if(insertTime.getTime()<= now.getTime() && now.getTime() <= insertTime2.getTime()){
+																		var test_state = '${list.test_state}';
+																		if(test_state == "clear"){
+																			document.write('<div id="'+test_id+'"class="stus">결과보기</div>');
+																		}
+																		else{
+																			document.write('<div style="color:red" id="'+test_id+'"class="stus">시험시작</div>');
+																		}
+																	}
+																	if(insertTime2.getTime() < now.getTime()){
+																		/* document.write("결과보기"); */
+																		document.write('<div id="'+test_id+'"class="stus">결과보기</div>');
+																	}	
+																</script>
+															</td>
+														</tr>
+													</c:forEach>
+												</table>
+												</c:if>
+												<c:if test="${test_InfoVO eq '[]'}">
+													<div>출제된 시험이 존재하지 않습니다.</div>
+												</c:if>
 											</div>
 										</div>
 									</div>
@@ -322,7 +395,53 @@
 			CirclesMaster.initCirclesMaster1();
 			StyleSwitcher.initStyleSwitcher();
 		});
-	
+	</script>
+	<script>
+		$(".stus").on("click", function(){
+			if($(this).text() == "결과보기"){
+				var test_id = $(this).attr("id");
+				$.ajax({
+					url : 'testResultCount',
+					type : 'POST',
+					dataType : 'text',
+					data :{
+						test_id : test_id
+					},
+					success:function(data){
+						if(data != "0"){
+							window.open("wAnswNote?test_id="+test_id,"Highlighter","width=1300, height=800, resizable=no");
+						}
+						else{
+							alert("이전에 친 시험 기록이 없습니다.");
+						}
+					}
+				});
+			}
+			else if($(this).text() == "시험시작"){
+				var currentExt_id = $(this).attr("id");
+				var test_id = $(this).attr("id");
+				$.ajax({
+					url : 'changeTestState',
+					type : 'POST',
+					data :{
+						currentExt_id : currentExt_id
+					},
+					success:function(data){
+						if(data == "success"){
+							window.open("examPage?test_id="+test_id,"Highlighter","width=1300, height=800, resizable=no");
+						}
+					}
+				});	
+			}
+			else{
+				alert("시험을  칠 수 있는 시간이 아닙니다.");
+			}
+		});
+	</script>
+	<script>
+		$("#deleteExam").on("click", function(){
+			
+		});
 	</script>
 </body>
 </html>

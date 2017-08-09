@@ -154,7 +154,7 @@ public class TestController {
 	
 	
 
-	@RequestMapping(value = "classTest", method = RequestMethod.GET)
+	/*@RequestMapping(value = "classTest", method = RequestMethod.GET)
 	public void classTest(@RequestParam("ext_id") String ext_id, Model model, HttpSession session,HttpServletRequest req) throws Exception {
 		String user_id = req.getParameter("user_id");
 	
@@ -172,7 +172,7 @@ public class TestController {
 		List<HashMap> testlist = service4.testList(ext_id,user_id);
 		
 		//System.out.println(testlist);
-/*		HashMap getHm = new HashMap();
+		HashMap getHm = new HashMap();
 		String a, c, d;
 		int b;
 
@@ -184,26 +184,26 @@ public class TestController {
 			d = (String) getHm.get("test_state");
 
 			 System.out.println(a + " " + b + " " + c + " " + d); 
-		}*/
+		}
 		session.setAttribute("testlist", testlist);
 	
-		/* model.addAttribute("testlist", testlist); */
-		/*
+		 model.addAttribute("testlist", testlist); 
+		
 		 * List<HashMap> testlist = service4.testList(ext_id);
 		 * model.addAttribute("testlist", testlist);
 		 * 
 		 * List<HashMap> testlist = service4.testList(ext_id);
 		 * model.addAttribute("testlist", testlist);
-		 */
-		/*占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙트 占쏙옙占�*/
+		 
+		占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙트 占쏙옙占�
 		
 		List<test_InfoVO> teacherList = service4.teachertestList(ext_id);
 		
 		model.addAttribute("teacherList",teacherList);
 
-	}
+	}*/
 
-	@RequestMapping(value = "classTest", method = RequestMethod.POST)
+	/*@RequestMapping(value = "classTest", method = RequestMethod.POST)
 	public void classTest(@RequestParam("ext_id") String ext_id, prob_InfoVO vo1, test_InfoVO vo2, exam_InfoVO vo3, MultipartFile file,
 			Model model, HttpServletRequest req) throws Exception {
 		
@@ -214,7 +214,7 @@ public class TestController {
 		System.out.println("contentType:" + file.getContentType());
 		System.out.println("server FileName" + file.getName());
 
-		/* String qjs1 = req.getParameter("qjs1"); */
+		 String qjs1 = req.getParameter("qjs1"); 
 
 		model.addAttribute("list", studyRoomService.Ext_read(ext_id));
 
@@ -244,7 +244,7 @@ public class TestController {
 			test_id = test_id + "11";
 
 		
-		/*占쏙옙占쏙옙!*/
+		占쏙옙占쏙옙!
 		int length = req.getParameterValues("allid").length;
 		
 		
@@ -335,7 +335,7 @@ public class TestController {
 
 		String testtime = req.getParameter("testTime");
 
-		/* vo2.setTest_id(fileName); */
+		 vo2.setTest_id(fileName); 
 
 		// vo1 占쏙옙占쏙옙占쌘듸옙, 占쏙옙占쏙옙占쏙옙占쏙옙, 占쏙옙占쏙옙 占쌘듸옙
 
@@ -458,14 +458,14 @@ public class TestController {
 		vo1.setTest_id(test_id);
 
 		service5.create(vo1);
-		/*占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙트 占쏙옙占�*/
+		占쏙옙占쏙옙 占쏙옙占쏙옙 占쏙옙占쏙옙트 占쏙옙占�
 	List<test_InfoVO> teacherList = service4.teachertestList(ext_id);
 		
 		model.addAttribute("teacherList",teacherList);
 
 		
 
-	}
+	}*/
 	private String uploadFile(String originalName, byte[] fileData) throws Exception {
 
 		/*UUID uid = UUID.randomUUID();*/
@@ -501,7 +501,7 @@ public class TestController {
 
 	}
 
-	@RequestMapping(value = "classTestTry", method = RequestMethod.GET)
+	/*@RequestMapping(value = "classTestTry", method = RequestMethod.GET)
 	public void classTestTry(HttpServletRequest req, Model model,test_InfoVO vo2) throws Exception {
 		
 		String ext_id = req.getParameter("ext_id");
@@ -514,7 +514,7 @@ public class TestController {
 		
 		model.addAttribute("listtest", listtest);
 		
-	}
+	}*/
 	
 	/*@ResponseBody
 	@RequestMapping("/displayFile")
@@ -931,7 +931,7 @@ public class TestController {
 				
 		}
 		
-		@RequestMapping(value = "classWrongAnswerNote", method = {RequestMethod.GET, RequestMethod.POST})
+		/*@RequestMapping(value = "classWrongAnswerNote", method = {RequestMethod.GET, RequestMethod.POST})
 		public void classWrongAnswerNote(HttpServletRequest req,Model model) throws Exception {
 			String test_id = req.getParameter("test_id");
 			model.addAttribute("test_id",test_id);
@@ -1186,9 +1186,9 @@ public class TestController {
 			model.addAttribute("WrongNotes20",WrongNotes20);
 
 			
-		}
+		}*/
 		
-		@ResponseBody
+		/*@ResponseBody
 		@RequestMapping(value = "classWrongAnswerNotes", method = RequestMethod.POST)
 		public void classWrongAnswerNotes(HttpServletRequest req,Model model) throws Exception {
 			
@@ -1264,8 +1264,8 @@ public class TestController {
 			
 			
 			
-			/*   file1: $("#file1").val(),
-	    	   testnote1: $("test_Note1").val(),*/
+			   file1: $("#file1").val(),
+	    	   testnote1: $("test_Note1").val(),
 
 			String file1 =	req.getParameter("file1");
 			model.addAttribute("file1", file1); 
@@ -1592,7 +1592,7 @@ public class TestController {
 			model.addAttribute("WrongNotes20",WrongNotes20);
 
 		
-		}
+		}*/
 		
 		/*@RequestMapping(value="classSTManagementList", method= RequestMethod.GET) //studentManagement
 		public String classSTManagementList(@RequestParam("ext_id") String ext_id,Model model) throws Exception
