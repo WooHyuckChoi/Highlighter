@@ -105,11 +105,14 @@
 
 <!-- pagination -->
 <select id="countPage" resultType="int">
+<![CDATA[
 select count(e.ext_id)
 from ext_info e, user_info u 
-where e.user_id = u.user_id 
+where e.user_id = u.user_id
+and now() <= e.end_rc_date 
 order by ext_id > 0
-		<if test="onoff != null">
+]]>
+		<!--<if test="onoff != null">
 		<if test="onoff == 'on'.toString()">
 			, SUBSTR(e.ext_id, 1,1) = '1' desc
 		</if>
@@ -169,7 +172,7 @@ order by ext_id > 0
 	</if>
 	<if test="class_lev != null">
 		, e.class_lev = #{class_lev} desc
-	</if>
+	</if> -->
 </select>
 
 <!-- 해당 과외의 정보 불러오기 -->

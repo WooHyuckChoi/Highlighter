@@ -108,7 +108,7 @@
 		<!-- Promo Block -->
 		<div class="promo-bg-pattern-v1-dark promo-bg-fixed content-xlg parallaxBg" >
 			<div class="container text-center" data-start="opacity: 1;" data-320="opacity: 0;">
-				<span class="promo-text-v1 color-light margin-bottom-10 animated fadeInUp wow" data-wow-duration="2s" data-wow-delay=".5s">
+				<span class="promo-text-v1 color-light margin-bottom-10 animated fadeInUp wow" data-wow-duration="2s" data-wow-delay=".1s">
 					<!--=== Team v1 ===-->
 					<div class="container content-md team-v1" style="padding-top:70px; padding-bottom:50px;">
 						<ul class="list-unstyled row">

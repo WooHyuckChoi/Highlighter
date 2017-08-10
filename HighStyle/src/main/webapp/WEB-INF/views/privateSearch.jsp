@@ -1144,7 +1144,7 @@ div#locationSelect2{margin:0;}
 			</c:if>			
 		</table>
 	</div>
-	<p id="dispMore" style="display:none"><button  type="button" class="btn btn-warning btn-block" onclick="listMore(24)" >+과외 더보기</button></p>	
+	<p id="dispMore" style="display:none"><button  type="button" class="btn btn-warning btn-block" onclick="listMore('${pageMaker.totalCount}')" >+과외 더보기</button></p>	
 </section>
 </div>
 
@@ -1297,7 +1297,7 @@ $("#close").click(function(){
 	});
 	
 	function listMore(totalCnt){
-		//alert(totalCnt);
+		alert(totalCnt);
 		var count = 0;
 		for(var i = 0 ; i < totalCnt ; i++){
 			if(document.getElementById("row"+i).style.display == 'table-row'){
