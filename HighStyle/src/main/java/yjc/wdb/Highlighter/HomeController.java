@@ -25,6 +25,7 @@ import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.service.App_ClassSerivce;
 import yjc.wdb.Highlighter.service.Ext_InfoService;
 import yjc.wdb.Highlighter.service.Ext_TimetableService;
+import yjc.wdb.Highlighter.service.StudyRoomService;
 import yjc.wdb.Highlighter.service.User_InfoService;
 
 /**
@@ -46,11 +47,14 @@ public class HomeController {
 	
 	@Inject
 	private User_InfoService service4;
+	
+	@Inject
+	private StudyRoomService studyRoomService;
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model, HttpSession session) {
+	public String home(Locale locale, Model model, HttpSession session) throws Exception {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -59,10 +63,9 @@ public class HomeController {
 		
 		/* �׻� home.jsp ��� �� ${id}�� �ִ��� ���� ��*/
 		String user_id = String.valueOf(session.getAttribute("id"));
-		
+		model.addAttribute("userInfo",studyRoomService.profile(user_id));
 		/* session���� ${id}���� �� ���� side�� DB���� �ҷ��� */
 		if(user_id != "null"){
-			logger.info("���� �α��� �� ........................");
 			try {
 				String user_grade = session.getAttribute("user_grade").toString();
 				//System.out.println("���:"+user_grade);
@@ -88,7 +91,7 @@ public class HomeController {
 						}
 					}
 						
-				
+					
 					/* ���� ���� ���� ���� ����*/
 					Ext_InfoVO appClassOne = service2.appClassOne(user_id);
 					

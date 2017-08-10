@@ -56,6 +56,9 @@
 			color: white;
 			font-size: 16px;
 		}
+		#videoMemo{
+			
+		}
 	</style>
 </head>
 <body>
@@ -241,8 +244,10 @@
 									<!-- 강사 정보 -->
 									<div id="teacherInfo" class="panel margin-bottom-40">
 										<div class="panel-body">
-											<video id="videoPlay" src="video?fileName=${dto.att_file }"
-												controls preload="auto" style="width:750px; height:400px"></video>
+											<video id="videoPlay" controls preload="auto" style="width:750px; height:400px">
+												<source src="video?fileName=${dto.att_file }" type="video/webm">
+												<source src="video?fileName=${dto.att_file }" type="video/mp4">
+											</video>
 											<div id="playTime"></div>
 											<input id="hid" type="hidden" value="" />
 											<c:if test="${user_grade eq 'teacher' }">
@@ -266,18 +271,35 @@
 									</div>
 									<div class="panel-body">
 										<div id="stilCutImg">
+											<c:if test="${user_grade ne 'teacher' }">
 												<c:forEach items="${thumb_info }" var="thumb_info">
 													<img onclick="setVideoTime(${thumb_info.thumb_time})" 
 													src="displayFile?fileName=${thumb_info.thumb_name }" width="150px" />
 												</c:forEach>
+													<script>
+														function setVideoTime(e)
+														{
+															var videocontrol = document.getElementById("videoPlay");
+															videocontrol.currentTime=e;
+														}
+													</script>
+											</c:if>
+											<c:if test="${user_grade eq 'teacher' }">
+												<c:forEach items="${thumb_info }" var="thumb_info">
+													<img onclick="setVideoMemo()" 
+													src="displayFile?fileName=${thumb_info.thumb_name }" alt="${thumb_info.thumb_id }" width="150px" />
+												</c:forEach>
 												<script>
-													function setVideoTime(e)
+													function setVideoMemo()
 													{
-														var videocontrol = document.getElementById("videoPlay");
-														videocontrol.currentTime=e;
+														var e = $(this).attr("alt");
+														console.log(e);
+														$("#videoMemo").show();
 													}
 												</script>
+											</c:if>
 										</div>
+										<input id="videoMemo" type="text" />
 									</div>
 								</div>
 							</div>
@@ -367,6 +389,8 @@
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function(){
+		
+		$("#videoMemo").hide();
 		var videocontrol = document.getElementById("videoPlay");
 		var i=0;
 			videocontrol.addEventListener("timeupdate",PlayTime,false);
