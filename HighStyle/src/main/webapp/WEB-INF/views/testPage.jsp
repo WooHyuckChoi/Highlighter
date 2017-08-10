@@ -45,26 +45,12 @@
 	<link rel="stylesheet" href="./resources/unify/assets/css/theme-skins/dark.css">
 
 	<!-- CSS Customization : 시간표 -->
-	<link rel="stylesheet" href="./resources/unify/assets/css/exam_custom.css">
+	<link rel="stylesheet" href="./resources/unify/assets/css/exam_custom.css" />
 	<!-- ico -->
 	<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
 	
 	<link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/nanumgothic.css">
 	<style>
-		#noticeResi {
-			float: right;
-			width: 90px;
-			background-color: #1279ff;
-			padding-top: 5px;
-			padding-left: 10px;
-			padding-bottom: 5px;
-			margin-top: -5px;
-			color: white;
-			border-radius: 5px;
-			border: solid 1px #1279ff;
-			margin-top: 2px;
-		}
-		
 		#StudyRoom {
 			background-color: #1279ff;
 		}

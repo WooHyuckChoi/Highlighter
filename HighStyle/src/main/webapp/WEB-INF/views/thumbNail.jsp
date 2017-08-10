@@ -417,7 +417,7 @@
 						data: JSON.stringify({
 							curT : curT,
 							location : '${dto.att_file }',
-							destination :"D:\\FFMPEG\\thumbNail\\",
+							destination :"C:\\FFMPEG\\thumbNail\\",
 							post_id : '${dto.post_id}'
 						}),
 						success : function(data) {

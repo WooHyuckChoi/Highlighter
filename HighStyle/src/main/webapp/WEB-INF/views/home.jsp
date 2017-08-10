@@ -493,7 +493,7 @@ div#locationSelect2{margin:0;}
 				<div style="width:25px; height:25px; position:relative; float:left;"><img src="./resources/img/cycy.jpg" style=" border:1px solid white;"></div> --%>
 				<div style="width:50px; height:50px; float:left;"><img src="displayFile?fileName=${userInfo.prof_photo }" /></div>
 			</div>
-			<div style="position:relative; top:10px; left:10px;">${list.user_name}<a style="color:white;">(총 인원 : ${list.count_Stu}명)</a></div>
+			<div style="position:relative; top:10px; left:10px;">${list.user_name}<a style="color:white;">(총 인원 : ${list.count_S	tu}명)</a></div>
 			<div style="position:relative; top:10px; left:10px; color:gray;">${list.subject}</div>
 			<div style="position:relative; top:10px; left:10px; color:gray;">
 				<a style="position:relative; float:left; width:130px; overflow: hidden; text-overflow : ellipsis; white-space: nowrap; overflow:">${list.str_class_date} ~ </a>
