@@ -237,8 +237,23 @@ and c.user_id = #{user_id}
 and sysdate() >= c.str_class_date					
 group by c.ext_id
 ]]> -->
-<![CDATA[
+<!-- <![CDATA[ 강사이미지 뽑는 소스 추가 밑에꺼는 강사 이름까지
 select c.ext_id, GROUP_CONCAT(DISTINCT c.user_name ORDER BY c.user_name) 'user_name', 
+count(c.user_name) count_Stu, (select str_class_date from ext_info where ext_id = c.ext_id) str_class_date,
+(select prof_photo from user_info where user_id = (select user_id from ext_info where ext_id=c.ext_id)) prof_photo
+from app_class a, (select b.user_id, u.user_name, b.ext_id, e.str_class_date, u.prof_photo
+                  from app_class b, user_info u, ext_info e
+                  where b.user_id = u.user_id
+						and b.reg_stus = '결제완료'
+						and b.ext_id = e.ext_id) c	
+where a.ext_id = c.ext_id
+and c.user_id = #{user_id}
+and sysdate() >= c.str_class_date					
+group by c.ext_id
+]]> -->
+
+<![CDATA[
+select c.ext_id, (select user_name from user_info where user_id = (select user_id from ext_info where ext_id=c.ext_id)) 'user_name', 
 count(c.user_name) count_Stu, (select str_class_date from ext_info where ext_id = c.ext_id) str_class_date,
 (select prof_photo from user_info where user_id = (select user_id from ext_info where ext_id=c.ext_id)) prof_photo
 from app_class a, (select b.user_id, u.user_name, b.ext_id, e.str_class_date, u.prof_photo
