@@ -1059,7 +1059,7 @@ function giveTime(ext_id){
 	});
 }
 
-/* 수강 취소 */
+/* 수강 취소 */ 
 function cancelClass(ext_id){
 	$.ajax({
 		type:"POST",
