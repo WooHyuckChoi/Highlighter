@@ -1375,7 +1375,7 @@ $("#close").click(function(){
 	});
 	
 	function listMore(totalCnt){
-		//alert(totalCnt);
+
 		var count = 0;
 		for(var i = 0 ; i < totalCnt ; i++){
 			if(document.getElementById("row"+i).style.display == 'table-row'){
@@ -1384,8 +1384,7 @@ $("#close").click(function(){
 			}
 		}
 		var last = count+5;
-		alert("안녕"+last);
-		alert("이겅이겅"+count);
+
 		for(i=(count)+1; i<=totalCnt; i++){
 			if(i<=last){
 				document.getElementById("row"+i).style.display='table-row';
