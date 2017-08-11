@@ -1050,9 +1050,7 @@ div#locationSelect2{margin:0;}
  		int a = 0;
 		int b = 0;
  	%>
-	<div>게시글 수 : ${pageMaker.totalCount}</div>
-	<div>${user_id}유저아이디</div>
-	<div>${result} 없으면 띄우지 말아봐</div>
+	<div>게시글 수 : ${listcount}</div>
 	<div class="widget-body">
 		<table id="ext" class="table">
 				<tr>
@@ -1222,7 +1220,7 @@ div#locationSelect2{margin:0;}
 			</c:if>						
 		</table>
 	</div>
-	<p id="dispMore" style="display:none"><button  type="button" class="btn btn-warning btn-block" onclick="listMore('${pageMaker.totalCount}')" >+과외 더보기</button></p>	
+	<p id="dispMore" style="display:none"><button  type="button" class="btn btn-warning btn-block" onclick="listMore('${listcount}')" >+과외 더보기</button></p>	
 </section>
 </div>
 
@@ -1419,14 +1417,14 @@ $("#close").click(function(){
 					$("#user_pw").val('');
 				  }
 				  else{
-					  alert($("#user_id").val()+"야 안녕");
+					  alert($("#user_id").val()+"님 환영합니다.");
 					  $("#user_id").val('');
 					  $("#user_pw").val('');
 					  location.href="privateSearch";
 				  }
 			  },
 			  error:function(data){
-				  alert("에러가 났스여!!!");
+				  alert("DB연결은 제대로 되어 있습니까?");
 			  }
 		   });
 	   }
@@ -1443,11 +1441,10 @@ $("#SearchBtn").click(function(){
 
 	var carrer = ($("#carrer:checked").val());
 	var ext_exp = ($("#ext_exp:checked").val());
-	alert("기다려봐용오오오옹");
+	
 	var location1 = $("#selectLo1").val();
 	var location2 = $("#selectLo2").val();
-	alert(location1);
-	alert(location2);
+
 	$.ajax({
     	type:"POST",
     	url:"privateSearch",
@@ -1474,11 +1471,10 @@ $("#SearchBtn").click(function(){
 		},
     	
     	success:function(result){
-    		alert(result);
     		location.href="privateSearch2";
     	},
     	error:function(result){
-    		alert("에러다 시발시발시발빗바랍시바립사비라");
+    		alert("등록된 과외가 없어서 검색이 되지 않습니다.!!");
     	}
 	});
 });
@@ -1605,7 +1601,7 @@ $("#location3").change(function(){
 });
 
 $(".lo1").change(function(){
-   alert(locationValue1 + $(this).val());
+   //alert(locationValue1 + $(this).val());
    $("#selectLo1").val(locationValue1 + $(this).val());
    // var addLo1 = "<input type='hidden' value='" + $(this).val() + "'>";
    // alert(addLo1);
@@ -1613,7 +1609,7 @@ $(".lo1").change(function(){
 });
 
 $(".lo2").change(function(){
-   alert(locationValue2 + $(this).val());
+   //alert(locationValue2 + $(this).val());
    $("#selectLo2").val(locationValue2 + $(this).val());
    // var addLo2 = "<input type='hidden' value='" + $(this).val() + "'>";
    // alert(addLo2);
@@ -1670,30 +1666,30 @@ var timeArray = new Array();
 
 $("#str_tuit_fees").change(function(){
 	$("#end_tuit_fees").empty();
-	alert("바뀌었어요!");
+
 	var b = parseInt($("#str_tuit_fees").val());
-	alert(b);
 	var a =  (200000-parseInt($("#str_tuit_fees").val()))/10000;
-		for(var i = b; i<=200000; i+=10000){
-			if(b == 0){
-				$("#str_tuit_fees").val() = 0;
-				$("#end_tuit_fees").val() = 0;
-				break;
-			}
-			var k="";
-			if(i<100000){
-				i = i+"";
-				k += "￦"+i.substr(0,2);
-				k += ",000";
-			}
-			else{
-				i = i+"";
-				k += "￦"+i.substr(0,3);
-				k += ",000";
-			}
-			$("#end_tuit_fees").append('<option value='+i+'>'+k+'</option>');
-			i = Number(i);
+	
+	for(var i = b; i<=200000; i+=10000){
+		if(b == 0){
+			$("#str_tuit_fees").val() = 0;
+			$("#end_tuit_fees").val() = 0;
+			break;
 		}
+		var k="";
+		if(i<100000){
+			i = i+"";
+			k += "￦"+i.substr(0,2);
+			k += ",000";
+		}
+		else{
+			i = i+"";
+			k += "￦"+i.substr(0,3);
+			k += ",000";
+		}
+		$("#end_tuit_fees").append('<option value='+i+'>'+k+'</option>');
+		i = Number(i);
+	}
 });
 </script>
 </body>
