@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.Ext_TimetableVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.user_SearchLogVO;
 
 @Repository
 public class User_InfoDAOImpl implements User_InfoDAO {
@@ -73,11 +74,17 @@ public class User_InfoDAOImpl implements User_InfoDAO {
 		return session.selectOne(namespace+".ext_id_select", vo);
 	}
 	
-	/*ÅÂÈÆ ¼ö°­ÇÐ»ý°ü¸® ÇÐ»ý ÇÁ·ÎÇÊ Ãâ·Â*/ 
+	/*ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½*/ 
 	@Override
 	public User_InfoVO profile(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		return  session.selectOne(namespace+".profile",user_id);
+	}
+
+	@Override
+	public void user_SearchLog(user_SearchLogVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		session.insert(namespace+".userSearchLog", vo);
 	}
 
 	

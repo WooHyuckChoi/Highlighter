@@ -1319,8 +1319,7 @@ $("#close").click(function(){
 	};
 //로그인
   $("#user_login").click(function(){
-	  
-	  
+	   
 	   var userdata = {
 				user_id: $("#user_id").val(),
 				user_pw: $("#user_pw").val(),

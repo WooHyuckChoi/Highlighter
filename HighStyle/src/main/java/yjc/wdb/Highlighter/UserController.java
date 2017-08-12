@@ -35,6 +35,7 @@ import yjc.wdb.Highlighter.domain.Ext_TimetableVO;
 import yjc.wdb.Highlighter.domain.PageMaker;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.domain.privateSearchCriteria;
+import yjc.wdb.Highlighter.domain.user_SearchLogVO;
 import yjc.wdb.Highlighter.service.App_ClassSerivce;
 import yjc.wdb.Highlighter.service.CarrerService;
 import yjc.wdb.Highlighter.service.EvaService;
@@ -270,12 +271,15 @@ public class UserController {
 		String ext_way = (req.getParameter("ext_way") == null)?"":String.valueOf(req.getParameter("ext_way"));
 		String class_lev = (req.getParameter("class_lev") == null)?"":String.valueOf(req.getParameter("class_lev"));
 		String easySearch = (req.getParameter("easySearch") == null)?"":String.valueOf(req.getParameter("easySearch"));
+		
+		
+		
 		//System.out.println("�¿���:"+onoff);
 		//System.out.println("���α׷�:"+pg);
 		//System.out.println("����:"+subject);
 		//System.out.println("����1:"+location1);
 		//System.out.println("����2:"+location2);
-		//System.out.println("����:"+college);
+		System.out.println("����:"+college);
 		//System.out.println("������:"+str_tuit_fees);
 		//System.out.println("������:"+end_tuit_fees);
 		//System.out.println("���ܴ��:"+ext_obj);
@@ -284,17 +288,41 @@ public class UserController {
 		//System.out.println("��:"+ext_ext_y);
 		//System.out.println("����:"+ext_ext_y);
 		//System.out.println("����:"+gender);
-		System.out.println("����˻� : "+easySearch);
+		System.out.println("빠른 검색 : "+easySearch);
 		/* DB���� �̾ƿ� ���� ���� */
 		List<HashMap>list = service2.listAll(cri);
-		System.out.println("���� �̾ƺ�:"+list);
+		System.out.println("등록된 과외 :"+list);
+		
+		//유저 검색 기록 저장
+		String user_id = String.valueOf(session.getAttribute("id"));
+		System.out.println(user_id);
+		if(user_id != "null") {
+			user_SearchLogVO user_SearchVO = new user_SearchLogVO();
+			user_SearchVO.setUser_id(user_id);
+			user_SearchVO.setOnoff(onoff);
+			user_SearchVO.setPg(pg);
+			user_SearchVO.setSubject(subject);
+			user_SearchVO.setLocation1(location1);
+			user_SearchVO.setLocation2(location2);
+			user_SearchVO.setCollege(college);
+			user_SearchVO.setStr_tuit_fees(str_tuit_fees);
+			user_SearchVO.setEnd_tuit_fees(end_tuit_fees);
+			user_SearchVO.setExt_obj(ext_obj);
+			user_SearchVO.setCarrer_yn(carrer);
+			user_SearchVO.setGender(gender);
+			user_SearchVO.setExt_way(ext_way);
+			user_SearchVO.setClass_lev(class_lev);
+			service.user_SearchLog(user_SearchVO);
+		}
+		
+					
 		/* �� ���� */
 		for(HashMap i : list){
 			int add = 0;
 			//System.out.println("�̰� ������"+i.get("pg"));
 			i.put("score", add);
 			if(!(i.get("score").equals("-1"))){
-				/* �¿������ο��� */
+				/* 온.오프라인 */
 				if(!(onoff.equals("n"))){
 					if(i.get("onoff").equals(onoff)){
 						String cc = i.get("score").toString();
@@ -304,13 +332,13 @@ public class UserController {
 					}
 					else{i.put("score", "-1");
 					}
-					System.out.print("<�¿�������>");
+					System.out.print("<온.오프라인>");
 					System.out.print(i.get("score")+"/");
 					
 				}
 			}
 			if(!(i.get("score").equals("-1"))){
-				/* ���α׷쿩�� */
+				/* 개인.그룹 */
 				if(!(pg.equals("n") || pg.equals(""))){
 					if(i.get("pg").equals(pg)){
 						String cc = i.get("score").toString();
@@ -319,12 +347,12 @@ public class UserController {
 						i.put("score", add);
 					}
 					else{i.put("score", "-1");}
-					System.out.print("<���α׷����>");
+					System.out.print("<개인.그룹라인>");
 					System.out.print(i.get("score")+"/");
 				}
 			}
 			if(!(i.get("score").equals("-1"))){
-				// ����  
+				// 과목
 				if(!(subject.equals("n"))){
 					if(i.get("subject").equals(subject)){
 						String cc = i.get("score").toString();
@@ -333,12 +361,12 @@ public class UserController {
 						i.put("score", add);
 					}
 					else{i.put("score", "-1");}
-					System.out.print("<�������>");
+					System.out.print("<과목라인>");
 					System.out.print(i.get("score")+"/");
 				}
 			}
 			if(!(i.get("score").equals("-1"))){
-				//������������ 
+				//지역
 				//System.out.println((String) i.get("class_poss_area")+"���� ���� ���� DB");
 				if(!(location1.equals(location2))){
 					if(!(location1.equals(""))||!(location2.equals(""))){
@@ -359,7 +387,7 @@ public class UserController {
 						}
 						//System.out.println("����1����:"+i.get("score"));
 					}
-					System.out.print("<��������>");
+					System.out.print("<지역라인>");
 					System.out.print(i.get("score")+"/");
 				}
 				if((location1.equals(location2))&&(!(location1.equals("")))){
@@ -371,7 +399,7 @@ public class UserController {
 						}
 						else{i.put("score", "-1");}
 						//System.out.println("����3����:"+i.get("score"));
-					System.out.print("<��������>");
+					System.out.print("<지역라인2>");
 					System.out.print(i.get("score")+"/");
 				}
 			}
@@ -385,7 +413,7 @@ public class UserController {
 						i.put("score", add);
 					}
 					else{i.put("score", "-1");}
-					System.out.print("<���ж���>");
+					System.out.print("<대학라인>");
 					System.out.print(i.get("score")+"/");
 				}
 			}
@@ -447,7 +475,7 @@ public class UserController {
 							else{i.put("score", "-1");}
 						}
 						
-						System.out.print("<���������>");
+						System.out.print("<시간당 수업료>");
 						System.out.print(i.get("score")+"/");
 					}
 			 	}
@@ -462,7 +490,7 @@ public class UserController {
 							i.put("score", add);
 					}
 					else{i.put("score", "-1");}
-					System.out.print("<���ܴ�����>");
+					System.out.print("<과외 대상>");
 					System.out.print(i.get("score")+"/");
 				}
 			}
@@ -477,7 +505,7 @@ public class UserController {
 
 					}
 					else{i.put("score", "-1");}
-					System.out.print("<���ܰ�¶���>");
+					System.out.print("<과외 경력>");
 					System.out.print(i.get("score")+"/");
 				}
 			}
@@ -493,7 +521,7 @@ public class UserController {
 						i.put("score", add);
 					}
 					else{i.put("score", "-1");}
-					System.out.print("<�ڰ�������>");
+					System.out.print("자격증 여부>");
 					System.out.print(i.get("score")+"/");
 				}
 			}
@@ -508,7 +536,7 @@ public class UserController {
 
 					}
 					else{i.put("score", "-1");}
-					System.out.print("<��������>");
+					System.out.print("<성별>");
 					System.out.print(i.get("score")+"/");
 				}
 			}
@@ -575,7 +603,7 @@ public class UserController {
 		pageMaker.setCri(cri);
 		/*System.out.println(service2.countPage(cri));*/
 		pageMaker.setTotalCount(service2.countPage(cri));
-		System.out.println(pageMaker);
+		//System.out.println(pageMaker);
 	/*	model.addAttribute("pageMaker", pageMaker);*/
 		model.addAttribute("list",list);
 		session.setAttribute("c",c);
@@ -583,7 +611,7 @@ public class UserController {
 		session.setAttribute("listcount", listcount);
 		/*session.setAttribute("result", "result");*/
 		/*return "privateSearch";*/
-		System.out.println("�̰ű��� ��?");
+		//System.out.println("�̰ű��� ��?");
 	}
 	@RequestMapping(value ="/privateSearch2", method = RequestMethod.GET)
 	public void privateSearch3(HttpServletRequest req, @ModelAttribute("cri") privateSearchCriteria cri, Model model)throws Exception{
