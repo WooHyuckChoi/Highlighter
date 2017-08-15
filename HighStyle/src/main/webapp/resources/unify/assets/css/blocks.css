@@ -151,8 +151,12 @@
 /*Promo Background Images*/
 .promo-bg-pattern-v1-dark {
   /* background: url(../img/patterns/5.png) repeat; */
+  background: url("../img/backback.jpg") no-repeat center center fixed;
   padding:0px; 
-  background-color:#efefef;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .promo-bg-pattern-v1-light {

@@ -104,15 +104,17 @@
 			<!-- End Navbar -->
 		</div>
 		<!--=== End Header v6 ===-->
-
 		<!-- Promo Block -->
 		<div class="promo-bg-pattern-v1-dark promo-bg-fixed content-xlg parallaxBg" >
 			<div class="container text-center" data-start="opacity: 1;" data-320="opacity: 0;">
-				<span class="promo-text-v1 color-light margin-bottom-10 animated fadeInUp wow" data-wow-duration="2s" data-wow-delay=".5s">
+				<span class="promo-text-v1 color-light margin-bottom-10 animated fadeInUp wow" data-wow-duration="2s" data-wow-delay=".1s">
 					<!--=== Team v1 ===-->
 					<div class="container content-md team-v1" style="padding-top:70px; padding-bottom:50px;">
-						<ul class="list-unstyled row">
-							<li class="col-sm-3 col-xs-6 md-margin-bottom-30" style="background-color:#31353e;">
+					<div class="recommend"><img src="./resources/img/lace.png">'${user_name}'님에게 추천합니다.</div>
+						<ul class="list-unstyled row" style="">
+						<c:if test="${fitMatching ne null }">
+							<c:forEach items="${fitMatching}" var="fitMatching">
+							<li onclick="applicationClass('${fitMatching.ext_id}','${fitMatching.user_id}');" class="col-sm-3 col-xs-6 md-margin-bottom-30" style="width:24%; background-color:#31353e; margin-right:10px;">
 								<div class="team-img" >
 									<img class="img-responsive" src="./resources/unify/assets/img/team/img10-md.jpg" alt="">
 									<ul>
@@ -121,49 +123,55 @@
 										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-google-plus"></i></a></li>
 									</ul>
 								</div>
-								<h3>John Brown</h3>
-								<h4>/ Technical Director</h4>
-								<p  style="font-size:13px; font-weight:100;">Technical Director mi porta gravida at eget metus id elit mi egetine...</p>
+								<h3>${fitMatching.user_name}</h3>
+								<h4>
+									<script>
+										var ext_id = '${fitMatching.ext_id}';
+										var subject = ext_id.substr(2,2);
+										if(subject == "01"){
+											document.write("국어");
+										}
+										if(subject == "02"){
+											document.write("영어");
+										}
+										if(subject == "03"){
+											document.write("수학");
+										}
+										
+									</script>
+								</h4>
+								<h4>
+									<script>
+										var ext_id = '${fitMatching.ext_id}';
+										var onoff2 = ext_id.substr(0,1);
+										var onoff = "";
+										var pg = "";
+										if(onoff2 == "0"){
+											onoff = "온라인";
+										}
+										if(onoff2 == "1"){
+											onoff = "오프라인";
+										}
+										var pg2 = ext_id.substr(1,1);
+										if(pg2 == "1"){
+											pg = "개인";
+										}
+										if(pg2 != "1"){
+											pg = "그룹";
+										}
+										document.write(onoff+"/"+pg);
+									</script>
+								</h4>
+								<h4> 수업료 : <b>${fitMatching.tuit_fees}원/(1시간)</b></h4>
+								<p  style="font-size:13px; font-weight:100; height:80px; overflow:hidden; text-overflow: ellipsis;">${fitMatching.intro_class}</p>
 							</li>
-							<li class="col-sm-3 col-xs-6 md-margin-bottom-30">
-								<div class="team-img">
-									<img class="img-responsive" src="./resources/unify/assets/img/team/img11-md.jpg" alt="">
-									<ul>
-										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-google-plus"></i></a></li>
-									</ul>
-								</div>
-								<h3>Tina Krueger</h3>
-								<h4>/ Lead Designer</h4>
-								<p>Lead Designer mi porta gravida at eget metus id elit mi egetine...</p>
+							</c:forEach>
+						</c:if>
+						<c:if test="${fitMatching eq null }">
+							<li style="background-color:#31353e; ">
+								<div class="cantMatching" ><img src="./resources/img/danger.png"><br/><br/>맞춤 매칭은 학생 회원만 이용할 수 있습니다.<br/><br/><div>학생 회원이 아니신가요? <br/>화면 하단에 진단매칭과 빠른매칭을 이용해보시는 것은 어떻습니까?</div></div>
 							</li>
-							<li class="col-sm-3 col-xs-6">
-								<div class="team-img">
-									<img class="img-responsive" src="./resources/unify/assets/img/team/img15-md.jpg" alt="">
-									<ul>
-										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-google-plus"></i></a></li>
-									</ul>
-								</div>
-								<h3>David Case</h3>
-								<h4>/ Web Developer</h4>
-								<p>Web Developer in Unify agency porta gravida at eget metus id elit...</p>
-							</li>
-							<li class="col-sm-3 col-xs-6">
-								<div class="team-img">
-									<img class="img-responsive" src="./resources/unify/assets/img/team/img13-md.jpg" alt="">
-									<ul>
-										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-twitter"></i></a></li>
-										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-facebook"></i></a></li>
-										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-google-plus"></i></a></li>
-									</ul>
-								</div>
-								<h3>Kathy Reyes</h3>
-								<h4>/ Creative Designer</h4>
-								<p>Former Designer in Twitter non mi porta gravida at elit mi egetine...</p>
-							</li>
+						</c:if>	
 						</ul>
 					</div>
 					<!--=== End Team v1 ===-->
@@ -177,24 +185,24 @@
 		<div class="container-fluid">
 			<div class="row no-gutter equal-height-columns">
 				<div class="col-sm-4 promo-bg-img-v1">
-					<div id="diagnosticMatching" class="service-block rgba-purple no-margin-bottom content-sm equal-height-column">
+					<div id="alignMatching" class="service-block rgba-purple no-margin-bottom content-sm equal-height-column">
 						<i class="icon-custom icon-md rounded icon-color-light icon-line icon-badge"></i>
-						<h2 class="heading-md font-light">진단 매칭</h2>
-						<p class="no-margin-bottom font-light"></p>
+						<h2 class="heading-md font-light">맞춤 매칭</h2>
+						<p class="no-margin-bottom font-light">맞는 과외를 찾기 힘드시다구요?<br/>맞춤 매칭을 이용해 나에게 맞는 과외를 추천받아보세요.</p>
 					</div>
 				</div>
 				<div class="col-sm-4 promo-bg-img-v5">
-					<div id="alignMatching" class="service-block rgba-red no-margin-bottom content-sm equal-height-column">
+					<div id="diagnosticMatching" class="service-block rgba-red no-margin-bottom content-sm equal-height-column">
 						<i class="icon-custom icon-md rounded icon-color-light icon-line icon-fire"></i>
-						<h2 class="heading-md font-light">맞춤 매칭</h2>
-						<p class="no-margin-bottom font-light"></p>
+						<h2 class="heading-md font-light">진단 매칭</h2>
+						<p class="no-margin-bottom font-light">어떤 과외가 좋을지 모르시겠다구요?<br/>진단 매칭을 통해 나에게 맞는 과외를 진단받아보세요.</p>
 					</div>
 				</div>
 				<div class="col-sm-4 promo-bg-img-v4">
 					<div id="privateSearch" class="service-block rgba-blue no-margin-bottom content-sm equal-height-column">
 						<i class="icon-custom icon-md rounded icon-color-light icon-line icon-directions"></i>
-						<h2 class="heading-md font-light">검색</h2>
-						<p class="no-margin-bottom font-light"></p>
+						<h2 class="heading-md font-light">빠른 매칭</h2>
+						<p class="no-margin-bottom font-light">특별히 원하는 조건이 있으시다구요?<br/>빠른 매칭을 통해 조건에 해당 되는 과외를 조회해보세요.</p>
 					</div>
 				</div>
 			</div>
@@ -445,15 +453,19 @@
 	});
 </script>
 <script>
-$("#privateSearch").on("click", function(){
+$("#privateSearch").on("click", function(){ //뺘른매칭
 	window.location.href="privateSearch";
 });
-$("#alignMatching").on("click", function(){
-	alert("맞춤 매칭입니다.");
+$("#alignMatching").on("click", function(){ //맞춤매칭
+	window.location.href="matchingPage";
 });
-$("#diagnosticMatching").on("click", function(){
-	alert("진단 매칭입니다.");
+$("#diagnosticMatching").on("click", function(){ //진단매칭
+	 window.open("http://www.naver.net", "진단평가", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
 });
+
+function applicationClass(ext_id, user_id){
+	location.href="ApplicationClass?ext_id="+ext_id+"&user_id="+user_id;
+}
 </script>
 </body>
 </html>

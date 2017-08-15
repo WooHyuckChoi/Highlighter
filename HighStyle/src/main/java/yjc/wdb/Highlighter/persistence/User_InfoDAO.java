@@ -5,6 +5,7 @@ import java.util.List;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.Ext_TimetableVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.user_SearchLogVO;
 
 public interface User_InfoDAO {
 	public void create(User_InfoVO vo)throws Exception;
@@ -17,8 +18,9 @@ public interface User_InfoDAO {
 	public void ext_create(Ext_InfoVO vo) throws Exception;
 	public String ext_id_select(Ext_InfoVO vo) throws Exception;
 	
-	/*ÅÂÈÆ ¼ö°­ÇÐ»ý°ü¸® ÇÐ»ý ÇÁ·ÎÇÊ Ãâ·Â*/ 
+	/*ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ð»ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½*/ 
 	public User_InfoVO profile(String user_id) throws Exception;
 	
+	public void user_SearchLog(user_SearchLogVO vo)throws Exception;
 	
 }

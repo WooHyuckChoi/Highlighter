@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.Ext_TimetableVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.user_SearchLogVO;
 import yjc.wdb.Highlighter.persistence.User_InfoDAO;
 
 @Service
@@ -79,6 +80,12 @@ public class User_InfoServiceImpl implements User_InfoService {
 	public User_InfoVO profile(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.profile(user_id);
+	}
+
+	@Override
+	public void user_SearchLog(user_SearchLogVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.user_SearchLog(vo);
 	}
 
 
