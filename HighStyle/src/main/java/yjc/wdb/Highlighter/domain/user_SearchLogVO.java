@@ -115,4 +115,23 @@ public class user_SearchLogVO {
 		this.class_lev = class_lev;
 	}
 	
+	public String toString(){
+		return "(user_id : " + user_id +
+			   " searchDate : " +searchDate +
+			   " onoff : " +onoff +
+			   " pg : " +pg +
+			   " subject : " +subject +
+			   " onoff : " +onoff +
+			   " location1 : " +location1 +
+			   " location2 : " +location2 +
+			   " college : " +college +
+			   " str_tuit_fees : " +str_tuit_fees +
+			   " end_tuit_fees : " +end_tuit_fees +
+			   " ext_obj : " +ext_obj +
+			   " carrer_yn : " +carrer_yn +
+			   " ext_exp : " +ext_exp +
+			   " gender : " +gender +
+			   " ext_way : " +ext_way +
+			   " class_lev : " +class_lev+")";	   
+	}
 }

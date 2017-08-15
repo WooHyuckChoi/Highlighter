@@ -1015,16 +1015,21 @@ $('.block').click(function(){
 var timeArray = new Array();
 
 $(".search3").on("click", function(){
-   alert("아직 검색은 안 해썽");
+	var onoff = $("#onoff option:selected").val();
+    var pg = $("#pg option:selected").val();
+    var subject = $("#subjected").val();
+
+    if(onoff =='n' && pg == 'n' && subject == 'n')
+   		alert("검색 조건을 선택해주세요!");
    
    $.ajax({
        type:"POST",
        url:"privateSearch",
        async : false,
        data:{
-          onoff : $("#onoff option:selected").val(),
-          pg : $("#pg option:selected").val(),
-          subject : $("#subjected").val(),
+          onoff : onoff,
+          pg : pg,
+          subject : subject,
           easySearch : "y"
       },
        

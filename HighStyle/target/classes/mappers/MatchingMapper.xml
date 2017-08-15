@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.MatchingMapper">
+
+<!-- 회원이 현재 수강 중인 모든 강의 시간표  -->
+<select id="studentTimetable" resultMap="studentTimetableMap">
+<![CDATA[
+select group_concat(distinct(day_week)) day_weeks, 
+concat(group_concat(distinct(class_str_time)), ',') AS class_str_time, 
+concat(group_concat(distinct(class_end_time)), ',') AS class_end_time
+from ext_timetable
+where ext_id in (
+				select ext_id
+				from app_class
+				where user_id = #{user_id} and reg_stus = '결제완료')
+and decide_yn = 'y'
+group by day_week
+]]>
+</select>
+<!-- 회원이 현재 수강 중인 모든 강의 시간표  : Map -->
+<resultMap id="studentTimetableMap" type="java.util.HashMap">
+	<result property="day_weeks" column="day_weeks"></result>
+	<result property="class_str_time" column="class_str_time"></result>
+	<result property="class_end_time" column="class_end_time"></result>
+</resultMap>
+
+<!-- 현재 모집 중인 강의 시간표 -->
+<select id="privateTimetable" resultMap="privateTimetableMap">
+<![CDATA[
+select ext_id, group_concat(distinct(day_week)) AS day_weeks, 
+group_concat(distinct(class_str_time)) AS class_str_time, 
+group_concat(distinct(class_end_time)) AS class_end_time
+from ext_timetable
+where ext_id in (select ext_id
+from ext_info
+where end_rc_date >= now())
+group by ext_id, day_week
+]]>
+</select>
+
+<!-- 현재 모집 중인 강의 시간표 : Map -->
+<resultMap id="privateTimetableMap" type="java.util.HashMap">
+	<result property="ext_id" column="ext_id"></result>
+	<result property="day_weeks" column="day_weeks"></result>
+	<result property="class_str_time" column="class_str_time"></result>
+	<result property="class_end_time" column="class_end_time"></result>
+</resultMap>
+
+<!-- 겹치는 시간표 제외한 과외 LIST  -->
+<select id="removedList" resultMap="removedListMap" >
+<![CDATA[
+select e.*, u.college, u.ext_exp, u.gender, u.mark, u.user_name
+from ext_info e, user_info u
+where e.ext_id not in  
+]]>
+	<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+    	#{item}
+	</foreach>
+<![CDATA[
+and e.end_rc_date >= now()
+and e.user_id = u.user_id
+]]>
+</select>
+
+<!-- 겹치는 시간표 제외한 과외 LIST : Map -->
+<resultMap id="removedListMap" type="java.util.HashMap">
+	<result property="ext_id" column="ext_id"></result>
+	<result property="college" column="college"></result>
+	<result property="ext_exp" column="ext_exp"></result>
+	<result property="gender" column="gender"></result>
+	<result property="mark" column="mark"></result>
+	<result property="extCount" column="extCount"></result>
+</resultMap>
+
+<select id="userSearchLogCount" resultType="int">
+select count(*)
+from user_searchlog
+where user_id = #{user_id}
+</select>
+
+<!-- 유저 검색 기록  -->
+<select id="userSearchLog" resultType="user_SearchLogVO">
+select *
+from user_searchlog
+where user_id = #{user_id}
+</select>
+
+<!-- 자격증 및  경력 여부 체크 -->
+<select id="carrerYN" resultType="int">
+select count(carrer_id) 
+from carrer c, ext_info e
+where c.user_id = e.user_id
+and e.ext_id = #{ext_id}
+</select>
+
+<select id="userExtLog" resultType="ext_InfoVO">
+select e.*
+from ext_info e, user_info u
+where e.ext_id in (select ext_id from
+						app_class
+						where user_id = #{user_id})
+and e.user_id = u.user_id
+</select>
+
+</mapper>

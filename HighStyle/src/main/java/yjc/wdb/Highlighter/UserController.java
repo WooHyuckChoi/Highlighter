@@ -279,7 +279,7 @@ public class UserController {
 		//System.out.println("����:"+subject);
 		//System.out.println("����1:"+location1);
 		//System.out.println("����2:"+location2);
-		System.out.println("����:"+college);
+		//System.out.println("����:"+college);
 		//System.out.println("������:"+str_tuit_fees);
 		//System.out.println("������:"+end_tuit_fees);
 		//System.out.println("���ܴ��:"+ext_obj);
@@ -309,6 +309,7 @@ public class UserController {
 			user_SearchVO.setEnd_tuit_fees(end_tuit_fees);
 			user_SearchVO.setExt_obj(ext_obj);
 			user_SearchVO.setCarrer_yn(carrer);
+			user_SearchVO.setExt_exp(ext_exp);
 			user_SearchVO.setGender(gender);
 			user_SearchVO.setExt_way(ext_way);
 			user_SearchVO.setClass_lev(class_lev);
