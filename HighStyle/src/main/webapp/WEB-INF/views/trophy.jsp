@@ -63,7 +63,7 @@
 <!-- ico -->
 <link rel="shortcut icon" href="./resources/ico/highlighter.ico">
 <style>
-#noticeResi {
+#trophyResi {
 	float: right;
 	width: 120px;
 	background-color: #1279ff;
@@ -186,27 +186,27 @@
 				<!--Left Sidebar-->
 				<div class="col-md-3 md-margin-bottom-40">
 					<img class="img-responsive profile-img margin-bottom-20"
-						src="./resources/unify/assets/img/team/img32-md.jpg"
-						alt="teacherProfile">
-					<!-- src="displayFile?fileName=${list.prof_photo }" -->
+						src="displayFile?fileName=${list.prof_photo }"
+						onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+						alt="teacherProfile" />
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40"
 						id="sidebar-nav-1">
 						<li id="StudyRoom" class="list-group-item"><a
 							href="/Highlighter/myPage"><i class="fa fa-bar-chart-o"></i>
 								MyPage<br>나의 정보</a></li>
-						<li class="list-group-item"><a href="#"><i
+						<li class="list-group-item"><a href="/Highlighter/modifyMyInfo"><i
 								class="fa fa-user"></i>정보수정</a></li>
 						<li class="list-group-item"><a
-							href="/Highlighter/modifyMyInfo"><i class="fa fa-group"></i>
-								수강중인 강의</a></li>
+							href="/Highlighter/attendingLecture"><i class="fa fa-group"></i>
+								수강중인 과외</a></li>
 						<li class="list-group-item"><a
-							href="/Highlighter/attendingLecture"><i
+							href="/Highlighter/endLecture"><i
 								class="fa fa-comments"></i> 수강완료 과외</a></li>
 						<li class="list-group-item"><a
-							href="/Highlighter/listAll?ext_id=${ext_id}"><i
+							href="/Highlighter/applicationList"><i
 								class="fa fa-history"></i> 수강신청 목록</a></li>
 						<li class="list-group-item"><a
-							href="/Highlighter/listAll?ext_id=${ext_id}"><i
+							href="/Highlighter/message"><i
 								class="fa fa-history"></i> 메세지</a></li>
 						<li class="list-group-item"><a href="/Highlighter/trophy"><i
 								class="fa fa-history"></i> 트로피 / 뱃지</a></li>
@@ -221,7 +221,7 @@
 					<div class="profile-body">
 						<!-- Lecture introduce and enter -->
 						<div id="classIntro" style="border-bottom: none; padding:15px 10px 45px 15px;">
-							<button id="noticeResi">뱃지 등록</button>
+							<button id="trophyResi">트로피/뱃지 등록</button>
 							<span>자신의 트로피 / 뱃지를 확인하세요</span>
 						</div>
 						<!-- end row -->
@@ -266,8 +266,23 @@
 											<strong>badge</strong>
 										</h4>
 									</div>
-									<div class="panel-body"></div>
-									<div class="panel-body"></div>
+									<div class="panel-body">
+										<c:forEach items="${batList }" var="list">
+											<div style="width: 350px; height: 200px;">
+												<%-- 트로피 겉 --%>
+												<div
+													style="width: 330px; height: 160px; margin: 0 auto; padding: 20px 0">
+													<img src="displayFile?fileName=${list.att_file }"
+														onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+														style="width: 150px; height: 150px; float: left; margin-right: 10px" />
+													<br />
+													<div>증명서명 : ${list.carrer_name }</div>
+													<br />
+													<div>발급기관명 : ${list.agen_name }</div>
+												</div>
+											</div>
+										</c:forEach>
+									</div>
 								</div>
 							</div>
 							<!--End preview-->
@@ -350,7 +365,7 @@
 	
 	<script>
 		$(document).ready(function(){
-			$("#noticeResi").click(function(){
+			$("#trophyResi").click(function(){
 				window.location.href="/Highlighter/uploadTrophy"
 			});
 		});

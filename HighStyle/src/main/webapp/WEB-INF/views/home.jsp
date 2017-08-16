@@ -17,7 +17,8 @@
 <!--[if lt IE 9]>
 <script src="assets/js/html5.js"></script>
 <![endif]-->
-<link rel="shortcut icon" href="./resources/ico/HL.ico">
+<!-- ico -->
+	<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./resources/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./resources/ico/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./resources/ico/apple-touch-icon-72-precomposed.png">
@@ -475,7 +476,11 @@ div#locationSelect2{margin:0;}
 <!--  -->
 <div id="effect" >
    <div id="content">
-      <div style="font-size:15px;"><img src="displayFile?fileName=${userInfo.prof_photo }" style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; ">[${user_name}] 강사님, </div>
+      <div style="font-size:15px;">
+      	<img src="displayFile?fileName=${userInfo.prof_photo }" 
+      	onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'" 
+      	style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; ">[${user_name}] 강사님, 
+      </div>
       <div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px; ">>>수강 중인 강의</div>
       <!-- 수강 중인 강의 for문 -->
       <c:if test="${homeList eq null}">
@@ -491,7 +496,10 @@ div#locationSelect2{margin:0;}
       <c:forEach items="${homeList}" var="list">
       <div style="border:1px solid #424141; margin:10px; height:80px; font-size:13px; position:relative; border-style:dotted;">
          <div style="width:70px; margin-left:10px; position:relative; top:10px;">
-            <div style="width:50px; height:50px; float:left;"><img src="displayFile?fileName=${userInfo.prof_photo }" /></div>
+            <div style="width:50px; height:50px; float:left;">
+            	<img src="displayFile?fileName=${userInfo.prof_photo }" 
+            	onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'" />
+            </div>
          </div>
          <div style="position:relative; top:10px; left:10px;">${list.user_name}<a style="color:white;">(총 인원 : ${list.count_Stu}명)</a></div>
          <div style="position:relative; top:10px; left:10px; color:gray;">${list.subject}</div>
@@ -773,7 +781,11 @@ div#locationSelect2{margin:0;}
 <!--  -->
 <div id="effect" >
    <div id="content">
-      <div style="font-size:15px;"><img src="displayFile?fileName=${userInfo.prof_photo }" style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; ">[${user_name}] 학생, </div>
+      <div style="font-size:15px;">
+	      <img src="displayFile?fileName=${userInfo.prof_photo }"
+	      onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'" 
+	      style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; ">[${user_name}] 학생, 
+      </div>
       <div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px;">>>수강 중인 강의</div>
       <!-- 수강 중인 강의 for문 -->
       <div style="overflow:auto; height:25%;">
@@ -789,7 +801,10 @@ div#locationSelect2{margin:0;}
       <c:forEach items="${onGoingExt_Stu}" var="list">
       <div style="border:1px solid #424141; margin:10px; height:80px; font-size:13px; position:relative; border-style:dotted;">
          <div style="width:70px; margin-left:10px; position:relative; top:10px;">
-            <div style="width:50px; height:50px; float:left"><img src="displayFile?fileName=${list.prof_photo }" /></div>
+            <div style="width:50px; height:50px; float:left">
+            	<img src="displayFile?fileName=${list.prof_photo }"
+            	onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'" />
+            </div>
          </div>
          <div style="position:relative; top:10px; left:10px;">${list.user_name}<a style="color:white;">(총 인원 : ${list.count_Stu}명)</a></div>
          <div style="position:relative; top:10px; left:10px; color:gray;">${list.subject}</div>

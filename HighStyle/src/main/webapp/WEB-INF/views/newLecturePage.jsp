@@ -194,7 +194,10 @@
 				<!-- 강사화면 -->
 				<c:if test="${user_grade eq 'teacher' }">
 					<div class="col-md-3 md-margin-bottom-40">
-						<img class="img-responsive profile-img margin-bottom-20" src="./resources/unify/assets/img/team/img32-md.jpg" alt="teacherProfile">
+						<img class="img-responsive profile-img margin-bottom-20"
+						src="displayFile?fileName=${user_info.prof_photo }"
+						onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+						alt="teacherProfile" />
 						<!-- src="displayFile?fileName=${list.prof_photo }" -->
 						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 							<li id="StudyRoom" class="list-group-item">
@@ -221,7 +224,10 @@
 				<!-- 학생 화면 -->
 				<c:if test="${user_grade ne 'teacher' }">
 					<div class="col-md-3 md-margin-bottom-40">
-						<img class="img-responsive profile-img margin-bottom-20" src="./resources/unify/assets/img/team/img32-md.jpg" alt="teacherProfile">
+						<img class="img-responsive profile-img margin-bottom-20"
+						src="displayFile?fileName=${user_info.prof_photo }"
+						onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+						alt="studentProfile" />
 						<!-- src="displayFile?fileName=${list.prof_photo }" -->
 						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 							<li id="StudyRoom" class="list-group-item">

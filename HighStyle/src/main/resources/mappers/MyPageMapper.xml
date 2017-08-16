@@ -132,6 +132,14 @@
 	<select id="getTrophyInfo" resultType="CarrerVO">
 		select *
 		from carrer
-		where user_id=#{user_id}
+		where user_id=#{user_id} and
+			  subject is not null
+	</select>
+	
+	<select id="getBatInfo" resultType="CarrerVO">
+		select *
+		from carrer
+		where user_id=#{user_id} and
+			  subject is null
 	</select>
 </mapper>

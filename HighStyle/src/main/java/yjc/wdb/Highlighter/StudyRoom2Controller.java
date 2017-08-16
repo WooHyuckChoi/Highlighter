@@ -29,6 +29,7 @@ import yjc.wdb.Highlighter.domain.test_InfoVO;
 import yjc.wdb.Highlighter.domain.test_resultVO;
 import yjc.wdb.Highlighter.service.Ext_TimetableService;
 import yjc.wdb.Highlighter.service.StudyRoomService;
+import yjc.wdb.Highlighter.service.User_InfoService;
 import yjc.wdb.Highlighter.service.test_InfoService;
 import yjc.wdb.bbs.util.uploadReviewFileUtils;
 @Controller

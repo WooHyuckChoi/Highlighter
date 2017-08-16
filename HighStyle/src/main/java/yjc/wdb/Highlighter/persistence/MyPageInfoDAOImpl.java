@@ -117,4 +117,10 @@ public class MyPageInfoDAOImpl implements MyPageInfoDAO
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".getTrophyInfo",user_id);
 	}
+
+	@Override
+	public List<CarrerVO> batListAll(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".getBatInfo",user_id);
+	}
 }

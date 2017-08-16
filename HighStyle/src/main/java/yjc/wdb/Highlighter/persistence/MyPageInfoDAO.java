@@ -29,4 +29,5 @@ public interface MyPageInfoDAO
 	public Integer countTrophy(String user_id) throws Exception;
 	public String selectCarrerId(String user_id) throws Exception;
 	public List<CarrerVO> trophyListAll(String user_id) throws Exception;
+	public List<CarrerVO> batListAll(String user_id) throws Exception;
 }

@@ -264,7 +264,7 @@
 							<li><a href="#profile-1" data-toggle="tab">뱃지</a></li>
 						</ul>
 						<div class="tab-content">
-							<!-- Success Forms -->
+							<!-- 트로피 Forms -->
 							<div class="tab-pane fade in active" id="home-1">
 								<div class="sky-form">
 									<header>성과,경력,입상,테스트 성적 증명</header>
@@ -303,7 +303,7 @@
 											<label class="label">증명서 업로드</label>
 											<div class="main_image"></div>
 											<div>
-												<button id="btn-example" name="#layer" class="btn-u btn-u-default" style="margin-right: 5px;">등록</button>
+												<button id="btn-example" name="#layer" class="btn-u btn-u-default btn-example" style="margin-right: 5px;">등록</button>
 												<button type="button" class="btn-u btn-u-default">삭제</button>
 											</div><!-- name="#layer" -->
 										</section>
@@ -311,7 +311,7 @@
 									<!-- <div id="btn-example" class="img_btn" onclick="layer_popup('#layer');" >등록</div> -->
 									
 									<footer>
-										<button id="regist" class="btn-u btn-u-default">등록하기</button>
+										<button id="registTrophy" class="btn-u btn-u-default regist">등록하기</button>
 										<button type="button" class="btn-u" onclick="window.location.href='/Highlighter/trophy';" style="background: #95a5a6;">취소</button>
 									</footer>
 								</div>
@@ -347,127 +347,56 @@
 								</div>
 							</div>
 							<%-- 레이어 팝업 끝 --%>
-							<!-- Error Forms -->
-							<!-- <div class="tab-pane fade" id="profile-1">
-								<form action="#" class="sky-form">
-									<header>Error states for elements</header>
+							<!-- 뱃지 Forms -->
+							<div class="tab-pane fade" id="profile-1">
+								<div class="sky-form">
+									<header>
+										뱃지 신청 - 신분증 인증<br /> <small>신분증(주민등록증, 운전면허증, 여권 중
+											하나)을 업로드하여 인증 뱃지를 부착하세요.<br /> 제출된 정보는 인증 뱃지를 부여하는 용도로만
+											사용됩니다.
+										</small>
+									</header>
 
 									<fieldset>
 										<section>
-											<label class="label">Text input</label>
-											<label class="input state-error">
-												<input type="text">
+											<label class="label">증명서명</label> <label
+												class="input state-success"> <input type="text"
+												id="batName" class="batName" name="carrer_name" placeholder="증명서명" />
 											</label>
-											<div class="note note-error">This is a required field.</div>
+										</section>
+										<input type="hidden" id="user_id" class="user_id"
+											name="user_id" value="${user_id }" />
+										<section>
+											<label class="label">발급기관명</label> <label
+												class="input state-success"> <input type="text"
+												id="batOrgan" class="batOrgan" name="agen_name"
+												placeholder="발급기관명" />
+											</label>
 										</section>
 
 										<section>
-											<label class="label">File input</label>
-											<label for="file" class="input input-file state-error">
-												<div class="button"><input type="file" id="file" onchange="this.parentNode.nextSibling.value = this.value">Browse</div><input type="text" readonly>
-											</label>
-											<div class="note note-error">File size must be less than 3Mb.</div>
-										</section>
-									</fieldset>
-
-									<fieldset>
-										<section>
-											<label class="label">Select</label>
-											<label class="select state-error">
-												<select>
-													<option value="0">Choose name</option>
-													<option value="1">Alexandra</option>
-													<option value="2">Alice</option>
-													<option value="3">Anastasia</option>
-													<option value="4">Avelina</option>
-												</select>
-												<i></i>
-											</label>
-											<div class="note note-error">You must select an option.</div>
-										</section>
-									</fieldset>
-
-									<fieldset>
-										<section>
-											<label class="label">Textarea</label>
-											<label class="textarea state-error">
-												<textarea rows="3"></textarea>
-											</label>
-											<div class="note note-error">This is a required field.</div>
-										</section>
-									</fieldset>
-
-									<fieldset>
-										<section>
-											<label class="label">Radios</label>
-											<div class="row">
-												<div class="col col-4">
-													<label class="radio state-error"><input type="radio" name="radio"><i class="rounded-x"></i>Alexandra</label>
-													<label class="radio state-error"><input type="radio" name="radio"><i class="rounded-x"></i>Alice</label>
-												</div>
-												<div class="col col-4">
-													<label class="radio state-error"><input type="radio" name="radio"><i class="rounded-x"></i>Avelina</label>
-													<label class="radio state-error"><input type="radio" name="radio"><i class="rounded-x"></i>Basilia</label>
-												</div>
-												<div class="col col-4">
-													<label class="radio state-error"><input type="radio" name="radio"><i class="rounded-x"></i>Cassandra</label>
-													<label class="radio state-error"><input type="radio" name="radio"><i class="rounded-x"></i>Clemencia</label>
-												</div>
+											<label class="label">증명서 업로드</label>
+											<div class="main_image"></div>
+											<div>
+												<button id="btn-example" name="#layer"
+													class="btn-u btn-u-default btn-example" style="margin-right: 5px;">등록</button>
+												<button type="button" class="btn-u btn-u-default">삭제</button>
 											</div>
-											<div class="note note-error">You must select one option.</div>
+											<!-- name="#layer" -->
 										</section>
 									</fieldset>
-
-									<fieldset>
-										<section>
-											<label class="label">Checkboxes</label>
-											<div class="row">
-												<div class="col col-4">
-													<label class="checkbox state-error"><input type="checkbox" name="checkbox"><i></i>Alexandra</label>
-													<label class="checkbox state-error"><input type="checkbox" name="checkbox"><i></i>Alice</label>
-												</div>
-												<div class="col col-4">
-													<label class="checkbox state-error"><input type="checkbox" name="checkbox"><i></i>Avelina</label>
-													<label class="checkbox state-error"><input type="checkbox" name="checkbox"><i></i>Basilia</label>
-												</div>
-												<div class="col col-4">
-													<label class="checkbox state-error"><input type="checkbox" name="checkbox"><i></i>Cassandra</label>
-													<label class="checkbox state-error"><input type="checkbox" name="checkbox"><i></i>Clemencia</label>
-												</div>
-											</div>
-											<div class="note note-error">You must select at least one option.</div>
-										</section>
-									</fieldset>
-
-									<fieldset>
-										<div class="row">
-											<section class="col col-5">
-												<label class="label">Toggles based on radios</label>
-												<label class="toggle state-error"><input type="radio" name="radio-toggle"><i class="rounded-4x"></i>Alexandra</label>
-												<label class="toggle state-error"><input type="radio" name="radio-toggle"><i class="rounded-4x"></i>Anastasia</label>
-												<label class="toggle state-error"><input type="radio" name="radio-toggle"><i class="rounded-4x"></i>Avelina</label>
-												<div class="note note-error">You must select one option.</div>
-											</section>
-
-											<div class="col col-2"></div>
-
-											<section class="col col-5">
-												<label class="label">Toggles based on checkboxes</label>
-												<label class="toggle state-error"><input type="checkbox" name="checkbox-toggle"><i class="rounded-4x"></i>Cassandra</label>
-												<label class="toggle state-error"><input type="checkbox" name="checkbox-toggle"><i class="rounded-4x"></i>Clemencia</label>
-												<label class="toggle state-error"><input type="checkbox" name="checkbox-toggle"><i class="rounded-4x"></i>Desiderata</label>
-												<div class="note note-error">You must select at least one option.</div>
-											</section>
-										</div>
-									</fieldset>
+									<!-- <div id="btn-example" class="img_btn" onclick="layer_popup('#layer');" >등록</div> -->
 
 									<footer>
-										<button type="submit" class="btn-u btn-u-default">Submit</button>
-										<button type="button" class="btn-u" onclick="window.history.back();">Back</button>
+										<button id="registBat" class="btn-u btn-u-default regist">등록하기</button>
+										<button type="button" class="btn-u"
+											onclick="window.location.href='/Highlighter/trophy';"
+											style="background: #95a5a6;">취소</button>
 									</footer>
-								</form>
-								/ Error states for elements
-							</div> -->
+								</div>
+								<!--/ Success states for elements -->
+							</div>
+						</div>
 							<!-- End Error Forms -->
 						</div>
 					</div>
@@ -560,7 +489,7 @@
 
 	<%-- 레이어 팝업 --%>	
 	<script>
-		$('#btn-example').click(function() {
+		$('.btn-example').click(function() {
 			var $href = $(this).attr('name');
 			layer_popup($href);
 		});
@@ -646,14 +575,14 @@
 		$(document).ready(function() {
 
 
-		$("#regist").click(function() {
+		$("#registTrophy").click(function() {
 
 				var file = $("#file1")[0].files[0];
 				var subject = $("#subject option:selected").val();
 				var name = $("#name").val();
 				var organ = $("#organ").val();
 				var user_id = $("#user_id").val();
-
+				
 				var formData = new FormData();
 
 				formData.append("file",file);
@@ -661,6 +590,7 @@
 				formData.append("name",name);
 				formData.append("organ",organ);
 				formData.append("user_id",user_id);
+				
 				$.ajax({
 					url : "/Highlighter/uploadTrophy",
 					data : formData,
@@ -673,6 +603,34 @@
 						window.location.href="/Highlighter/trophy";
 					}
 				});
+			});
+		});
+		
+		$("#registBat").click(function(){
+			
+			var file = $("#file1")[0].files[0];
+			var name = $("#batName").val();
+			var organ = $("#batOrgan").val();
+			var user_id = $("#user_id").val();
+			
+			var formData = new FormData();
+
+			formData.append("file",file);
+			formData.append("name",name);
+			formData.append("organ",organ);
+			formData.append("user_id",user_id);
+			
+			$.ajax({
+				url : "/Highlighter/uploadBat",
+				data : formData,
+				dataType : 'text',
+				processData : false,
+				contentType : false,
+				type : 'POST',
+				success : function(data) {
+					alert(data);
+					window.location.href="/Highlighter/trophy";
+				}
 			});
 		});
 	</script>

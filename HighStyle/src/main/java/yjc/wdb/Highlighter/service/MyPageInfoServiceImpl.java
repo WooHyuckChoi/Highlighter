@@ -97,5 +97,10 @@ public class MyPageInfoServiceImpl implements MyPageInfoService
 		// TODO Auto-generated method stub
 		return dao.trophyListAll(user_id);
 	}
+	@Override
+	public List<CarrerVO> batListAll(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.batListAll(user_id);
+	}
 	
 }
