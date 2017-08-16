@@ -233,7 +233,7 @@ public class MyPageController
 	}
 	
 	@ResponseBody
-	@RequestMapping(value="trophy", method=RequestMethod.POST)
+	@RequestMapping(value="/uploadTrophy", method=RequestMethod.POST)
 	public ResponseEntity<String> trophy(MultipartFile file,String name,String organ,String user_id,String subject) throws Exception 
 	{
 		String savedName=
@@ -277,5 +277,12 @@ public class MyPageController
 		service.insertTrophyInfo(vo);
 		logger.info("name : "+file.getOriginalFilename());
 		return new ResponseEntity<>(file.getOriginalFilename(),HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value="/uploadTrophy", method=RequestMethod.GET)
+	public void uploadTrophy(Model model,HttpSession session) throws Exception 
+	{
+		String user_id = (String) session.getAttribute("id");
+		model.addAttribute("user_id",user_id);
 	}
 }

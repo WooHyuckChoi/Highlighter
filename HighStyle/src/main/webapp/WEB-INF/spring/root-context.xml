@@ -31,7 +31,6 @@
 		<property name="password" value="A12qwaszx!"></property>
 	</bean> -->
 	
-	<!-- SqlSessionFactory Spring Bean 등록 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:/mybatis-config.xml"/>
