@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import yjc.wdb.Highlighter.domain.CarrerVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.domain.stu_infoVO;
 
@@ -91,5 +92,29 @@ public class MyPageInfoDAOImpl implements MyPageInfoDAO
 	public List<User_InfoVO> getUserInfo(String ext_id) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".extInStu",ext_id);
+	}
+
+	@Override
+	public void insertTrophyInfo(CarrerVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		session.insert(namespace+".trophyInfoInsert",vo);
+	}
+
+	@Override
+	public Integer countTrophy(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".countTrophy",user_id);
+	}
+
+	@Override
+	public String selectCarrerId(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".selectCarrerId",user_id);
+	}
+
+	@Override
+	public List<CarrerVO> trophyListAll(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".getTrophyInfo",user_id);
 	}
 }

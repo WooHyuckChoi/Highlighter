@@ -6,7 +6,14 @@ public class CarrerVO {
 	private String carrer_name;
 	private String agen_name;
 	private String user_id;
+	private String subject;
 	
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
 	public String getCarrer_id() {
 		return carrer_id;
 	}

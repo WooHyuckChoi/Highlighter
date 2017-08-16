@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import yjc.wdb.Highlighter.domain.CarrerVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.domain.stu_infoVO;
 import yjc.wdb.Highlighter.persistence.MyPageInfoDAO;
@@ -75,6 +76,26 @@ public class MyPageInfoServiceImpl implements MyPageInfoService
 	public List<User_InfoVO> getUserInfo(String ext_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.getUserInfo(ext_id);
+	}
+	@Override
+	public void insertTrophyInfo(CarrerVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.insertTrophyInfo(vo);
+	}
+	@Override
+	public Integer countTrophy(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countTrophy(user_id);
+	}
+	@Override
+	public String selectCarrerId(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectCarrerId(user_id);
+	}
+	@Override
+	public List<CarrerVO> trophyListAll(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.trophyListAll(user_id);
 	}
 	
 }

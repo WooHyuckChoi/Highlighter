@@ -584,7 +584,6 @@ div#locationSelect2{margin:0;}
                 <div class="attendingLecture">수강 중인 강의</div>
                 <div class="endLecture">수강 완료 강의</div>
                 <div class="applicationList">수강 신청 목록</div>
-                <div class="trophy">프로필 / 뱃지</div>
                 <div class="eva">진단평가</div>
                 <div class="logout">로그아웃</div>
              </div>
