@@ -1300,8 +1300,4 @@ $(document).ready(function(){
 
 
 </body>
-<<<<<<< HEAD
 </html>
-=======
-</html>
->>>>>>> branch 'master' of https://github.com/WooHyuckChoi/Highlighter.git
