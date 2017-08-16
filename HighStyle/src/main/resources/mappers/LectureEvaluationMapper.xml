@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.LectureEvaluationMapper">
+<!-- 강사 평가 목록 -->
+
+<select id="read" resultType="LectureEvaluationVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+from ext_info e, user_info u
+where ext_id = #{ext_id} 
+And e.user_id = u.user_id;
+]]>
+</select>
+
+<select id="read2" resultType="LectureEvaluationTutorInfoVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.str_class_date str_class_date, e.end_class_date end_class_date, e.class_poss_area class_poss_area, e.best_score best_score, count(a.ext_id) stu_num
+from user_info u, ext_info e, app_class a
+where e.ext_id in (select b.ext_id
+						from ext_info a, ext_info b
+						where a.ext_id = #{ext_id}
+						and a.user_id = b.user_id)
+AND e.ext_id != #{ext_id}					
+AND e.ext_id = a.ext_id
+AND e.user_id = u.user_id
+AND a.reg_stus = '결제완료'
+group by e.ext_id;
+]]>
+</select>
+
+<select id="read3" resultType="LectureEvaluationTutorInfoVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.str_class_date str_class_date, e.end_class_date end_class_date, e.class_poss_area class_poss_area, e.best_score best_score, count(a.ext_id) stu_num
+from user_info u, ext_info e, app_class a
+where e.ext_id = #{ext_id}					
+AND e.ext_id = a.ext_id
+AND e.user_id = u.user_id
+AND a.reg_stus = '결제완료'
+group by e.ext_id;
+]]>
+</select>
+
+<select id="search" resultType="LectureEvaluationVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+from ext_info e, user_info u
+where user_name = #{searchIp}
+AND e.user_id = u.user_id;
+]]>
+</select>
+
+<select id="listAll" resultType="LectureEvaluationVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+from ext_info e, user_info u
+where e.user_id = u.user_id; 
+]]>
+</select>
+
+<select id="listPage" resultType="LectureEvaluationVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+from ext_info e, user_info u
+where e.user_id = u.user_id
+limit #{page}, 10; 
+]]>
+</select>
+
+<select id="listCriteria" resultType="LectureEvaluationVO">
+<![CDATA[
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+from ext_info e, user_info u
+where e.user_id = u.user_id
+limit #{pageStart}, #{perPageNum};
+]]>
+</select>
+
+<select id="countPaging" resultType="int">
+<![CDATA[
+select count(CAST(substr(ext_id, 5, 3) as signed integer)) ext_id
+from ext_info
+where ext_id > 0
+order by ext_id;
+]]>
+
+
+<!-- 
+select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
+, e.str_class_date str_class_date, t.day_week day_week
+from ext_info e, user_info u, ext_timetable t
+where e.user_id = u.user_id
+and t.ext_id = e.ext_id
+ -->
+</select>
+
+<select id="bestScore" resultType="LectureEvaluationBestScoreVO">
+<![CDATA[
+select distinct(t.day_week) day_week, e.str_class_date str_class_date
+from ext_timetable t, ext_info e
+where t.ext_id = e.ext_id
+and t.ext_id = #{ext_id}
+]]>
+</select>
+<select id="parentLogin" resultType="ParentVO">
+<![CDATA[
+select user_name, user_id
+from user_info
+where phone = #{phone}
+and par_phone = #{par_phone}
+and birth_date = #{birth}
+]]>
+</select>
+<select id="tutorSearch" resultType="TutorListVO">
+<![CDATA[
+select e.ext_id ext_id, e.str_class_date str_class_date, e.end_class_date end_class_date, u.user_name user_name
+from ext_info e, user_info u
+where ext_id in (select ext_id
+	from app_class
+	where user_id = #{user_id}
+	and reg_stus = '결제완료')
+and e.user_id = u.user_id
+]]>
+</select>
+
+	<resultMap id="testResultMap" type="java.util.HashMap">
+		<result property="ext_id" column="ext_id"></result>
+		<result property="user_id" column="user_id"></result>
+		<result property="prob_answ" column="prob_answ"></result>
+		<result property="stu_result" column="stu_result"></result>
+		<result property="week" column="week"></result>	
+	</resultMap>
+<select id="testResult" resultMap="testResultMap">
+<![CDATA[
+select substr(t.prob_id, 2, 7) ext_id, user_id, prob_answ, stu_result, substr(t.prob_id, 9, 2) week
+from prob_info p, test_result t
+where substr(t.prob_id, 2, 7) = #{ext_id}
+and t.user_id = #{user_id}
+and p.prob_id = t.prob_id
+order by week
+]]>
+</select>
+
+	<resultMap id="userResultMap" type="java.util.HashMap">
+		<result property="test_date" column="test_date"></result>
+		<result property="week" column="week"></result>
+	</resultMap>
+<select id="userResult" resultMap="userResultMap">
+<![CDATA[
+select i.test_date test_date, substr(i.test_id, 9) week
+from test_info i, test_result r
+where i.ext_id = #{ext_id}
+and r.user_id = #{user_id}
+and i.test_id = r.test_id
+group by i.test_date
+order by week
+]]>
+</select>
+
+	<resultMap id="calendarListMap" type="java.util.HashMap" >
+		<result property="ext_id" column="ext_id"></result>
+		<result property="user_id" column="user_id"></result>
+		<result property="post_date" column="post_date"></result>
+		<result property="learn_att" column="learn_att"></result>
+		<result property="stu_infoNum" column="stu_infoNum"></result>
+	</resultMap>
+<select id="calendarList" resultMap="calendarListMap">
+<![CDATA[
+select *
+from stu_info
+where ext_id = #{ext_id}
+and user_id = #{user_id}
+]]>
+</select>
+
+<select id="dataCheck" resultType="int">
+<![CDATA[
+select ifnull(count(evaluation_grade), 0) evaluation_grade
+from lecture_evaluation
+where ext_id = #{ext_id}
+and user_id = #{user_id}
+]]>
+</select>
+
+<insert id="create">
+insert into lecture_evaluation (ext_id, user_id, evaluation_content, evaluation_grade)
+values(#{ext_id},#{user_id},#{evaluation_content},#{evaluation_grade})
+</insert>
+</mapper>
