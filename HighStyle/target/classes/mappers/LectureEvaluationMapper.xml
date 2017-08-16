@@ -123,4 +123,68 @@ where ext_id in (select ext_id
 and e.user_id = u.user_id
 ]]>
 </select>
+
+	<resultMap id="testResultMap" type="java.util.HashMap">
+		<result property="ext_id" column="ext_id"></result>
+		<result property="user_id" column="user_id"></result>
+		<result property="prob_answ" column="prob_answ"></result>
+		<result property="stu_result" column="stu_result"></result>
+		<result property="week" column="week"></result>	
+	</resultMap>
+<select id="testResult" resultMap="testResultMap">
+<![CDATA[
+select substr(t.prob_id, 2, 7) ext_id, user_id, prob_answ, stu_result, substr(t.prob_id, 9, 2) week
+from prob_info p, test_result t
+where substr(t.prob_id, 2, 7) = #{ext_id}
+and t.user_id = #{user_id}
+and p.prob_id = t.prob_id
+order by week
+]]>
+</select>
+
+	<resultMap id="userResultMap" type="java.util.HashMap">
+		<result property="test_date" column="test_date"></result>
+		<result property="week" column="week"></result>
+	</resultMap>
+<select id="userResult" resultMap="userResultMap">
+<![CDATA[
+select i.test_date test_date, substr(i.test_id, 9) week
+from test_info i, test_result r
+where i.ext_id = #{ext_id}
+and r.user_id = #{user_id}
+and i.test_id = r.test_id
+group by i.test_date
+order by week
+]]>
+</select>
+
+	<resultMap id="calendarListMap" type="java.util.HashMap" >
+		<result property="ext_id" column="ext_id"></result>
+		<result property="user_id" column="user_id"></result>
+		<result property="post_date" column="post_date"></result>
+		<result property="learn_att" column="learn_att"></result>
+		<result property="stu_infoNum" column="stu_infoNum"></result>
+	</resultMap>
+<select id="calendarList" resultMap="calendarListMap">
+<![CDATA[
+select *
+from stu_info
+where ext_id = #{ext_id}
+and user_id = #{user_id}
+]]>
+</select>
+
+<select id="dataCheck" resultType="int">
+<![CDATA[
+select ifnull(count(evaluation_grade), 0) evaluation_grade
+from lecture_evaluation
+where ext_id = #{ext_id}
+and user_id = #{user_id}
+]]>
+</select>
+
+<insert id="create">
+insert into lecture_evaluation (ext_id, user_id, evaluation_content, evaluation_grade)
+values(#{ext_id},#{user_id},#{evaluation_content},#{evaluation_grade})
+</insert>
 </mapper>

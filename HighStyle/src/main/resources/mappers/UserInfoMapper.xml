@@ -55,8 +55,8 @@ where user_id = #{user_id}
 
 <insert id="ext_create">
 <![CDATA[
-	insert into ext_info (ext_id, end_rc_date, str_class_date, class_poss_area, ext_obj, class_lev, intro_class, ext_way, tuit_fees, user_id)
-	values(#{ext_id}, date_add(sysdate(), interval +7 day), date_add(sysdate(), interval +8 day), #{class_poss_area}, #{ext_obj}, #{class_lev}, #{intro_class}, #{ext_way}, #{tuit_fees}, #{user_id})
+	insert into ext_info (ext_id, end_rc_date, str_class_date,  end_class_date, class_poss_area, ext_obj, class_lev, intro_class, ext_way, tuit_fees, user_id)
+	values(#{ext_id}, date_add(sysdate(), interval +7 day), date_add(sysdate(), interval +8 day), date_add(sysdate(), interval +38 day), #{class_poss_area}, #{ext_obj}, #{class_lev}, #{intro_class}, #{ext_way}, #{tuit_fees}, #{user_id})
 ]]>
 </insert>
 
@@ -74,8 +74,9 @@ where user_id = #{user_id}
 	where b.ext_id=#{ext_id}
 	and a.user_grade='teacher'
 </select>
-
-
-
-
+<!-- 검색 기록  -->
+<insert id="userSearchLog">
+	insert into user_searchlog(user_id, onoff, pg, subject, location1, location2, college, str_tuit_fees, end_tuit_fees, ext_obj, carrer_yn, ext_exp, gender, ext_way, class_lev)
+	values(#{user_id}, #{onoff}, #{pg}, #{subject}, #{location1}, #{location2}, #{college}, #{str_tuit_fees}, #{end_tuit_fees}, #{ext_obj}, #{carrer_yn}, #{ext_exp}, #{gender}, #{ext_way}, #{class_lev})
+</insert>
 </mapper>
