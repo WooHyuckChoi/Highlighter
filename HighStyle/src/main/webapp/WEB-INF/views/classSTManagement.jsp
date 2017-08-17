@@ -464,7 +464,7 @@ $("document").ready(function(){
 				<div id="infoWrap">
 					<%-- <img src="displayFile?fileName=${info.prof_photo }" /> --%>
 					<p>${info.user_name}</p>
-					<a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">바로가기</a>
+					<a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}" >바로가기</a>
 				</div>
 			</c:forEach>
 		</div>

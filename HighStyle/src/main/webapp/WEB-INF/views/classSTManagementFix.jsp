@@ -115,11 +115,33 @@
 }
 
 /* 수강 정보 관리 */
-	.toggler { width: 500px; height: 200px; position: relative; }
-	#button { float:left; position:relative; width:60px; height:46px; background:url(./resources/img/button1_fix.gif); text-indent:-9999px; cursor:pointer;}
-	#effect { width: 500px; height: 135px;  position: fixed;  left:-300px; top:0%;}
-	#content { width:300px; float:left; font: 28px/1.6 NanumBrushWeb; height:730%; background-color:rgba(0,0,0,0.9); color:white;}
+   .toggler { width: 500px; height: 200px; position: relative; }
+   #button { float:left; margin-top:160px; position:relative; width:70px; height:70px; background:url(./resources/img/in.png) no-repeat; text-indent:-9999px; cursor:pointer;}
+   #effect { width: 500px; height: 135px;  position: fixed;  left:-300px; top:0%;}
+   #content { width:300px; float:left; font: 28px/1.6 NanumBrushWeb; height:730%; background-color:rgba(0,0,0,0.9); color:white;}
 /* */
+
+#infoWrap{
+	width:250px;
+	height:120px;
+	margin: 0 auto;	
+}
+#infoWrap img{
+	float:left;
+	width: 110px;
+	height: 100px;
+}
+#infoWrap p{
+	font-size:14px;
+	width:60px;
+	overflow: hidden;
+}
+#infoWrap button{
+	font-size:14px;
+	float:right;
+	width:80px;
+	overflow: hidden;
+}
 </style>
 </head>
 <body>
@@ -521,8 +543,8 @@
 			<c:forEach items="${info }" var="info">
 				<div id="infoWrap">
 					<%-- <img src="displayFile?fileName=${info.prof_photo }" /> --%>
-					<p>${info.user_name}</p>
-					<a
+					<p style="font-size: 14px;">${info.user_name}</p>
+					<a style="color:white; text-decoration: none;"
 						href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">바로가기</a>
 				</div>
 			</c:forEach>
@@ -561,15 +583,15 @@
 			StyleSwitcher.initStyleSwitcher();
 			
 			jQuery( "#button" ).toggle(
-					function() {
-						jQuery( "#effect" ).animate({left: 0}, 500 );
-						jQuery( "#button" ).css({"background":"url(./resources/img/button2_fix.gif)"});
-					},
-					function() {
-						jQuery( "#effect" ).animate({left: '-300px'}, 500 );
-						jQuery( "#button" ).css({"background":"url(./resources/img/button1_fix.gif)"});
-					}
-				);
+				      function() {
+				         jQuery( "#effect" ).animate({left: 0}, 500 );
+				         jQuery( "#button" ).css({"background":"url(./resources/img/in.png) no-repeat"});
+				      },
+				      function() {
+				         jQuery( "#effect" ).animate({left: '-300px'}, 500 );
+				         jQuery( "#button" ).css({"background":"url(./resources/img/out.png) no-repeat"});
+				      }
+				   );
 		});
 	</script>
 	<script>

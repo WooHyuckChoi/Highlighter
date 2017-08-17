@@ -1141,11 +1141,11 @@ jQuery(function() {
    jQuery( "#button" ).toggle(
       function() {
          jQuery( "#effect" ).animate({left: 0}, 500 );
-         jQuery( "#button" ).css({"background":"url(./resources/img/button2_fix.gif)"});
+         jQuery( "#button" ).css({"background":"url(./resources/img/prev.png) no-repeat"});
       },
       function() {
          jQuery( "#effect" ).animate({left: '-300px'}, 500 );
-         jQuery( "#button" ).css({"background":"url(./resources/img/button1_fix.gif)"});
+         jQuery( "#button" ).css({"background":"url(./resources/img/next.png) no-repeat"});
       }
    );
 });
