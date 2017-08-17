@@ -3,6 +3,7 @@ package yjc.wdb.Highlighter.service;
 import java.util.HashMap;
 import java.util.List;
 
+import yjc.wdb.Highlighter.domain.CarrerVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.domain.stu_infoVO;
 
@@ -22,4 +23,10 @@ public interface MyPageInfoService
 	public void deleteList(stu_infoVO vo) throws Exception;
 	
 	public List<User_InfoVO> getUserInfo(String ext_id) throws Exception;
+	
+	public void insertTrophyInfo(CarrerVO vo) throws Exception;
+	public Integer countTrophy(String user_id) throws Exception;
+	public String selectCarrerId(String user_id) throws Exception;
+	public List<CarrerVO> trophyListAll(String user_id) throws Exception;
+	public List<CarrerVO> batListAll(String user_id) throws Exception;
 }

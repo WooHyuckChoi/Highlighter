@@ -1,5 +1,6 @@
 package yjc.wdb.Highlighter.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -7,11 +8,14 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import yjc.wdb.Highlighter.domain.Criteria;
+import yjc.wdb.Highlighter.domain.DataCheckVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationBestScoreVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationTutorInfoVO;
+import yjc.wdb.Highlighter.domain.LectureEvaluationUpdateVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationVO;
 import yjc.wdb.Highlighter.domain.ParentVO;
 import yjc.wdb.Highlighter.domain.TutorListVO;
+import yjc.wdb.Highlighter.domain.TestResultVO;
 import yjc.wdb.Highlighter.persistence.LectureEvaluationDAO;
 
 @Service
@@ -79,6 +83,36 @@ public class LectureEvaluationServiceImpl implements LectureEvaluationService {
 	public List<TutorListVO> tutorList(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.tutorList(user_id);
+	}
+
+	@Override
+	public List<HashMap> testResult(TestResultVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.testResult(vo);
+	}
+
+	@Override
+	public List<HashMap> userResult(TestResultVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.userResult(vo);
+	}
+
+	@Override
+	public List<HashMap> calendarList(TestResultVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.calendarList(vo);
+	}
+
+	@Override
+	public int dataCheck(DataCheckVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.dataCheck(vo);
+	}
+
+	@Override
+	public void create(LectureEvaluationUpdateVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.create(vo);
 	}
 
 

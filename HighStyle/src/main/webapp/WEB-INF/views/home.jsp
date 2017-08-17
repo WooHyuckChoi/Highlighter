@@ -17,7 +17,8 @@
 <!--[if lt IE 9]>
 <script src="assets/js/html5.js"></script>
 <![endif]-->
-<link rel="shortcut icon" href="./resources/ico/HL.ico">
+<!-- ico -->
+	<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./resources/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./resources/ico/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./resources/ico/apple-touch-icon-72-precomposed.png">
@@ -34,10 +35,9 @@
 <style type="text/css">
 /* 수강 정보 관리 */
    .toggler { width: 500px; height: 200px; position: relative; }
-   #button { float:left; position:relative; width:40px; height:30px; background:url(./resources/img/button1.gif); text-indent:-9999px; cursor:pointer;}
+   #button { float:left; margin-top:160px; position:relative; width:70px; height:70px; background:url(./resources/img/next.png) no-repeat; text-indent:-9999px; cursor:pointer;}
    #effect { width: 500px; height: 135px;  position: fixed;  left:-300px; top:0%;}
    #content { width:300px; float:left; font: 28px/1.6 NanumBrushWeb; height:730%; background-color:rgba(0,0,0,0.9); color:white;}
-/* */
 
 .Pstyle {
  opacity: 0;
@@ -275,19 +275,19 @@ div#locationSelect2{margin:0;}
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
     <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
     <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
     <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div id="banner-pagination">
@@ -304,17 +304,17 @@ div#locationSelect2{margin:0;}
     <p class="marketing-byline"> Need reasons to use this template? See below.</p>
     <hr class="soften">
     <div class="row-fluid">
-      <div class="span4"> <img src="./resources/img/responsive.png" alt="">
+      <div class="span4"> <img src="./resources/img/teacher.png" alt="">
         <h2> <span class="firstword">강사</span> 이용 방법</h2>
         <p class="features"></p>
         <a href="how_teacher">자세히 보기</a>
       </div>
-      <div class="span4"> <img src="./resources/img/think-creative.png" alt="">
+      <div class="span4"> <img src="./resources/img/learning.png" alt="">
         <h2> <span class="firstword">학생</span> 이용 방법</h2>
         <p></p>
         <a href="how_student">자세히 보기</a>
       </div>
-      <div class="span4"> <img src="./resources/img/core-values.png" alt="">
+      <div class="span4"> <img src="./resources/img/couple.png" alt="">
         <h2> <span class="firstword">학부모</span> 이용 방법</h2>
         <p></p>
         <a href="how_parents">자세히 보기</a>
@@ -324,7 +324,6 @@ div#locationSelect2{margin:0;}
     </div>
     <hr class="soften">
     <hr class="soften1 copyhr">
-    <div class="span12">Copyright &copy; 2012. Greepit.com</div>
     <div id="popup" class="Pstyle">
    <span class="b-close">X</span>
       <div class="content" style="height: auto; width: auto;">
@@ -407,19 +406,19 @@ div#locationSelect2{margin:0;}
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
     <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
     <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
     <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div id="banner-pagination">
@@ -436,17 +435,17 @@ div#locationSelect2{margin:0;}
     <p class="marketing-byline"> Need reasons to use this template? See below.</p>
     <hr class="soften">
     <div class="row-fluid">
-      <div class="span4"> <img src="./resources/img/responsive.png" alt="">
+      <div class="span4"> <img src="./resources/img/teacher.png" alt="">
         <h2> <span class="firstword">강사</span> 이용 방법</h2>
         <p class="features"></p>
         <a href="how_teacher">자세히 보기</a>
       </div>
-      <div class="span4"> <img src="./resources/img/think-creative.png" alt="">
+      <div class="span4"> <img src="./resources/img/learning.png" alt="">
         <h2> <span class="firstword">학생</span> 이용 방법</h2>
         <p></p>
         <a href="how_student">자세히 보기</a>
       </div>
-      <div class="span4"> <img src="./resources/img/core-values.png" alt="">
+      <div class="span4"> <img src="./resources/img/couple.png" alt="">
         <h2> <span class="firstword">학부모</span> 이용 방법</h2>
         <p></p>
         <a href="how_parents">자세히 보기</a>
@@ -456,7 +455,6 @@ div#locationSelect2{margin:0;}
     </div>
     <hr class="soften">
     <hr class="soften1 copyhr">
-    <div class="span12">Copyright &copy; 2012. Greepit.com</div>
     <div id="popup" class="Pstyle">
    <span class="b-close">X</span>
       <div class="content" style="height: auto; width: auto;">
@@ -475,8 +473,12 @@ div#locationSelect2{margin:0;}
 <!--  -->
 <div id="effect" >
    <div id="content">
-      <div style="font-size:15px;"><img src="displayFile?fileName=${userInfo.prof_photo }" style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; ">[${user_name}] 강사님, </div>
-      <div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px; ">>>수강 중인 강의</div>
+      <div style="font-size:15px;">
+      	<img src="displayFile?fileName=${userInfo.prof_photo }" 
+      	onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'" 
+      	style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; ">[${user_name}] 강사님, 
+      </div>
+      <div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px; "><img style="margin-right:10px; margin-top:-10px;" src="./resources/img/checkbox-pen-outline.png">수강 중인 강의</div>
       <!-- 수강 중인 강의 for문 -->
       <c:if test="${homeList eq null}">
       <div style="border:1px solid white; margin:10px; height:150px; text-align:center; font-size:13px; position:relative; border-style:dotted;">
@@ -491,7 +493,10 @@ div#locationSelect2{margin:0;}
       <c:forEach items="${homeList}" var="list">
       <div style="border:1px solid #424141; margin:10px; height:80px; font-size:13px; position:relative; border-style:dotted;">
          <div style="width:70px; margin-left:10px; position:relative; top:10px;">
-            <div style="width:50px; height:50px; float:left;"><img src="displayFile?fileName=${userInfo.prof_photo }" /></div>
+            <div style="width:50px; height:50px; float:left;">
+            	<img src="displayFile?fileName=${userInfo.prof_photo }" 
+            	onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'" />
+            </div>
          </div>
          <div style="position:relative; top:10px; left:10px;">${list.user_name}<a style="color:white;">(총 인원 : ${list.count_Stu}명)</a></div>
          <div style="position:relative; top:10px; left:10px; color:gray;">${list.subject}</div>
@@ -505,7 +510,7 @@ div#locationSelect2{margin:0;}
       </div>
       </c:if>
       <br />
-      <div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px;">>>수강 신청 관리</div>
+      <div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px;"><img style="margin-top:-10px; margin-right:10px;"src="./resources/img/settings.png">수강 신청 관리</div>
       <c:if test="${appClassOne ne null}">
          <div style="position:relative; top:10px; left:10px; color:red; font-size:13px;">>>모집 중</div>
       </c:if>
@@ -584,7 +589,6 @@ div#locationSelect2{margin:0;}
                 <div class="attendingLecture">수강 중인 강의</div>
                 <div class="endLecture">수강 완료 강의</div>
                 <div class="applicationList">수강 신청 목록</div>
-                <div class="trophy">프로필 / 뱃지</div>
                 <div class="eva">진단평가</div>
                 <div class="logout">로그아웃</div>
              </div>
@@ -623,102 +627,21 @@ div#locationSelect2{margin:0;}
     </div>
   </div>
   <div class="container show-case-item">
-    <br/><br/><h2>수업을 찾고 배우는 최선의 방법</h2>
-    <div>1시간부터 4주까지 편리한 과외 수업 예약, 투명한 튜터 (과외 강사) 정보</div><br/><br/>
-    <span class="howButton">학생</span>
-    <span class="howButton">강사</span>
-    <span class="howButton">학부모</span><br/><br/><br/>
-     <span class="searchLabel">온/오프라인</span><span class="searchLabel2">개인/그룹</span><span class="searchLabel3">시간</span><br/>
-    <select id="onoff" name="onoff" class="search">
-       <option value="n" 
-          <c:out value="${cri.onoff == null? 'selected':'' }"/>>
-             --온/오프라인 선택--</option>
-         <option value="1" 
-            <c:out value="${cri.onoff eq '1'? 'selected':''}"/>>
-          온라인</option>
-        <option value="0" 
-            <c:out value="${cri.onoff eq '0'? 'selected':''}"/>>
-                        오프라인</option>   
-    </select>
-    <select id="pg" name="pg" class="search">
-        <option value="n" 
-            <c:out value="${cri.pg == null? 'selected':'' }"/>>
-             --개인/그룹 선택--</option>
-        <option value="1" 
-              <c:out value="${cri.pg eq 'p'? 'selected':''}"/>>
-               개인</option>   
-        <option value="2" 
-            <c:out value="${cri.pg eq 'g'? 'selected':''}"/>>
-               그룹</option>   
-    </select>
-    <span class="search2">--시간 선택--　　　<a onclick="layer_open('layer2');"><img src="./resources/img/calendar.png" style="width:25px; top:-5px; position:relative;"></a></span>
-    <span class="search3">검색</span><br/><br/>
+    <h1>과외 매칭 및 온라인 과외 진행</h1>
+    <p>검색을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="matchingPage" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
-    <br/><br/><h2>수업을 찾고 배우는 최선의 방법</h2>
-    <div>1시간부터 4주까지 편리한 과외 수업 예약, 투명한 튜터 (과외 강사) 정보</div><br/><br/>
-    <span class="howButton">학생</span>
-    <span class="howButton">강사</span>
-    <span class="howButton">학부모</span><br/><br/><br/>
-    <span class="searchLabel">온/오프라인</span><span class="searchLabel2">개인/그룹</span><span class="searchLabel3">시간</span><br/>
-    <select id="onoff" name="onoff" class="search">
-       <option value="n" 
-          <c:out value="${cri.onoff == null? 'selected':'' }"/>>
-             --온/오프라인 선택--</option>
-         <option value="1" 
-            <c:out value="${cri.onoff eq '1'? 'selected':''}"/>>
-          온라인</option>
-        <option value="0" 
-            <c:out value="${cri.onoff eq '0'? 'selected':''}"/>>
-                        오프라인</option>   
-    </select>
-    <select id="pg" name="pg" class="search">
-        <option value="n" 
-            <c:out value="${cri.pg == null? 'selected':'' }"/>>
-             --개인/그룹 선택--</option>
-        <option value="1" 
-              <c:out value="${cri.pg eq 'p'? 'selected':''}"/>>
-               개인</option>   
-        <option value="2" 
-            <c:out value="${cri.pg eq 'g'? 'selected':''}"/>>
-               그룹</option>   
-    </select>
-    <span class="search2">--시간 선택--　　　<a onclick="layer_open('layer2');"><img src="./resources/img/calendar.png" style="width:25px; top:-5px; position:relative;"></a></span>
-    <span class="search3">검색</span><br/><br/>
+    <h1>과외 매칭 및 온라인 과외 진행</h1>
+    <p>검색을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="matchingPage" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
-    <br/><br/><h2>수업을 찾고 배우는 최선의 방법</h2>
-    <div>1시간부터 4주까지 편리한 과외 수업 예약, 투명한 튜터 (과외 강사) 정보</div><br/><br/>
-    <span class="howButton">학생</span>
-    <span class="howButton">강사</span>
-    <span class="howButton">학부모</span><br/><br/><br/>
-    <span class="searchLabel">온/오프라인</span><span class="searchLabel2">개인/그룹</span><span class="searchLabel3">시간</span><br/>
-    <select id="onoff" name="onoff" class="search">
-       <option value="n" 
-          <c:out value="${cri.onoff == null? 'selected':'' }"/>>
-             --온/오프라인 선택--</option>
-         <option value="1" 
-            <c:out value="${cri.onoff eq '1'? 'selected':''}"/>>
-          온라인</option>
-        <option value="0" 
-            <c:out value="${cri.onoff eq '0'? 'selected':''}"/>>
-                        오프라인</option>   
-    </select>
-    <select id="pg" name="pg" class="search">
-        <option value="n" 
-            <c:out value="${cri.pg == null? 'selected':'' }"/>>
-             --개인/그룹 선택--</option>
-        <option value="1" 
-              <c:out value="${cri.pg eq 'p'? 'selected':''}"/>>
-               개인</option>   
-        <option value="2" 
-            <c:out value="${cri.pg eq 'g'? 'selected':''}"/>>
-               그룹</option>   
-    </select>
-    <span class="search2">--시간 선택--　　　<a onclick="layer_open('layer2');"><img src="./resources/img/calendar.png" style="width:25px; top:-5px; position:relative;"></a></span>
-    <span class="search3">검색</span><br/><br/>
+    <h1>과외 매칭 및 온라인 과외 진행</h1>
+    <p>검색을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="matchingPage" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div id="banner-pagination">
@@ -735,17 +658,17 @@ div#locationSelect2{margin:0;}
     <p class="marketing-byline"> Need reasons to use this template? See below.</p>
     <hr class="soften">
     <div class="row-fluid">
-      <div class="span4"> <img src="./resources/img/responsive.png" alt="">
+      <div class="span4"> <img src="./resources/img/teacher.png" alt="">
         <h2> <span class="firstword">강사</span> 이용 방법</h2>
         <p class="features"></p>
         <a href="how_teacher">자세히 보기</a>
       </div>
-      <div class="span4"> <img src="./resources/img/think-creative.png" alt="">
+      <div class="span4"> <img src="./resources/img/learning.png" alt="">
         <h2> <span class="firstword">학생</span> 이용 방법</h2>
         <p></p>
         <a href="how_student">자세히 보기</a>
       </div>
-      <div class="span4"> <img src="./resources/img/core-values.png" alt="">
+      <div class="span4"> <img src="./resources/img/couple.png" alt="">
         <h2> <span class="firstword">학부모</span> 이용 방법</h2>
         <p></p>
         <a href="how_parents">자세히 보기</a>
@@ -755,7 +678,6 @@ div#locationSelect2{margin:0;}
     </div>
     <hr class="soften">
     <hr class="soften1 copyhr">
-    <div class="span12">Copyright &copy; 2012. Greepit.com</div>
     <div id="popup" class="Pstyle">
    <span class="b-close">X</span>
       <div class="content" style="height: auto; width: auto;">
@@ -774,8 +696,12 @@ div#locationSelect2{margin:0;}
 <!--  -->
 <div id="effect" >
    <div id="content">
-      <div style="font-size:15px;"><img src="displayFile?fileName=${userInfo.prof_photo }" style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; ">[${user_name}] 학생, </div>
-      <div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px;">>>수강 중인 강의</div>
+      <div style="font-size:15px;">
+	      <img src="displayFile?fileName=${userInfo.prof_photo }"
+	      onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'" 
+	      style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; ">[${user_name}] 학생, 
+      </div>
+      <div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px;"><img style="margin-right:10px; margin-top:-10px;" src="./resources/img/checkbox-pen-outline.png">수강 중인 강의</div>
       <!-- 수강 중인 강의 for문 -->
       <div style="overflow:auto; height:25%;">
       <!-- 수강 중인 강의가 없을 때 -->
@@ -790,7 +716,10 @@ div#locationSelect2{margin:0;}
       <c:forEach items="${onGoingExt_Stu}" var="list">
       <div style="border:1px solid #424141; margin:10px; height:80px; font-size:13px; position:relative; border-style:dotted;">
          <div style="width:70px; margin-left:10px; position:relative; top:10px;">
-            <div style="width:50px; height:50px; float:left"><img src="displayFile?fileName=${list.prof_photo }" /></div>
+            <div style="width:50px; height:50px; float:left">
+            	<img src="displayFile?fileName=${list.prof_photo }"
+            	onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'" />
+            </div>
          </div>
          <div style="position:relative; top:10px; left:10px;">${list.user_name}<a style="color:white;">(총 인원 : ${list.count_Stu}명)</a></div>
          <div style="position:relative; top:10px; left:10px; color:gray;">${list.subject}</div>
@@ -802,10 +731,10 @@ div#locationSelect2{margin:0;}
       </c:if>
       </div>
       <br />
-      <div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px;">>>수강 신청 관리</div>
+      <div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px;"><img style="margin-top:-10px; margin-right:10px;" src="./resources/img/settings.png">수강 신청 관리</div>
       
       <!-- 학생이 신청한 강의 목록 -->
-      <div style="position:relative; top:10px; left:10px; color:white; font-size:13px; ">>>신청 목록</div>
+      <div style="position:relative; top:10px; left:10px; color:white; font-size:13px; "><img style="margin-top:-10px; margin-right:10px;" src="./resources/img/downwards-pointer.png">신청 목록</div>
       <!-- 신청 목록이 없을 때 -->
       <c:if test="${empty appClassList_Stu}">
          <div id="notAppClass" style="text-align:center; padding:30px; opacity:0.4;">
@@ -1015,21 +944,16 @@ $('.block').click(function(){
 var timeArray = new Array();
 
 $(".search3").on("click", function(){
-	var onoff = $("#onoff option:selected").val();
-    var pg = $("#pg option:selected").val();
-    var subject = $("#subjected").val();
-
-    if(onoff =='n' && pg == 'n' && subject == 'n')
-   		alert("검색 조건을 선택해주세요!");
+   alert("아직 검색은 안 해썽");
    
    $.ajax({
        type:"POST",
        url:"privateSearch",
        async : false,
        data:{
-          onoff : onoff,
-          pg : pg,
-          subject : subject,
+          onoff : $("#onoff option:selected").val(),
+          pg : $("#pg option:selected").val(),
+          subject : $("#subjected").val(),
           easySearch : "y"
       },
        
@@ -1132,11 +1056,11 @@ jQuery(function() {
    jQuery( "#button" ).toggle(
       function() {
          jQuery( "#effect" ).animate({left: 0}, 500 );
-         jQuery( "#button" ).css({"background":"url(./resources/img/button2.gif)"});
+         jQuery( "#button" ).css({"background":"url(./resources/img/prev.png) no-repeat"});
       },
       function() {
          jQuery( "#effect" ).animate({left: '-300px'}, 500 );
-         jQuery( "#button" ).css({"background":"url(./resources/img/button1.gif)"});
+         jQuery( "#button" ).css({"background":"url(./resources/img/next.png) no-repeat"});
       }
    );
 });

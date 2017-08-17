@@ -28,6 +28,7 @@ import yjc.wdb.Highlighter.domain.stu_infoVO;
 import yjc.wdb.Highlighter.domain.test_resultVO;
 import yjc.wdb.Highlighter.service.MyPageInfoService;
 import yjc.wdb.Highlighter.service.StudyRoomService;
+import yjc.wdb.Highlighter.service.User_InfoService;
 import yjc.wdb.Highlighter.service.testResultService;
 
 @Controller
@@ -41,6 +42,8 @@ public class StudyRoomController
 	private MyPageInfoService myPageService;
 	@Inject
 	private testResultService testResultService;
+	@Inject
+	private User_InfoService userInfoService;
 
 
 	@RequestMapping(value = "/newLecturePage", method = RequestMethod.GET)//classMain newLecturePage
@@ -49,8 +52,9 @@ public class StudyRoomController
 		System.out.println("과외페이지");
 		model.addAttribute("classMainList", studyRoomService.Ext_read(ext_id));
 		model.addAttribute("ext_id", ext_id);
-
+		
 		String user_id = (String) session.getAttribute("id");
+		model.addAttribute("user_info",userInfoService.read(user_id));
 		model.addAttribute("user_id",user_id);
 		model.addAttribute("ext_id",ext_id);
 		model.addAttribute("open_stus",studyRoomService.selectOpenStat(ext_id));

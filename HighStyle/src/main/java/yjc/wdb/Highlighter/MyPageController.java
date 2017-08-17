@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +13,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,13 +22,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.JsonObject;
 
+import yjc.wdb.Highlighter.domain.CarrerVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.domain.stu_infoVO;
 import yjc.wdb.Highlighter.service.MyPageInfoService;
+import yjc.wdb.Highlighter.service.User_InfoService;
+import yjc.wdb.bbs.util.uploadReviewFileUtils;
 
 @Controller
 public class MyPageController 
@@ -34,6 +41,11 @@ public class MyPageController
 	
 	@Inject
 	private MyPageInfoService service;
+	@Inject
+	private User_InfoService userInfoService;
+	
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 	
     @RequestMapping(value="myPage", method=RequestMethod.GET)
     public String myPageHome() throws Exception{
@@ -74,6 +86,7 @@ public class MyPageController
 	public void attendingLecture(HttpSession session, Model model) throws Exception
 	{
 		String user_id = (String) session.getAttribute("id");
+		model.addAttribute("user_info",userInfoService.read(user_id));
 		List<HashMap> list = service.attendingLecture(user_id);
 		/*for(int i=0; i<list.size(); i++)
 		{
@@ -90,6 +103,7 @@ public class MyPageController
 	public void endLecture(HttpSession session, Model model) throws Exception
 	{
 		String user_id = (String) session.getAttribute("id");
+		model.addAttribute("user_info",userInfoService.read(user_id));
 		List<HashMap> list = service.endLecture(user_id);
 //		for(int i=0; i<list.size(); i++)
 //		{
@@ -105,6 +119,7 @@ public class MyPageController
 	public void applicationList(HttpSession session, Model model) throws Exception
 	{
 		String user_id= (String) session.getAttribute("id");
+		model.addAttribute("user_info",userInfoService.read(user_id));
 		List<HashMap> list=service.applicationList(user_id);
 //		for(int i=0; i<list.size(); i++)
 //		{
@@ -119,6 +134,7 @@ public class MyPageController
     @RequestMapping(value="message", method=RequestMethod.GET)
     public String message(Model model, HttpSession session) throws Exception{
     	String user_id = String.valueOf(session.getAttribute("id"));
+    	model.addAttribute("user_info",userInfoService.read(user_id));
 	    List<HashMap> messageList = service.selectMesssage(user_id);
 	    model.addAttribute("messageList", messageList);
 	    
@@ -216,8 +232,86 @@ public class MyPageController
 	}
 	
 	@RequestMapping(value="trophy", method=RequestMethod.GET)
-	public void trophy() throws Exception 
+	public void trophy(HttpSession session, Model model) throws Exception 
 	{
+		String user_id = (String) session.getAttribute("id");
+		model.addAttribute("user_id",user_id);
+		model.addAttribute("trophyList",service.trophyListAll(user_id));
+		model.addAttribute("batList",service.batListAll(user_id));
+	}
+	
+	@RequestMapping(value="/uploadTrophy", method=RequestMethod.GET)
+	public void uploadTrophy(Model model,HttpSession session) throws Exception 
+	{
+		String user_id = (String) session.getAttribute("id");
+		model.addAttribute("user_id",user_id);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/uploadTrophy", method=RequestMethod.POST)
+	public ResponseEntity<String> trophy(MultipartFile file,String name,String organ,String user_id,String subject) throws Exception 
+	{
+		String savedName=
+				uploadReviewFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
 		
+		String carrer_id="";
+		int countTrophy = service.countTrophy(user_id);
+
+		if(countTrophy==0)
+		{
+			carrer_id = user_id+"00";
+		}
+		else
+		{
+			String carrerIdInDB = service.selectCarrerId(user_id);
+			String idCountString = carrerIdInDB.substring(carrerIdInDB.length()-2,carrerIdInDB.length()); //뒤에서 2자리 자르기
+			String idFrist=carrerIdInDB.substring(0,carrerIdInDB.length()-2);//처음부터 마지막2자리 전까지 자르기			
+
+			int idCountInt = Integer.parseInt(idCountString); //정수형으로 변경
+			if(idCountInt < 9)
+			{
+				idCountInt++;
+				idCountString = "0"+Integer.toString(idCountInt);
+			}
+			else
+			{
+				idCountInt++;
+				idCountString = Integer.toString(idCountInt);
+			}
+			carrer_id = idFrist+idCountString;
+		}
+		
+		CarrerVO vo= new CarrerVO();
+		vo.setAtt_file(savedName);
+		vo.setAgen_name(organ);
+		vo.setCarrer_id(carrer_id);
+		vo.setCarrer_name(name);
+		vo.setUser_id(user_id);
+		vo.setSubject(subject);
+		
+		service.insertTrophyInfo(vo);
+		logger.info("name : "+file.getOriginalFilename());
+		return new ResponseEntity<>(file.getOriginalFilename(),HttpStatus.CREATED);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/uploadBat", method=RequestMethod.POST)
+	public ResponseEntity<String> Bat(MultipartFile file,String name,String organ,String user_id) throws Exception
+	{
+		String savedName=
+				uploadReviewFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+		String carrer_id="B"+user_id;
+		String subject = null;
+		
+		CarrerVO vo= new CarrerVO();
+		vo.setAtt_file(savedName);
+		vo.setAgen_name(organ);
+		vo.setCarrer_id(carrer_id);
+		vo.setCarrer_name(name);
+		vo.setUser_id(user_id);
+		vo.setSubject(subject);
+		
+		service.insertTrophyInfo(vo);
+		return new ResponseEntity<>(file.getOriginalFilename(),HttpStatus.CREATED);
 	}
 }

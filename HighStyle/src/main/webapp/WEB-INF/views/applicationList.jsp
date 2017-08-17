@@ -1,271 +1,337 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page session="true"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <title>Highlighter</title>
+
+<!-- Meta -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
 
-<link href="./resources/css/bootstrap.css" rel="stylesheet">
-<link href="./resources/css/bootstrap-responsive.css" rel="stylesheet">
-<link href="./resources/css/docs.css" rel="stylesheet">
-<link href="./resources/css/prettyPhoto.css" rel="stylesheet" type="text/css">
-<link href="./resources/js/google-code-prettify/prettify.css" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="./resouces/js/html5.js"></script>
-<![endif]-->
-<link rel="shortcut icon" href="./resources/ico/HL.ico">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="./resources/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="./resources/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="./resources/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed" href="./resources/ico/apple-touch-icon-57-precomposed.png">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<!-- Favicon -->
+<link rel="shortcut icon" href="favicon.ico">
+
+<!-- Web Fonts -->
+<link rel='stylesheet' type='text/css'
+	href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
+
+<!-- CSS Global Compulsory -->
+<link rel="stylesheet"
+	href="./resources/unify/assets/plugins/bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="./resources/unify/assets/css/style.css">
+
+<!-- CSS Header and Footer -->
+<link rel="stylesheet"
+	href="./resources/unify/assets/css/headers/header-default.css">
+<link rel="stylesheet"
+	href="./resources/unify/assets/css/footers/footer-v1.css">
+
+<!-- CSS Implementing Plugins -->
+<link rel="stylesheet"
+	href="./resources/unify/assets/plugins/animate.css">
+<link rel="stylesheet"
+	href="./resources/unify/assets/plugins/line-icons/line-icons.css">
+<link rel="stylesheet"
+	href="./resources/unify/assets/plugins/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="./resources/unify/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+<link rel="stylesheet"
+	href="./resources/unify/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+<link rel="stylesheet"
+	href="./resources/unify/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
+
+<!-- CSS Page Style -->
+<link rel="stylesheet"
+	href="./resources/unify/assets/css/pages/profile.css">
+<link rel="stylesheet"
+	href="./resources/unify/assets/css/pages/shortcode_timeline2.css">
+
+<!-- CSS Theme -->
+<link rel="stylesheet"
+	href="./resources/unify/assets/css/theme-colors/default.css"
+	id="style_color">
+<link rel="stylesheet"
+	href="./resources/unify/assets/css/theme-skins/dark.css">
+
+<!-- CSS Customization : 시간표 -->
+<link rel="stylesheet" href="./resources/unify/assets/css/custom.css">
+<!-- ico -->
+<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
 <style>
-#classIntro {
-	margin-top: 10px;
-	border: 3px solid #1bbc9b;
-	height: auto;
-	padding:10px;
+#StudyRoom {
+	background-color: #1279ff;
 }
 
-#classIndex {
-	margin-left: 10px;
-	margin-top: 120px;
-	margin-bottom: 10px;
-	margin-right: 50px;
-	border: 1px solid #1bbc9b;
-	height: auto;
-	float: left;
+#StudyRoom a {
+	color: white;
+	font-size: 16px;
 }
-.nav-agency {
-	border-bottom: 1px solid #DDD;
-}
-
-#div1 {
-	float: left;
-	width: 80%;
-	margin-top:70px;
-	
-}
-
-.MyPage {
-	margin: 0px;
-}
-
-.MyPage li:not(#MyPage) {
-	list-style: none;
-	border-top:1px solid rgba(0,0,0,0.25);
-	height:35px;
-	padding-left:10px;
-	padding-top:5px;
-	font-size:13px;
-	width:140px;
-}
-.MyPage li:not(#MyPage):hover {
-	list-style: none;
-	border-color:1px solid rgba(0,0,0,0.25);
-	height:35px;
-	padding-top:5px;
-	font-size:13px;
-	background-color:#5D5D5D;
-	color:white;
-}
-#noticeResi {
-	float: right;
-}
-
-.w3table {
-	float: left;
-}
-#MyPage{
-	padding-top:10px;
-	padding-left:20px;
-	padding-bottom:10px;
-	background-color:#1bbc9b;
-	color:white;
-}
-/* #intro{
-	margin:10px;
-	width:100px;
-	position:relative;
-} */
-#user-profile-1{
-	margin: 0 auto;
-	margin-top : 50px;
-}
-.tableDiv{width:100%; height:100%; float:left; clear:both;}
- #base {width: 100%; height: 100%; margin-top:5%; margin-left:15%;}
-    #base > .line {clear: both;}
-    #base > .line > .null{width:4%; height:4%; border: 1px solid gray; text-align:right; float: left;}
-    #base > .line > .tableColumn{width:4%; height:8%; border-right: 1px solid gray; border-left: 1px solid gray; border-bottom: 1px solid gray;  text-align:right; float: left;}
-    #base > .line > .tableRow{width:10%; height:4%; border-top: 1px solid gray; border-right: 1px solid gray; border-bottom: 1px solid gray; float: left;}
-    #base > .line > .block{width:10%; height:8%; border-right: 1px solid gray; border-bottom: 1px solid gray; float: left;}
-    .timeActive{background-color: #FC9312;}
-    .textalign{text-align:center;}
 </style>
 </head>
-<body data-spy="scroll" data-target=".bs-docs-sidebar">
-<div class="nav-agency">
-  <div class="navbar navbar-static-top">
-    <div class="navbar-inner">
-      <div class="container"> <a class="brand" href="/Highlighter"> <img src="./resources/img/logo.png" alt=""></a>
-        <div id="main-nav">
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class=""><a href="/Highlighter">Home</a> </li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> 강사 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="work.html">강사 이용방법</a></li>
-                  <li><a href="work-two-columns.html">과외 등록</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> 학생 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="pricing.html">학생 이용방법</a></li>
-                  <li><a href="pricing-three-columns.html">과외 검색</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 학부모 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="faq.html">학부모 이용방법</a></li>
-                  <li><a href="contact.html">자녀 학습 관리</a></li>
-                </ul>
-              </li>
-              <li><a href="index.html">사이트 소개</a> </li>
-              <li><a href="index.html">문의</a> </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- GNB 끝 -->
-<!-- 과외 정보 관리 NAV -->
-<div style="width:80%; margin:0 auto;">
-	<div id="classIndex" >
-		<div id="classMain" >
-			<ul class="MyPage">
-				<li id="MyPage">MyPage<br>마이 페이지</li>
-				<li id="updateInfo">정보수정</li>
-				<li id="attendingLecture">수강 중인 과외</li>
-				<li id="endLecture">수강 완료 과외</li>
-				<li id="applicationList">수강 신청 목록</li>
-				<li id="message">메시지 함</li>
-				<li id="trophy">트로피 / 뱃지</li>
-			</ul>
+<body>
+	<div class="wrapper">
+		<!--=== Header ===-->
+		<div class="header">
+			<div class="container">
+				<!-- Logo -->
+				<a class="logo" href="/Highlighter"> <img
+					src="./resources/img/blue_Logo.png" alt="Logo">
+				</a>
+				<!-- End Logo -->
+
+				<!-- Topbar -->
+				<div class="topbar">
+					<ul class="loginbar pull-right">
+						<%--<li class="topbar-devider"></li> 이거 그거임 구분 짝대기 --%>
+						<li id="logout"><a href="javascript:void(0);">Logout</a></li>
+					</ul>
+				</div>
+				<!-- End Topbar -->
+
+				<!-- Toggle get grouped for better mobile display -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="fa fa-bars"></span>
+				</button>
+				<!-- End Toggle -->
+			</div>
+			<!--/end container-->
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div
+				class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+				<div class="container">
+					<ul class="nav navbar-nav">
+						<!-- Home -->
+						<li class="dropdown"><a href="/Highlighter">Home</a></li>
+						<!-- End Home -->
+
+						<!-- teacher -->
+						<li class="dropdown"><a href="javascript:void(0);"
+							class="dropdown-toggle" data-toggle="dropdown"> 강사 </a>
+							<ul class="dropdown-menu">
+								<!-- About Pages -->
+								<li class="dropdown-submenu"><a href="#">강사 이용방법</a></li>
+								<!-- End About Pages -->
+
+								<!-- regist lecture -->
+								<li class="dropdown-submenu"><a href="javascript:void(0);">과외등록</a>
+								</li>
+								<!-- End regist lecture -->
+
+								<!--  -->
+								<li class="dropdown-submenu"><a href="javascript:void(0);">강사평가</a>
+								</li>
+								<!-- End  -->
+							</ul></li>
+						<!-- End teacher -->
+
+						<!-- Student -->
+						<li class="dropdown"><a href="javascript:void(0);"
+							class="dropdown-toggle" data-toggle="dropdown"> 학생 </a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-submenu"><a href="#">학생 이용방법</a></li>
+								<li class="dropdown-submenu"><a href="#">과외 검색</a></li>
+							</ul></li>
+						<!-- End Student -->
+
+						<!-- Parents -->
+						<li class="dropdown"><a href="javascript:void(0);"
+							class="dropdown-toggle" data-toggle="dropdown"> 학부모 </a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-submenu"><a href="#">학부모 이용방법</a></li>
+							</ul></li>
+						<!-- End Parents -->
+
+						<!-- Site intro -->
+						<li class="dropdown"><a href="javascript:void(0);"
+							class="dropdown-toggle" data-toggle="dropdown"> 사이트 소개 </a></li>
+						<!-- End Site intro -->
+
+						<!--  -->
+						<li class="dropdown"><a href="javascript:void(0);"
+							class="dropdown-toggle" data-toggle="dropdown"> 문의 </a></li>
+						<!-- End Demo Pages -->
+					</ul>
+				</div>
+				<!--/end container-->
+			</div>
+			<!--/navbar-collapse-->
 		</div>
-	</div>
-<!-- 과외 정보 관리 NAV 끝 -->
-	<%
- 		int a = 0;
-		int b = 1;
- 	%>
-	<div id="div1">
-	<!-- 과외 소개 및 강의 입장 타이틀 -->
-		<div id="classIntro">수강 완료 과외</div>
-	<!-- 과외 소개 및 강의 입장 타이틀 끝 -->
-	<!--  -->
-		<div id="user-profile-1" class="user-profile row">
-			<div class="col-xs-12 col-sm-3 center"></div>			
-			<!-- 빈공간 -->
-			
-			<!-- 빈공간 -->
-			<table id="ext" class="table">
-				<tr>
-					<th class="hidden-xs">번호</th>
-					<th>강사 명</th>
-					<th>과목 명</th>
-					<th class="hidden-xs">수강 신청 날짜</th>
-					<th class="hidden-xs">수강 신청 상태</th>
-				</tr>
-				<c:forEach items="${list}" var="list">
-				<tr id="row<%=a%>">
-					<td class="hidden-xs"><%=b%></td>
-					<td>${list.user_name }</td>
-					<td>
-						<c:if test="${list.subject eq '00' }">과목없음</c:if>
-						<c:if test="${list.subject eq '01' }">국어</c:if>
-						<c:if test="${list.subject eq '02' }">영어</c:if>
-						<c:if test="${list.subject eq '03' }">수학</c:if>
-					</td>
-					<td>${list.reg_date }</td>
-					<td class="hidden-xs text-semi-muted">${list.reg_stus }</td>
-				</tr>
-				<%
- 					a++;
-					b++;
- 				%>
-				</c:forEach>		
-		</table>
+		<!--=== End Header ===-->
+
+		<!--=== Profile ===-->
+		<div class="container content profile">
+			<div class="row">
+				<!--Left Sidebar-->
+				<div class="col-md-3 md-margin-bottom-40">
+					<img class="img-responsive profile-img margin-bottom-20"
+						src="displayFile?fileName=${user_info.prof_photo }"
+						onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+						alt="teacherProfile" />
+					<ul class="list-group sidebar-nav-v1 margin-bottom-40"
+						id="sidebar-nav-1">
+						<li id="StudyRoom" class="list-group-item"><a
+							href="/Highlighter/myPage"><i class="fa fa-bar-chart-o"></i>
+								MyPage<br>나의 정보</a></li>
+						<li class="list-group-item"><a href="/Highlighter/modifyMyInfo"><i
+								class="fa fa-user"></i>정보수정</a></li>
+						<li class="list-group-item"><a
+							href="/Highlighter/attendingLecture"><i class="fa fa-group"></i>
+								수강중인 과외</a></li>
+						<li class="list-group-item"><a
+							href="/Highlighter/endLecture"><i
+								class="fa fa-comments"></i> 수강완료 과외</a></li>
+						<li class="list-group-item"><a
+							href="/Highlighter/applicationList"><i
+								class="fa fa-history"></i> 수강신청 목록</a></li>
+						<li class="list-group-item"><a
+							href="/Highlighter/message"><i
+								class="fa fa-history"></i> 메세지</a></li>
+						<li class="list-group-item"><a href="/Highlighter/trophy"><i
+								class="fa fa-history"></i> 트로피 / 뱃지</a></li>
+						<li class="list-group-item"><a href="/Highlighter/eva_read"><i
+								class="fa fa-history"></i> 진단평가</a></li>
+					</ul>
+				</div>
+				<!--End Left Sidebar-->
+
+				<!-- Profile Content -->
+				<div class="col-md-9">
+					<div class="profile-body">
+						<!-- Lecture introduce and enter -->
+						<div id="classIntro" style="border-bottom: none; padding:15px 10px 45px 15px;">
+							<span>수강 신청 목록</span>
+						</div>
+						<!-- end row -->
+						<hr>
+
+						<%
+							int a = 0;
+							int b = 1;
+						%>
+						<div class="row">
+							<!-- 수강중인 과외 -->
+							<div class="col-sm-12 sm-margin-bottom-30">
+								<div class="panel panel-profile">
+									<div class="panel-body">
+										<table id="ext" class="table">
+											<tr>
+												<th class="hidden-xs">번호</th>
+												<th>강사 명</th>
+												<th>과목 명</th>
+												<th class="hidden-xs">수강 신청 일</th>
+												<th class="hidden-xs">수강 신청 상태</th>
+											</tr>
+											<c:if test="${list ne '[]' }">
+											<c:forEach items="${list}" var="list">
+												<tr id="row<%=a%>">
+													<td class="hidden-xs"><%=b%></td>
+													<td>${list.user_name }</td>
+													<td><c:if test="${list.subject eq '00' }">과목없음</c:if>
+														<c:if test="${list.subject eq '01' }">국어</c:if> <c:if
+															test="${list.subject eq '02' }">영어</c:if> <c:if
+															test="${list.subject eq '03' }">수학</c:if></td>
+													<td>${list.reg_date }</td>
+													<td class="hidden-xs text-semi-muted">${list.reg_stus }</td>
+												</tr>
+												<%
+													a++;
+													b++;
+												%>
+											</c:forEach>
+											</c:if>
+											<c:if test="${list eq '[]' }">
+												<tr>
+													<td colspan='6' style="background-color: #D8D8D8; text-align: center;">과외가 없습니다.</td>
+												</tr>
+											</c:if>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!--End preview-->
+						</div>
+						<!--/end row-->
+						<hr>
+					</div>
+				</div>
+				<!-- End Profile Content -->
+			</div>
 		</div>
-	</div>		
-	
-	<div id="classIntro2">
-		<!-- 빈공간 -->
-		
-		<!-- 빈공간 -->
+		<!--=== End Profile ===-->
+
+		<!--=== Footer Version 1 ===-->
+		<div class="footer-v1">
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<!-- About -->
+						<div class="col-md-3 md-margin-bottom-40">
+							<a href="index.html"><img id="logo-footer"
+								class="footer-logo" src="./resources/img/logo.png" alt="logo"></a>
+							<p>과외 중개 사이트가 아닌 매칭 사이트.</p>
+							<p>온라인 과외 사이트</p>
+						</div>
+						<!--/col-md-3-->
+						<!-- End About -->
+					</div>
+				</div>
+			</div>
+			<!--/footer-->
+
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<p>
+								2015 &copy; All Rights Reserved. <a href="#">Privacy Policy</a>
+								| <a href="#">Terms of Service</a>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--/copyright-->
+		</div>
+		<!--=== End Footer Version 1 ===-->
 	</div>
-</div>
+	<!--/wrapper-->
 
-    <hr class="soften1 copyhr">
-    <div class="row-fluid copyright">
-      <div class="span12">Copyright &copy; 2012. Greepit.com</div>
-    </div>
-
-<script src="http://platform.twitter.com/widgets.js"></script>
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/google-code-prettify/prettify.js"></script>
-<script src="./resources/js/bootstrap-transition.js"></script>
-<script src="./resources/js/bootstrap-alert.js"></script>
-<script src="./resources/js/bootstrap-modal.js"></script>
-<script src="./resources/js/bootstrap-dropdown.js"></script>
-<script src="./resources/js/bootstrap-scrollspy.js"></script>
-<script src="./resources/js/bootstrap-tab.js"></script>
-<script src="./resources/js/bootstrap-tooltip.js"></script>
-<script src="./resources/js/bootstrap-popover.js"></script>
-<script src="./resources/js/bootstrap-button.js"></script>
-<script src="./resources/js/bootstrap-collapse.js"></script>
-<script src="./resources/js/bootstrap-carousel.js"></script>
-<script src="./resources/js/bootstrap-typeahead.js"></script>
-<script src="./resources/js/bootstrap-affix.js"></script>
-<script src="./resources/js/application.js"></script>
-<script src="./resources/js/superfish.js"></script>
-<script src="./resources/js/custom.js"></script>
-
-<script>
-		$("#MyPage").click(function(){
-			location.href="/Highlighter/myPage";
-		});
-		$("#updateInfo").click(function(){
-			//alert("개발 중입니당~!");
-			location.href="/Highlighter/modifyMyInfo";
-		});
-		$("#attendingLecture").click(function(){
-			//alert("개발 중입니당~!");
-			location.href="/Highlighter/attendingLecture";
-		});
-		$("#endLecture").click(function(){
-			//alert("개발 중입니당~!");
-			location.href="/Highlighter/endLecture";
-		});
-		$("#applicationList").click(function(){
-			//alert("개발 중입니당~!");
-			location.href="/Highlighter/applicationList";
-		});
-		$("#message").click(function(){
-			window.location.href="/Highlighter/message";
-		});
-		$("#trophy").click(function(){
-			alert("개발 중입니당~!");
-			/* location.href="/Highlighter/trophy"; */
-		});
-</script>
+	<!-- JS Global Compulsory -->
+	<script type="text/javascript"
+		src="./resources/unify/assets/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="./resources/unify/assets/plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript"
+		src="./resources/unify/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript"
+		src="./resources/unify/assets/plugins/back-to-top.js"></script>
+	<script type="text/javascript"
+		src="./resources/unify/assets/plugins/smoothScroll.js"></script>
+	<script type="text/javascript"
+		src="./resources/unify/assets/plugins/circles-master/circles.js"></script>
+	<script type="text/javascript"
+		src="./resources/unify/assets/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js"></script>
+	<script type="text/javascript"
+		src="./resources/unify/assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript"
+		src="./resources/unify/assets/js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="./resources/unify/assets/js/app.js"></script>
+	<script type="text/javascript"
+		src="./resources/unify/assets/js/plugins/datepicker.js"></script>
+	<script type="text/javascript"
+		src="./resources/unify/assets/js/plugins/circles-master.js"></script>
+	<script type="text/javascript"
+		src="./resources/unify/assets/js/plugins/style-switcher.js"></script>
 </body>
 </html>

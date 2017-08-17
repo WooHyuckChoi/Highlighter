@@ -111,5 +111,35 @@
 			  a.ext_id=#{ext_id}
 	</select>
 	
+	<insert id="trophyInfoInsert">
+		insert into carrer (carrer_id, att_file, carrer_name, agen_name, user_id,subject) 
+			value(#{carrer_id},#{att_file},#{carrer_name},#{agen_name},#{user_id},#{subject})
+	</insert>
 	
+	<select id="countTrophy" resultType="int">
+		select count(carrer_id)
+		from carrer
+		where user_id=#{user_id}
+	</select>
+	
+	<select id="selectCarrerId" resultType="String">
+		select carrer_id
+		from carrer
+		where user_id = #{user_id}
+		order by carrer_id desc limit 1
+	</select>
+	
+	<select id="getTrophyInfo" resultType="CarrerVO">
+		select *
+		from carrer
+		where user_id=#{user_id} and
+			  subject is not null
+	</select>
+	
+	<select id="getBatInfo" resultType="CarrerVO">
+		select *
+		from carrer
+		where user_id=#{user_id} and
+			  subject is null
+	</select>
 </mapper>

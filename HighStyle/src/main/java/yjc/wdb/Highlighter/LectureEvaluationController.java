@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,18 +17,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import yjc.wdb.Highlighter.domain.Criteria;
+import yjc.wdb.Highlighter.domain.DataCheckVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationBestScoreVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationTutorInfoVO;
+import yjc.wdb.Highlighter.domain.LectureEvaluationUpdateVO;
 import yjc.wdb.Highlighter.domain.LectureEvaluationVO;
 import yjc.wdb.Highlighter.domain.PageMaker;
 import yjc.wdb.Highlighter.domain.ParentVO;
 import yjc.wdb.Highlighter.domain.TutorListVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.TestResultVO;
 import yjc.wdb.Highlighter.service.LectureEvaluationService;
 import yjc.wdb.Highlighter.service.MyPageInfoService;
-import yjc.wdb.Highlighter.service.StudyRoomService;
-import yjc.wdb.Highlighter.service.testResultService;
-
 
 @Controller
 public class LectureEvaluationController {
@@ -37,11 +36,8 @@ public class LectureEvaluationController {
 	@Inject
 	private LectureEvaluationService service;
 	@Inject
-	private StudyRoomService studyRoomService;
-	@Inject
 	private MyPageInfoService myPageService;
-	@Inject
-	private testResultService testResultService;
+	
 	
 	@RequestMapping(value="/LectureEvaluation", method = RequestMethod.GET)
 	public String LectureEvaluation(@ModelAttribute("cri")Criteria cri, Model model) throws Exception{
@@ -145,52 +141,115 @@ public class LectureEvaluationController {
 	}
 	
 	@RequestMapping(value = "classSTManagement3", method = RequestMethod.GET)
-	public @ResponseBody Map<String, Object> classSTManagement(@RequestParam("ext_id") String ext_id,@RequestParam("user_id") String user_id,Model model,HttpSession session) throws Exception {
-		
-		String userid=(String) session.getAttribute("id");//로그인 한 사람의 아이디
-		String stu_id=user_id; //해당 학생의 아이디
-		List<String> userList=myPageService.selectStuId(ext_id);
+	public @ResponseBody Map<String, Object> classSTManagement(@RequestParam("ext_id") String ext_id,@RequestParam("user_id") String user_id,Model model, TestResultVO trVO) throws Exception {
 		
 		Map<String, Object> map = new HashMap<>();
+		List<HashMap> userResultList = service.userResult(trVO);
 		
-		// model.addAttribute("ext_id",ext_id);
-		// model.addAttribute("stu_id",stu_id);
+		trVO.setExt_id(ext_id);
+		trVO.setUser_id(user_id);
+		List<HashMap> testResultList = service.testResult(trVO);
+		JSONObject jsonObj1 = new JSONObject();
+		JSONArray jsonArr1 = new JSONArray();
+		JSONObject jsonObj2 = new JSONObject();
+		JSONArray jsonArr2 = new JSONArray();
+		JSONObject total1;
+		JSONObject total2;
+		JSONObject check1 = new JSONObject();
+		JSONObject check2 = new JSONObject();
+		JSONObject check3 = new JSONObject();
+		int count = 0;
 		
-		// User_InfoVO listProfile = myPageService.selectUserInfo(stu_id);
-
-		// model.addAttribute("info",myPageService.getUserInfo(ext_id));
-		// model.addAttribute("listProfile",listProfile);
-
-		List<HashMap> ListWeeksCorrect = testResultService.ListWeeksCorrect(stu_id,ext_id); // 수강학생 관리 페이지 주차 시험일 점수 오답노트 가져오는것
-		
-		// model.addAttribute("ListWeeksCorrect",ListWeeksCorrect);
-		//그래프 구하는 부분
-		List<HashMap> StudentList = studyRoomService.selectStuTestResult(user_id);
-		
-		JSONObject jsonMain = new JSONObject();
-		JSONArray jArray = new JSONArray();
-		for(int i=0; i<StudentList.size(); i++)
+		for(int i=0; i<testResultList.size(); i++)
 		{
-			JSONObject row = new JSONObject();
+			int week = Integer.parseInt(testResultList.get(i).get("week").toString());
+			int resultCheck;
+			int totalCheck;
 			
-			String substr = StudentList.get(i).get("test_id").toString();
-			row.put("times",substr.substring(8, 9)+"회차");
-					
-			row.put("점수", StudentList.get(i).get("count").toString());
-			jArray.add(i,row);
+			String prob_answ = testResultList.get(i).get("prob_answ").toString();
+			String stu_result = testResultList.get(i).get("stu_result").toString();
+			if(check1.get(week) == null){
+				resultCheck=0;
+				totalCheck=0;
+				check3.put(count, week);
+				count++;
+			}
+			else{
+				resultCheck = (int) check1.get(week);
+				totalCheck = (int) check2.get(week);
+			}
+				if(prob_answ.equals(stu_result)){
+					resultCheck++;
+					totalCheck++;
+					check1.put(week, resultCheck);
+					check2.put(week, totalCheck);
+				}else{
+					totalCheck++;
+					check1.put(week, resultCheck);
+					check2.put(week, totalCheck);
+				}
 		}
-		jsonMain.put("sendData",jArray);
-		// model.addAttribute("json",jsonMain.get("sendData"));
+
+		for(int i=0; i<count; i++){
+			total1 = new JSONObject();
+			total2 = new JSONObject();
+			
+			total1.put("회차", (i+1)+"회차");
+			total1.put("주차", check3.get(i));
+			total1.put("정답 수", check1.get(check3.get(i)));
+			total1.put("문제 수", check2.get(check3.get(i)));
+			
+			String testDate = userResultList.get(i).get("test_date").toString();
+			total2.put("score", check1.get(check3.get(i)));
+			total2.put("total", check2.get(check3.get(i)));
+			total2.put("testDate", testDate);
+			total2.put("week", check3.get(i));
+
+			jsonArr1.add(i, total1);
+			jsonArr2.add(i, total2);
+		}
+		jsonObj1.put("data", jsonArr1);
+		jsonObj2.put("data", jsonArr2);
+		map.put("data", jsonObj1.get("data"));
+		map.put("data2", jsonObj2.get("data"));
 		
-		
-		map.put("info", myPageService.getUserInfo(ext_id));
-		map.put("ListWeeksCorrect", testResultService.ListWeeksCorrect(stu_id,ext_id));
-		map.put("json", jsonMain.get("sendData"));
-		
-		System.out.println("info : " + myPageService.getUserInfo(ext_id));
-		System.out.println("ListWeeksCorrect : " + ListWeeksCorrect);
-		System.out.println("json : " + jsonMain.get("sendData"));
-		
+		Map<String, Object> calparam = new HashMap<>();
+		List<HashMap> calList = service.calendarList(trVO);
+		map.put("calList", calList);
 		return map;
 	}
+	
+	@RequestMapping(value="/dataCheck", method = RequestMethod.GET)
+	public @ResponseBody int dataCheck(DataCheckVO vo, @RequestParam("ext_id") String ext_id, @RequestParam("user_id") String user_id) throws Exception{
+		vo.setExt_id(ext_id);
+		vo.setUser_id(user_id);
+		int data = service.dataCheck(vo);
+		return data;
+	}
+	
+	@RequestMapping(value="/dataUpload", method = RequestMethod.POST)
+	public @ResponseBody void dataUpload(LectureEvaluationUpdateVO vo, @RequestParam("ext_id") String ext_id, @RequestParam("user_id") String user_id, @RequestParam("score") String score, @RequestParam("content") String content) throws Exception{
+		vo.setExt_id(ext_id);
+		vo.setUser_id(user_id);
+		vo.setEvaluation_content(content);
+		vo.setEvaluation_grade(score);
+		service.create(vo);
+	}
+	
+/*	
+	CREATE TABLE `lecture_evaluation` (
+			`ext_id` VARCHAR(20) NOT NULL,
+			`user_id` VARCHAR(20) NOT NULL,
+			`evaluation_content` VARCHAR(500) NULL DEFAULT NULL,
+			`evaluation_grade` DOUBLE NULL DEFAULT NULL
+		)
+		COLLATE='utf8_general_ci'
+		ENGINE=InnoDB
+		;
+*/
+/*	
+	select ifnull(avg(evaluation_grade), 0)
+	from lecture_evaluation
+	where ext_id = 0103003
+*/	
 }
