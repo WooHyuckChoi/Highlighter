@@ -35,7 +35,7 @@
 <style type="text/css">
 /* 수강 정보 관리 */
    .toggler { width: 500px; height: 200px; position: relative; }
-   #button { float:left; position:relative; width:60px; height:46px; background:url(./resources/img/button1_fix.gif); text-indent:-9999px; cursor:pointer;}
+   #button { float:left; margin-top:160px; position:relative; width:70px; height:70px; background:url(./resources/img/next.png) no-repeat; text-indent:-9999px; cursor:pointer;}
    #effect { width: 500px; height: 135px;  position: fixed;  left:-300px; top:0%;}
    #content { width:300px; float:left; font: 28px/1.6 NanumBrushWeb; height:730%; background-color:rgba(0,0,0,0.9); color:white;}
 /* */
