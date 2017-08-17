@@ -51,16 +51,25 @@ public class MatchingServiceImpl implements MatchingService {
 		return dao.userSearchLog(user_id);
 	}
 
+	/* 자격증 여부*/
 	@Override
 	public int carrerYN(String ext_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.carrerYN(ext_id);
 	}
 
+	/* 유저의 이전 과외 기록 */
 	@Override
 	public List<Ext_InfoVO> userExtLog(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.userExtLog(user_id);
+	}
+
+	/* 진단 평가 작성 여부 */
+	@Override
+	public int evalCheck(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.evalCheck(user_id);
 	}
 
 	

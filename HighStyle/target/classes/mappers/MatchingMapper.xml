@@ -104,4 +104,11 @@ where e.ext_id in (select ext_id from
 and e.user_id = u.user_id
 </select>
 
+<!-- 진단 평가 작성 여부 -->
+<select id="evalCheck" resultType="int">
+select count(*)
+from diag_eval
+where user_id = #{user_id}
+</select>
+
 </mapper>

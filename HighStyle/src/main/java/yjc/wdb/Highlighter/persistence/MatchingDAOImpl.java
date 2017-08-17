@@ -68,6 +68,13 @@ public class MatchingDAOImpl implements MatchingDAO {
 		return session.selectList(namespace+".userExtLog", user_id);
 	}
 
+	/* 진단 평가 작성 여부 */
+	@Override
+	public int evalCheck(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".evalCheck", user_id);
+	}
+
 	
 
 

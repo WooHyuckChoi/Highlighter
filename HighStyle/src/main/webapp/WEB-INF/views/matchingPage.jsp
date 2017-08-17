@@ -460,7 +460,25 @@ $("#alignMatching").on("click", function(){ //맞춤매칭
 	window.location.href="matchingPage";
 });
 $("#diagnosticMatching").on("click", function(){ //진단매칭
-	 window.open("http://www.naver.net", "진단평가", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+	var user_grade = '${user_grade}';
+	
+	if(user_grade == "student"){
+		$.ajax({
+			url : 'evalCheck',
+			method : 'GET',
+			success:function(data){
+				if(data == 0){
+					window.open("DiagnosticEval", "진단평가", "width=780, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  	
+				}
+				else{
+						
+				}
+			}
+		});
+	}
+	else{
+		alert("학생 회원만 이용가능합니다.");
+	}
 });
 
 function applicationClass(ext_id, user_id){

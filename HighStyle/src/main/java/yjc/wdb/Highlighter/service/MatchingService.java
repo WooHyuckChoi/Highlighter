@@ -27,4 +27,7 @@ public interface MatchingService {
 	
 	/* 유저의 이전 과외 기록 */
 	public List<Ext_InfoVO> userExtLog(String user_id)throws Exception;
+	
+	/* 진단 평가 작성 여부 */
+	public int evalCheck(String user_id)throws Exception;
 }

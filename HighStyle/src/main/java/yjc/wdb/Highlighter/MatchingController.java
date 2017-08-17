@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.tomcat.util.collections.SynchronizedStack;
@@ -15,6 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.user_SearchLogVO;
@@ -485,5 +488,21 @@ public class MatchingController {
 	public List<HashMap<String,String>> carrerWeight(List<HashMap<String, String>> sortUserExtLog)throws Exception{
 		
 		return sortUserExtLog;
+	}
+	
+	@RequestMapping(value = "/evalCheck", method = RequestMethod.GET)
+	@ResponseBody
+	public int evalCheck(HttpSession session)throws Exception{
+		String user_grade = String.valueOf(session.getAttribute("user_grade"));
+		String user_id = String.valueOf(session.getAttribute("id"));
+		
+		int evalCheck = matchingService.evalCheck(user_id);
+		System.out.println(evalCheck);
+		return evalCheck;
+	}
+	
+	@RequestMapping(value = "/DiagnosticEval", method = RequestMethod.GET)
+	public void DiagnosticEval()throws Exception{
+		
 	}
 }
