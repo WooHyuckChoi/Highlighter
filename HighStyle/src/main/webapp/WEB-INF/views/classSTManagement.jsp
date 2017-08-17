@@ -455,37 +455,37 @@ $("document").ready(function(){
 		});
 	</script>
 	
-<div id="effect" >
-	<div id="content">
-		<div style="font-size:15px;"><%-- <img src="displayFile?fileName=${list.prof_photo }" style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; "> --%>[${user_name}] 강사님 </div>
-		<div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px; text-align: center; ">학생목록</div>
-		<hr />
-		<c:forEach items="${info }" var="info">
-			<div id="infoWrap">
-				<%-- <img src="displayFile?fileName=${info.prof_photo }" /> --%>
-				<p>${info.user_name}</p>
-				<a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">바로가기</a>
-			</div>
-		</c:forEach>
+	<div id="effect" >
+		<div id="content">
+			<div style="font-size:15px;"><%-- <img src="displayFile?fileName=${list.prof_photo }" style="width:50px; height:50px; border:1px solid #626262; margin:10px;border-radius: 50px; "> --%>[${user_name}] 강사님 </div>
+			<div style="margin:10px; height:30px; font-size:13px; position:relative; font-size:20px; text-align: center; ">학생목록</div>
+			<hr />
+			<c:forEach items="${info }" var="info">
+				<div id="infoWrap">
+					<%-- <img src="displayFile?fileName=${info.prof_photo }" /> --%>
+					<p>${info.user_name}</p>
+					<a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">바로가기</a>
+				</div>
+			</c:forEach>
+		</div>
+		<div id="button">
+			<p><a href="#">Toggle</a></p>
+		</div>
+		
+		<script>
+			jQuery(function() {
+				jQuery( "#button" ).toggle(
+					function() {
+						jQuery( "#effect" ).animate({left: 0}, 500 );
+						jQuery( "#button" ).css({"background":"url(./resources/img/button2.gif)"});
+					},
+					function() {
+						jQuery( "#effect" ).animate({left: '-300px'}, 500 );
+						jQuery( "#button" ).css({"background":"url(./resources/img/button1.gif)"});
+					}
+				);
+			});
+		</script>
 	</div>
-	<div id="button">
-		<p><a href="#">Toggle</a></p>
-	</div>
-	
-	<script>
-		jQuery(function() {
-			jQuery( "#button" ).toggle(
-				function() {
-					jQuery( "#effect" ).animate({left: 0}, 500 );
-					jQuery( "#button" ).css({"background":"url(./resources/img/button2.gif)"});
-				},
-				function() {
-					jQuery( "#effect" ).animate({left: '-300px'}, 500 );
-					jQuery( "#button" ).css({"background":"url(./resources/img/button1.gif)"});
-				}
-			);
-		});
-	</script>
-</div>
 </body>
 </html>

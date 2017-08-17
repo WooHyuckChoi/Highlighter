@@ -10,7 +10,7 @@ import yjc.wdb.Highlighter.domain.stu_infoVO;
 
 public interface StudyRoomService 
 {
-public Ext_InfoVO Ext_read(String ext_id) throws Exception;
+	public Ext_InfoVO Ext_read(String ext_id) throws Exception;
 	
 	//강의 열기 및 닫기
 	public void updateOpenStat(HashMap<String, String> vo) throws Exception;
@@ -28,4 +28,6 @@ public Ext_InfoVO Ext_read(String ext_id) throws Exception;
 	
 	//학습평가 리스트
 	public List<stu_infoVO> calendarList(Map<String,String> vo) throws Exception;
+	
+	public Integer countExtStudent(String ext_id) throws Exception;
 }

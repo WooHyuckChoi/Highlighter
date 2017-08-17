@@ -78,5 +78,11 @@ public class StudyRoomServiceImpl implements StudyRoomService
 		// TODO Auto-generated method stub
 		return dao.calendarList(vo);
 	}
+
+	@Override
+	public Integer countExtStudent(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.countExtStudent(ext_id);
+	}
 	
 }

@@ -48,7 +48,9 @@
 	
 	<!-- morris CSS -->
 	<link rel="stylesheet" href="./resources/morris/morris.css">
-
+	
+	<!-- ico -->
+	<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
 </head>
 
 <body>
@@ -58,7 +60,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="/Highlighter">
-					<img src="./resources/img/logo.png" alt="Logo">
+					<img src="./resources/img/blue_Logo.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -220,7 +222,7 @@
 														<img class="img-responsive" src="./resources/unify/assets/img/main/img3.jpg" alt="">
 													</div>
 													<div class="news-v2-desc">
-														<h3><a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">${info.user_name }</a></h3>
+														<h3><a href="/Highlighter/classSTManagementFix?ext_id=${ext_id }&user_id=${info.user_id}">${info.user_name }</a></h3>
 													</div>
 												</div>
 											</c:forEach>

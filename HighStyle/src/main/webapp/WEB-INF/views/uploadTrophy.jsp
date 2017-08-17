@@ -437,7 +437,7 @@
          </div><!--/copyright-->
       </div>
       <!--=== End Footer Version 1 ===-->
-	</div><!--/End Wrapepr-->
+	<!--/End Wrapepr-->
 
 	<!-- JS Global Compulsory -->
 	<script type="text/javascript"

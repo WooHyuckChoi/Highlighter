@@ -103,4 +103,12 @@
 			  user_id = #{user_id}
 	]]>
 </select>
+
+<!-- 해당 과외의 학생 수  -->
+<select id="countExtStu" resultType="int">
+	select count(user_id)
+	from app_class
+	where ext_id = #{ext_id} and
+	reg_stus = '결제완료';
+</select>
 </mapper>
