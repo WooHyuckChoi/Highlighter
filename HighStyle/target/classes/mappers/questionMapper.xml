@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.questionMapper">
+	
+	<insert id="create">
+		insert into hi_question(question_id, question_title, question_content, user_name)
+					values(#{question_id},#{question_title},#{question_content},#{user_name})
+	</insert>
+	
+	<select id="read" resultType="QuestionVO">
+		select
+			question_title, question_content, question_id, user_name
+		from
+			hi_question
+		where question_id = #{question_id}
+	</select>
+	
+	<select id="count" resultType="int">
+		select
+			count(question_id)
+		from 
+			hi_question
+	</select>
+	
+	<select id="select_question_id" resultType="String">
+		select
+			question_id
+		from
+			hi_question
+		order by question_id desc limit 1
+	</select>
+	
+	<update id="update">
+		update 
+			hi_question 
+		set 
+			question_title =#{question_title}, question_content =#{question_content}
+		where 
+			question_id = #{question_id}
+	</update>
+	
+	<delete id="delete">
+		delete 
+		from 
+			hi_question 
+		where 
+			question_id = #{question_id}
+	</delete>
+	
+	<select id="listAll" resultType="QuestionVO">
+		<![CDATA[
+			select
+				question_id, question_title, user_name
+			from
+				hi_question
+			where 
+				question_id > 0 
+			order by question_id desc
+		]]>
+	</select>
+	
+	<select id="listPage" resultType="QuestionVO">
+		<![CDATA[
+			select
+				question_id, question_title, user_name
+			from
+				hi_question
+			where 
+				question_id > 0 
+			order by question_id desc
+			limit #{page}, 10
+		]]>
+	</select>
+	
+	<select id="listCriteria" resultType="QuestionVO">
+		<![CDATA[
+			select
+				question_id, question_title, user_name
+			from
+				hi_question
+			where 
+				question_id > 0 
+			order by question_id desc
+			limit #{pageStart}, #{perPageNum}
+		]]>
+	</select>
+	
+	<select id="countPaging" resultType="int">
+		<![CDATA[
+			select
+				count(question_id)
+			from
+				hi_question
+			where 
+				question_id > 0 
+		]]>
+	</select>
+</mapper>

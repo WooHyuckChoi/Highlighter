@@ -26,5 +26,7 @@
 		<typeAlias alias="TutorListVO" type="yjc.wdb.Highlighter.domain.TutorListVO"/>
 		<typeAlias alias="TestResultVO" type="yjc.wdb.Highlighter.domain.TestResultVO"/>
 		<typeAlias alias="user_SearchLogVO" type="yjc.wdb.Highlighter.domain.user_SearchLogVO"/>
+		<typeAlias alias="QuestionVO" type="yjc.wdb.Highlighter.domain.QuestionVO"/>
+		<typeAlias alias="Question_ReplyVO" type="yjc.wdb.Highlighter.domain.Question_ReplyVO"/>
 	</typeAliases>
 </configuration>
