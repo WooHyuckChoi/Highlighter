@@ -244,7 +244,7 @@
 			
 			var form = $('<form class="form"></form>');
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluation")
+			form.attr("action", "./LectureEvaluation")
 			form.attr("method", "GET");
 			form.submit();
 			
@@ -320,7 +320,7 @@
 			var ext_idDiv = $(this).parent().children().eq(0);
 			form.append(ext_idDiv);
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluationRead");
+			form.attr("action", "./LectureEvaluationRead");
 			form.attr("method", "GET");
 			form.submit();
 		});
@@ -331,7 +331,7 @@
 			var searchIp = $(this).prev();
 			form.append(searchIp);
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluationUserSearch")
+			form.attr("action", "./LectureEvaluationUserSearch")
 			form.attr("method", "GET");
 			form.submit();
 		});
