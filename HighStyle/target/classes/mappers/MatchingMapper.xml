@@ -124,7 +124,7 @@ delete from diag_eval where user_id = #{user_id}
 </delete>
 
 <!-- 회원의 진단 평가 기록 조회 -->
-<select id="selectEval" resultType="diag_evalVO">
+<select id="selectEval" resultType="Diag_EvalVO">
 select * from diag_eval where user_id = #{user_id}
 </select>
 </mapper>
