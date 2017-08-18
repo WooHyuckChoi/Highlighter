@@ -545,7 +545,7 @@
 					<%-- <img src="displayFile?fileName=${info.prof_photo }" /> --%>
 					<p style="font-size: 14px;">${info.user_name}</p>
 					<a style="color:white; text-decoration: none;"
-						href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">바로가기</a>
+						href="/Highlighter/classSTManagementFix?ext_id=${ext_id }&user_id=${info.user_id}">바로가기</a>
 				</div>
 			</c:forEach>
 		</div>

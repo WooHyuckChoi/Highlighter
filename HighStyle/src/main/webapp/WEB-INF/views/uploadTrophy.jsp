@@ -628,8 +628,20 @@
 				contentType : false,
 				type : 'POST',
 				success : function(data) {
+					if(data == "false")
+					{
+						alert("이미 뱃지를 등록 하셨습니다.");
+						window.location.href="/Highlighter/trophy";
+					}
+					else if(data == "success")
+					{
+						alert("뱃지를 등록 하셨습니다.");
+						window.location.href="/Highlighter/trophy";
+					}
+				},
+				error : function(data)
+				{
 					alert(data);
-					window.location.href="/Highlighter/trophy";
 				}
 			});
 		});
