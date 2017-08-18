@@ -151,7 +151,7 @@ body{width:100%; margin:0px}
 			
 			var evaluationCheck = function(){
 				$.ajax({
-					url : "/Highlighter/dataCheck",
+					url : "./dataCheck",
 					data : {
 						ext_id : ext_id,
 						user_id : user_id
@@ -174,7 +174,7 @@ body{width:100%; margin:0px}
 			
 			var test_result = function(){
 				 $.ajax({
-						url : "/Highlighter/classSTManagement3",
+						url : "./classSTManagement3",
 						data : {
 							ext_id : ext_id,
 							user_id : user_id
@@ -330,7 +330,7 @@ body{width:100%; margin:0px}
 			var score = $("#score").val();
 			var content = $("#evaluationContent").val();
 			$.ajax({
-				url : "/Highlighter/dataUpload",
+				url : "./dataUpload",
 				type : "POST",
 				data : {
 					ext_id : ext_id,
