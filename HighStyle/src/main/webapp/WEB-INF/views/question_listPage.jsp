@@ -109,6 +109,208 @@
 	</style>
 </head>
 <body>
+<!-- 비회원 -->
+<c:if test="${id eq null}">
+	<div class="wrapper">
+		<!--=== Header ===-->
+		<div class="header">
+			<div class="container">
+				<!-- Logo -->
+				<a class="logo" href="/Highlighter">
+					<img src="./resources/img/blue_Logo.png" alt="Logo">
+				</a>
+				<!-- End Logo -->
+
+				<!-- Topbar -->
+				<div class="topbar">
+					<ul class="loginbar pull-right">
+						<%--<li class="topbar-devider"></li> 이거 그거임 구분 짝대기 --%>
+						
+					</ul>
+				</div>
+				<!-- End Topbar -->
+
+				<!-- Toggle get grouped for better mobile display -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bars"></span>
+				</button>
+				<!-- End Toggle -->
+			</div><!--/end container-->
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+				<div class="container">
+					<ul class="nav navbar-nav">
+						<!-- Home -->
+						<li class="dropdown-submenu">
+							<a href="/Highlighter">home</a>
+						</li>
+						<!-- End Home -->
+
+						<!-- teacher -->
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								강사
+							</a>
+							<ul class="dropdown-menu">
+								<!-- About Pages -->
+								<li class="dropdown-submenu">
+									<a href="#">강사 이용방법</a>
+								</li>
+								<!-- End About Pages -->
+
+								<!-- regist lecture -->
+								<li class="dropdown-submenu">
+									<a href="javascript:void(0);">과외등록</a>
+								</li>
+								<!-- End regist lecture -->
+
+								<!--  -->
+								<li class="dropdown-submenu">
+									<a href="javascript:void(0);">강사평가</a>
+								</li>
+								<!-- End  -->
+							</ul>
+						</li>
+						<!-- End teacher -->
+
+						<!-- Student -->
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								학생
+							</a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-submenu">
+									<a href="#">학생 이용방법</a>
+								</li>
+								<li class="dropdown-submenu">
+									<a href="#">과외 검색</a>
+								</li>
+							</ul>
+						</li>
+						<!-- End Student -->
+
+						<!-- Parents -->
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								학부모
+							</a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-submenu">
+									<a href="#">학부모 이용방법</a>
+								</li>
+							</ul>
+						</li>
+						<!-- End Parents -->
+						<li class="dropdown-submenu">
+							<a href="/Highlighter/question_listPage">사이트소개</a>
+						</li>
+						<!--  -->
+						<li class="dropdown-submenu">
+							<a href="/Highlighter/question_listPage">문의</a>
+						</li>
+						<!-- End Demo Pages -->
+					</ul>
+				</div><!--/end container-->
+			</div><!--/navbar-collapse-->
+		</div>
+		<!--=== End Header ===-->
+
+		<!--=== Profile ===-->
+		<div class="container content profile">
+			<div class="row">
+				<!--Left Sidebar-->
+				<div class="col-md-3 md-margin-bottom-40">
+					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+						<li id="StudyRoom" class="list-group-item">
+							<a href="/Highlighter/question_listPage"><i class="fa fa-bar-chart-o"></i> Question<br>문의</a>
+						</li>
+						<li class="list-group-item">
+							<a href="/Highlighter/question_listPage"><i class="fa fa-user"></i> 문의목록</a>
+						</li>
+						<li class="list-group-item">
+							<a href="/Highlighter/modifyMyInfo"><i class="fa fa-group"></i> 자주하는질문</a>
+						</li>
+					</ul>
+				</div>
+				<!--End Left Sidebar-->
+
+				<!-- Profile Content -->
+				<div class="col-md-9">
+					<div class="profile-body">
+						<!-- Lecture introduce and enter -->
+						<div id="classIntro">
+						<div class="box-footer" style="text-align: right">
+							<button id="noticeResi" type="submit" class="btn btn-no-writer">질문하기</button>
+						</div>
+							<span>이용 시 궁금하신 사항 있으시면 질문 해주세요.</span>
+						</div>
+						<!-- end row -->
+						<div class="profile-bio">
+							<div class="row">
+								<div class="col-md-12">
+						
+								</div>
+							</div>
+						</div><!--/end row-->
+
+						<hr>
+
+						<!-- end row -->
+						<div class="profile-bio">
+							<div class="row">
+								<div class="col-md-12">
+									<table class="type07">
+										<thead>
+											<tr>
+												<th style="width: 10px">NO.</th>
+												<th style="width: 1000px">문의 제목</th>
+												<th style="width: 100px">작성자</th>
+											</tr>
+										</thead>
+										<c:forEach items="${list}" var="QuestionVO">
+												<tbody>
+													<tr>
+														<th scope="row">${QuestionVO.question_id}</th>
+														<th scope="row"><a style="color: black" href='/Highlighter/question_readPage${pageMaker.makeQuery(pageMaker.cri.page)}&question_id=${QuestionVO.question_id}&user_name=${QuestionVO.user_name}'>${QuestionVO.question_title}</a></th>
+														<th scope="row">${QuestionVO.user_name}</th>
+													</tr>
+												</tbody>
+											</c:forEach>
+										</table>
+								</div>
+							</div>
+						</div><!--/end row-->
+						<div class="list_number" style="text-align:center">
+							<div class="list_n_menu">
+								<ul class="pagination">
+									<c:if test="${pageMaker.prev}">
+										<a style="color: #1279ff" href="/Highlighter/question_listPage${pageMaker.makeQuery(pageMaker.startPage - 1)}">&laquo;</a>
+									</c:if>
+								
+									<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+							
+									<c:out value="${pageMaker.cri.page == idx?'':''}"/>
+										<a style="color: #1279ff" href="/Highlighter/question_listPage${pageMaker.makeQuery(idx)}">${idx}</a>
+									</c:forEach>
+									
+									<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+										<a style="color: #1279ff" href="/Highlighter/question_listPage${pageMaker.makeQuery(pageMaker.endPage +1)}">&raquo;</a>
+									</c:if>
+								</ul>
+							</div>
+						</div>
+						<hr>
+					</div>
+				</div>
+					<!-- End Profile Content -->
+			</div>
+		</div>
+		<!--=== End Profile ===-->
+	</div>
+</c:if>
+<!-- 비회원 끝 -->
 <!-- 로그인 후/강사 -->
 <c:if test="${(id ne null) and (user_grade eq 'teacher')}">
 	<div class="wrapper">

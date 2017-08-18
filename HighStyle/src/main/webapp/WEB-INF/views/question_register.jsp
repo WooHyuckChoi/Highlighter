@@ -278,7 +278,7 @@
 											<input maxlength="20" placeholder="최대 20글자 까지 가능합니다!" type="text" id="form-field-1" name="question_title" class="col-xs-10 col-sm-5" style="width: 570px; height: 30px" />
 										</div>
 									</div>
-									<br>						
+									<br><br>						
 									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1-1"> 문의 내용 </label>
 										<div class="col-sm-9">

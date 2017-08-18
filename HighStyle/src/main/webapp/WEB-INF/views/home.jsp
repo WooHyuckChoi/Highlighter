@@ -227,7 +227,7 @@ div#locationSelect2{margin:0;}
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 <!-- 로그인 전 화면 -->
-<c:if test="${id eq null}">
+<c:if test="${(id eq null)}">
 <div id="home" style="position:relative; float:left; width:100%">
 <div class="jumbotron masthead">
   <div class="splash"> <img src="./resources/img/rrrr.png" alt=""> </div>
@@ -265,6 +265,7 @@ div#locationSelect2{margin:0;}
                   </ul>
                 </li>
                 <li><a href="introduce">사이트 소개</a> </li>
+                <li><a href="question_listPage">문의</a> </li>
               </ul>
             </div>
           </div>
@@ -357,11 +358,12 @@ div#locationSelect2{margin:0;}
         </div>
     </div> 
 </div>
+</div>
 </c:if>
 <!-- 로그인 전 끝 -->
 
-<!-- 로그인 후/강사 -->
-<c:if test="${(id ne null) and (user_grade eq 'teacher')}">
+<!-- 로그인 후/강사 --><!-- 관리자도 -->
+<c:if test="${(id ne null) and (user_grade eq 'teacher') or (user_grade eq 'admin')}">
 <div style="">
 <!--  -->
 <div id="home" style="position:relative; float:left; width:100%">
@@ -450,8 +452,9 @@ div#locationSelect2{margin:0;}
 </div>
 <div class="container">
   <div class="marketing">
-  <h1> Let's Learn!</h1>
-    <p class="marketing-byline"> Need reasons to use this template? See below.</p>
+  <h2><strong>형광펜</strong>은?</h2>
+  <h4 style="opacity:0.7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. 실시간 온라인 과외 서비스를 지원하여 언제 어디서나 강의를 구하고 진행 할 수 있습니다.</h4>
+  <h4 style="opacity:0.7">2. 검색기능과 매칭기능을 서비스하여 본인에게 딱 맞는 강사와 학생을 구 할 수 있습니다.</h4>
     <hr class="soften">
     <div class="row-fluid">
       <div class="span4"> <img src="./resources/img/responsive.png" alt="">
@@ -472,9 +475,26 @@ div#locationSelect2{margin:0;}
     </div>
     </div>
     </div>
-    <hr class="soften">
-    <hr class="soften1 copyhr">
-    <div class="span12">Copyright &copy; 2012. Greepit.com</div>
+    <!--=== Footer Version 1 ===-->
+      <div class="footer-v1">
+         <div class="footer">
+            <div class="container">
+               <div class="row">
+                  <!-- About -->
+                  <div class="col-md-3 md-margin-bottom-40">
+                     <a class="logo" href="/Highlighter"><img src="./resources/img/blue_Logo.png" alt="Logo"></a>
+                     <p>&nbsp;&nbsp;&nbsp;&nbsp;과외 중개 사이트가 아닌 매칭 사이트.</p>
+                     <p>&nbsp;&nbsp;&nbsp;&nbsp;온라인 과외 사이트</p>
+                     <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;2017 &copy;
+                        <a style="color: #1279ff" href="https://www.yjc.ac.kr/CmsHome/Class_01.jsp">YJC COMPUTER INFORMATION</a> | <a style="color: #1279ff" href="/Highlighter">WDB-A 3TEAM.</a>
+                     </p>
+                  </div><!--/col-md-3-->
+                  <!-- End About -->
+               </div>
+            </div>
+         </div><!--/footer-->
+      <!--=== End Footer Version 1 ===-->
     <div id="popup" class="Pstyle">
    <span class="b-close">X</span>
       <div class="content" style="height: auto; width: auto;">
@@ -582,6 +602,7 @@ div#locationSelect2{margin:0;}
       <p><a href="#">Toggle</a></p>
    </div>
 
+</div>
 </div>
 <!--  -->
 </c:if>
@@ -755,8 +776,9 @@ div#locationSelect2{margin:0;}
 </div>
 <div class="container">
   <div class="marketing">
-  <h1> Let's Learn!</h1>
-    <p class="marketing-byline"> Need reasons to use this template? See below.</p>
+  <h2><strong>형광펜</strong>은?</h2>
+  <h4 style="opacity:0.7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. 실시간 온라인 과외 서비스를 지원하여 언제 어디서나 강의를 구하고 진행 할 수 있습니다.</h4>
+  <h4 style="opacity:0.7">2. 검색기능과 매칭기능을 서비스하여 본인에게 딱 맞는 강사와 학생을 구 할 수 있습니다.</h4>
     <hr class="soften">
     <div class="row-fluid">
       <div class="span4"> <img src="./resources/img/responsive.png" alt="">
@@ -777,9 +799,26 @@ div#locationSelect2{margin:0;}
     </div>
     </div>
     </div>
-    <hr class="soften">
-    <hr class="soften1 copyhr">
-    <div class="span12">Copyright &copy; 2012. Greepit.com</div>
+    <!--=== Footer Version 1 ===-->
+      <div class="footer-v1">
+         <div class="footer">
+            <div class="container">
+               <div class="row">
+                  <!-- About -->
+                  <div class="col-md-3 md-margin-bottom-40">
+                     <a class="logo" href="/Highlighter"><img src="./resources/img/blue_Logo.png" alt="Logo"></a>
+                     <p>&nbsp;&nbsp;&nbsp;&nbsp;과외 중개 사이트가 아닌 매칭 사이트.</p>
+                     <p>&nbsp;&nbsp;&nbsp;&nbsp;온라인 과외 사이트</p>
+                     <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;2017 &copy;
+                        <a style="color: #1279ff" href="https://www.yjc.ac.kr/CmsHome/Class_01.jsp">YJC COMPUTER INFORMATION</a> | <a style="color: #1279ff" href="/Highlighter">WDB-A 3TEAM.</a>
+                     </p>
+                  </div><!--/col-md-3-->
+                  <!-- End About -->
+               </div>
+            </div>
+         </div><!--/footer-->
+      <!--=== End Footer Version 1 ===-->
     <div id="popup" class="Pstyle">
    <span class="b-close">X</span>
       <div class="content" style="height: auto; width: auto;">
@@ -937,6 +976,7 @@ div#locationSelect2{margin:0;}
          </div>
       </div>
    </div>
+</div>
 </div>
 <!-- 시간대 선택 팝업창_끝 -->
 <input type="hidden" value="n" id="subjected">
