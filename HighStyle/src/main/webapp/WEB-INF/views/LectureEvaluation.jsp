@@ -214,18 +214,18 @@
 		<ul>
 			<c:if test="${pageMaker.prev }">
 				<%-- <li><a href="test/LectureEvaluationListPage?page=${pageMaker.startPage - 1}">&laquo;</a></li> --%>
-				<li><a href="/Highlighter/LectureEvaluationListPage${pageMaker.makeQuery(pageMaker.startPage - 1) }">&laquo;</a></li>
+				<li><a href="./LectureEvaluationListPage${pageMaker.makeQuery(pageMaker.startPage - 1) }">&laquo;</a></li>
 			</c:if>
 			
 			<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage }" var="idx">
 				<li <c:out value="${pageMaker.cri.page == idx?'class =active':''}"/>>
-				<a class="pageDiv" href="/Highlighter/LectureEvaluationListPage?page=${idx}">${idx}</a>
+				<a class="pageDiv" href="./LectureEvaluationListPage?page=${idx}">${idx}</a>
 				</li>
 			</c:forEach>
 			
 			<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
 				<%-- <li><a href="test/LectureEvaluationListPage?page=${pageMaker.endPage +1}">&raquo;</a></li> --%>
-				<li><a href="/Highlighter/LectureEvaluationListPage${pageMaker.makeQuery(pageMaker.endPage + 1) }">&raquo;</a>
+				<li><a href="./LectureEvaluationListPage${pageMaker.makeQuery(pageMaker.endPage + 1) }">&raquo;</a>
 			</c:if>
 		</ul>
 	</div>
@@ -265,7 +265,7 @@
 			
 			var form = $('<form class="form"></form>');
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluation")
+			form.attr("action", "./LectureEvaluation")
 			form.attr("method", "GET");
 			form.submit();
 			
@@ -343,7 +343,7 @@
 			var ext_idDiv = $(this).parent().children().eq(0);
 			form.append(ext_idDiv);
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluationRead");
+			form.attr("action", "./LectureEvaluationRead");
 			form.attr("method", "GET");
 			form.submit();
 		});
@@ -354,7 +354,7 @@
 			var searchIp = $(this).prev();
 			form.append(searchIp);
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluationUserSearch")
+			form.attr("action", "./LectureEvaluationUserSearch")
 			form.attr("method", "GET");
 			form.submit();
 		});
