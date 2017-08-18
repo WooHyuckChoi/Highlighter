@@ -1284,7 +1284,7 @@ $(document).ready(function(){
                   var user_id = $("<input type='hidden' name='user_id' value='" + data[0].user_id + "'>");
                   form.append(user_id);
                   $("body").append(form);
-                  form.attr("action", "/Highlighter/classSTManagement2");
+                  form.attr("action", "./classSTManagement2");
                   form.attr("method", "GET");
                   form.submit();
                   
