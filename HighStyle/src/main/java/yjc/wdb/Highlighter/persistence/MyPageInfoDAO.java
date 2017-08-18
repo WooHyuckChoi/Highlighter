@@ -30,4 +30,6 @@ public interface MyPageInfoDAO
 	public String selectCarrerId(String user_id) throws Exception;
 	public List<CarrerVO> trophyListAll(String user_id) throws Exception;
 	public List<CarrerVO> batListAll(String user_id) throws Exception;
+	public String searchMark(String user_id) throws Exception;
+	public void updateMark(String user_id) throws Exception;
 }

@@ -142,4 +142,14 @@
 		where user_id=#{user_id} and
 			  subject is null
 	</select>
+	
+	<select id="searchMark" resultType="String">
+		select mark
+		from user_info
+		where user_id = #{user_id}
+	</select>
+	
+	<update id="updateMark">
+		update user_info set mark='y' where user_id = #{user_id}
+	</update>
 </mapper>

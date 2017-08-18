@@ -213,6 +213,9 @@
 								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
 							</li>
 							<li class="list-group-item">
+								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 오답노트</a>
+							</li>
+							<li class="list-group-item">
 								<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
 							</li>
 							<li class="list-group-item">
@@ -238,6 +241,9 @@
 							</li>
 							<li class="list-group-item">
 								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
+							</li>
+							<li class="list-group-item">
+								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 오답노트</a>
 							</li>
 							<li class="list-group-item">
 								<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
@@ -326,7 +332,7 @@
 														<td>수강학생 수</td>
 														<td>
 															<script>
-																var numclassReq = '${classMainList.num_class_req}';
+																var numclassReq = '${count_student}';
 																document.write(numclassReq);
 															</script>
 														</td>

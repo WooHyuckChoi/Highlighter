@@ -102,5 +102,15 @@ public class MyPageInfoServiceImpl implements MyPageInfoService
 		// TODO Auto-generated method stub
 		return dao.batListAll(user_id);
 	}
+	@Override
+	public String searchMark(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.searchMark(user_id);
+	}
+	@Override
+	public void updateMark(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		dao.updateMark(user_id);
+	}
 	
 }

@@ -296,22 +296,59 @@ public class MyPageController
 	
 	@ResponseBody
 	@RequestMapping(value="/uploadBat", method=RequestMethod.POST)
-	public ResponseEntity<String> Bat(MultipartFile file,String name,String organ,String user_id) throws Exception
+	public String Bat(MultipartFile file,String name,String organ,String user_id) throws Exception
 	{
 		String savedName=
 				uploadReviewFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
-		String carrer_id="B"+user_id;
 		String subject = null;
 		
-		CarrerVO vo= new CarrerVO();
-		vo.setAtt_file(savedName);
-		vo.setAgen_name(organ);
-		vo.setCarrer_id(carrer_id);
-		vo.setCarrer_name(name);
-		vo.setUser_id(user_id);
-		vo.setSubject(subject);
+		String carrer_id="";
+		int countTrophy = service.countTrophy(user_id);
 		
-		service.insertTrophyInfo(vo);
-		return new ResponseEntity<>(file.getOriginalFilename(),HttpStatus.CREATED);
+		String searchMark = service.searchMark(user_id);
+		System.out.println(searchMark);
+		if(searchMark == null)
+		{
+			if(countTrophy==0)
+			{
+				carrer_id = user_id+"00";
+			}
+			else
+			{
+				String carrerIdInDB = service.selectCarrerId(user_id);
+				String idCountString = carrerIdInDB.substring(carrerIdInDB.length()-2,carrerIdInDB.length()); //뒤에서 2자리 자르기
+				String idFrist=carrerIdInDB.substring(0,carrerIdInDB.length()-2);//처음부터 마지막2자리 전까지 자르기			
+	
+				int idCountInt = Integer.parseInt(idCountString); //정수형으로 변경
+				if(idCountInt < 9)
+				{
+					idCountInt++;
+					idCountString = "0"+Integer.toString(idCountInt);
+				}
+				else
+				{
+					idCountInt++;
+					idCountString = Integer.toString(idCountInt);
+					carrer_id = idFrist+idCountString;
+				}
+			}
+			
+			CarrerVO vo= new CarrerVO();
+			vo.setAtt_file(savedName);
+			vo.setAgen_name(organ);
+			vo.setCarrer_id(carrer_id);
+			vo.setCarrer_name(name);
+			vo.setUser_id(user_id);
+			vo.setSubject(subject);
+			
+			service.insertTrophyInfo(vo);
+			service.updateMark(user_id);
+			
+			return "success";
+		}
+		else
+		{
+			return "false";
+		}
 	}
 }

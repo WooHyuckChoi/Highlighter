@@ -31,4 +31,7 @@ public interface StudyRoomDAO
 	
 	//학습평가 리스트
 	public List<stu_infoVO> calendarList(Map<String,String> vo) throws Exception;
+	
+	//해당 과외의 학생의 수
+	public Integer countExtStudent(String ext_id) throws Exception;
 }

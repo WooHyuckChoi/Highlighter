@@ -48,7 +48,7 @@ public class StudyRoomController
 
 	@RequestMapping(value = "/newLecturePage", method = RequestMethod.GET)//classMain newLecturePage
 	public void classMain(@RequestParam("ext_id") String ext_id, Model model, HttpSession session) throws Exception {
-
+		
 		System.out.println("과외페이지");
 		model.addAttribute("classMainList", studyRoomService.Ext_read(ext_id));
 		model.addAttribute("ext_id", ext_id);
@@ -60,6 +60,8 @@ public class StudyRoomController
 		model.addAttribute("open_stus",studyRoomService.selectOpenStat(ext_id));
 		model.addAttribute("user_grade",studyRoomService.selectGrade(user_id));
 		
+		//회원수
+		model.addAttribute("count_student",studyRoomService.countExtStudent(ext_id));
 		//회원 등급
 		String user_grade = studyRoomService.selectGrade(user_id);
 		model.addAttribute("user_grade",user_grade);
@@ -231,5 +233,59 @@ public class StudyRoomController
 		model.addAttribute(user_id);
 		System.out.println(ext_id+user_id);
 		return "homeworkPage";
+	}
+
+	@RequestMapping(value = "classSTManagementFix", method = RequestMethod.GET)
+	public void classSTManagementFix(@RequestParam("ext_id") String ext_id,@RequestParam("user_id") String user_id,Model model,HttpSession session) throws Exception {
+		System.out.println("수강학생관리");
+		//String userid =req.getParameter("user_id");
+		String userid=(String) session.getAttribute("id");//로그인 한 사람의 아이디
+
+		String stu_id=user_id; //해당 학생의 아이디
+
+		//String stu_id=myPageService.selectStuId(ext_id);
+		List<String> userList=myPageService.selectStuId(ext_id);
+		//String stu_id=userList.get(0);
+		
+		model.addAttribute("ext_id",ext_id);
+		model.addAttribute("stu_id",stu_id);
+		//User_InfoVO listProfile = new User_InfoVO();
+		User_InfoVO listProfile = myPageService.selectUserInfo(stu_id);
+		//listProfile = service.profile(userid);
+
+		model.addAttribute("info",myPageService.getUserInfo(ext_id));
+		model.addAttribute("listProfile",listProfile);
+
+		List<HashMap> ListWeeksCorrect = testResultService.ListWeeksCorrect(stu_id,ext_id); // 수강학생 관리 페이지 주차 시험일 점수 오답노트 가져오는것
+		
+		//session.setAttribute("ListWeeksCorrect", ListWeeksCorrect);
+		model.addAttribute("ListWeeksCorrect",ListWeeksCorrect);
+		//그래프 구하는 부분
+		List<HashMap> StudentList = studyRoomService.selectStuTestResult(user_id);
+		/*model.addAttribute("stuName","\""+StudentList.get(0).get("user_name")+"\"");
+		System.out.println(StudentList);
+		System.out.println("\""+StudentList.get(0).get("user_name")+"\"");*/
+		
+		JSONObject jsonMain = new JSONObject();
+		JSONArray jArray = new JSONArray();
+		for(int i=0; i<StudentList.size(); i++)
+		{
+			JSONObject row = new JSONObject();
+			
+			String substr = StudentList.get(i).get("test_id").toString();
+			row.put("times",substr.substring(8, 9)+"회차");
+					
+			row.put("점수", StudentList.get(i).get("count").toString());
+			jArray.add(i,row);
+		}
+		jsonMain.put("sendData",jArray);
+		model.addAttribute("json",jsonMain.get("sendData"));
+		
+		// 학습평가 리스트
+		Map<String, String> calparam = new HashMap<>();
+		calparam.put("user_id", user_id);
+		calparam.put("ext_id", ext_id);
+		List<stu_infoVO> calList = studyRoomService.calendarList(calparam);
+		model.addAttribute("calList",calList);
 	}
 }

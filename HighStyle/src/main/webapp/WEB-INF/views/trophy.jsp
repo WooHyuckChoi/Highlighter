@@ -110,8 +110,7 @@
 				<!-- Toggle get grouped for better mobile display -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target=".navbar-responsive-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="fa fa-bars"></span>
+					<span class="sr-only">Toggle navigation</span> <span class="fa fa-bars"></span>
 				</button>
 				<!-- End Toggle -->
 			</div>
