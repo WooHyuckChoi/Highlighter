@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;
 
+import yjc.wdb.Highlighter.domain.Diag_EvalVO;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.user_SearchLogVO;
 import yjc.wdb.Highlighter.persistence.MatchingDAO;
@@ -72,8 +73,10 @@ public class MatchingServiceImpl implements MatchingService {
 		return dao.evalCheck(user_id);
 	}
 
-	
-
-	
-	
+	/* 진단 평가 등록 */
+	@Override
+	public void registerEval(Diag_EvalVO diag_evalVO) throws Exception {
+		// TODO Auto-generated method stub
+		dao.registerEval(diag_evalVO);
+	}	
 }

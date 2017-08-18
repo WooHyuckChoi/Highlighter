@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import yjc.wdb.Highlighter.domain.Diag_EvalVO;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.user_SearchLogVO;
 import yjc.wdb.Highlighter.service.MatchingService;
@@ -94,7 +95,7 @@ public class MatchingController {
 							count++;
 						}
 						model.addAttribute("fitMatching", fitMatching);
-						System.out.println(fitMatching);
+						//System.out.println(fitMatching);
 					}
 					
 				
@@ -497,12 +498,23 @@ public class MatchingController {
 		String user_id = String.valueOf(session.getAttribute("id"));
 		
 		int evalCheck = matchingService.evalCheck(user_id);
-		System.out.println(evalCheck);
+		//System.out.println(evalCheck);
 		return evalCheck;
 	}
 	
 	@RequestMapping(value = "/DiagnosticEval", method = RequestMethod.GET)
-	public void DiagnosticEval()throws Exception{
+	public void DiagnosticEval(HttpSession session)throws Exception{
+		session.setAttribute("DiagnosticEval", "fail");
+	}
+	
+	@RequestMapping(value = "/DiagnosticEval", method = RequestMethod.POST)
+	public String DiagnosticEvalPost(HttpSession session, Diag_EvalVO diag_evalVO)throws Exception{
+		String user_id = String.valueOf(session.getAttribute("id"));
+		diag_evalVO.setUser_id(user_id);
+		matchingService.registerEval(diag_evalVO);
 		
+		session.setAttribute("DiagnosticEval", "success");
+		
+		return "DiagnosticEval";
 	}
 }

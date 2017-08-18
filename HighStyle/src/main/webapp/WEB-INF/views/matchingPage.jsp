@@ -163,7 +163,7 @@
 									</script>
 								</h4>
 								<h4> 수업료 : <b>${fitMatching.tuit_fees}원/(1시간)</b></h4>
-								<p  style="font-size:13px; font-weight:100; height:80px; overflow:hidden; text-overflow: ellipsis;">${fitMatching.intro_class}</p>
+								<p style="font-size:13px; font-weight:100; height:80px; overflow:hidden; text-overflow: ellipsis;">${fitMatching.intro_class}</p>
 							</li>
 							</c:forEach>
 						</c:if>
@@ -471,7 +471,7 @@ $("#diagnosticMatching").on("click", function(){ //진단매칭
 					window.open("DiagnosticEval", "진단평가", "width=780, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  	
 				}
 				else{
-						
+					alert("이미 진단 평가 기록이 있습니다.");	
 				}
 			}
 		});

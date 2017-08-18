@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import yjc.wdb.Highlighter.domain.Diag_EvalVO;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.user_SearchLogVO;
 
@@ -30,4 +31,7 @@ public interface MatchingDAO {
 	
 	/* 진단 평가 작성 여부 */
 	public int evalCheck(String user_id)throws Exception;
+	
+	/* 진단 평가 등록 */
+	public void registerEval(Diag_EvalVO diag_evalVO)throws Exception;
 }

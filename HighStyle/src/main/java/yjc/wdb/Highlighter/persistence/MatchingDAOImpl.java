@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import yjc.wdb.Highlighter.domain.Diag_EvalVO;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.user_SearchLogVO;
 
@@ -73,6 +74,13 @@ public class MatchingDAOImpl implements MatchingDAO {
 	public int evalCheck(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace+".evalCheck", user_id);
+	}
+
+	/* 진단 평가 등록 */
+	@Override
+	public void registerEval(Diag_EvalVO diag_evalVO) throws Exception {
+		// TODO Auto-generated method stub
+		session.insert(namespace+".registerEval", diag_evalVO);
 	}
 
 	

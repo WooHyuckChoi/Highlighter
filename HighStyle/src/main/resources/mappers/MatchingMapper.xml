@@ -111,4 +111,12 @@ from diag_eval
 where user_id = #{user_id}
 </select>
 
+<!-- 진단 평가 등록 -->
+<select id="registerEval">
+insert into diag_eval(user_id, school, subject, stu_count, onoff, addr, class_count,
+class_time, day_week, private_time, private_date_time, gender, ext_way, say_teacher) 
+values(#{user_id}, #{school}, #{subject}, #{stu_count}, #{onoff}, #{addr}, #{class_count},
+#{class_time}, #{day_week}, #{private_time}, #{private_date_time}, #{gender}, #{ext_way}, #{say_teacher})
+</select>
+
 </mapper>
