@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.question_replyMapper">
+	
+	<insert id="re_create">
+		insert into hi_reply (question_id, reply_id, reply_content, user_name)
+		values (#{question_id},#{reply_id},#{reply_content},#{user_name})			
+	</insert>
+	
+	<delete id="re_delete">
+		delete 
+		from 
+			hi_reply
+		where 
+			reply_id = #{reply_id}
+	</delete>
+	
+	<select id="re_list" resultType="Question_ReplyVO">
+		<![CDATA[
+			select
+				*
+			from
+				hi_reply
+			where 
+				question_id = #{question_id}
+			order 
+				by reply_id desc
+		]]>
+	</select>
+	
+	<select id="re_listPage" resultType="Question_ReplyVO">
+		select
+			*
+		from
+			hi_reply
+		where
+			question_id = #{question_id}
+		order 
+			by reply_id desc
+		limit #{cri.pageStart}, #{cri.perPageNum}
+	</select>
+	
+	
+	<select id="re_count" resultType="String">
+		select 
+			count(question_id) 
+		from 
+			hi_reply 
+		where 
+			question_id =#{question_id}
+	</select>
+	
+</mapper>
