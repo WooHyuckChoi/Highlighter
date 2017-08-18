@@ -1268,7 +1268,7 @@ $(document).ready(function(){
       }
       else{
          $.ajax({
-            url : "/Highlighter/parentLogin",
+            url : "./parentLogin",
             type : "GET",
             data : {
                childPhone : childPhone,
