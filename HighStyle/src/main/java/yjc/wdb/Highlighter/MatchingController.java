@@ -509,7 +509,13 @@ public class MatchingController {
 	
 	@RequestMapping(value = "/DiagnosticEval", method = RequestMethod.POST)
 	public String DiagnosticEvalPost(HttpSession session, Diag_EvalVO diag_evalVO)throws Exception{
+		
 		String user_id = String.valueOf(session.getAttribute("id"));
+		int evalCheck = matchingService.evalCheck(user_id);
+		
+		if(evalCheck == 1){
+			matchingService.deleteEval(user_id);
+		}
 		diag_evalVO.setUser_id(user_id);
 		matchingService.registerEval(diag_evalVO);
 		
@@ -517,4 +523,11 @@ public class MatchingController {
 		
 		return "DiagnosticEval";
 	}
+	
+	@RequestMapping(value="diagEvalResult", method = RequestMethod.GET)
+	public void diagEvalResult(HttpSession session)throws Exception{
+		String user_id = String.valueOf(session.getAttribute("id"));
+		
+	}
+	
 }

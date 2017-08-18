@@ -471,7 +471,14 @@ $("#diagnosticMatching").on("click", function(){ //진단매칭
 					window.open("DiagnosticEval", "진단평가", "width=780, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  	
 				}
 				else{
-					alert("이미 진단 평가 기록이 있습니다.");	
+					var evalConfirm = confirm("이미 진단 평가한 기록이 있습니다. 이전 기록으로 매칭 받기 원하신다면 [확인]버튼을, 재 평가 하고 싶으시다면 [취소]를 눌러주세요.");	
+					
+					if(evalConfirm == true){
+						window.location.href="diagEvalResult";
+					}
+					else{
+						window.open("DiagnosticEval", "진단평가", "width=780, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" ); 
+					}
 				}
 			}
 		});

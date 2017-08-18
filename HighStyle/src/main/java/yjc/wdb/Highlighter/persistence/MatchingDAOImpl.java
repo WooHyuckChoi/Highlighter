@@ -83,6 +83,12 @@ public class MatchingDAOImpl implements MatchingDAO {
 		session.insert(namespace+".registerEval", diag_evalVO);
 	}
 
+	@Override
+	public void deleteEval(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		session.delete(namespace+".deleteEval", user_id);
+	}
+
 	
 
 

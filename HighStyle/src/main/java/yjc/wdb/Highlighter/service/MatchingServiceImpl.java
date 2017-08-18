@@ -78,5 +78,11 @@ public class MatchingServiceImpl implements MatchingService {
 	public void registerEval(Diag_EvalVO diag_evalVO) throws Exception {
 		// TODO Auto-generated method stub
 		dao.registerEval(diag_evalVO);
+	}
+
+	@Override
+	public void deleteEval(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		dao.deleteEval(user_id);
 	}	
 }

@@ -302,7 +302,7 @@ footer > button{
 						</fieldset>
 					</div>
 						<footer>
-							<button type="button" id="submitEval"class="btn-u">진단 시작</button>
+							<button type="button" id="submitEval"class="btn-u">평가 저장</button>
 							<button type="button" id="prevEval" class="btn-u btn-u-default" onclick="window.history.back();">이전</button>
 							<button type="button" id="nextEval" class="btn-u btn-u-default" onclick="window.history.back();">다음</button>
 						</footer>

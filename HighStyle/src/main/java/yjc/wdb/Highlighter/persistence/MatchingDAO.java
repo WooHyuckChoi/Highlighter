@@ -34,4 +34,7 @@ public interface MatchingDAO {
 	
 	/* 진단 평가 등록 */
 	public void registerEval(Diag_EvalVO diag_evalVO)throws Exception;
+	
+	/* 진단 평가 삭제 */
+	public void deleteEval(String user_id)throws Exception;
 }
