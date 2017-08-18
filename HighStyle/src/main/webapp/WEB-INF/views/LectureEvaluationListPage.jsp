@@ -267,7 +267,7 @@ pageEncoding="UTF-8"%>
 			
 			var form = $('<form class="form"></form>');
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluation")
+			form.attr("action", "./LectureEvaluation")
 			form.attr("method", "GET");
 			form.submit();
 			
@@ -307,7 +307,7 @@ pageEncoding="UTF-8"%>
 				
 				
 			    $.ajax({
-			        url : "/Highlighter/LectureEvaluationBestScore",
+			        url : "./LectureEvaluationBestScore",
 			        data : {
 			            ext_id : ext_id
 			        },
@@ -417,7 +417,7 @@ pageEncoding="UTF-8"%>
 			var ext_idDiv = $(this).parent().children().eq(0);
 			form.append(ext_idDiv);
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluationRead");
+			form.attr("action", "./LectureEvaluationRead");
 			form.attr("method", "GET");
 			form.submit();
 		});
@@ -428,7 +428,7 @@ pageEncoding="UTF-8"%>
 			var searchIp = $(this).prev();
 			form.append(searchIp);
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluationUserSearch")
+			form.attr("action", "./LectureEvaluationUserSearch")
 			form.attr("method", "GET");
 			form.submit();
 		});
