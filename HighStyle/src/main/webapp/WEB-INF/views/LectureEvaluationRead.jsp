@@ -202,7 +202,7 @@
 			
 			var form = $('<form class="form"></form>');
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluation")
+			form.attr("action", "./LectureEvaluation")
 			form.attr("method", "GET");
 			form.submit();
 			
@@ -261,7 +261,7 @@
 			var ext_idDiv = $(this).parent().parent().children().eq(0);
 			form.append(ext_idDiv);
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluationDetail");
+			form.attr("action", "./LectureEvaluationDetail");
 			form.attr("method", "GET");
 			form.submit();
 		});
@@ -273,14 +273,14 @@
 			var searchIp = $(this).prev();
 			form.append(searchIp);
 			$("body").append(form);
-			form.attr("action", "/Highlighter/LectureEvaluationUserSearch")
+			form.attr("action", "./LectureEvaluationUserSearch")
 			form.attr("method", "GET");
 			form.submit();
 		});
 		 
 		 
 		$.ajax({
-	        url : '/Highlighter/LectureEvaluationBestScore',
+	        url : './LectureEvaluationBestScore',
 	        data : {
 	            ext_id : ext_id
 	        },
