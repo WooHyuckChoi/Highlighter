@@ -84,5 +84,23 @@ public class MatchingServiceImpl implements MatchingService {
 	public void deleteEval(String user_id) throws Exception {
 		// TODO Auto-generated method stub
 		dao.deleteEval(user_id);
+	}
+
+	@Override
+	public Diag_EvalVO selectEval(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectEval(user_id);
+	}
+
+	@Override
+	public List<HashMap> selectExt() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectExt();
+	}
+
+	@Override
+	public List<HashMap<String, String>> evalAfterTimetable(List<String> selectTimetable) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.evalAfterTimetable(selectTimetable);
 	}	
 }

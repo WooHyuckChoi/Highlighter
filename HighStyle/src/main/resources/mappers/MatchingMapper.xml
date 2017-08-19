@@ -51,7 +51,8 @@ group by ext_id, day_week
 <!-- 겹치는 시간표 제외한 과외 LIST  -->
 <select id="removedList" resultMap="removedListMap" >
 <![CDATA[
-select e.*, u.college, u.ext_exp, u.gender, u.mark, u.user_name
+select substr(e.ext_id,1,1) AS onoff, substr(e.ext_id,2,1) AS pg, substr(e.ext_id,3,2) AS subject,
+e.*, u.college, u.ext_exp, u.gender, u.mark, u.user_name, u.prof_photo
 from ext_info e, user_info u
 where e.ext_id not in  
 ]]>
@@ -72,6 +73,10 @@ and e.user_id = u.user_id
 	<result property="gender" column="gender"></result>
 	<result property="mark" column="mark"></result>
 	<result property="extCount" column="extCount"></result>
+	<result property="onoff" column="onoff"></result>
+	<result property="pg" column="pg"></result>
+	<result property="subject" column="subject"></result>
+	<result property="prof_photo" column="prof_photo"></result>
 </resultMap>
 
 <select id="userSearchLogCount" resultType="int">
@@ -127,4 +132,61 @@ delete from diag_eval where user_id = #{user_id}
 <select id="selectEval" resultType="Diag_EvalVO">
 select * from diag_eval where user_id = #{user_id}
 </select>
+
+<select id="selectExt" resultMap="selectExtMap">
+<![CDATA[
+select u.user_id AS user_id, u.user_name AS user_name, u.college AS college, 
+	u.college_dept AS college_dept, substr(e.ext_id,1,1) AS onoff, 
+	substr(e.ext_id,2,1) AS pg, substr(e.ext_id,3,2) AS subject,
+	e.class_poss_area AS class_poss_area,
+	SUBSTR(e.ext_id,3,2) AS subject, e.tuit_fees AS tuit_fees, e.ext_obj AS ext_obj,
+	u.ext_exp AS ext_exp, u.gender AS gender, e.ext_id AS ext_id, u.prof_photo AS prof_photo
+	from ext_info e, user_info u 
+	where e.user_id = u.user_id
+	and e.str_class_date > now() 
+	order by e.ext_id > 0
+]]>
+</select>
+
+<resultMap id="selectExtMap" type="java.util.HashMap">
+	<result property="user_id" column="userid"></result>
+	<result property="user_name" column="username"></result>
+	<result property="onoff" column="onoff"></result>
+	<result property="pg" column="pg"></result>
+	<result property="subject" column="subject"></result>
+	<result property="college" column="college"></result>
+	<result property="college_dept" column="college_dept"></result>
+	<result property="class_poss_area" column="class_poss_area"></result>
+	<result property="subject" column="subject"></result>
+	<result property="tuit_fees" column="tuit_fees"></result>
+	<result property="ext_obj" column="ext_obj"></result>
+	<result property="ext_exp" column="ext_exp"></result>
+	<result property="gender" column="gender"></result>
+	<result property="ext_id" column="ext_id"></result>
+</resultMap>
+
+<!-- 진단 평가 가중치 부여 후 과외 시간표 불러오기 -->
+<select id="evalAfterTimetable" resultMap="evalAfterTimetableMap">
+<![CDATA[
+select ext_id, group_concat(distinct(day_week)) AS day_weeks, 
+group_concat(distinct(class_str_time)) AS class_str_time, 
+group_concat(distinct(class_end_time)) AS class_end_time
+from ext_timetable
+where ext_id in 
+]]>
+	<foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+    	#{item}
+	</foreach>
+<![CDATA[
+group by ext_id, day_week
+]]>
+</select>
+
+<!-- 진단 평가 가중치 부여 후 과외 시간표 불러오기 : Map -->
+<resultMap id="evalAfterTimetableMap" type="java.util.HashMap">
+	<result property="ext_id" column="ext_id"></result>
+	<result property="day_weeks" column="day_weeks"></result>
+	<result property="class_str_time" column="class_str_time"></result>
+	<result property="class_end_time" column="class_end_time"></result>
+</resultMap>
 </mapper>

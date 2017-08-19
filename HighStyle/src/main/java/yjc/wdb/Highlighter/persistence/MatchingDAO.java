@@ -37,4 +37,14 @@ public interface MatchingDAO {
 	
 	/* 진단 평가 삭제 */
 	public void deleteEval(String user_id)throws Exception;
+	
+	/* 진단 평가 기록 조회 */
+	public Diag_EvalVO selectEval(String user_id)throws Exception;
+	
+	/* 과외 목록 */
+	public List<HashMap> selectExt()throws Exception;
+	
+	/* 유저에게 필요없는 정보 제외한 LIST */
+	public List<HashMap<String, String>> evalAfterTimetable(@Param("selectTimetable") List<String> selectTimetable)throws Exception;
+	
 }

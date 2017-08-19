@@ -1,7 +1,9 @@
 package yjc.wdb.Highlighter;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import yjc.wdb.Highlighter.domain.Diag_EvalVO;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
+import yjc.wdb.Highlighter.domain.PageMaker;
 import yjc.wdb.Highlighter.domain.user_SearchLogVO;
 import yjc.wdb.Highlighter.service.MatchingService;
 import yjc.wdb.Highlighter.service.MatchingServiceImpl;
@@ -525,9 +528,315 @@ public class MatchingController {
 	}
 	
 	@RequestMapping(value="diagEvalResult", method = RequestMethod.GET)
-	public void diagEvalResult(HttpSession session)throws Exception{
+	public void diagEvalResult(HttpSession session, Model model)throws Exception{
 		String user_id = String.valueOf(session.getAttribute("id"));
 		
+		Diag_EvalVO selectEval = matchingService.selectEval(user_id); //유저 진단 평가 기록 
+		
+		String user_grade = String.valueOf(session.getAttribute("user_grade"));
+		
+		if(user_grade.equals("student")){
+			List<HashMap> studentTimetable = matchingService.studentTimetable(user_id);
+			//System.out.println(studentTimetable);
+			
+			if(!(studentTimetable.isEmpty())) {
+				
+				List<String> removeTimetable = compareTimetable(studentTimetable);
+				//System.out.println(removeTimetable);
+				
+				if(!(removeTimetable.isEmpty())) {
+					
+					List<HashMap<String, String>> removedList = matchingService.removedList(removeTimetable);  //유저에게 필요없는 정보 제외한 결과
+		
+						/* 유저 진단 평가 기록 변수 저장 : 쓰기 귀찮으니깡 */
+						String onoff = selectEval.getOnoff();
+						String pg = selectEval.getStu_count();
+						String subject = selectEval.getSubject();
+						String location1 = selectEval.getAddr();
+						String private_date_time = selectEval.getPrivate_date_time();
+						String ext_obj = selectEval.getSchool();
+						String gender = selectEval.getGender();
+						String ext_way = selectEval.getExt_way();
+						String class_count = selectEval.getClass_count();
+						String class_time = selectEval.getClass_time();
+						String day_week = selectEval.getDay_week();
+				
+						/* 가중치 부여 */
+						for(HashMap i : removedList){
+							int add = 0;
+							i.put("score", add);
+							
+							// 온.오프라인
+							if(onoff == "무관"){
+								if(i.get("onoff").equals(onoff)){
+									String cc = i.get("score").toString();
+									int c = Integer.parseInt(cc);
+									add = c+2;
+									i.put("score", add);
+								}
+							}
+							if(onoff != "무관"){
+								if(i.get("onoff").equals("1")){
+									String cc = i.get("score").toString();
+									int c = Integer.parseInt(cc);
+									add = c+2;
+									i.put("score", add);
+								}
+								else{
+									String cc = i.get("score").toString();
+									int c = Integer.parseInt(cc);
+									add = c+1;
+									i.put("score", add);
+								}
+							}
+							/*System.out.print("<온.오프라인>");
+							System.out.print(i.get("score")+"/");*/
+							
+							// 개인.그룹
+							if(pg != "무관"){
+								if(i.get("pg").equals(pg)){
+									String cc = i.get("score").toString();
+									int c = Integer.parseInt(cc);
+									add = c+2;
+									i.put("score", add);
+								}
+							}
+							if(pg == "무관"){
+								if(i.get("pg").equals("1")){
+									String cc = i.get("score").toString();
+									int c = Integer.parseInt(cc);
+									add = c+2;
+									i.put("score", add);
+								}
+								else{
+									String cc = i.get("score").toString();
+									int c = Integer.parseInt(cc);
+									add = c+1;
+									i.put("score", add);
+								}
+							}
+							/*System.out.print("<개인.그룹라인>");
+							System.out.print(i.get("score")+"/");*/
+							
+							// 과목
+							if(i.get("subject").equals(subject)){
+								String cc = i.get("score").toString();
+								int c = Integer.parseInt(cc);
+								add = c+1;
+								i.put("score", add);
+							}
+							/*System.out.print("<과목라인>");
+							System.out.print(i.get("score")+"/");*/
+								
+							//지역
+							if(!(i.get("onoff").equals("1"))){
+								if ((i.get("class_poss_area").toString()).matches(".*"+location1+".*")){
+									String cc = i.get("score").toString();
+									int c = Integer.parseInt(cc);
+									add = c+1;
+									i.put("score", add);
+								}
+								/*System.out.print("<지역라인>");
+								System.out.print(i.get("score")+"/");*/
+							}
+							
+							//과외 대상
+							if (i.get("ext_obj").equals(ext_obj)){
+								String cc = i.get("score").toString();
+								int c = Integer.parseInt(cc);
+								add = c+1;
+								i.put("score", add);
+							}
+							/*System.out.print("<과외 대상>");
+							System.out.print(i.get("score")+"/");*/
+				
+							//성별
+							if(gender != "무관"){
+								if (i.get("gender").equals(gender)){
+									String cc = i.get("score").toString();
+									int c = Integer.parseInt(cc);
+									add = c+1;
+									i.put("score", add);
+								}	
+							}
+							/*System.out.print("<성별>");
+							System.out.print(i.get("score")+"/");*/
+			
+							SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+					        Date str_class_date = df.parse(String.valueOf(i.get("str_class_date")));
+					        Date private_date_time2 = df.parse(private_date_time);
+					        int str_date = str_class_date.compareTo(private_date_time2);
+							if(str_date == 1 || str_date == 0){
+								String cc = i.get("score").toString();
+								int c = Integer.parseInt(cc);
+								add = c+1;
+								i.put("score", add);
+							}
+							else{
+								add = -1;
+								i.put("score", add);
+							}
+							/*System.out.print("<과외 시작 시간>");
+							System.out.print(i.get("score")+"/");*/
+							//System.out.println("");
+						}
+						
+						/*List*/
+						List<String> selectTimetable = new ArrayList<String>();
+						for(HashMap k : removedList){
+							/*System.out.print(k.get("score")+"/");*/
+							selectTimetable.add(String.valueOf(k.get("ext_id")));
+						}
+						
+						//System.out.println("하잇:"+selectTimetable);
+						List<HashMap<String, String>> evalAfterTimetable = matchingService.evalAfterTimetable(selectTimetable);
+						//System.out.println("하잇"+evalAfterTimetable);
+						
+						for(HashMap k : removedList){
+							for(HashMap g : evalAfterTimetable){
+								
+								String ext_id = String.valueOf(k.get("ext_id"));
+								String ext_id2 = String.valueOf(g.get("ext_id"));
+								//System.out.println("0번"+ext_id + "/"+ext_id2);
+								if(ext_id.equals(ext_id2)){
+									//System.out.println("1번");
+									String[] week = (String.valueOf(selectEval.getDay_week())).split(",");
+									for(int a = 0; a < week.length; a++){
+										//System.out.println("2번"+week[a]+"/"+g.get("day_weeks"));
+										if(week[a].equals(String.valueOf(g.get("day_weeks")))){
+											//System.out.println("3번");
+											int class_str_time = Integer.parseInt(String.valueOf(g.get("class_str_time")));
+											
+											String[] private_time = (String.valueOf(selectEval.getPrivate_time()).split(","));
+											for(int b = 0; b < private_time.length; b++){		
+												//System.out.println("4번");
+												if(private_time[b].equals("아침")){
+													//System.out.println("5번");
+													if(class_str_time < 9){
+														//System.out.println("5번0");
+														String getScore = String.valueOf(k.get("score"));
+														int getScore1 = Integer.parseInt(getScore);
+														//System.out.println(k.get("ext_id")+"/"+getScore);
+														getScore1+=10;
+														k.put("score", getScore1);
+														
+													}
+												}
+												else if(private_time[b].equals("오전")){
+													if(9 <= class_str_time && class_str_time < 12){
+														//System.out.println("5번1");
+														String getScore = String.valueOf(k.get("score"));
+														int getScore1 = Integer.parseInt(getScore);
+														getScore1+=10;
+														//System.out.println(k.get("ext_id")+"/"+getScore);
+														k.put("score", getScore1);
+													}
+												}
+												else if(private_time[b] == "이른 오후"){	
+													if(12 <= class_str_time && class_str_time < 15){
+														//System.out.println("5번2");
+														String getScore = String.valueOf(k.get("score"));
+														int getScore1 = Integer.parseInt(getScore);
+														getScore1+=10;
+														//System.out.println(k.get("ext_id")+"/"+getScore);
+														k.put("score", getScore1);
+													}
+												}
+												else if(private_time[b].equals("오후")){
+													if(15 <= class_str_time && class_str_time < 18){
+														//System.out.println("5번3");
+														String getScore = String.valueOf(k.get("score"));
+														int getScore1 = Integer.parseInt(getScore);
+														getScore1+=10;
+														//System.out.println(k.get("ext_id")+"/"+getScore);
+														k.put("score", getScore1);
+													}
+												}
+												else if(private_time[b].equals("저녁")){
+													if(18 <= class_str_time && class_str_time < 21){
+														//System.out.println("5번4");
+														String getScore = String.valueOf(k.get("score"));
+														int getScore1 = Integer.parseInt(getScore);
+														getScore1+=10;
+														//System.out.println(k.get("ext_id")+"/"+getScore);
+														k.put("score", getScore1);
+													}
+												}
+												else{
+													if(21 <= class_str_time){
+														//System.out.println("5번5");
+														String getScore = String.valueOf(k.get("score"));
+														int getScore1 = Integer.parseInt(getScore);
+														getScore1+=10;
+														//System.out.println(k.get("ext_id")+"/"+getScore);
+														k.put("score", getScore1);
+													}
+												}
+												
+												
+											}
+										}
+									}
+								}
+							}
+						}
+						//System.out.println("");
+						for(HashMap k : removedList){
+							//System.out.print(k.get("score")+"/");
+							//selectTimetable.add(String.valueOf(k.get("ext_id")));
+						}
+						//System.out.println("");
+						    int v=0, j;
+						    HashMap tempdata;
+						    
+						    List<HashMap<String, String>> diagEvalList = new ArrayList<HashMap<String,String>>();
+						    int s = 0;
+						    while(true){
+						    	int temp = 0;
+						    	int a = Integer.parseInt(String.valueOf(removedList.get(v).get("score")));
+						      for (j = 1; j < removedList.size(); j++) {
+						    	int b = Integer.parseInt( String.valueOf(removedList.get(j).get("score")));
+						        if (a > b) {
+						        	temp = j;
+						        	a = b;
+						        }
+						      }
+						      if(removedList.size()==1){
+						    	  HashMap<String, String> list3 = removedList.get(temp);
+						    	  String list2 = String.valueOf(list3.get("score"));
+						    	  if(list2 != "-1"){
+						    		  diagEvalList.add(removedList.get(0));
+						    	  }
+						      }
+						      if(removedList.size()!=1){
+						    	  HashMap<String, String> list3 = removedList.get(temp);
+						    	  String list2 = String.valueOf(list3.get("score"));
+						    	  if(list2 != "-1"){
+						    		  diagEvalList.add(s, removedList.get(temp));
+						    	  }
+						      }
+						      s++;
+						      removedList.remove(temp);
+						      temp = 0;
+						      if(removedList.size()<1){
+						    	  break;
+						      }
+						      if(diagEvalList.size()==6){
+						    	  break;
+						      }
+						    }
+						    int listcount = 0;
+						    Collections.reverse(diagEvalList);
+						    for (int k = 0; k < diagEvalList.size(); k++) {
+						      System.out.print(String.valueOf(diagEvalList.get(k).get("score"))+"/");
+						      listcount++;
+						    }
+						    
+						model.addAttribute("selectExt",removedList);
+						session.setAttribute("diagEvalList",diagEvalList);
+						session.setAttribute("listcount", listcount);
+				}
+			}
+		}
 	}
-	
 }

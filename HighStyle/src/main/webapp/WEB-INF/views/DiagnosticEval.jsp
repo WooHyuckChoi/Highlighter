@@ -125,9 +125,9 @@ footer > button{
 								<label class="label">> 필수 문제</label>
 								<div class="row">
 									<div class="col col-4">
-										<label class="radio"><input type="radio" name="school" value="초등학교" checked><i class="rounded-x"></i>초등학교</label>
-										<label class="radio"><input type="radio" name="school" value="중학교"><i class="rounded-x"></i>중학교</label>
-										<label class="radio"><input type="radio" name="school" value="고등학교"><i class="rounded-x"></i>고등학교</label>
+										<label class="radio"><input type="radio" name="school" value="초등학생" checked><i class="rounded-x"></i>초등학교</label>
+										<label class="radio"><input type="radio" name="school" value="중학생"><i class="rounded-x"></i>중학교</label>
+										<label class="radio"><input type="radio" name="school" value="고등학생"><i class="rounded-x"></i>고등학교</label>
 									</div>
 								</div>
 							</section>
@@ -138,9 +138,9 @@ footer > button{
 								<label class="label">> 필수 문제</label>
 								<div class="row">
 									<div class="col col-4">
-										<label class="radio"><input type="radio" name="subject" value="국어" checked><i class="rounded-x"></i>국어</label>
-										<label class="radio"><input type="radio" name="subject" value="영어"><i class="rounded-x"></i>영어</label>
-										<label class="radio"><input type="radio" name="subject" value="수학"><i class="rounded-x"></i>수학</label>
+										<label class="radio"><input type="radio" name="subject" value="01" checked><i class="rounded-x"></i>국어</label>
+										<label class="radio"><input type="radio" name="subject" value="02"><i class="rounded-x"></i>영어</label>
+										<label class="radio"><input type="radio" name="subject" value="03"><i class="rounded-x"></i>수학</label>
 									</div>
 								</div>
 							</section>
@@ -151,9 +151,9 @@ footer > button{
 								<label class="label">> 필수 문제</label>
 								<div class="row">
 									<div class="col col-4">
-										<label class="radio"><input type="radio" id="private" name="stuCount" value="개인" checked><i class="rounded-x"></i>개인과외</label>
-										<label class="radio"><input type="radio" id="group"name="stuCount" value="그룹"><i class="rounded-x"></i>그룹과외(2명이상)</label>
-										<label class="radio"><input type="radio" id="pg" name="stuCount" value="무관"><i class="rounded-x"></i>무관</label>
+										<label class="radio"><input type="radio" id="private" name="stu_count" value="1" checked><i class="rounded-x"></i>개인과외</label>
+										<label class="radio"><input type="radio" id="group"name="stu_count" value="2"><i class="rounded-x"></i>그룹과외(2명이상)</label>
+										<label class="radio"><input type="radio" id="pg" name="stu_count" value="무관"><i class="rounded-x"></i>무관</label>
 									</div>
 								</div>
 							</section>
@@ -164,8 +164,8 @@ footer > button{
 								<label class="label">> 필수 문제</label>
 								<div class="row">
 									<div class="col col-4">
-										<label class="radio"><input type="radio" id="online" name="onoff" value="온라인" checked><i class="rounded-x"></i>온라인 진행</label>
-										<label class="radio"><input type="radio" id="offline" name="onoff" value="오프라인"><i class="rounded-x"></i>오프라인 진행</label>
+										<label class="radio"><input type="radio" id="online" name="onoff" value="1" checked><i class="rounded-x"></i>온라인 진행</label>
+										<label class="radio"><input type="radio" id="offline" name="onoff" value="0"><i class="rounded-x"></i>오프라인 진행</label>
 										<label class="radio"><input type="radio" id="onoff" name="onoff" value="무관"><i class="rounded-x"></i>무관</label>
 									</div>
 								</div>
@@ -277,11 +277,11 @@ footer > button{
 								<label class="label">>필수 문제</label>
 								<div class="row" >
 									<div class="col col-4" style="width:800px;">
-										<label class="radio"><input type="radio" id="ext_way1" name="ext_way" value="기초강의" checked><i class="rounded-x"></i>학교 수업이 너무 어렵고 따라가기 힘들어서 <b>기초 강의</b>가 필요해요.</label>
+										<label class="radio"><input type="radio" id="ext_way1" name="ext_way" value="기초다지기" checked><i class="rounded-x"></i>학교 수업이 너무 어렵고 따라가기 힘들어서 <b>기초 강의</b>가 필요해요.</label>
 										<label class="radio"><input type="radio" id="ext_way2" name="ext_way" value="포괄적인강의"><i class="rounded-x"></i>학교 수업이 어렵지만 조금은 이해가 되기 때문에 <b>포괄적인 강의</b>가 필요해요.</label>
-										<label class="radio"><input type="radio" id="ext_way3" name="ext_way" value="교과서 중심"><i class="rounded-x"></i>학교 수업을 하면 전체적인 이해 하지만 <b>교과서 중심의 강의</b>가 필요해요.</label>
-										<label class="radio"><input type="radio" id="ext_way4" name="ext_way" value="문제 풀이"><i class="rounded-x"></i>학교에서 남들 하는 만큼은 하기때문에 <b>문제 풀이식 강의</b>가 필요 해요.</label>
-										<label class="radio"><input type="radio" id="ext_way5" name="ext_way" value="쪽집계 강의"><i class="rounded-x"></i>학교 수업이 이해가 쉽지만 더이상 올라가기는 힘들어서 <b>쪽집계 강의</b>가 필요해요.</label>
+										<label class="radio"><input type="radio" id="ext_way3" name="ext_way" value="교과서중심"><i class="rounded-x"></i>학교 수업을 하면 전체적인 이해 하지만 <b>교과서 중심의 강의</b>가 필요해요.</label>
+										<label class="radio"><input type="radio" id="ext_way4" name="ext_way" value="문제풀이"><i class="rounded-x"></i>학교에서 남들 하는 만큼은 하기때문에 <b>문제 풀이식 강의</b>가 필요 해요.</label>
+										<label class="radio"><input type="radio" id="ext_way5" name="ext_way" value="쪽집게풀이"><i class="rounded-x"></i>학교 수업이 이해가 쉽지만 더이상 올라가기는 힘들어서 <b>쪽집계 강의</b>가 필요해요.</label>
 										<label class="radio"><input type="radio" id="ext_way6" name="ext_way" value="시험대비용강의"><i class="rounded-x"></i>학교 수업이 쉬워 <b>시험 대비용 강의</b>가 필요해요.</label>
 										<label class="radio"><input type="radio" id="ext_way7" name="ext_way" value="선행 학습"><i class="rounded-x"></i>학교 수업이 너무 쉬워 <b>선행 학습</b>이 필요해요.</label>
 									</div>
@@ -362,8 +362,9 @@ footer > button{
 		$("#submitEval").on("click", function(){
 			var check1 = $("input:checkbox[name='day_week']").is(":checked");			
 			var check2 = $("input:checkbox[name='private_time']").is(":checked");
-
-			if(check1 != false && check2 != false){
+			var check3 = $("#private_date_time").val();
+			
+			if(check1 != false && check2 != false && check3 != ""){
 				var formObj = $("form[role='form']");
 				
 				formObj.attr("action", "DiagnosticEval");

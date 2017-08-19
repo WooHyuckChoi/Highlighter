@@ -89,6 +89,24 @@ public class MatchingDAOImpl implements MatchingDAO {
 		session.delete(namespace+".deleteEval", user_id);
 	}
 
+	@Override
+	public Diag_EvalVO selectEval(String user_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".selectEval", user_id);
+	}
+
+	@Override
+	public List<HashMap> selectExt() throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".selectExt");
+	}
+
+	@Override
+	public List<HashMap<String, String>> evalAfterTimetable(List<String> selectTimetable) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".evalAfterTimetable", selectTimetable);
+	}
+
 	
 
 

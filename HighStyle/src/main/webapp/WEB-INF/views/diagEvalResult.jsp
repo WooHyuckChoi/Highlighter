@@ -45,6 +45,18 @@
 
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="./resources/unify/assets/css/custom.css">
+	<style>
+		.lookClass{
+			width:100px;
+			padding:10px;
+			background:#FC6900;
+			color:white;
+		}
+		.lookClass:hover{
+			text-decoration:none;
+			color:white;
+		}
+	</style>
 </head>
 
 <body>
@@ -175,57 +187,44 @@
 	<!--=== Container Part ===-->
 	<div class="container content-md">
 		<ul class="row block-grid-v2">
-			<li class="col-md-4 col-sm-6 md-margin-bottom-30">
+			<c:forEach items="${diagEvalList}" var="diagEvalList">
+			<li class="col-md-4 col-sm-6 md-margin-bottom-30" style="margin-bottom:20px;">
 				<div class="easy-block-v1">
-					<img class="img-responsive" src="./resources/unify/assets/img/mockup/img1.jpg" alt="">
-					<div class="easy-block-v1-badge rgba-purple">Unify Template</div>
+						<img class="img-responsive" src="displayFile?fileName=${diagEvalList.prof_photo }" alt="" onerror="this.src='./resources/unify/assets/img/mockup/img1.jpg'">
+					<!-- <div class="easy-block-v1-badge rgba-purple">Unify Template</div> -->
 				</div>
 				<div class="block-grid-v2-info rounded-bottom">
-					<h3><a href="#">One Page Template</a></h3>
-					<p>Excepturi sint occaecati cupiditate non provident, at vero eos et accusamus et iusto odio..</p>
-					<ul class="list-inline star-vote">
-						<li><i class="color-green fa fa-star"></i></li>
-						<li><i class="color-green fa fa-star"></i></li>
-						<li><i class="color-green fa fa-star"></i></li>
-						<li><i class="color-green fa fa-star"></i></li>
-						<li><i class="color-green fa fa-star-half-o"></i></li>
-					</ul>
+					<h3><a href="#">${diagEvalList.user_name}</a></h3>
+					<h5><a href="#">
+						<script>
+							var subject = '${diagEvalList.subject}';
+							if(subject == "01"){document.write("국어");}
+							else if(subject == "02"){document.write("영어");}
+							else{document.write("수학");}
+						</script>
+					</a></h5>
+					<h5><a href="#">
+						<script>
+							var onoff = '${diagEvalList.onoff}';
+							if(onoff == "1"){onoff = "온라인";}
+							else if(onoff == "0"){onoff = "오프라인";}
+							
+							var pg = '${diagEvalList.pg}';
+
+							if(pg != "1"){console.log("진짜");pg = "그룹";}
+							if(pg == "1"){console.log("안와");pg = "개인";}
+
+							document.write(onoff+"/"+pg);
+						</script>
+					</a></h5>
+					<h5><a href="#">
+							수업료 : ${diagEvalList.tuit_fees}원/1시간
+					</a></h5>
+					<p style="height:40px; overflow:hidden;">${diagEvalList.intro_class}</p>
+					<a href="ApplicationClass?ext_id=${diagEvalList.ext_id}&user_id=${diagEvalList.user_id}" class="lookClass">자세히보기</a>
 				</div>
 			</li>
-			<li class="col-md-4 col-sm-6 md-margin-bottom-30">
-				<div class="easy-block-v1">
-					<img class="img-responsive" src="./resources/unify/assets/img/mockup/img2.jpg" alt="">
-					<div class="easy-block-v1-badge rgba-blue">Graphic Design</div>
-				</div>
-				<div class="block-grid-v2-info rounded-bottom">
-					<h3><a href="#">Mockup Design</a></h3>
-					<p>Excepturi sint occaecati cupiditate non provident, at vero eos et accusamus et iusto odio..</p>
-					<ul class="list-inline star-vote">
-						<li><i class="color-green fa fa-star"></i></li>
-						<li><i class="color-green fa fa-star"></i></li>
-						<li><i class="color-green fa fa-star"></i></li>
-						<li><i class="color-green fa fa-star-half-o"></i></li>
-						<li><i class="color-green fa fa-star-o"></i></li>
-					</ul>
-				</div>
-			</li>
-			<li class="col-md-4 col-sm-12">
-				<div class="easy-block-v1">
-					<img class="img-responsive" src="./resources/unify/assets/img/mockup/img4.jpg" alt="">
-					<div class="easy-block-v1-badge rgba-red">Web Development</div>
-				</div>
-				<div class="block-grid-v2-info rounded-bottom">
-					<h3><a href="#">HTML5/CSS3 + PHP</a></h3>
-					<p>Excepturi sint occaecati cupiditate non provident, at vero eos et accusamus et iusto odio..</p>
-					<ul class="list-inline star-vote">
-						<li><i class="color-green fa fa-star"></i></li>
-						<li><i class="color-green fa fa-star"></i></li>
-						<li><i class="color-green fa fa-star"></i></li>
-						<li><i class="color-green fa fa-star"></i></li>
-						<li><i class="color-green fa fa-star-o"></i></li>
-					</ul>
-				</div>
-			</li>
+			</c:forEach>
 		</ul>
 	</div><!--/container-->
 	<!--=== Container Part ===-->
@@ -396,11 +395,5 @@
 			StyleSwitcher.initStyleSwitcher();
 		});
 	</script>
-<!--[if lt IE 9]>
-	<script src="assets/plugins/respond.js"></script>
-	<script src="assets/plugins/html5shiv.js"></script>
-	<script src="assets/plugins/placeholder-IE-fixes.js"></script>
-	<![endif]-->
-
 </body>
 </html>

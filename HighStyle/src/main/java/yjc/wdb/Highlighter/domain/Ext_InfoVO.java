@@ -122,5 +122,22 @@ public class Ext_InfoVO {
 		this.subject = subject;
 	}
 	
-	
+/*	public String toString(){
+		return "ext_id : " + ext_id
+		+", end_rc_date : " + end_rc_date
+		+", num_class_req : "+ num_class_req
+		+", str_class_date : "+ str_class_date
+		+", end_class_date : "+end_class_date
+		+", tuit_fees : " +tuit_fees
+		+", ext_obj : "+ext_obj
+		+", ext_way : "+ext_way
+		+", class_lev : "+class_lev
+		+", class_poss_area : "+class_poss_area
+		+", user_id : "+user_id
+		+", best_score : "+best_score
+		+", open_yn_stus : "+open_yn_stus
+		+", str_tuit_fees : "+str_tuit_fees
+		+", end_tuit_fees : "+end_tuit_fees
+		+", subject : "+subject;
+	}*/
 }
