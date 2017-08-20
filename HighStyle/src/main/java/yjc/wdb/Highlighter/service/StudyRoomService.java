@@ -6,7 +6,9 @@ import java.util.Map;
 
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.prob_InfoVO;
 import yjc.wdb.Highlighter.domain.stu_infoVO;
+import yjc.wdb.Highlighter.domain.test_resultVO;
 
 public interface StudyRoomService 
 {
@@ -30,4 +32,11 @@ public interface StudyRoomService
 	public List<stu_infoVO> calendarList(Map<String,String> vo) throws Exception;
 	
 	public Integer countExtStudent(String ext_id) throws Exception;
+	
+	public List<HashMap> searchTestAnswer(String test_id) throws Exception;
+	
+	//학생 정답
+	public List<test_resultVO> searchStuAnswer(String test_id) throws Exception;
+	//강사 정답
+	public List<prob_InfoVO> searchProbAnswer(String test_id) throws Exception;
 }

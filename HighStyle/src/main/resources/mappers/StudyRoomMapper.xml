@@ -111,4 +111,34 @@
 	where ext_id = #{ext_id} and
 	reg_stus = '결제완료';
 </select>
+
+<!-- 오답노트 디비 시작 -->
+
+<resultMap type="java.util.HashMap" id="searchTestAnswerMap">
+	<result property="prob_id" column="prob_id"></result>
+	<result property="prob_answ" column="prob_answ"></result>
+	<result property="stu_result" column="stu_result"></result>
+</resultMap>
+
+<select id="searchTestAnswer" resultMap="searchTestAnswerMap">
+	select t.prob_id,t.prob_answ, s.stu_result
+	from prob_info t, test_result s
+	where t.prob_id = s.prob_id and
+	t.test_id = #{test_id}
+	order by prob_id;
+</select>
+
+<select id="searchStuAnswer" resultType="test_resultVO">
+	select prob_id , stu_result
+	from test_result
+	where test_id=#{test_id}
+	order by prob_id;
+</select>
+
+<select id="searchProbAnswer" resultType="prob_infoVO">
+	select prob_id , prob_answ
+	from prob_info
+	where test_id=#{test_id}
+	order by prob_id;
+</select>
 </mapper>

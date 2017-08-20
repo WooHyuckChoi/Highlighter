@@ -11,7 +11,9 @@ import org.springframework.stereotype.Repository;
 
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.prob_InfoVO;
 import yjc.wdb.Highlighter.domain.stu_infoVO;
+import yjc.wdb.Highlighter.domain.test_resultVO;
 
 @Repository
 public class StudyRoomDAOImpl implements StudyRoomDAO 
@@ -75,5 +77,19 @@ public class StudyRoomDAOImpl implements StudyRoomDAO
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace+".countExtStu",ext_id);
 	}
-	
+	@Override
+	public List<HashMap> searchTestAnswer(String test_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".searchTestAnswer",test_id);
+	}
+	@Override
+	public List<test_resultVO> searchStuAnswer(String test_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".searchStuAnswer",test_id);
+	}
+	@Override
+	public List<prob_InfoVO> searchProbAnswer(String test_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".searchProbAnswer",test_id);
+	}
 }

@@ -319,17 +319,6 @@
 			
 						<hr>
 						<!--/end row-->
-									
-						<!--Schedule-->
-						<div class="panel panel-profile">
-							<div class="panel-heading overflow-h">
-								<h2 class="panel-title heading-sm pull-left"> 시간표 </h2>
-							</div>
-							<div class="panel-body margin-bottom-40">
-											
-							</div>
-						</div>
-						<!--End Schedule-->
 					</div>
 				</div>
 				<!-- End Profile Content -->

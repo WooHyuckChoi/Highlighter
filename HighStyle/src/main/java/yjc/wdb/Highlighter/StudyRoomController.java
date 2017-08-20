@@ -24,12 +24,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.prob_InfoVO;
 import yjc.wdb.Highlighter.domain.stu_infoVO;
 import yjc.wdb.Highlighter.domain.test_resultVO;
 import yjc.wdb.Highlighter.service.MyPageInfoService;
 import yjc.wdb.Highlighter.service.StudyRoomService;
 import yjc.wdb.Highlighter.service.User_InfoService;
 import yjc.wdb.Highlighter.service.testResultService;
+import yjc.wdb.Highlighter.service.test_InfoService;
 
 @Controller
 public class StudyRoomController 
@@ -44,6 +46,8 @@ public class StudyRoomController
 	private testResultService testResultService;
 	@Inject
 	private User_InfoService userInfoService;
+	@Inject
+	private test_InfoService test_InfoService;
 
 
 	@RequestMapping(value = "/newLecturePage", method = RequestMethod.GET)//classMain newLecturePage
@@ -288,4 +292,61 @@ public class StudyRoomController
 		List<stu_infoVO> calList = studyRoomService.calendarList(calparam);
 		model.addAttribute("calList",calList);
 	}
+	
+	
+	/* 오답노트  */
+	@RequestMapping(value = "wAnswNote", method = RequestMethod.GET)
+	   public void wAnswNote(HttpServletRequest req, Model model)throws Exception{
+		   String test_id = req.getParameter("test_id");
+
+		   List<HashMap> examInfo = test_InfoService.selectExamInfo(test_id);
+		   model.addAttribute("examInfo", examInfo);
+		   System.out.println(examInfo);
+		   
+		   // 학생정답과 선생님 정답을 받아온다. 
+		   List<HashMap> searchTestAnswer = studyRoomService.searchTestAnswer(test_id);
+		   
+		   // 정답 비교 후 새로운 결과를 담을 리스트
+		   List<String> resultTestAnswer = new ArrayList<>();
+		   
+		   // 정답을 리스트 길이의 맞게 반복문 돌림
+		   for(int i=0; i<searchTestAnswer.size();i++)
+		   {
+			   //타입이 뭔지는 몰라도 .equals, == 둘다 안먹혀서 그냥 .toString()으로 문자열로 만들고 이퀄스로 비교함
+			   if(searchTestAnswer.get(i).get("prob_answ").toString().equals(searchTestAnswer.get(i).get("stu_result").toString()))
+			   {
+				   //일치하면 right
+				   resultTestAnswer.add("\'right\'");
+			   }
+			   else
+			   {
+				   //그렇지 않으면 wrong
+				   resultTestAnswer.add("\'wrong\'");
+			   }
+		   }
+		   model.addAttribute("resultTestAnswer",resultTestAnswer);
+		   
+		   /* 학생 정답 및 강사 정답 */
+		   List<test_resultVO> searchStuAnswer = studyRoomService.searchStuAnswer(test_id);
+		   //배열로 넘길꺼야!
+		   List<String> stuAnsList = new ArrayList<>();
+		   for(int i=0; i<searchStuAnswer.size();i++)
+		   {
+			   stuAnsList.add("\'"+searchStuAnswer.get(i).getStu_result()+"\'");
+		   }
+		   //model.addAttribute("searchStuAnswer",searchStuAnswer); //학생
+		   model.addAttribute("stuAnsList",stuAnsList); //학생
+		   
+		   /*강사!*/
+		   List<prob_InfoVO> searchProbAnswer = studyRoomService.searchProbAnswer(test_id);
+		   List<String> probAnsList = new ArrayList<>();
+		   for(int i=0; i<searchStuAnswer.size();i++)
+		   {
+			   probAnsList.add("\'"+searchProbAnswer.get(i).getProb_answ()+"\'");
+		   }
+		   //model.addAttribute("searchProbAnswer",searchProbAnswer); //강사
+		   model.addAttribute("probAnsList",probAnsList); //강사
+	   }
+	
+	
 }

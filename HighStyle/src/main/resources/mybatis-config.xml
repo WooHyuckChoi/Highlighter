@@ -29,5 +29,6 @@
 		<typeAlias alias="QuestionVO" type="yjc.wdb.Highlighter.domain.QuestionVO"/>
 		<typeAlias alias="Question_ReplyVO" type="yjc.wdb.Highlighter.domain.Question_ReplyVO"/>
 		<typeAlias alias="Diag_EvalVO" type="yjc.wdb.Highlighter.domain.Diag_EvalVO"/>
+		<typeAlias alias="prob_infoVO" type="yjc.wdb.Highlighter.domain.prob_InfoVO"/>
 	</typeAliases>
 </configuration>

@@ -54,6 +54,14 @@
 	color:gray;
 	border:1px dotted lightgray;
 }
+#confirmAnswer{
+	margin:20px;
+	font-size:25px;
+	font-weight:bold;
+	text-align:center;
+	color:gray;
+	border:1px dotted lightgray;
+}
 #submitTest{
 	width:350px;
 	height:50px;

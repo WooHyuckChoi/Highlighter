@@ -208,13 +208,14 @@ public class StudyRoom2Controller {
 	   return result+"";
    }
    
-   @RequestMapping(value = "wAnswNote", method = RequestMethod.GET)
+   /* 이 부분 일단 StudyRoomController에 옮겨서 진행*/
+   /*@RequestMapping(value = "wAnswNote", method = RequestMethod.GET)
    public void wAnswNote(HttpServletRequest req, Model model)throws Exception{
 	   String test_id = req.getParameter("test_id");
 
 	   List<HashMap> examInfo = test_InfoService.selectExamInfo(test_id);
 	   model.addAttribute("examInfo", examInfo);
 	   System.out.println(examInfo);
-   }
+   }*/
    
 }

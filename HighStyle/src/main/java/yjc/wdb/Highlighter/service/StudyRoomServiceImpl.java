@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
+import yjc.wdb.Highlighter.domain.prob_InfoVO;
 import yjc.wdb.Highlighter.domain.stu_infoVO;
+import yjc.wdb.Highlighter.domain.test_resultVO;
 import yjc.wdb.Highlighter.persistence.StudyRoomDAO;
 
 @Service
@@ -83,6 +85,24 @@ public class StudyRoomServiceImpl implements StudyRoomService
 	public Integer countExtStudent(String ext_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.countExtStudent(ext_id);
+	}
+
+	@Override
+	public List<HashMap> searchTestAnswer(String test_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.searchTestAnswer(test_id);
+	}
+
+	@Override
+	public List<test_resultVO> searchStuAnswer(String test_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.searchStuAnswer(test_id);
+	}
+
+	@Override
+	public List<prob_InfoVO> searchProbAnswer(String test_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.searchProbAnswer(test_id);
 	}
 	
 }
