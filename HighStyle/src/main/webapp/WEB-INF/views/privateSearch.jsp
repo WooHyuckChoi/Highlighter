@@ -26,13 +26,7 @@
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./resources/ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" href="./resources/ico/apple-touch-icon-57-precomposed.png">
 <!-- 시간표 팝업 띄우기 -->
-<script type="text/javascript">
-	function login() {
-	  
-    $('#popup').bPopup();
-   
-  };
-</script>
+
 <style type="text/css">
 /* 시간표 팝업 */
 .layer {display:none; position:fixed; _position:absolute; top:0; left:0; width:100%; height:100%; z-index:100;}
@@ -171,7 +165,7 @@ div#locationSelect2{margin:0;}
 <div class="nav-agency">
   <div class="navbar navbar-static-top">
     <div class="navbar-inner">
-      <div class="container"> <a class="brand" href="/Highlighter"> <img src="./resources/img/logo.png" alt=""></a>
+      <div class="container"> <a class="logo" href="/Highlighter"><img src="./resources/img/blue_Logo.png" alt="Logo"></a>
       <c:if test="${user_id eq null}">
      	 <ul id="work-filter">
             <li><a data-filter="*" class="btn btn-success ione-col" id="login" onclick="login()">로그인</a></li>
@@ -237,7 +231,7 @@ div#locationSelect2{margin:0;}
                         </div>
                     </header>
                     <div class="widget-body">
-                        <h3 style="border-bottom:1px solid orange;">전체 과외 정보</h3>
+                        <h3 style="border-bottom:1px solid #1279ff;">전체 과외 정보</h3>
                         <p>검색을 통해 여러분이 원하는 과외를 찾아보세요!</p>
                         <table class="table table-bordered table-lg mt-lg mb-0">
                             <tbody>
@@ -1029,7 +1023,7 @@ div#locationSelect2{margin:0;}
                             	<td colspan="4">
                             	 <!-- 검색 버튼 -->
 						             <div id="search" style="position:relative; left:45%;float:left;">
-						            	<button id = "SearchBtn" class="btn btn-warning width-100 mb-xs" role="button">검색</button>
+						            	<button id = "SearchBtn" class="btn btn-warning width-100 mb-xs" style="background: #1279ff;" role="button">검색</button>
 						             </div>
 						             <div class="widget-controls" style="position:relative; left:70%;float:left;">
 			                            <a id = "close" style="display:none;" data-widgster="expand" title="Expand" href="#">상세검색닫기<i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -1044,7 +1038,7 @@ div#locationSelect2{margin:0;}
   <!-- 과외 조회 -->
 <section class="widget">
 	<header>
-		<h4 style="border-bottom:1px solid orange; font-size:30px; text-align:center;"></h4>
+		<h4 style="border-bottom:1px solid #1279ff; font-size:30px; text-align:center;"></h4>
 		<div class="widget-controls">
 		</div>
 	</header>
@@ -1144,14 +1138,30 @@ div#locationSelect2{margin:0;}
 			</c:if>			
 		</table>
 	</div>
-	<p id="dispMore" style="display:none"><button  type="button" class="btn btn-warning btn-block" onclick="listMore('${pageMaker.totalCount}')" >+과외 더보기</button></p>	
+	<p id="dispMore" style="display:none"><button  style="background: #1279ff;" type="button" class="btn btn-warning btn-block" onclick="listMore('${pageMaker.totalCount}')" >+과외 더보기</button></p>	
 </section>
 </div>
 
-    <hr class="soften1 copyhr">
-    <div class="row-fluid copyright">
-      <div class="span12">Copyright &copy; 2012. Greepit.com</div>
-    </div>
+   <!--=== Footer Version 1 ===-->
+      <div class="footer-v1">
+         <div class="footer">
+            <div class="container">
+               <div class="row">
+                  <!-- About -->
+                  <div class="col-md-3 md-margin-bottom-40">
+                     <a class="logo" href="/Highlighter"><img src="./resources/img/blue_Logo.png" alt="Logo"></a>
+                     <p>&nbsp;&nbsp;&nbsp;&nbsp;과외 중개 사이트가 아닌 매칭 사이트.</p>
+                     <p>&nbsp;&nbsp;&nbsp;&nbsp;온라인 과외 사이트</p>
+                     <p>
+                        &nbsp;&nbsp;&nbsp;&nbsp;2017 &copy;
+                        <a style="color: #1279ff" href="https://www.yjc.ac.kr/CmsHome/Class_01.jsp">YJC COMPUTER INFORMATION</a> | <a style="color: #1279ff" href="/Highlighter">WDB-A 3TEAM.</a>
+                     </p>
+                  </div><!--/col-md-3-->
+                  <!-- End About -->
+               </div>
+            </div>
+         </div><!--/footer-->
+      <!--=== End Footer Version 1 ===-->
     
 	<!-- <div id="popup" class="Pstyle" style="background-color:white">
 	<span class="b-close">X</span>
