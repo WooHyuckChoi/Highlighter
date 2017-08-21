@@ -20,7 +20,7 @@
 <link href="./resources/css/docs.css" rel="stylesheet">
 <link href="./resources/css/prettyPhoto.css" rel="stylesheet" type="text/css">
 <link href="./resources/js/google-code-prettify/prettify.css" rel="stylesheet">
-<link rel="shortcut icon" href="./resources/ico/HL.ico">
+<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="./resources/ico/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="./resources/ico/apple-touch-icon-114-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="./resources/ico/apple-touch-icon-72-precomposed.png">
@@ -154,6 +154,7 @@ div#locationSelect2{margin:0;}
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
     right: 0px; 
 }
+
 </style>
 
 </head>
@@ -166,48 +167,94 @@ div#locationSelect2{margin:0;}
   <div class="navbar navbar-static-top">
     <div class="navbar-inner">
       <div class="container"> <a class="logo" href="/Highlighter"><img src="./resources/img/blue_Logo.png" alt="Logo"></a>
-      <c:if test="${user_id eq null}">
-     	 <ul id="work-filter">
-            <li><a data-filter="*" class="btn btn-success ione-col" id="login" onclick="login()">로그인</a></li>
-            <li><a href="selectRegister" data-filter=".graphics" class="btn ione-col">회원가입</a></li>
-         </ul>
-      </c:if>
-      <c:if test="${user_id ne null}" >
-       	<ul id="work-filter">
-      		<li><a href="logout" data-filter=".graphics" class="btn ione-col">로그아웃</a></li>
-      	</ul>
-      </c:if>
-        <div id="main-nav">
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class=""><a href="index.html">Home</a> </li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> 강사 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="work.html">강사 이용방법</a></li>
-                  <li><a href="work-two-columns.html">과외 등록</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> 학생 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="pricing.html">학생 이용방법</a></li>
-                  <li><a href="pricing-three-columns.html">과외 검색</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 학부모 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="faq.html">학부모 이용방법</a></li>
-                  <li><a href="contact.html">자녀 학습 관리</a></li>
-                </ul>
-              </li>
-              <li><a href="index.html">사이트 소개</a> </li>
-              <li><a href="index.html">문의</a> </li>
-            </ul>
-          </div>
-        </div>
+				<!-- Toggle get grouped for better mobile display -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bars"></span>
+				</button>
+				<!-- End Toggle -->
+			</div><!--/end container-->
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+				<div class="container">
+					<ul class="nav navbar-nav">
+						<!-- Home -->
+						<li class="dropdown-submenu">
+							<a href="/Highlighter">home</a>
+						</li>
+						<!-- End Home -->
+
+						<!-- teacher -->
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								강사
+							</a>
+							<ul class="dropdown-menu">
+								<!-- About Pages -->
+								<li class="dropdown-submenu">
+									<a href="#">강사 이용방법</a>
+								</li>
+								<!-- End About Pages -->
+
+								<!-- regist lecture -->
+								<li class="dropdown-submenu">
+									<a href="javascript:void(0);">과외등록</a>
+								</li>
+								<!-- End regist lecture -->
+
+								<!--  -->
+								<li class="dropdown-submenu">
+									<a href="javascript:void(0);">강사평가</a>
+								</li>
+								<!-- End  -->
+							</ul>
+						</li>
+						<!-- End teacher -->
+
+						<!-- Student -->
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								학생
+							</a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-submenu">
+									<a href="#">학생 이용방법</a>
+								</li>
+								<li class="dropdown-submenu">
+									<a href="#">과외 검색</a>
+								</li>
+							</ul>
+						</li>
+						<!-- End Student -->
+
+						<!-- Parents -->
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								학부모
+							</a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-submenu">
+									<a href="#">학부모 이용방법</a>
+								</li>
+							</ul>
+						</li>
+						<!-- End Parents -->
+						<li class="dropdown-submenu">
+							<a href="/Highlighter/question_listPage">사이트소개</a>
+						</li>
+						<!--  -->
+						<li class="dropdown-submenu">
+							<a href="/Highlighter/question_listPage">문의</a>
+						</li>
+						<!-- End Demo Pages -->
+					</ul>
+				</div><!--/end container-->
+			</div><!--/navbar-collapse-->
+		</div>
+		<!--=== End Header ===-->
       </div>
     </div>
-  </div>
-</div>
 <!-- 게시판 전체 영역  -->
 <div class="container">
 <!-- 게시판 타이틀 -->
@@ -1141,8 +1188,7 @@ div#locationSelect2{margin:0;}
 	<p id="dispMore" style="display:none"><button  style="background: #1279ff;" type="button" class="btn btn-warning btn-block" onclick="listMore('${pageMaker.totalCount}')" >+과외 더보기</button></p>	
 </section>
 </div>
-
-   <!--=== Footer Version 1 ===-->
+    <!--=== Footer Version 1 ===-->
       <div class="footer-v1">
          <div class="footer">
             <div class="container">
@@ -1161,8 +1207,8 @@ div#locationSelect2{margin:0;}
                </div>
             </div>
          </div><!--/footer-->
+       </div>
       <!--=== End Footer Version 1 ===-->
-    
 	<!-- <div id="popup" class="Pstyle" style="background-color:white">
 	<span class="b-close">X</span>
 		<div class="content" style="height: auto; width: auto;">
@@ -1251,6 +1297,7 @@ div#locationSelect2{margin:0;}
 				</div>
 		</div>
 	</div>
+	
 <!-- resources/bootstrap-->
 <script src="./resources/bootstrap/vendor/jquery/dist/jquery.min.js"></script>
 
