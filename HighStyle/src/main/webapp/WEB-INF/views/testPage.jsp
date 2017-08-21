@@ -194,7 +194,7 @@
 							<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
 						</li>
 						<li class="list-group-item">
-							<a href="/Highlighter/testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
+							<a href="/Highlighter/testPage?ext_id=${ext_id}&user_id=${id}"><i class="fa fa-comments"></i> 시험</a>
 						</li>
 						<li class="list-group-item">
 							<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
@@ -211,7 +211,7 @@
 					<div class="profile-body" style="border: 1px solid lightgray;">
 						<!-- Lecture introduce and enter -->
 						<div id="classIntro" style="border-left: 1px solid lightgray; border-top: 1px solid lightgray;border-right: 1px solid lightgray;">
-							<span><img src="./resources/img/alarm-clock.png">시험 <button style="border:1px solid lightgray; background:lightgray;" id="deleteExam">삭제</button><a id="registerExam" href="registerExam?ext_id=${ext_id}">시험 등록</a></span>
+							<span><img src="./resources/img/alarm-clock.png">시험 <c:if test="${user_grade eq 'teacher' }"><button style="border:1px solid lightgray; background:lightgray;" id="deleteExam">삭제</button><a id="registerExam" href="registerExam?ext_id=${ext_id}">시험 등록</a></c:if></span>
 						</div>
 						<!-- end row -->
 						<div class="profile-bio" style="border-left: 1px solid lightgray; border-right: 1px solid lightgray;border-bottom: 1px solid lightgray;">
@@ -228,11 +228,11 @@
 												<table id="test_InfoTable">
 													<tr>
 														<th></th>
-														<th>주차</th>
-														<th>제목</th>
-														<th>시험 기간</th>
-														<th>시험 시간(분)</th>
-														<th>상태</th>
+														<th style="width:13%;">주차</th>
+														<th style="width:15%;">제목</th>
+														<th style="width:35%;">시험 기간</th>
+														<th style="width:13%;">시험 시간(분)</th>
+														<th style="width:13%;">상태</th>
 													</tr>
 													<c:forEach items="${test_InfoVO}" var="list">
 														<tr>
@@ -294,7 +294,7 @@
 																		}
 																		else{
 																			var user_grade = '${user_grade}';
-																			if(user_grade == "학생"){
+																			if(user_grade == "student"){
 																				document.write('<div style="color:red" id="'+test_id+'"class="stus">시험시작</div>');
 																			}
 																			else{
@@ -403,7 +403,7 @@
 					},
 					success:function(data){
 						if(data != "0"){
-							window.open("wAnswNote?test_id="+test_id,"Highlighter","width=1300, height=800, resizable=no");
+							window.open("wAnswNote?test_id="+test_id,"Highlighter","width=1300, height=830, resizable=no");
 						}
 						else{
 							alert("이전에 친 시험 기록이 없습니다.");
