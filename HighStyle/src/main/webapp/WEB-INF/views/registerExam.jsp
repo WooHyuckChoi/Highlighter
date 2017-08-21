@@ -212,7 +212,7 @@
                      <a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
                   </li>
                   <li class="list-group-item">
-                     <a href="/Highlighter/classTest?ext_id=${ext_id}&user_id=${id}"><i class="fa fa-comments"></i> 시험</a>
+                     <a href="/Highlighter/testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
                   </li>
                   <li class="list-group-item">
                      <a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
@@ -228,15 +228,17 @@
             <div class="col-md-9">
                <div class="profile-body">
                   <!-- end row -->
+                  <div style="font-size:18px;padding:10px;" class="profile-bio">
+                     <img style="margin-right:10px;" src="./resources/img/play-arrow.png">시험 등록
+                  </div>
                   <form id="form1" method="post" enctype="multipart/form-data">
                   <div class="profile-bio">
-                     <div id="registerTest"><img src="./resources/img/play-arrow.png">시험 등록</div>
                      <div id="testTitle" class="testInput"><img class="black-arrow" src="./resources/img/black-arrow.png">제목<input type="text" name="test_title" id="testTitle2" ></div>
                      <div id="testSubject" class="testInput"><img class="black-arrow" src="./resources/img/black-arrow.png">과목<input type="text" id="testSubject2" readonly></div>
                      <div id="testDate" class="testInput"><img class="black-arrow" src="./resources/img/black-arrow.png">시험날짜 및 시간<input name="test_date" id="datetimepicker" type="text" ></div>
                      <div id="testTime" class="testInput"><img class="black-arrow" src="./resources/img/black-arrow.png">제한 시간<input name="test_time" id="testTime2" type="number" value="0">분</div>
                      <div id="testResult" ><img class="black-arrow" src="./resources/img/black-arrow.png">정답 입력<br/>
-                        <span>* 문제의 정답을 ("/")로 구분하여 순서대로 입력하세요. 시작은 꼭 ("/")로 시작해주세요!</span>
+                        <span>* 문제의 정답을 ("/")로 구분하여 순서대로 입력하세요. </span>
                         <textarea rows="4" name="testResult" id="testResult2"placeholder="/"></textarea>
                      </div>
                      <!-- 시험지 이미지 등록 -->
@@ -387,30 +389,22 @@
    }
    </script>
    
-   <!-- 출제하기 -->
    <script  type="text/javascript">
-   	/*   $("#registerExam").on("click", function(){
-   		 var ext_id = ${ext_id};
-         $.ajax({
-            url : 'registerExam',
-            type : 'POST',
-            data : {
-               testTitle : $("#testTitle2").val(),
-               dateTime : $("#datetimepicker").val(),
-               testTime : $("#testTime2").val(),
-               probCount : $("#probCount2").val(),
-               testResult : $("textarea#testResult2").val(),
-               file1 : $('#test_file').val(),
-               file2 : $('#test_file2').val(),
-               file3 : $('#test_file3').val(),
-               ext_id : ext_id
-            },
-            success:function(data){
-               alert('등록이 잘 되었어요!');
-            }
-         }); 
-        
-   }); */
+   $(document).ready(function(){
+	  var ext_id = '${ext_id}'; 
+	  var subject = ext_id.substr(2,2);
+
+	  if(subject == "01"){
+		  $("#testSubject2").val("국어");
+	  }
+	  else if(subject == "02"){
+		  $("#testSubject2").val("영어");
+	  }
+	  else{
+		  $("#testSubject2").val("수학");
+	  }
+	  $("#testSubject2").css("background-color", "lightgray");
+   });	
    </script>
 </body>
 </html>

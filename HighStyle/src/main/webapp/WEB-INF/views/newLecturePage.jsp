@@ -261,7 +261,7 @@
 					<div class="profile-body">
 						<!-- Lecture introduce and enter -->
 						<div id="classIntro">
-							<span>과외 소개</span>
+							<img src="./resources/img/male-cartoon-pointing-to-white-board.png"><span>과외 소개</span>
 							<c:if test="${user_grade eq 'teacher' }">
 								<c:if test="${open_stus eq 'y'}">
 									<button id="classExit">강의 닫기</button>
@@ -281,13 +281,13 @@
 							<div class="row">
 								<div class="col-md-12">
 									<!-- 강사 정보 -->
-									<div id="teacherInfo" class="panel margin-bottom-40">
-										<div class="panel-heading">
-											<h3 class="panel-title">
+									
+										<div style="margin-left:15px; margin-right:16px;border:1px solid lightgray;" class="panel-heading">
+											<h3 style="text-align:center"class="panel-title">
 												과외 정보
 											</h3>
 										</div>
-										<div class="panel-body">
+										<div style="border:1px solid white;" class="panel-body">
 											<table class="table table-bordered">
 												<thead>
 													<tr>
@@ -379,22 +379,20 @@
 												</tbody>
 											</table>
 										</div>
-									</div>
+								
 									<!-- 강사 정보 끝 -->
 								</div>
 							</div>
 						</div><!--/end row-->
 
-						<hr>
-
 						<div class="row">
 							<!-- Lecture intro -->
 							<div class="col-sm-6 sm-margin-bottom-30">
-								<div class="panel panel-profile">
-									<div class="panel-heading overflow-h">
+								<div style="background-color:#f7f7f7;"class="panel panel-profile">
+									<div style="border-bottom:1px solid lightgray;"class="panel-heading overflow-h">
 										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-lightbulb-o"></i> 수업소개 </h2>
 									</div>
-									<div class="panel-body">
+									<div style="overflow:auto; height:158px;"class="panel-body">
 										${classMainList.intro_class}
 									</div>
 								</div>
@@ -403,12 +401,12 @@
 
 							<!-- preview -->
 							<div class="col-sm-6 sm-margin-bottom-30">
-								<div class="panel panel-profile">
-									<div class="panel-heading overflow-h">
+								<div style="background-color:#f7f7f7;"class="panel panel-profile">
+									<div style="border-bottom:1px solid lightgray;" class="panel-heading overflow-h">
 										<h2 class="panel-title heading-sm pull-left"><i class="fa fa-pencil"></i> 공지사항</h2>
 										<form method="post">
 											<c:if test="${user_grade eq 'teacher' }">
-												<button id="noticeResi"> 등록 </button>
+												<!-- <a id="noticeResi"> 등록 </a> -->
 											</c:if>
 										</form>
 										<script>
@@ -420,7 +418,9 @@
 										</script>
 									</div>
 									<div class="panel-body">
-									
+										<div class="notice"><img src="./resources/img/checked.png"> 수업 시간은 꼭 지켜주세요.</div>
+										<div class="notice"><img src="./resources/img/checked.png"> 복습은 꾸준히 합시다.</div>
+										<div class="notice"><img src="./resources/img/checked.png"> 숙제는 잊어버리지마세요.</div>
 									</div>
 								</div>
 							</div>
@@ -428,12 +428,10 @@
 						</div>
 						<!--/end row-->
 
-						<hr>
-
 						<!--Schedule-->
-						<div class="panel panel-profile">
-							<div class="panel-heading overflow-h">
-								<h2 class="panel-title heading-sm pull-left"> 시간표 </h2>
+						<div style="background-color:#f7f7f7;" class="panel panel-profile">
+							<div style="border-bottom:1px solid lightgray;"class="panel-heading overflow-h">
+								<img src="./resources/img/timetable.png"><h2 class="panel-title heading-sm pull-left"> 시간표 </h2>
 							</div>
 							<div class="panel-body margin-bottom-40">
 								<div id="timeTable" class="tableDiv">
@@ -585,7 +583,7 @@
 								if(data=="success"){
 									alert("성공!");
 									window.location.reload();
-									window.open("https://192.168.43.136:443/board.html?ext_id=${ext_id}&id=${user_id}"); //106.249.38.98,192.168.43.136
+									window.open("https://106.249.38.98:443/board.html?ext_id=${ext_id}&id=${user_id}"); //106.249.38.98,192.168.43.136 106.249.38.110 192.168.43.136
 								}
 							},
 							error : function(data) {
@@ -595,7 +593,7 @@
 				}
 				else if(user_grade=="student")
 				{
-					window.open("https://192.168.43.136/board.html?ext_id=${ext_id}&id=${user_id}"); //192.168.51.19
+					window.open("https://106.249.38.98:443/board.html?ext_id=${ext_id}&id=${user_id}"); //192.168.51.19
 				}
 			});
 			$("#classExit").click(function(){ //이거 추가해야함 그리고 버튼도 만들고 css도 추가같이 해야함

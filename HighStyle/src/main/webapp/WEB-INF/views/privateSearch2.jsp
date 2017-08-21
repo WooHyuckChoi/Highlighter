@@ -237,7 +237,7 @@ div#locationSelect2{margin:0;}
                         </div>
                     </header>
                     <div class="widget-body">
-                        <h3 style="border-bottom:1px solid orange;">전체 과외 정보</h3>
+                        <h3 style="border-bottom:1px solid #1279ff;">전체 과외 정보</h3>
                         <p>검색을 통해 여러분이 원하는 과외를 찾아보세요!</p>
                         <table class="table table-bordered table-lg mt-lg mb-0">
                             <tbody>
@@ -1042,7 +1042,7 @@ div#locationSelect2{margin:0;}
   <!-- 과외 조회 -->
 <section class="widget">
 	<header>
-		<h4 style="border-bottom:1px solid orange; font-size:30px; text-align:center;"></h4>
+		<h4 style="border-bottom:1px solid #1279ff; font-size:30px; text-align:center;"></h4>
 		<div class="widget-controls">
 		</div>
 	</header>

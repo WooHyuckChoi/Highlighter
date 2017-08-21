@@ -2,16 +2,40 @@
 --------------------------testPage.jsp----------------------------
 -----------------------------------------------------------------*/
 .profile-bio{
-   /* border: 1px solid #cfcfcf; */
+   border: 1px solid #cfcfcf; 
+   height:500px;
 }
 #classIntro{
-   height: 50px;
-   background: #fff;
+   	height: 50px;
+   	background: #fff;
     position: relative;
-    padding: 10px 5px 5px 15px;
+    padding: 5px 5px 5px 15px;
     border-radius: 0;
     box-sizing: border-box;
-    /* border: 1px solid #cfcfcf; */
+    border: 1px solid #cfcfcf; 
+    margin-bottom:10px;
+}
+#classIntro img{
+	margin-right:10px;
+}
+#registerExam{
+	background-color:#1279ff;
+	color:white;
+	font-size:15px;
+	padding:3px 10px 4px 10px;
+	float:right;
+	margin-right:10px;
+	margin-top:5px;
+}
+#deleteExam{
+	font-size:15px;
+	padding-top:3px;
+	padding-bottom:2px;
+	float:right;
+	margin-top:5px;
+}
+#registerExam:hover{
+	text-decoration:none;
 }
 .teacher-testInfo{
    /* border:1px solid gray; */

@@ -29,14 +29,14 @@ group by day_week
 <!-- 현재 모집 중인 강의 시간표 -->
 <select id="privateTimetable" resultMap="privateTimetableMap">
 <![CDATA[
-select ext_id, group_concat(distinct(day_week)) AS day_weeks, 
-group_concat(distinct(class_str_time)) AS class_str_time, 
-group_concat(distinct(class_end_time)) AS class_end_time
-from ext_timetable
-where ext_id in (select ext_id
+select e.ext_id, group_concat(distinct(e.day_week)) AS day_weeks, 
+group_concat(distinct(e.class_str_time)) AS class_str_time, 
+group_concat(distinct(e.class_end_time)) AS class_end_time
+from ext_timetable e
+where e.ext_id in (select ext_id
 from ext_info
 where end_rc_date >= now())
-group by ext_id, day_week
+group by ext_id, day_week, e.class_str_time, e.class_end_time
 ]]>
 </select>
 

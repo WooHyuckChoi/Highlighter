@@ -33,7 +33,7 @@
 
 <style>
 	.right{
-		background-image: url("./resources/img/right.png") ;
+		background-image: url("./resources/img/right.png");
 	}
 	.wrong{
 		background-image: url("./resources/img/wrong.png");

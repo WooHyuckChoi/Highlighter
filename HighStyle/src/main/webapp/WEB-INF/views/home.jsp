@@ -275,20 +275,20 @@ div#locationSelect2{margin:0;}
   </div>
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
-    <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <p>과외 매칭을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
-    <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <p>과외 매칭을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
-    <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <p>과외 매칭을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div id="banner-pagination">
@@ -322,8 +322,8 @@ div#locationSelect2{margin:0;}
         <a href="how_parents">자세히 보기</a>
       </div>
     </div>
-    </div>
-    </div>
+  </div>
+</div>
     <!--=== Footer Version 1 ===-->
       <div class="footer-v1">
          <div class="footer">
@@ -426,20 +426,20 @@ div#locationSelect2{margin:0;}
   </div>
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
-    <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <p>과외 매칭을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
-    <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <p>과외 매칭을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
     <h1>과외 매칭 및 온라인 과외 진행</h1>
-    <p>검색을 통해 원하는 과외를 찾아보세요!</p>
-    <a href="privateSearch" class="bigbtn">검색하기</a>
+    <p>과외 매칭을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="privateSearch" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div id="banner-pagination">
@@ -667,103 +667,22 @@ div#locationSelect2{margin:0;}
       </div>
     </div>
   </div>
-  <div class="container show-case-item">
-    <br/><br/><h2>수업을 찾고 배우는 최선의 방법</h2>
-    <div>1시간부터 4주까지 편리한 과외 수업 예약, 투명한 튜터 (과외 강사) 정보</div><br/><br/>
-    <span class="howButton">학생</span>
-    <span class="howButton">강사</span>
-    <span class="howButton">학부모</span><br/><br/><br/>
-     <span class="searchLabel">온/오프라인</span><span class="searchLabel2">개인/그룹</span><span class="searchLabel3">시간</span><br/>
-    <select id="onoff" name="onoff" class="search">
-       <option value="n" 
-          <c:out value="${cri.onoff == null? 'selected':'' }"/>>
-             --온/오프라인 선택--</option>
-         <option value="1" 
-            <c:out value="${cri.onoff eq '1'? 'selected':''}"/>>
-          온라인</option>
-        <option value="0" 
-            <c:out value="${cri.onoff eq '0'? 'selected':''}"/>>
-                        오프라인</option>   
-    </select>
-    <select id="pg" name="pg" class="search">
-        <option value="n" 
-            <c:out value="${cri.pg == null? 'selected':'' }"/>>
-             --개인/그룹 선택--</option>
-        <option value="1" 
-              <c:out value="${cri.pg eq 'p'? 'selected':''}"/>>
-               개인</option>   
-        <option value="2" 
-            <c:out value="${cri.pg eq 'g'? 'selected':''}"/>>
-               그룹</option>   
-    </select>
-    <span class="search2">--시간 선택--　　　<a onclick="layer_open('layer2');"><img src="./resources/img/calendar.png" style="width:25px; top:-5px; position:relative;"></a></span>
-    <span class="search3">검색</span><br/><br/>
+<div class="container show-case-item">
+    <h1>과외 매칭 및 온라인 과외 진행</h1>
+    <p>과외 매칭을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="matchingPage" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
-    <br/><br/><h2>수업을 찾고 배우는 최선의 방법</h2>
-    <div>1시간부터 4주까지 편리한 과외 수업 예약, 투명한 튜터 (과외 강사) 정보</div><br/><br/>
-    <span class="howButton">학생</span>
-    <span class="howButton">강사</span>
-    <span class="howButton">학부모</span><br/><br/><br/>
-    <span class="searchLabel">온/오프라인</span><span class="searchLabel2">개인/그룹</span><span class="searchLabel3">시간</span><br/>
-    <select id="onoff" name="onoff" class="search">
-       <option value="n" 
-          <c:out value="${cri.onoff == null? 'selected':'' }"/>>
-             --온/오프라인 선택--</option>
-         <option value="1" 
-            <c:out value="${cri.onoff eq '1'? 'selected':''}"/>>
-          온라인</option>
-        <option value="0" 
-            <c:out value="${cri.onoff eq '0'? 'selected':''}"/>>
-                        오프라인</option>   
-    </select>
-    <select id="pg" name="pg" class="search">
-        <option value="n" 
-            <c:out value="${cri.pg == null? 'selected':'' }"/>>
-             --개인/그룹 선택--</option>
-        <option value="1" 
-              <c:out value="${cri.pg eq 'p'? 'selected':''}"/>>
-               개인</option>   
-        <option value="2" 
-            <c:out value="${cri.pg eq 'g'? 'selected':''}"/>>
-               그룹</option>   
-    </select>
-    <span class="search2">--시간 선택--　　　<a onclick="layer_open('layer2');"><img src="./resources/img/calendar.png" style="width:25px; top:-5px; position:relative;"></a></span>
-    <span class="search3">검색</span><br/><br/>
+    <h1>과외 매칭 및 온라인 과외 진행</h1>
+    <p>과외 매칭을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="matchingPage" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div class="container show-case-item">
-    <br/><br/><h2>수업을 찾고 배우는 최선의 방법</h2>
-    <div>1시간부터 4주까지 편리한 과외 수업 예약, 투명한 튜터 (과외 강사) 정보</div><br/><br/>
-    <span class="howButton">학생</span>
-    <span class="howButton">강사</span>
-    <span class="howButton">학부모</span><br/><br/><br/>
-    <span class="searchLabel">온/오프라인</span><span class="searchLabel2">개인/그룹</span><span class="searchLabel3">시간</span><br/>
-    <select id="onoff" name="onoff" class="search">
-       <option value="n" 
-          <c:out value="${cri.onoff == null? 'selected':'' }"/>>
-             --온/오프라인 선택--</option>
-         <option value="1" 
-            <c:out value="${cri.onoff eq '1'? 'selected':''}"/>>
-          온라인</option>
-        <option value="0" 
-            <c:out value="${cri.onoff eq '0'? 'selected':''}"/>>
-                        오프라인</option>   
-    </select>
-    <select id="pg" name="pg" class="search">
-        <option value="n" 
-            <c:out value="${cri.pg == null? 'selected':'' }"/>>
-             --개인/그룹 선택--</option>
-        <option value="1" 
-              <c:out value="${cri.pg eq 'p'? 'selected':''}"/>>
-               개인</option>   
-        <option value="2" 
-            <c:out value="${cri.pg eq 'g'? 'selected':''}"/>>
-               그룹</option>   
-    </select>
-    <span class="search2">--시간 선택--　　　<a onclick="layer_open('layer2');"><img src="./resources/img/calendar.png" style="width:25px; top:-5px; position:relative;"></a></span>
-    <span class="search3">검색</span><br/><br/>
+    <h1>과외 매칭 및 온라인 과외 진행</h1>
+    <p>과외 매칭을 통해 원하는 과외를 찾아보세요!</p>
+    <a href="matchingPage" class="bigbtn">강사찾기</a>
     <div class="clearfix"> </div>
   </div>
   <div id="banner-pagination">
