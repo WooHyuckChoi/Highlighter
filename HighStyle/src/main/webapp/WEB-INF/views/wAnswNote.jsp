@@ -106,30 +106,30 @@
 						else if(parseInt(stuAnsList[i])==2)
 						{
 							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right'>"+(i+1)+
-									"</div><div class='selectNum stuChecked'>1</div><div class='selectNum'>2</div>"+
+									"</div><div class='selectNum'>1</div><div class='selectNum stuChecked'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else if(parseInt(stuAnsList[i])==3)
 						{
 							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right'>"+(i+1)+
-									"</div><div class='selectNum stuChecked'>1</div><div class='selectNum'>2</div>"+
-									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
+									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
+									"<div class='selectNum stuChecked'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else if(parseInt(stuAnsList[i])==4)
 						{
 							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right'>"+(i+1)+
-									"</div><div class='selectNum stuChecked'>1</div><div class='selectNum'>2</div>"+
-									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
+									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
+									"<div class='selectNum'>3</div><div class='selectNum stuChecked'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else
 						{
 							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right'>"+(i+1)+
-									"</div><div class='selectNum stuChecked'>1</div><div class='selectNum'>2</div>"+
+									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
-									"<div class='selectNum'>5</div></div>");
+									"<div class='selectNum stuChecked'>5</div></div>");
 						}
 					}
 					else if(resultTestAnswer[i]=="wrong")
@@ -144,30 +144,30 @@
 						else if(parseInt(stuAnsList[i])==2)
 						{
 							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong'>"+(i+1)+
-									"</div><div class='selectNum stuChecked'>1</div><div class='selectNum'>2</div>"+
+									"</div><div class='selectNum'>1</div><div class='selectNum stuChecked'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else if(parseInt(stuAnsList[i])==3)
 						{
 							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong'>"+(i+1)+
-									"</div><div class='selectNum stuChecked'>1</div><div class='selectNum'>2</div>"+
-									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
+									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
+									"<div class='selectNum stuChecked'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else if(parseInt(stuAnsList[i])==4)
 						{
 							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong'>"+(i+1)+
-									"</div><div class='selectNum stuChecked'>1</div><div class='selectNum'>2</div>"+
-									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
+									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
+									"<div class='selectNum'>3</div><div class='selectNum stuChecked'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else
 						{
 							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong'>"+(i+1)+
-									"</div><div class='selectNum stuChecked'>1</div><div class='selectNum'>2</div>"+
+									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
-									"<div class='selectNum'>5</div></div>");
+									"<div class='selectNum stuChecked'>5</div></div>");
 						}
 					}
 					else	
