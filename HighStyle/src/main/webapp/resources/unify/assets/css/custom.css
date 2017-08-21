@@ -3,20 +3,43 @@
 	height: 50px;
 	background: #fff;
     position: relative;
-    padding: 15px 10px 5px 15px;
+    padding: 10px 10px 5px 15px;
     border-radius: 0;
     box-sizing: border-box;
-    border-bottom: 1px solid #cfcfcf;
+    border: 1px solid lightgray;
+    margin-bottom:10px;
+}
+#classIntro > img{
+	opacity:0.7;
+	margin-right:10px;
+	margin-top:-3px;
 }
 .panel-body td:NTH-CHILD(odd){
 	color: #336199;
 	background-color: #EDF3F4;
-	
-	
+}
+.panel-heading{
+	border:1px solid lightgray;
+	margin-bottom:5px;
+	margin-top:20px;
+}
+.panel-body{
+	border:1px solid lightgray;
+	background-color:white;
+}
+.notice{
+	border:1px solid lightgray;
+	padding:10px;
 }
 #teacherInfo table{
 	text-align: center;
 	border-bottom-width: 2px;
+}
+#noticeResi{
+	border-radius:0px;
+	width:20px;
+	height:20px;
+	padding:0px;
 }
 .tableDiv{
 	width:100%; 
@@ -93,7 +116,9 @@
 	border-radius:5px;
 	border:solid 1px #1279ff;
 }
-
+.profile-bio{
+	border:solid 1px lightgray;
+}
 #classExit{
 	float: right;
 	width:90px;
@@ -106,10 +131,20 @@
 	border-radius:5px;
 	border:solid 1px #1279ff;
 }
-
+.panel-heading > img{
+	opacity:0.7;
+	float:left;
+	margin-top:5px;
+	margin-right:10px;
+}
 #classIntro span{
 	font-size: 20px;
 	font-weight: bold;
+	color:gray;
+}
+#classIntro > button{
+	margin-top:-2px;
+	border-radius:0px;
 }
 .footer{
 	padding:0;

@@ -194,7 +194,7 @@
 							<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
 						</li>
 						<li class="list-group-item">
-							<a href="/Highlighter/classTest?ext_id=${ext_id}&user_id=${id}"><i class="fa fa-comments"></i> 시험</a>
+							<a href="/Highlighter/testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
 						</li>
 						<li class="list-group-item">
 							<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
@@ -211,7 +211,7 @@
 					<div class="profile-body" style="border: 1px solid lightgray;">
 						<!-- Lecture introduce and enter -->
 						<div id="classIntro" style="border-left: 1px solid lightgray; border-top: 1px solid lightgray;border-right: 1px solid lightgray;">
-							<span>시험 <a href="registerExam?ext_id=${ext_id}">시험 등록</a><button id="deleteExam">삭제</button></span>
+							<span><img src="./resources/img/alarm-clock.png">시험 <button style="border:1px solid lightgray; background:lightgray;" id="deleteExam">삭제</button><a id="registerExam" href="registerExam?ext_id=${ext_id}">시험 등록</a></span>
 						</div>
 						<!-- end row -->
 						<div class="profile-bio" style="border-left: 1px solid lightgray; border-right: 1px solid lightgray;border-bottom: 1px solid lightgray;">
@@ -219,7 +219,7 @@
 								<div class="col-md-12">
 									<!-- 강사 정보 -->
 									<div id="teacherInfo" class="panel margin-bottom-40" >
-										<div class="panel-body">
+										<div  class="panel-body">
 											<div class="teacher-testInfo">
 												<!-- <div>최근 친 시험:</div>
 												<div>전체 학생 수:</div>
@@ -323,7 +323,7 @@
 							</div>
 						</div><!--/end row-->
 			
-						<hr>
+					
 						<!--/end row-->
 					</div>
 				</div>
