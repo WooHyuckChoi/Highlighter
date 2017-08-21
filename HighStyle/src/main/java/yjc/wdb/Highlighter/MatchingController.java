@@ -45,9 +45,8 @@ public class MatchingController {
 		if(user_grade.equals("student")){
 			List<HashMap> studentTimetable = matchingService.studentTimetable(user_id);
 			//System.out.println(studentTimetable);
-			
+			System.out.println(studentTimetable);
 			if(!(studentTimetable.isEmpty())) {
-				
 				List<String> removeTimetable = compareTimetable(studentTimetable);
 				//System.out.println(removeTimetable);
 				
@@ -127,28 +126,33 @@ public class MatchingController {
 		
 		//List<HashMap<String, String>> removeTimetable = new ArrayList<HashMap<String,String>>();
 		List<String> removeTimetable = new ArrayList<String>();
-
+		System.out.println(privateTimetable);
 		for(HashMap i : privateTimetable) {
 			
 			Loof1 : for(HashMap j : studentTimetable) {
+				
 				String stuDay_weeks = String.valueOf(j.get("day_weeks")); //학생 시간표 : 요일
 				String priDay_weeks = String.valueOf(i.get("day_weeks"));  //과외 LIST 시간표 : 요일
-			
+				
 				if(stuDay_weeks.equals(priDay_weeks)){
 					String priClass_str_time = String.valueOf(i.get("class_str_time"));
 					String priClass_end_time = String.valueOf(i.get("class_end_time"));
+					System.out.println(priClass_str_time);
+					System.out.println("하:"+priClass_end_time);
 					String[] stuClass_str_time = String.valueOf(j.get("class_str_time")).split(",");
 					String[] stuClass_end_time = String.valueOf(j.get("class_end_time")).split(",");
 					
 					int min_time = 0;
 					int max_time = 0;
 					min_time = Integer.parseInt(stuClass_str_time[0]);
+					
 					for(int k = 1; k < stuClass_str_time.length; k++) {
 						
 						if(min_time >  Integer.parseInt(stuClass_str_time[k])) {
 							min_time = Integer.parseInt(stuClass_str_time[k]);
 						} 
 					}
+					
 					max_time = Integer.parseInt(stuClass_end_time[0]);
 					for(int z = 1; z < stuClass_end_time.length; z++) {
 						
@@ -159,19 +163,23 @@ public class MatchingController {
 					//System.out.println(priDay_weeks+min_time+":"+max_time);
 					
 					for(int k2 = min_time; k2 <= max_time; k2++) {
-						for(int k3 = Integer.parseInt(priClass_str_time); k3 <= Integer.parseInt(priClass_end_time); k3++) {
+						
+						for(int k3 = (Integer.parseInt(priClass_str_time)); k3 <= (Integer.parseInt(priClass_end_time)); k3++) {
+		
 							if(k2 == k3) {
 								String ext_id = String.valueOf(i.get("ext_id"));
 								//HashMap<String, String> a = new HashMap<String, String>();
 								//a.put("ext_id", ext_id);
 								removeTimetable.add(ext_id);
+								
 								break Loof1;
 							}
 						}
 					}
+					
 				}
 			}
-		
+			
 		}
 		//System.out.println(removeTimetable.toString());
 		//System.out.println(removeTimetable.size());	
@@ -569,7 +577,7 @@ public class MatchingController {
 							// 온.오프라인
 							if(onoff == "무관"){
 								if(i.get("onoff").equals(onoff)){
-									String cc = i.get("score").toString();
+									String cc = String.valueOf(i.get("score"));
 									int c = Integer.parseInt(cc);
 									add = c+2;
 									i.put("score", add);
@@ -577,13 +585,13 @@ public class MatchingController {
 							}
 							if(onoff != "무관"){
 								if(i.get("onoff").equals("1")){
-									String cc = i.get("score").toString();
+									String cc = String.valueOf(i.get("score"));
 									int c = Integer.parseInt(cc);
 									add = c+2;
 									i.put("score", add);
 								}
 								else{
-									String cc = i.get("score").toString();
+									String cc = String.valueOf(i.get("score"));
 									int c = Integer.parseInt(cc);
 									add = c+1;
 									i.put("score", add);
@@ -595,7 +603,7 @@ public class MatchingController {
 							// 개인.그룹
 							if(pg != "무관"){
 								if(i.get("pg").equals(pg)){
-									String cc = i.get("score").toString();
+									String cc = String.valueOf(i.get("score"));
 									int c = Integer.parseInt(cc);
 									add = c+2;
 									i.put("score", add);
@@ -603,13 +611,13 @@ public class MatchingController {
 							}
 							if(pg == "무관"){
 								if(i.get("pg").equals("1")){
-									String cc = i.get("score").toString();
+									String cc = String.valueOf(i.get("score"));
 									int c = Integer.parseInt(cc);
 									add = c+2;
 									i.put("score", add);
 								}
 								else{
-									String cc = i.get("score").toString();
+									String cc = String.valueOf(i.get("score"));
 									int c = Integer.parseInt(cc);
 									add = c+1;
 									i.put("score", add);
@@ -620,7 +628,7 @@ public class MatchingController {
 							
 							// 과목
 							if(i.get("subject").equals(subject)){
-								String cc = i.get("score").toString();
+								String cc = String.valueOf(i.get("score"));
 								int c = Integer.parseInt(cc);
 								add = c+1;
 								i.put("score", add);

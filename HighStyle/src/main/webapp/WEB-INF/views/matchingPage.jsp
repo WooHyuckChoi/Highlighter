@@ -116,7 +116,7 @@
 							<c:forEach items="${fitMatching}" var="fitMatching">
 							<li onclick="applicationClass('${fitMatching.ext_id}','${fitMatching.user_id}');" class="col-sm-3 col-xs-6 md-margin-bottom-30" style="width:24%; background-color:#31353e; margin-right:10px;">
 								<div class="team-img" >
-									<img class="img-responsive" src="displayFile?fileName=${fitMatching.prof_photo }" alt="" onerror="this.src='./resources/unify/assets/img/team/img10-md.jpg'">
+									<img style="width:245px; height:270px;"class="img-responsive" src="displayFile?fileName=${fitMatching.prof_photo}" alt="" onerror="this.src='./resources/unify/assets/img/team/img10-md.jpg'">
 									<ul>
 										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-twitter"></i></a></li>
 										<li><a href="#"><i class="icon-custom icon-sm rounded-x fa fa-facebook"></i></a></li>
