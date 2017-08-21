@@ -72,6 +72,12 @@ public class test_InfoserviceImpl implements test_InfoService {
 		// TODO Auto-generated method stub
 		return dao.testResultCount(test_id);
 	}
+	/* 강사 입장 : 학생 시험 결과 불러오기*/
+	@Override
+	public List<HashMap> checkTestResult(String test_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.checkTestResult(test_id);
+	}
 	/*@Override
 	public void create(test_InfoVO vo) throws Exception {
 		// TODO Auto-generated method stub
@@ -115,6 +121,7 @@ public class test_InfoserviceImpl implements test_InfoService {
 		// TODO Auto-generated method stub
 		return dao.TImage(ext_id);
 	}
+	
 	
 	
 	

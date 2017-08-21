@@ -34,9 +34,11 @@
 <style>
 	.right{
 		background-image: url("./resources/img/right.png");
+		background-repeat:no-repeat;
 	}
 	.wrong{
 		background-image: url("./resources/img/wrong.png");
+		background-repeat:no-repeat;
 	}
 	.answerSheet{
 	margin:10px;
@@ -82,7 +84,13 @@
 		<%-- 학생 정답 나와야함 --%>
 		<c:forEach items="${examInfo}" var="examInfo">
 		<div id="testImage">
-			<img src="displayFile?fileName=${examInfo.test_file}">
+			<div id="leftButton"></div>
+			<div id="centerImage">
+				<img id="test_file" src="displayFile?fileName=${examInfo.test_file}">
+				<img id="test_file2" src="displayFile?fileName=${examInfo.test_file2}">
+				<img id="test_file3" src="displayFile?fileName=${examInfo.test_file3}">
+			</div>
+			<div id="rightButton"></div>
 		</div>
 		<div id="answerSheet" class="answerSheet">
 			<div id="answerSheetPlace" class="answerSheetPlace">
@@ -702,6 +710,12 @@
 				$("#answerSheet").show();
 				$("#rightAnswerSheet").hide();	
 			}
+		});
+	</script>
+	<script>
+		$(document).ready(function(){
+			$("#test_file2").hide();
+			$("#test_file3").hide();
 		});
 	</script>
 </body>

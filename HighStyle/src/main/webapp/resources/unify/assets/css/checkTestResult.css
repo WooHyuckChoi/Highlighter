@@ -1,0 +1,11 @@
+#testResultTitle{
+	background-color:#1f3f58;
+	color:white;
+	padding:10px;
+	margin-bottom:10px;
+}
+#testResultPlace{
+	border:1px solid lightgray;
+	height:300px;
+	
+}

@@ -5,9 +5,10 @@
 <mapper namespace="yjc.wdb.Highlighter.StudyRoomMapper">
 <!-- 과외 페이지 불러올 때, 강사 및 강의 정보 불러옴(ClassMain.jsp)  -->
 <select id="Ext_read" resultType="Ext_InfoVO">
-	select *
-	from ext_info 
-	where ext_id = #{ext_id}
+	select e.*, u.prof_photo
+	from ext_info e, user_info u
+	where e.ext_id = #{ext_id}
+	and e.user_id = u.user_id
 </select>
 
 <!-- 강의 열기 및 닫기 쿼리 -->

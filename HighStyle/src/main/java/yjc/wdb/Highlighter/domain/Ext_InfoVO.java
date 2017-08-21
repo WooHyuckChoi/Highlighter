@@ -18,6 +18,7 @@ public class Ext_InfoVO {
 	private String str_tuit_fees;
 	private String end_tuit_fees;
 	private String subject;
+	private String prof_photo;
 	
 	public String getExt_id() {
 		return ext_id;
@@ -121,6 +122,13 @@ public class Ext_InfoVO {
 	public void setSubject(String subject) {
 		this.subject = subject;
 	}
+	public String getProf_photo() {
+		return prof_photo;
+	}
+	public void setProf_photo(String prof_photo) {
+		this.prof_photo = prof_photo;
+	}
+	
 	
 /*	public String toString(){
 		return "ext_id : " + ext_id

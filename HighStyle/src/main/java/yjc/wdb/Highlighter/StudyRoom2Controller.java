@@ -73,6 +73,8 @@ public class StudyRoom2Controller {
       String ext_id = req.getParameter("ext_id");
       model.addAttribute("ext_id", req.getParameter("ext_id"));
       
+      model.addAttribute("TImage", test_InfoService.TImage(ext_id));
+      
       List<test_InfoVO> test_InfoVO = test_InfoService.selectTest(ext_id);
       System.out.println(test_InfoVO);
       model.addAttribute("test_InfoVO", test_InfoVO);
@@ -207,6 +209,33 @@ public class StudyRoom2Controller {
 	   System.out.println(result);
 	   return result+"";
    }
+   
+   /* 이 부분 일단 StudyRoomController에 옮겨서 진행*/
+   @RequestMapping(value = "checkTestResult", method = RequestMethod.GET)
+   public void checkTestResult(HttpServletRequest req, Model model)throws Exception{
+	   String test_id = req.getParameter("test_id");
+	   model.addAttribute("test_id", test_id);
+	   List<HashMap> checkTestResult = test_InfoService.checkTestResult(test_id);
+	   int count2 = 0;
+	   int count = 0;
+	   
+	   for(HashMap i : checkTestResult){
+		   String prob_answ = String.valueOf(i.get("prob_answ"));
+		   String stu_result = String.valueOf(i.get("stu_result"));
+		   String user_name = String.valueOf(i.get("user_name"));
+		   model.addAttribute("user_name", user_name);
+		   if(prob_answ.equals(stu_result)){
+			   count++;
+		   }
+		   count2++;
+	   }
+	   
+	   model.addAttribute("count", count);
+	   model.addAttribute("count2", count2);
+	  
+	   model.addAttribute("checkTestResult", checkTestResult);
+   }
+  
    
    /* 이 부분 일단 StudyRoomController에 옮겨서 진행*/
    /*@RequestMapping(value = "wAnswNote", method = RequestMethod.GET)

@@ -66,6 +66,20 @@
 	from test_result
 	where test_id = #{test_id}
 </select>
+<select id="checkTestResult" resultMap="checkTestResultMap">
+	select p.test_id, p.prob_answ, r.stu_result, u.user_name
+	from test_info t, prob_info p, test_result r, user_info u
+	where t.test_id= #{test_id}
+	and t.test_id = p.test_id
+	and p.prob_id = r.prob_id
+	and r.user_id = u.user_id
+</select>
+<resultMap id="checkTestResultMap" type="java.util.HashMap">
+	<result property="test_id" column="test_id"></result>
+	<result property="prob_answ" column="prob_answ"></result>
+	<result property="stu_result" column="stu_result"></result>
+	<result property="user_name" column="user_name"></result>
+</resultMap>
 <!-- <insert id="create">
 	insert into test_info (test_id, ext_id, test_file, test_time, test_date) values (#{test_id},#{ext_id}, #{test_file}, #{test_time}, #{test_date}) 
 </insert>

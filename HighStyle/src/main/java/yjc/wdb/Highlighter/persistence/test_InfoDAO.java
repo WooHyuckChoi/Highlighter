@@ -18,6 +18,7 @@ public interface test_InfoDAO {
 	public void registerTestResult(test_resultVO vo)throws Exception;
 	public void changeTestState(String test_id)throws Exception;
 	public int testResultCount(String test_id)throws Exception;
+	public List<HashMap> checkTestResult(String test_id)throws Exception;
 	
 	//public Ext_InfoVO Ext_read(String ext_id) throws Exception;
 	//public void create(test_InfoVO vo) throws Exception;

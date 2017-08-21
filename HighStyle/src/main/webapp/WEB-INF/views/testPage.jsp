@@ -59,6 +59,14 @@
 			color: white;
 			font-size: 16px;
 		}
+		.teacherImg{
+			margin:0 auto; 
+			border:1px solid lightgray;
+			height:180px;
+			width:150px;
+			margin-bottom:50px;
+			margin-top:50px;
+		}
 	</style>
 </head>
 <body>
@@ -181,7 +189,10 @@
 			<div class="row">
 				<!--Left Sidebar-->
 				<div class="col-md-3 md-margin-bottom-40">
-					<img class="img-responsive profile-img margin-bottom-20" src="./resources/unify/assets/img/team/img32-md.jpg" alt="teacherProfile">
+					<img class="teacherImg img-responsive profile-img margin-bottom-20"
+							src="displayFile?fileName=${TImage}"
+							onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+							alt="teacherProfile" />
 					<!-- src="displayFile?fileName=${list.prof_photo }" -->
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 						<li id="StudyRoom" class="list-group-item">
@@ -227,9 +238,9 @@
 												<c:if test="${test_InfoVO ne '[]'}">
 												<table id="test_InfoTable">
 													<tr>
-														<th></th>
+														<th style="width:3%;"></th>
 														<th style="width:13%;">주차</th>
-														<th style="width:15%;">제목</th>
+														<th style="width:17%; ">제목</th>
 														<th style="width:35%;">시험 기간</th>
 														<th style="width:13%;">시험 시간(분)</th>
 														<th style="width:13%;">상태</th>
@@ -289,11 +300,18 @@
 																	}
 																	if(insertTime.getTime()<= now.getTime() && now.getTime() <= insertTime2.getTime()){
 																		var test_state = '${list.test_state}';
+																		var user_grade = '${user_grade}';
 																		if(test_state == "clear"){
-																			document.write('<div id="'+test_id+'"class="stus">결과보기</div>');
+																			if(user_grade == "student"){
+																				document.write('<div id="'+test_id+'"class="stus">결과보기</div>');
+																			}
+																			else{
+																				if(insertTime2.getTime() > now.getTime()){
+																					document.write('<div style="color:red" id="'+test_id+'"class="stus">시험 중</div>');
+																				}
+																			}
 																		}
 																		else{
-																			var user_grade = '${user_grade}';
 																			if(user_grade == "student"){
 																				document.write('<div style="color:red" id="'+test_id+'"class="stus">시험시작</div>');
 																			}
@@ -402,12 +420,22 @@
 						test_id : test_id
 					},
 					success:function(data){
+						var user_grade = '${user_grade}';
+
 						if(data != "0"){
-							window.open("wAnswNote?test_id="+test_id,"Highlighter","width=1300, height=830, resizable=no");
+							if(user_grade == "student"){
+								window.open("wAnswNote?test_id="+test_id,"Highlighter","width=1300, height=830, resizable=no");
+							}
+							else{
+								window.open("checkTestResult?test_id="+test_id,"Highlighter","width=800, height=400, resizable=no");
+							}
 						}
 						else{
 							alert("이전에 친 시험 기록이 없습니다.");
 						}
+					},
+					error:function(data){
+						
 					}
 				});
 			}

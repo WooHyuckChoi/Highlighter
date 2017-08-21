@@ -70,6 +70,15 @@
 			color: white;
 			font-size: 16px;
 		}
+		.teacherImg{
+			margin:0 auto; 
+			border:1px solid lightgray;
+			height:180px;
+			width:150px;
+			margin-bottom:50px;
+			margin-top:50px;
+			
+		}
 	</style>
 </head>
 <body>
@@ -192,12 +201,12 @@
 			<div class="row">
 				<!--Left Sidebar-->
 				<!-- 강사화면 -->
-				<c:if test="${user_grade eq 'teacher' }">
+				<c:if test="${user_grade eq 'teacher'}">
 					<div class="col-md-3 md-margin-bottom-40">
 						<img class="img-responsive profile-img margin-bottom-20"
-						src="displayFile?fileName=${user_info.prof_photo }"
-						onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
-						alt="teacherProfile" />
+							src="displayFile?fileName=${classMainList.prof_photo}"
+							onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+							alt="teacherProfile" />
 						<!-- src="displayFile?fileName=${list.prof_photo }" -->
 						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 							<li id="StudyRoom" class="list-group-item">
@@ -227,11 +236,10 @@
 				<!-- 학생 화면 -->
 				<c:if test="${user_grade ne 'teacher' }">
 					<div class="col-md-3 md-margin-bottom-40">
-						<img class="img-responsive profile-img margin-bottom-20"
-						src="displayFile?fileName=${user_info.prof_photo }"
-						onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
-						alt="studentProfile" />
-						<!-- src="displayFile?fileName=${list.prof_photo }" -->
+						<img class="teacherImg img-responsive profile-img margin-bottom-20"
+							src="displayFile?fileName=${classMainList.prof_photo}"
+							onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+							alt="studentProfile" />
 						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 							<li id="StudyRoom" class="list-group-item">
 								<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>

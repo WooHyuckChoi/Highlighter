@@ -119,6 +119,9 @@
 .profile-bio{
 	border:solid 1px lightgray;
 }
+.profile-body{
+	border:1px solid lightgray;
+}
 #classExit{
 	float: right;
 	width:90px;

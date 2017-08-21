@@ -75,6 +75,12 @@ public class test_InfoDAOImpl implements test_InfoDAO {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace+".testResultCount",test_id);
 	}
+	/* 강사 입장 : 학생 시험 결과 불러오기*/
+	@Override
+	public List<HashMap> checkTestResult(String test_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".checkTestResult", test_id);
+	}
 /*	@Override
 	public void create(test_InfoVO vo) throws Exception {
 		// TODO Auto-generated method stub
@@ -117,6 +123,7 @@ public class test_InfoDAOImpl implements test_InfoDAO {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace+".TImage",ext_id);
 	}
+	
 	
 
 	
