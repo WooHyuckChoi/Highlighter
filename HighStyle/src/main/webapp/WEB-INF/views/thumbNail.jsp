@@ -45,6 +45,7 @@
 
 	<!-- CSS Customization : 시간표 -->
 	<link rel="stylesheet" href="./resources/unify/assets/css/custom.css">
+	<link rel="stylesheet" href="./resources/unify/assets/css/thumbNail.css">
 	<!-- ico -->
 	<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
 	<style>
@@ -190,20 +191,19 @@
 								<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
 							</li>
 							<li class="list-group-item">
-								<a href="homeworkPage?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
+							<a href="homeworkPage?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
 							</li>
 							<li class="list-group-item">
-								<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
-							</li>
-							<li class="list-group-item">
-								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
+								<a href="/Highlighter/testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
 							</li>
 							<li class="list-group-item">
 								<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
 							</li>
-							<li class="list-group-item">
-								<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
-							</li>
+							<c:if test="${user_grade eq 'teacher'}">
+								<li class="list-group-item">
+									<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
+								</li> 
+							</c:if>
 						</ul>
 					</div>
 				</c:if>
@@ -236,32 +236,34 @@
 				<!-- Profile Content -->
 				<div class="col-md-9">
 					<div class="profile-body">
-						<!-- Lecture introduce and enter -->
-						<!-- end row -->
-						<div class="profile-bio">
-							<div class="row">
-								<div class="col-md-12">
-									<!-- 강사 정보 -->
-									<div id="teacherInfo" class="panel margin-bottom-40">
-										<div class="panel-body">
-											<video id="videoPlay" controls preload="auto" style="width:750px; height:400px">
-												<source src="video?fileName=${dto.att_file }" type="video/webm">
-												<source src="video?fileName=${dto.att_file }" type="video/mp4">
-											</video>
-											<div id="playTime"></div>
-											<input id="hid" type="hidden" value="" />
-											<c:if test="${user_grade eq 'teacher' }">
-												<button id="stilCut">추출!!</button>
-											</c:if>
-										</div>
-									</div>
-									<!-- 강사 정보 끝 -->
-								</div>
+						<!-- 동영상 -->
+						<div class="row">
+							<div class="col-md-12">
+								<video id="videoPlay" controls preload="auto" style="width:100%; height:400px">
+									<source src="video?fileName=${dto.att_file }" type="video/webm">
+									<source src="video?fileName=${dto.att_file }" type="video/mp4">
+								</video>
+								<div id="playTime"></div>
+								<input id="hid" type="hidden" value="" />
 							</div>
-						</div><!--/end row-->
-
-						<hr>
-
+						</div>
+						<!-- 동영상 정보 -->
+						<div class="profile-bio">
+							<div class="post_title"><img src="./resources/img/right-arrow.png">${dto.post_title}</div>
+							<div class="post_cont">${dto.post_cont}</div>
+							<div class="post_date">
+								<script>
+									var post_date = '${dto.post_date}';
+									var post_date2 = post_date.substr(0,11);
+									document.write("게시일 : "+post_date2);
+								</script>
+							</div>
+							<div class="thumbNail">
+								<c:if test="${user_grade eq 'teacher' }">
+									<a id="stilCut"><img src="./resources/img/add-plus-button.png">섬네일 추출</a>
+								</c:if>
+							</div>
+						</div>
 						<div class="row">
 							<!-- Lecture intro -->
 							<div class="col-sm-12 sm-margin-bottom-30">
@@ -399,16 +401,16 @@
 				document.getElementById("playTime").innerHTML =
 					"재생 상태 : "+Math.floor(videocontrol.currentTime);
 				
-				$("#hid").attr("value",Math.floor(videocontrol.currentTime));
+				$("#hid").val(Math.floor(videocontrol.currentTime));
 				
 				console.log(Math.floor(videocontrol.currentTime));
 			}
 			
-			$("#stilCut").click(function(){
+			$("#stilCut").on("click", function(){
 				if(videocontrol.paused)
 				{
 					var curT=$("#hid").val();
-					
+					alert(curT);
 					$.ajax({
 						url:"thumb",
 						type:"POST",
@@ -416,7 +418,7 @@
 						contentType: "application/json; charset=UTF-8",
 						data: JSON.stringify({
 							curT : curT,
-							location : '${dto.att_file }',
+							location : '${dto.att_file}',
 							destination :"C:\\FFMPEG\\thumbNail\\",
 							post_id : '${dto.post_id}'
 						}),

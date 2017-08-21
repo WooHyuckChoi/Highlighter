@@ -233,9 +233,10 @@ public class StudyRoomController
 	@RequestMapping(value="homeworkPage", method = RequestMethod.GET)
 	public String homeWorkPage(@RequestParam("ext_id") String ext_id,@RequestParam("user_id") String user_id,Model model) throws Exception
 	{
-		model.addAttribute(ext_id);
-		model.addAttribute(user_id);
-		System.out.println(ext_id+user_id);
+		model.addAttribute("TImage",test_InfoService.TImage(ext_id));
+		model.addAttribute("ext_id",ext_id);
+		model.addAttribute("user_id",user_id);
+		//System.out.println(ext_id+user_id);
 		return "homeworkPage";
 	}
 

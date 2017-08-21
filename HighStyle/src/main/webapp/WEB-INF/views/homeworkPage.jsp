@@ -70,6 +70,14 @@
 			color: white;
 			font-size: 16px;
 		}
+		.teacherImg{
+			margin:0 auto; 
+			border:1px solid lightgray;
+			height:180px;
+			width:150px;
+			margin-bottom:50px;
+			margin-top:50px;
+		}
 	</style>
 </head>
 <body>
@@ -194,17 +202,17 @@
 				<!-- 강사화면 -->
 				<c:if test="${user_grade eq 'teacher' }">
 					<div class="col-md-3 md-margin-bottom-40">
-						<img class="img-responsive profile-img margin-bottom-20" src="./resources/unify/assets/img/team/img32-md.jpg" alt="teacherProfile">
+						<img class="teacherImg img-responsive profile-img margin-bottom-20"
+							src="displayFile?fileName=${TImage}"
+							onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+							alt="teacherProfile" />
 						<!-- src="displayFile?fileName=${list.prof_photo }" -->
 						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 							<li id="StudyRoom" class="list-group-item">
 								<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
 							</li>
 							<li class="list-group-item">
-								<a href="homework?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
-							</li>
-							<li class="list-group-item">
-								<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
+								<a href="homework?ext_id=${ext_id}&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
 							</li>
 							<li class="list-group-item">
 								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
@@ -213,15 +221,21 @@
 								<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
 							</li>
 							<li class="list-group-item">
-								<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
+								<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
 							</li>
+							<%-- <li class="list-group-item">
+								<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
+							</li> --%>
 						</ul>
 					</div>
 				</c:if>
 				<!-- 학생 화면 -->
 				<c:if test="${user_grade ne 'teacher' }">
 					<div class="col-md-3 md-margin-bottom-40">
-						<img class="img-responsive profile-img margin-bottom-20" src="./resources/unify/assets/img/team/img32-md.jpg" alt="teacherProfile">
+						<img class="teacherImg img-responsive profile-img margin-bottom-20"
+							src="displayFile?fileName=${TImage}"
+							onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+							alt="teacherProfile" />
 						<!-- src="displayFile?fileName=${list.prof_photo }" -->
 						<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 							<li id="StudyRoom" class="list-group-item">
@@ -236,9 +250,9 @@
 							<li class="list-group-item">
 								<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
 							</li>
-							<li class="list-group-item">
+							<%-- <li class="list-group-item">
 								<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
-							</li>
+							</li> --%>
 						</ul>
 					</div>
 				</c:if>
@@ -249,7 +263,7 @@
 					<div class="profile-body">
 						<!-- Lecture introduce and enter -->
 						<div id="classIntro">
-							<span>숙제 게시판</span>
+							<span style="font-weight:100; color:black;">숙제</span>
 						</div>
 						<!-- end row -->
 						<div class="profile-bio">

@@ -203,7 +203,7 @@
 				<!-- 강사화면 -->
 				<c:if test="${user_grade eq 'teacher'}">
 					<div class="col-md-3 md-margin-bottom-40">
-						<img class="img-responsive profile-img margin-bottom-20"
+						<img class="teacherImg img-responsive profile-img margin-bottom-20"
 							src="displayFile?fileName=${classMainList.prof_photo}"
 							onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
 							alt="teacherProfile" />
@@ -216,20 +216,20 @@
 								<a href="homeworkPage?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
 							</li>
 							<li class="list-group-item">
-								<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
-							</li>
-							<li class="list-group-item">
 								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
 							</li>
-							<li class="list-group-item">
+							<%-- <li class="list-group-item">
 								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 오답노트</a>
-							</li>
+							</li> --%>
 							<li class="list-group-item">
 								<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
 							</li>
 							<li class="list-group-item">
-								<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
+								<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
 							</li>
+							<%-- <li class="list-group-item">
+								<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
+							</li> --%>
 						</ul>
 					</div>
 				</c:if>
@@ -250,15 +250,15 @@
 							<li class="list-group-item">
 								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
 							</li>
-							<li class="list-group-item">
+							<%-- <li class="list-group-item">
 								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 오답노트</a>
-							</li>
+							</li> --%>
 							<li class="list-group-item">
 								<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
 							</li>
-							<li class="list-group-item">
+							<%-- <li class="list-group-item">
 								<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
-							</li>
+							</li> --%>
 						</ul>
 					</div>
 				</c:if>
@@ -269,7 +269,7 @@
 					<div class="profile-body">
 						<!-- Lecture introduce and enter -->
 						<div id="classIntro">
-							<img src="./resources/img/male-cartoon-pointing-to-white-board.png"><span>과외 소개</span>
+							<img src="./resources/img/male-cartoon-pointing-to-white-board.png"><span style="font-weight:100; color:black;">과외 소개</span>
 							<c:if test="${user_grade eq 'teacher' }">
 								<c:if test="${open_stus eq 'y'}">
 									<button id="classExit">강의 닫기</button>

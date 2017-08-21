@@ -1,0 +1,41 @@
+.profile-bio{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.col-md-12 > video{
+	border:1px solid lightgray;
+}
+.post_title{
+	font-size:20px;
+}
+.post_title > img{
+	margin-right:10px;
+}
+.post_cont{
+	margin : 10px;
+}
+.post_date{
+	text-align:right;
+}
+.thumbNail{
+	border-top:1px solid lightgray;
+	padding:5px;
+	height:35px;
+}
+.thumbNail > a{
+	color:gray;
+	font-size:20px;
+}
+.thumbNail > a:hover{
+	text-decoration:none;
+}
+#stilCut > img{
+	opacity:0.5;
+	margin:5px;
+	width:20px;
+}
+#stilCut{
+	font-size:17px;
+	float:right;
+	height:50px;
+}

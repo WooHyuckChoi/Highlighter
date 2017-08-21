@@ -62,6 +62,14 @@
 			text-decoration: none;
 			border: solid 1px #1279ff;
 		}
+		.teacherImg{
+			margin:0 auto; 
+			border:1px solid lightgray;
+			height:180px;
+			width:150px;
+			margin-bottom:50px;
+			margin-top:50px;
+		}
 </style>
 </head>
 
@@ -185,27 +193,29 @@
 			<div class="row">
 				<!--Left Sidebar-->
 				<div class="col-md-3 md-margin-bottom-40">
-					<img class="img-responsive profile-img margin-bottom-20" src="./resources/unify/assets/img/team/img32-md.jpg" alt="teacherProfile">
+					<img class="teacherImg img-responsive profile-img margin-bottom-20"
+							src="displayFile?fileName=${TImage}"
+							onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+							alt="teacherProfile" />
 					<%-- src="displayFile?fileName=${list.prof_photo }" --%>
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 						<li id="StudyRoom" class="list-group-item">
 							<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
 						</li>
 						<li class="list-group-item">
-							<a href="#"><i class="fa fa-user"></i> 숙제</a>
+							<a href="homeworkPage?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
 						</li>
 						<li class="list-group-item">
-							<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
-						</li>
-						<li class="list-group-item">
-							<a href="/Highlighter/classTest?ext_id=${ext_id}&user_id=${id}"><i class="fa fa-comments"></i> 시험</a>
+							<a href="/Highlighter/testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
 						</li>
 						<li class="list-group-item">
 							<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
 						</li>
-						<li class="list-group-item">
-							<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
-						</li>
+						<c:if test="${user_grade eq 'teacher'}">
+							<li class="list-group-item">
+								<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
+							</li> 
+						</c:if>
 					</ul>
 				</div>
 				<!--End Left Sidebar-->
@@ -215,9 +225,9 @@
 					<div class="profile-body">
 						<!-- Lecture introduce and enter -->
 						<div id="classIntro">
-							<span>다시 보기</span>
+							<span style="font-weight:100;"><img src="./resources/img/replay.png">다시 보기</span>
 							<c:if test="${user_grade eq 'teacher'}">
-								<button id="classGoIn">강의등록</button>
+								<button id="classGoIn">글 등록</button>
 							</c:if>
 						</div>
 						<!-- end row -->
@@ -226,38 +236,38 @@
 								<div class="col-md-12">
 									<div id="teacherInfo" class="panel margin-bottom-40">
 										<div class="panel-body">
-											<c:forEach items="${list }" var="list">
+											<c:if test="${list ne '[]' }">
+											<c:forEach items="${list}" var="list">
 												<div class="col-sm-6 col-md-3 gallery-item"
 													data-groups='["nature"]'>
 													<div class="thumbnail">
-														<img class="detailReview" src="./resources/bootstrap/demo/img/pictures/1.jpg" alt="${list.post_id }">
+														<div class="videoSpace">
+															<video preload="auto"
+																width="150" id="${list.post_id}" class="detailReview" height="130" src="video?fileName=${list.att_file }">
+															</video>
+														</div>
 														<div class="caption">
-															<h5 class="mt-0 mb-xs">${list.post_title }</h5>
-															<ul class="post-links">
-																<li>${list.post_cont }</li>
-															</ul>
+															<h5 class="post_title mt-0 mb-xs"><img src="./resources/img/right-arrow.png">${list.post_title }</h5>
+															<h5 class="post_cont">
+																<script>
+																	var post_date = '${list.post_date}';
+																	var post_date2 = post_date.substr(0,10);
+																	document.write('게시일 : '+post_date2);
+																</script>
+															</h5>		
 														</div>
 													</div>
 												</div>
 											</c:forEach>
+											</c:if>
+											<c:if test="${list eq '[]' }">
+												<div class="notice">등록된 다시보기 영상이 없습니다.</div>
+											</c:if>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div><!--/end row-->
-
-						<hr>
-
-						<!--graph-->
-						<div class="panel panel-profile">
-							<div class="panel-heading overflow-h">
-								<h2 class="panel-title heading-sm pull-left"> </h2>
-							</div>
-							<div class="panel-body margin-bottom-40">
-								
-							</div>
-						</div>
-						<!--End graph-->
 					</div>
 				</div>
 				<!-- End Profile Content -->
@@ -327,8 +337,8 @@
 			window.location.href="logout";
 		});
 		$(".detailReview").on("click",function(){
-			var post_id=$(this).attr("alt");
-			alert(post_id);
+			var post_id=$(this).attr("id");
+			//alert(post_id);
 			window.location.href="boardDetail?post_id="+post_id+"&ext_id=${ext_id}";
 		});
 		$("#classGoIn").click(function(){

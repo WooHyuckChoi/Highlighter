@@ -8,6 +8,8 @@ public class reviewVO
 	private String att_file;
 	private String post_code;
 	private String ext_id;
+	private String post_date;
+	private String end_date;
 	private String user_id;
 	
 
@@ -52,6 +54,18 @@ public class reviewVO
 	}
 	public void setExt_id(String ext_id) {
 		this.ext_id = ext_id;
+	}
+	public String getPost_date() {
+		return post_date;
+	}
+	public void setPost_date(String post_date) {
+		this.post_date = post_date;
+	}
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
 	}
 	
 	

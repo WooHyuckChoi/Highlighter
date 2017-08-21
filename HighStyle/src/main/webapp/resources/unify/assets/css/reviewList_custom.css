@@ -3,24 +3,64 @@
 	height: 50px;
 	background: #fff;
     position: relative;
-    padding: 15px 10px 5px 15px;
+    padding: 10px 10px 5px 15px;
     border-radius: 0;
     box-sizing: border-box;
-    border-bottom: 1px solid #cfcfcf;
+    border: 1px solid #cfcfcf;
+}
+.notice{
+	font-size:20px;
+}
+#classIntro > span{
+   font-size:20px;
+}
+#classIntro > span > img{
+	margin-right:10px;
 }
 #StudyRoom a{
 	font-size: 16px;
 	color: white;
 }
 #StudyRoom{
-	background-color: #1279ff;
+	background-color:#1279ff;
 }
 
 #classIntro span{
 	font-size: 20px;
 	font-weight: bold;
 }
-
+.post_title{
+	margin:0;
+	color:#1279ff;
+	height:20px;
+	overflow:hidden;
+}
+.videoSpace{
+	background-color:light-gray;
+	border:1px solid lightgray;
+}
+.thumbnail{
+	width:170px;
+}
+.post_title > img{
+	margin-right:10px;
+}
+#classIntro button{
+	margin-top:0.5px;
+	border-radius:0px;
+}
+.post_cont{
+	font-size:11px;
+}
+.caption{
+	height:60px;
+}
+#classGoIn{
+	border-radius:0px;
+}
+.post-links{
+	height:30px;
+}
 .footer{
 	padding:0;
 }
@@ -28,7 +68,14 @@
 .news-v2-desc h3{
 	text-align: center;
 }
-
+.profile-bio{
+	margin-top:10px;
+	border:1px solid lightgray;
+	height:500px;
+}
+.profile-body{
+	border:1px solid lightgray;
+}
 .profile-bio a{
 	left: initial !important;
 	bottom: initial !important;

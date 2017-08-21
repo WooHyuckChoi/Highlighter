@@ -40,6 +40,7 @@ import yjc.wdb.Highlighter.domain.reviewVO;
 import yjc.wdb.Highlighter.domain.thumb_infoVO;
 import yjc.wdb.Highlighter.service.ReviewService;
 import yjc.wdb.Highlighter.service.StudyRoomService;
+import yjc.wdb.Highlighter.service.test_InfoService;
 import yjc.wdb.bbs.util.MediaUtils;
 import yjc.wdb.bbs.util.MultipartFileSender;
 import yjc.wdb.bbs.util.uploadReviewFileUtils;
@@ -49,9 +50,12 @@ public class ReviewController
 {
 	private static final Logger logger=LoggerFactory.getLogger(ReviewController.class);
 	@Inject
-	private ReviewService service;
+	private ReviewService reviewService;
 	@Inject
 	private StudyRoomService studyRoomService;
+	@Inject
+	private test_InfoService test_InfoService;
+	
 	@Resource(name="uploadPath")
 	private String uploadPath;
 	
@@ -61,11 +65,11 @@ public class ReviewController
 		//String ext_id=(String) session.getAttribute("ext_id");
 		model.addAttribute("ext_id",ext_id);
 		
-		int countPostId=service.selectPostId(ext_id);
+		int countPostId=reviewService.selectPostId(ext_id);
 		String postId="";
 		if(countPostId>0)
 		{
-			postId=service.getPostId(ext_id); //P110111500
+			postId=reviewService.getPostId(ext_id); //P110111500
 			String p1=postId.substring(0,8);
 			System.out.println(p1);
 			
@@ -116,14 +120,16 @@ public class ReviewController
 		vo.setUser_id(user_id);
 		System.out.println(vo.getAtt_file());
 		//service.postingPostId(vo);
-		service.postingItem(vo);
+		reviewService.postingItem(vo);
 		return "redirect:/listAll?ext_id="+ext_id;
 	}
 	
 	@RequestMapping(value="listAll", method=RequestMethod.GET) // 다시보기 게시판 리스트
 	public String reviewList(Model model,HttpSession session, @RequestParam("ext_id") String ext_id) throws Exception
-	{
-		model.addAttribute("list",service.listAll(ext_id));
+	{	
+		model.addAttribute("TImage",test_InfoService.TImage(ext_id));
+		model.addAttribute("user_id", session.getAttribute("id"));
+		model.addAttribute("list",reviewService.listAll(ext_id));
 		model.addAttribute("ext_id",ext_id);
 		//return "reviewList";
 		return "reviewListPage";
@@ -333,8 +339,8 @@ public class ReviewController
 		//fileName을 모델에 담아서 streamView를 반환
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("thumbNail");
-		mav.addObject("dto",service.listOne(post_id));
-		mav.addObject("thumb_info",service.selectAllThumbInfo(post_id));
+		mav.addObject("dto",reviewService.listOne(post_id));
+		mav.addObject("thumb_info",reviewService.selectAllThumbInfo(post_id));
 		mav.addObject("user_grade",user_grade);
 		mav.addObject("ext_id",ext_id);
 		return mav;
@@ -343,9 +349,11 @@ public class ReviewController
 	@ResponseBody
 	@RequestMapping(value="/thumb", method=RequestMethod.POST)
 	public Object thumb(@RequestBody JSONObject json) throws Exception
-	{
+	{	
 		//String curT = json.get("curT").toString();
-		int curT = Integer.parseInt(json.get("curT").toString());
+		String curT2 = String.valueOf(json.get("curT"));
+		int curT = Integer.parseInt(curT2);
+		System.out.println(curT2);
 		String location = json.get("location").toString();
 		String destination = json.get("destination").toString();
 		System.out.println("추출시간 : "+curT+"\n"+"추출할 영상 : "+location+"\n"+"저장할 지역 : "+destination);
@@ -355,8 +363,8 @@ public class ReviewController
 		System.out.println(post_id);
 		
 		thumb_infoVO thumbVO=new thumb_infoVO();
-		int thumbCount = service.selectThumbId(post_id);
-		thumb_infoVO thumbInfo = service.thumb_infoOne(post_id);
+		int thumbCount = reviewService.selectThumbId(post_id);
+		thumb_infoVO thumbInfo = reviewService.thumb_infoOne(post_id);
 		String thumb_id="";
 		if(thumbCount>0)
 		{
@@ -381,7 +389,7 @@ public class ReviewController
 			thumb_id=post_id+"00";
 			
 		}
-		System.out.println("안뽑힘?"+thumb_id);
+		//System.out.println("안뽑힘?"+thumb_id);
 		//섬네일 번호 끝
 		if(curT != 0 && location != null && destination!=null)
 		{
@@ -393,7 +401,7 @@ public class ReviewController
 			thumbVO.setThumb_name(result);
 			thumbVO.setThumb_time(curT);
 			thumbVO.setThumb_memo(null);
-			service.insertThumbInfo(thumbVO);
+			reviewService.insertThumbInfo(thumbVO);
 			//끝
 			//return result;
 			return result;
