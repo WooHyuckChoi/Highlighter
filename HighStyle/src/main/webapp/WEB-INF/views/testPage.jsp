@@ -293,7 +293,13 @@
 																			document.write('<div id="'+test_id+'"class="stus">결과보기</div>');
 																		}
 																		else{
-																			document.write('<div style="color:red" id="'+test_id+'"class="stus">시험시작</div>');
+																			var user_grade = '${user_grade}';
+																			if(user_grade == "학생"){
+																				document.write('<div style="color:red" id="'+test_id+'"class="stus">시험시작</div>');
+																			}
+																			else{
+																				document.write('<div style="color:red" id="'+test_id+'"class="stus">시험 중</div>');
+																			}
 																		}
 																	}
 																	if(insertTime2.getTime() < now.getTime()){
