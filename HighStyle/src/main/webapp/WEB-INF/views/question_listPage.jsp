@@ -117,7 +117,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="/Highlighter">
-					<img src="./resources/img/blue_Logo.png" alt="Logo">
+					<img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -319,7 +319,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="/Highlighter">
-					<img src="./resources/img/blue_Logo.png" alt="Logo">
+					<img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -522,7 +522,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="/Highlighter">
-					<img src="./resources/img/blue_Logo.png" alt="Logo">
+					<img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -723,7 +723,7 @@
 					<div class="row">
 						<!-- About -->
 						<div class="col-md-3 md-margin-bottom-40">
-							<a class="logo" href="/Highlighter"><img src="./resources/img/blue_Logo.png" alt="Logo"></a>
+							<a class="logo" href="/Highlighter"><img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo"></a>
 							<p>&nbsp;&nbsp;&nbsp;&nbsp;과외 중개 사이트가 아닌 매칭 사이트.</p>
 							<p>&nbsp;&nbsp;&nbsp;&nbsp;온라인 과외 사이트</p>
 						</div><!--/col-md-3-->

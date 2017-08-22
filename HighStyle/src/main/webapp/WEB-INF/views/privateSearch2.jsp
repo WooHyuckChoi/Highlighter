@@ -171,7 +171,7 @@ div#locationSelect2{margin:0;}
 <div class="nav-agency">
   <div class="navbar navbar-static-top">
     <div class="navbar-inner">
-      <div class="container"> <a class="brand" href="/Highlighter"> <img src="./resources/img/logo.png" alt=""></a>
+      <div class="container"> <a class="brand" href="/Highlighter"><img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo"></a>
       <c:if test="${user_id eq null}">
      	 <ul id="work-filter">
             <li><a data-filter="*" class="btn btn-success ione-col" id="login" onclick="login()">로그인</a></li>

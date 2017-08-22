@@ -3,10 +3,13 @@
 	height: 50px;
 	background: #fff;
     position: relative;
-    padding: 15px 10px 5px 15px;
+    padding: 10px 10px 5px 15px;
     border-radius: 0;
     box-sizing: border-box;
-    border-bottom: 1px solid #cfcfcf;
+    border: 1px solid #cfcfcf;
+}
+.profile-body{
+	border:1px solid #cfcfcf;
 }
 #StudyRoom a{
 	font-size: 16px;
@@ -18,13 +21,25 @@
 
 #classIntro span{
 	font-size: 20px;
-	font-weight: bold;
+	font-weight: 100;
+	color:black;
 }
-
+#classIntro span img{
+	margin-right:10px;
+	opacity:0.5;
+}
 .footer{
 	padding:0;
 }
-
+.list{
+	/* border:1px solid lightgray; */
+	margin-top:10px;
+	padding:0;
+	width:180px;
+}
+#profileTitle > img{
+	margin-right:10px;
+}
 .news-v2-desc h3{
 	text-align: center;
 }

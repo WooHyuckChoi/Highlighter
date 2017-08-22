@@ -76,7 +76,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="/Highlighter">
-					<img src="./resources/img/blue_Logo.png" alt="Logo">
+					<img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -202,7 +202,7 @@
 							<a href="homeworkPage?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
 						</li>
 						<li class="list-group-item">
-							<a href="/Highlighter/testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
+							<a href="/Highlighter/testPage?ext_id=${ext_id}&user_id=${id}"><i class="fa fa-comments"></i> 시험</a>
 						</li>
 						<li class="list-group-item">
 							<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>

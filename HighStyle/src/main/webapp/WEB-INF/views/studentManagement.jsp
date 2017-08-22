@@ -44,15 +44,30 @@
 	<link rel="stylesheet" href="./resources/unify/assets/css/theme-skins/dark.css">
 
 	<!-- CSS Customization -->
+	<link rel="stylesheet" href="./resources/unify/assets/css/custom.css">
 	<link rel="stylesheet" href="./resources/unify/assets/css/stu_custom.css">
-	
 	<!-- morris CSS -->
 	<link rel="stylesheet" href="./resources/morris/morris.css">
 	
 	<!-- ico -->
 	<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
+	<style>
+		.teacherImg{
+			margin:0 auto; 
+			border:1px solid lightgray;
+			height:180px;
+			width:150px;
+			margin-bottom:50px;
+			margin-top:50px;
+		}
+		.studentImg{
+			margin:0 auto; 
+			border:1px solid lightgray;
+			height:180px;
+			width:150px;
+		}
+	</style>
 </head>
-
 <body>
 	<div class="wrapper">
 		<!--=== Header ===-->
@@ -60,7 +75,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="/Highlighter">
-					<img src="./resources/img/blue_Logo.png" alt="Logo">
+					<img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -173,27 +188,28 @@
 			<div class="row">
 				<!--Left Sidebar-->
 				<div class="col-md-3 md-margin-bottom-40">
-					<img class="img-responsive profile-img margin-bottom-20" src="./resources/unify/assets/img/team/img32-md.jpg" alt="teacherProfile">
-					<!-- src="displayFile?fileName=${list.prof_photo }" -->
+					<img class="teacherImg img-responsive profile-img margin-bottom-20"
+							src="displayFile?fileName=${TImage}"
+							onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+							alt="teacherProfile" />
 					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
 						<li id="StudyRoom" class="list-group-item">
 							<a href="/Highlighter/newLecturePage?ext_id=${ext_id}"><i class="fa fa-bar-chart-o"></i> StudyRoom<br>과외 정보 관리</a>
 						</li>
 						<li class="list-group-item">
-							<a href="#"><i class="fa fa-user"></i> 숙제</a>
+							<a href="homeworkPage?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
 						</li>
 						<li class="list-group-item">
-							<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
-						</li>
-						<li class="list-group-item">
-							<a href="/Highlighter/classTest?ext_id=${ext_id}&user_id=${id}"><i class="fa fa-comments"></i> 시험</a>
+							<a href="/Highlighter/testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
 						</li>
 						<li class="list-group-item">
 							<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
 						</li>
-						<li class="list-group-item">
-							<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
-						</li>
+						<c:if test="${user_grade eq 'teacher'}">
+							<li class="list-group-item">
+								<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
+							</li> 
+						</c:if>
 					</ul>
 				</div>
 				<!--End Left Sidebar-->
@@ -203,40 +219,32 @@
 					<div class="profile-body">
 						<!-- Lecture introduce and enter -->
 						<div id="classIntro">
-							<span>수강 학생 목록</span>
+							<span><img src="./resources/img/multiple-users-silhouette.png">수강 학생 관리</span>
 						</div>
 						<!-- end row -->
 						<div class="profile-bio">
 							<div class="row">
 								<div class="col-md-12">
-									<div id="teacherInfo" class="panel margin-bottom-40">
-										<div class="panel-body">
-											<c:forEach items="${info }" var="info">
-												<%-- <div class="stuListWrap">
-													<a href="/Highlighter/classSTManagement?ext_id=${ext_id }&user_id=${info.user_id}">
-														<img src="displayFile?fileName=${info.prof_photo }" /></a>
-													<p>${info.user_name }</p>
-												</div> --%>
-												<div class="col-sm-4 sm-margin-bottom-30">
-													<div class="news-v2-badge">
-														<img class="img-responsive" src="./resources/unify/assets/img/main/img3.jpg" alt="">
-													</div>
-													<div class="news-v2-desc">
-														<h3><a href="/Highlighter/classSTManagementFix?ext_id=${ext_id }&user_id=${info.user_id}">${info.user_name }</a></h3>
-													</div>
-												</div>
-											</c:forEach>
+									<div id="profileTitle"><img src="./resources/img/finger-of-a-hand-pointing-to-right-direction.png">수강 학생 목록</div>
+									<c:forEach items="${info}" var="info">
+										<div class="list col-sm-4 sm-margin-bottom-30">
+											<div class="news-v2-badge">
+												<img class="studentImg img-responsive profile-img margin-bottom-20"
+													src="displayFile?fileName=${info.prof_photo}"
+													onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+													alt="teacherProfile" />
+											</div>
+											<div class="news-v2-desc">
+												<h5 style="text-align:center;"><a href="/Highlighter/classSTManagementFix?ext_id=${ext_id }&user_id=${info.user_id}">${info.user_name} 학생<img src="./resources/img/forward.png"></a></h5>
+											</div>
 										</div>
-									</div>
+									</c:forEach>
 								</div>
 							</div>
 						</div><!--/end row-->
-
-						<hr>
-
 						<!--graph-->
-						<div class="panel panel-profile">
-							<div class="panel-heading overflow-h">
+						<div style="background-color:#cfcfcf;" class="panel panel-profile">
+							<div style="border-bottom:1px solid lightgray;" class="panel-heading overflow-h">
 								<h2 class="panel-title heading-sm pull-left"> 성적 그래프 </h2>
 							</div>
 							<div class="panel-body margin-bottom-40">

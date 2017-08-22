@@ -236,7 +236,7 @@ div#locationSelect2{margin:0;}
   <div class="nav-agency">
     <div class="navbar navbar-static-top">
       <div class="navbar-inner">
-        <div class="container"> <a class="brand" href="/Highlighter"> <img src="./resources/img/white_Logo.png" alt=""></a>
+        <div class="container"> <a class="brand" href="/Highlighter"><img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo"></a>
             <ul id="work-filter">
               <li><a data-filter="*" class="btn btn-success ione-col" id="login" onclick="go_popup()">로그인</a></li>
               <li><input id="parentLogin" type="button" class="btn btn-success ione-col" value="학부모"></li>
@@ -331,7 +331,7 @@ div#locationSelect2{margin:0;}
                <div class="row">
                   <!-- About -->
                   <div class="col-md-3 md-margin-bottom-40">
-                     <a class="logo" href="/Highlighter"><img src="./resources/img/blue_Logo.png" alt="Logo"></a>
+                     <a class="logo" href="/Highlighter"><img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo"></a>
                      <p>&nbsp;&nbsp;&nbsp;&nbsp;과외 중개 사이트가 아닌 매칭 사이트.</p>
                      <p>&nbsp;&nbsp;&nbsp;&nbsp;온라인 과외 사이트</p>
                      <p>
@@ -374,7 +374,7 @@ div#locationSelect2{margin:0;}
   <div class="nav-agency">
     <div class="navbar navbar-static-top">
       <div class="navbar-inner">
-        <div class="container"> <a class="brand" href="/Highlighter"> <img src="./resources/img/white_Logo.png" alt=""></a>
+        <div class="container"> <a class="brand" href="/Highlighter"><img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo"></a>
             <ul id="work-filter" >
               <!-- 유저 정보 -->
               <li class="userMessage">메시지&nbsp;&nbsp;<img src="./resources/img/speech-bubble.png"/></li>
@@ -482,7 +482,7 @@ div#locationSelect2{margin:0;}
                <div class="row">
                   <!-- About -->
                   <div class="col-md-3 md-margin-bottom-40">
-                     <a class="logo" href="/Highlighter"><img src="./resources/img/blue_Logo.png" alt="Logo"></a>
+                     <a class="logo" href="/Highlighter"><img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo"></a>
                      <p>&nbsp;&nbsp;&nbsp;&nbsp;과외 중개 사이트가 아닌 매칭 사이트.</p>
                      <p>&nbsp;&nbsp;&nbsp;&nbsp;온라인 과외 사이트</p>
                      <p>
@@ -620,7 +620,7 @@ div#locationSelect2{margin:0;}
   <div class="nav-agency">
     <div class="navbar navbar-static-top">
       <div class="navbar-inner">
-        <div class="container"> <a class="brand" href="/Highlighter"> <img src="./resources/img/white_Logo.png" alt=""></a>
+        <div class="container"> <a class="brand" href="/Highlighter"><img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo"></a>
             <ul id="work-filter">
               <!-- 유저 정보 -->
               <li class="userMessage">메시지&nbsp;&nbsp;<img src="./resources/img/speech-bubble.png"/></li>
@@ -725,7 +725,7 @@ div#locationSelect2{margin:0;}
                <div class="row">
                   <!-- About -->
                   <div class="col-md-3 md-margin-bottom-40">
-                     <a class="logo" href="/Highlighter"><img src="./resources/img/blue_Logo.png" alt="Logo"></a>
+                     <a class="logo" href="/Highlighter"><img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo"></a>
                      <p>&nbsp;&nbsp;&nbsp;&nbsp;과외 중개 사이트가 아닌 매칭 사이트.</p>
                      <p>&nbsp;&nbsp;&nbsp;&nbsp;온라인 과외 사이트</p>
                      <p>

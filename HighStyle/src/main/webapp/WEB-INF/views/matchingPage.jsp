@@ -72,7 +72,7 @@
 						<!-- Navbar Brand -->
 						<div class="navbar-brand">
 							<a href="/Highlighter">
-								<img class="shrink-logo" src="./resources/img/blue_Logo.png" alt="Logo">
+								<img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo">
 							</a>
 						</div>
 						<!-- ENd Navbar Brand -->

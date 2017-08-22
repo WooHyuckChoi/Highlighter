@@ -151,7 +151,7 @@
 			<div class="container">
 				<!-- Logo -->
 				<a class="logo" href="/Highlighter">
-					<img src="./resources/img/blue_Logo.png" alt="Logo">
+					<img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo">
 				</a>
 				<!-- End Logo -->
 
@@ -279,20 +279,16 @@
 								<a href="homeworkPage?ext_id=${ext_id }&user_id=${user_id}"><i class="fa fa-user"></i> 숙제</a>
 							</li>
 							<li class="list-group-item">
-								<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
-							</li>
-							<li class="list-group-item">
-								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
-							</li>
-							<li class="list-group-item">
-								<a href="testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 오답노트</a>
+								<a href="/Highlighter/testPage?ext_id=${ext_id}"><i class="fa fa-comments"></i> 시험</a>
 							</li>
 							<li class="list-group-item">
 								<a href="/Highlighter/listAll?ext_id=${ext_id}"><i class="fa fa-history"></i> 다시보기</a>
 							</li>
-							<li class="list-group-item">
-								<a href="/Highlighter/classDeval?user_id=${id}&ext_id=${ext_id}&user_grade=${user_grade}"><i class="fa fa-cog"></i> 진단평가</a>
-							</li>
+							<c:if test="${user_grade eq 'teacher'}">
+								<li class="list-group-item">
+									<a href="/Highlighter/classSTManagementList?ext_id=${ext_id}"><i class="fa fa-group"></i> 수강 학생 관리</a>
+								</li> 
+							</c:if>
 						</ul>
 					</div>
 				</c:if>
@@ -492,7 +488,7 @@
 						<!-- About -->
 						<div class="col-md-3 md-margin-bottom-40">
 							<a href="index.html"><img id="logo-footer"
-								class="footer-logo" src="./resources/img/logo.png" alt="logo"></a>
+								class="footer-logo" src="./resources/img/high_logo.png" alt="logo"></a>
 							<p>과외 중개 사이트가 아닌 매칭 사이트.</p>
 							<p>온라인 과외 사이트</p>
 						</div>
@@ -502,7 +498,6 @@
 				</div>
 			</div>
 			<!--/footer-->
-
 			<div class="copyright">
 				<div class="container">
 					<div class="row">

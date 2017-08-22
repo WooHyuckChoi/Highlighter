@@ -166,7 +166,7 @@ div#locationSelect2{margin:0;}
 <div class="nav-agency">
   <div class="navbar navbar-static-top">
     <div class="navbar-inner">
-      <div class="container"> <a class="logo" href="/Highlighter"><img src="./resources/img/blue_Logo.png" alt="Logo"></a>
+      <div class="container"> <a class="logo" href="/Highlighter"><img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo"></a>
 				<!-- Toggle get grouped for better mobile display -->
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
 					<span class="sr-only">Toggle navigation</span>

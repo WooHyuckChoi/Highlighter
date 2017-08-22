@@ -174,8 +174,7 @@
 		<div class="navbar navbar-static-top">
 			<div class="navbar-inner">
 				<div class="container">
-					<a class="brand" href="/Highlighter"> <img
-						src="./resources/img/logo.png" alt=""></a>
+					<a class="brand" href="/Highlighter"><img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo"></a>
 					<div id="main-nav">
 						<div class="nav-collapse collapse">
 							<ul class="nav">
