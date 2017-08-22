@@ -14,4 +14,5 @@ public interface App_ClassDAO {
 	public void cancelClass(App_ClassVO vo)throws Exception;
 	public void acceptClass(App_ClassVO vo)throws Exception;
 	public void cancelAcceptClass(App_ClassVO vo)throws Exception;
+	public void accpetClassExtYn(App_ClassVO vo) throws Exception;
 }

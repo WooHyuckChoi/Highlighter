@@ -71,6 +71,10 @@ delete from app_class where user_id = #{user_id} and ext_id = #{ext_id}
 <update id="acceptClass">
 update app_class set reg_stus = '결제완료' where user_id = #{user_id} and ext_id = #{ext_id}
 </update>
+<!-- 해당 학생의 신청 수락과 동시에 decide_yn의 값 update -->
+<update id="accpetClassExtYn">
+	update ext_timetable set decide_yn = "y" where user_id=#{user_id} and ext_id =#{ext_id}
+</update>
 
 <!-- 해당 학생의 신청 수락 취소 -->
 <update id="cancelAcceptClass">

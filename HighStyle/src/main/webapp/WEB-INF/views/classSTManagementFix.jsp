@@ -342,9 +342,9 @@
 														</td>
 													</tr>
 													<tr>
-														<td>학교</td>
+														<td></td>
 														<td>
-															${listProfile.college}
+															
 														</td>
 														<td class="hidden-sm">휴대폰</td>
 														<td>
@@ -387,7 +387,7 @@
 													<div id="studentscore">
 														<table id="table124">
 															<tr>
-																<th>주차</th>
+																<th>회차</th>
 																<th>시험일</th>
 																<th>점수</th>
 																<th>오답노트</th>

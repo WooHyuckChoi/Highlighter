@@ -60,6 +60,9 @@
 		#videoMemo{
 			
 		}
+		.thumbBox{
+			display: inline-block;
+		}
 	</style>
 </head>
 <body>
@@ -275,15 +278,20 @@
 										<div id="stilCutImg">
 											<c:if test="${user_grade ne 'teacher' }">
 												<c:forEach items="${thumb_info }" var="thumb_info">
-													<img onclick="setVideoTime(${thumb_info.thumb_time})" 
-													src="displayFile?fileName=${thumb_info.thumb_name }" width="150px" />
+													<div class="thumbBox">
+														<img onclick="setVideoTime(${thumb_info.thumb_time})" 
+														src="displayFile?fileName=${thumb_info.thumb_name }" width="150px" />
+														<p>${thumb_info.thumb_memo }</p>
+													</div>
 												</c:forEach>
 													<script>
 														function setVideoTime(e)
 														{
 															var videocontrol = document.getElementById("videoPlay");
 															videocontrol.currentTime=e;
+															
 														}
+														
 													</script>
 											</c:if>
 											<c:if test="${user_grade eq 'teacher' }">
@@ -296,7 +304,7 @@
 													{
 														var e = $(this).attr("alt");
 														console.log(e);
-														$("#videoMemo").show();
+														//$("#videoMemo").show();
 													}
 												</script>
 											</c:if>
@@ -317,7 +325,7 @@
 								<h2 class="panel-title heading-sm pull-left"> 설명 </h2>
 							</div>
 							<div class="panel-body margin-bottom-40">
-								
+								<p id="memoView"></p>
 							</div>
 						</div>
 						<!--End Schedule-->
@@ -409,6 +417,7 @@
 			$("#stilCut").on("click", function(){
 				if(videocontrol.paused)
 				{
+					var memo = window.prompt("섬네일의 저장할 메모를 입력하세요.");
 					var curT=$("#hid").val();
 					alert(curT);
 					$.ajax({
@@ -419,9 +428,11 @@
 						data: JSON.stringify({
 							curT : curT,
 							location : '${dto.att_file}',
-							destination :"C:\\FFMPEG\\thumbNail\\",
-							post_id : '${dto.post_id}'
+							destination :"D:\\FFMPEG\\thumbNail\\",
+							post_id : '${dto.post_id}',
+							memo : memo
 						}),
+						/* destination :"D:\\FFMPEG\\thumbNail\\", */
 						success : function(data) {
 							if(data){
 								alert(data);

@@ -7,7 +7,14 @@ public class Ext_TimetableVO {
 	private int class_str_time;
 	private int class_end_time;
 	private String user_name;
+	private String decide_yn;
 	
+	public String getDecide_yn() {
+		return decide_yn;
+	}
+	public void setDecide_yn(String decide_yn) {
+		this.decide_yn = decide_yn;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

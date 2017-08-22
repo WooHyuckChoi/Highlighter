@@ -763,13 +763,11 @@ public class UserController {
 		String[] startArr = req.getParameterValues("startArr");
 		String[] endArr = req.getParameterValues("endArr");
 		int arrlength = Integer.parseInt(req.getParameter("arrlength"));
-		//System.out.println("������ �ð�ǥ ���� : " + arrlength);
+		
 		String[] timeArr = new String[arrlength];
 		//System.out.println(startArr[0]);
 		//System.out.println(endArr[0]);
 		for(int i=0; i<arrlength; i++){
-			//System.out.print("���ǽ��� �ð� : " + startArr[0].substring((i + (5*i) + 2), (i+(5*(i+1)))) + " ");
-			//System.out.println("�������� �ð� : " + endArr[0].substring((i + (5*i) + 2), (i+(5*(i+1)))));
 			timeArr[i] = startArr[0].substring((i + (5*i) + 2), (i+(5*(i+1)))) + endArr[0].substring((i + (5*i) + 3), (i+(5*(i+1))));
 		}
 		
@@ -819,6 +817,15 @@ public class UserController {
 			tVo.setDay_week(day_week);
 			tVo.setClass_str_time(class_str_time);
 			tVo.setClass_end_time(class_end_time);
+			//그룹일시 y, 개인일시 n으로 저장.
+			if(req.getParameter("groupStaus").equals("group"))
+			{
+				tVo.setDecide_yn("y");
+			}
+			else
+			{
+				tVo.setDecide_yn("n");
+			}
 			service.ext_table_create(tVo);
 		}	
 	}

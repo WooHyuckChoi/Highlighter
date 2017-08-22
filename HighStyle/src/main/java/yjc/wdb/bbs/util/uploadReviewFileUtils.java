@@ -114,9 +114,11 @@ public class uploadReviewFileUtils
 			String destinationM = imageFilePath.replace("\\", "/");// 그래서 \를 /로 바꿔준다 얘로 
 			// 그래서 저장은 imageFilePath 얘로 하는데  이미지 경로 반환은 destinationM얘로 함
 			
-			String[] commands = {"C:\\FFMPEG\\ffmpeg-3.3.2-win64-static\\ffmpeg-3.3.2-win64-static\\bin\\ffmpeg.exe ","-ss ",
+			String[] commands = {"D:\\FFMPEG\\ffmpeg-3.3.2-win64-static\\ffmpeg-3.3.2-win64-static\\bin\\ffmpeg.exe ","-ss ",
 					String.format("%02d:%02d:%02d", hours, minutes, seconds), 
 					" -i ",videoFilePath," -an ","-vframes ","1 ","-y ",imageFilePath+"stilCut"+position+""+".jpeg" };
+			//D:\\FFMPEG\\ffmpeg-3.3.2-win64-static\\ffmpeg-3.3.2-win64-static\\bin\\ffmpeg.exe
+			//imageFilePath+"stilCut"+position+""+".jpeg"
 			String commandsCom = null;
 			for(int i=0; i<commands.length; i++)
 			{

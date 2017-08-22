@@ -59,4 +59,10 @@ public class App_ClassServiceImpl implements App_ClassSerivce {
 		dao.cancelAcceptClass(vo);
 	}
 
+	@Override
+	public void accpetClassExtYn(App_ClassVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.accpetClassExtYn(vo);
+	}
+
 }
