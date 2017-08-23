@@ -234,7 +234,7 @@
 		
 		var lEtutorDivBeforeInfo = $("section").children().eq(3)
 		var BeforeInfo = $("section").children().eq(3).children();
-		var searchTrue = $("section").children().eq(3).is(".lEtutorDivBeforeInfoList");
+		var searchTrue = $("section").children().eq(3).children().is(".lEtutorDivBeforeInfoList");
 		if(searchTrue == true){
 			for(var i=0; i<BeforeInfo.length; i++){
 				var beforeExt_id = lEtutorDivBeforeInfo.children().eq(i).children().eq(0).val();
