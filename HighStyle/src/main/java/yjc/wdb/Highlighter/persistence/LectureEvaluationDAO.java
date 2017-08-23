@@ -28,6 +28,9 @@ public interface LectureEvaluationDAO {
 	public int countPaging(Criteria cri) throws Exception;
 	
 	public List<LectureEvaluationBestScoreVO> bestScore(String ext_id) throws Exception;
+	public double bestScore2(String ext_id) throws Exception;
+	public List<LectureEvaluationBestScoreVO> bestScore3(String ext_id) throws Exception;
+	public List<String> sortEvaluation(String ext_id) throws Exception;
 	
 	public List<ParentVO> parentLogin(ParentVO vo) throws Exception;
 	public List<TutorListVO> tutorList(String user_id) throws Exception;

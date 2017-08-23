@@ -280,12 +280,11 @@
 		 
 		 
 		$.ajax({
-	        url : './LectureEvaluationBestScore',
+	        url : './LectureEvaluationBestScore3',
 	        data : {
 	            ext_id : ext_id
 	        },
 	        dataType : 'text',
-	        async : false,
 	        success : function(data){
 	        	console.log(data);
 	        	var totalCount = 0;

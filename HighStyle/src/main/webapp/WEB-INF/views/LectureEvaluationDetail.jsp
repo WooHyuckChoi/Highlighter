@@ -267,12 +267,11 @@
 		 
 		 
 		$.ajax({
-	        url : './LectureEvaluationBestScore',
+	        url : './LectureEvaluationBestScore3',
 	        data : {
 	            ext_id : ext_id
 	        },
 	        dataType : 'text',
-	        async : false,
 	        success : function(data){
 	        	console.log(data);
 	        	var totalCount = 0;
@@ -321,7 +320,7 @@
 	                
 	                totalCount += parseInt(timeview(strDate2,currentDate,weekday));	
 	        	}
-	        	var tutorN = $("section").children().eq(1).children().eq(1).children().eq(3);
+	        	var tutorN = $("section").children().eq(1).children().eq(1).children().eq(2);
 	        	// tutorN.text("총 " + totalCount + "번의 수업 중 " + postCount + "개의 평가가 있습니다.");
 	        	tutorN.text("수강 횟수 : " + totalCount + "회");
 	        },

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -81,9 +82,10 @@ public class LectureEvaluationController {
 	@RequestMapping(value="/LectureEvaluationDetail", method = RequestMethod.GET)
 	public void LectureEvaluationDetail(@RequestParam("ext_id") String ext_id, Model model) throws Exception{
 		System.out.println(ext_id);
-		
+			
 		model.addAttribute("list", service.read(ext_id));
 		model.addAttribute("list2", service.read3(ext_id));
+		model.addAttribute("list3", service.sortEvaluation(ext_id));
 	}
 	
 	
@@ -106,12 +108,36 @@ public class LectureEvaluationController {
 	}
 	
 	@RequestMapping(value="/LectureEvaluationBestScore", method = RequestMethod.GET)
-	public @ResponseBody List<LectureEvaluationBestScoreVO> LectureEvaluationBestScore(@RequestParam("ext_id") String ext_id, Model model) throws Exception{
+	public @ResponseBody Map<String, Object> LectureEvaluationBestScore(String [] ext_arr) throws Exception{
 		
-		List<LectureEvaluationBestScoreVO> test = service.bestScore(ext_id);
-//		if(test.size() != 0){
-//			model.addAttribute("list2", service.bestScore(ext_id));
-//		}
+//		List<LectureEvaluationBestScoreVO> test = service.bestScore(ext_id);
+//		String [] dada = (String[])request.getParameterValues("ext_arr");
+		
+		System.out.println("sadsad" + ext_arr);
+		System.out.println(ext_arr.length);
+		for(int i=0; i<ext_arr.length; i++) {
+			ext_arr[i] = ext_arr[i].replaceAll("\"", "").replace("[", "").replaceAll("]", "");
+			System.out.println(ext_arr[i]);
+		}
+		
+		Map<String, Object> test = service.bestScore(ext_arr);
+		
+		return test;
+	}
+	
+	@RequestMapping(value="/LectureEvaluationBestScore2", method = RequestMethod.GET)
+	public @ResponseBody double LectureEvaluationBestScore2(@RequestParam("ext_id") String ext_id) throws Exception{
+		
+		double test = service.bestScore2(ext_id);
+
+		return test;
+	}
+	
+	@RequestMapping(value="/LectureEvaluationBestScore3", method = RequestMethod.GET)
+	public @ResponseBody List<LectureEvaluationBestScoreVO> LectureEvaluationBestScore(@RequestParam("ext_id") String ext_id) throws Exception{
+		
+		List<LectureEvaluationBestScoreVO> test = service.bestScore3(ext_id);
+		
 		return test;
 	}
 	
@@ -234,6 +260,7 @@ public class LectureEvaluationController {
 		vo.setEvaluation_content(content);
 		vo.setEvaluation_grade(score);
 		service.create(vo);
+		service.bestScore3(ext_id);
 	}
 	
 /*	
