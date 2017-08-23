@@ -6,6 +6,14 @@ public class stu_infoVO
 	private String user_id;
 	private String post_date;
 	private String learn_att;
+	private String stu_infoNum;
+	
+	public String getStu_infoNum() {
+		return stu_infoNum;
+	}
+	public void setStu_infoNum(String stu_infoNum) {
+		this.stu_infoNum = stu_infoNum;
+	}
 	public String getExt_id() {
 		return ext_id;
 	}

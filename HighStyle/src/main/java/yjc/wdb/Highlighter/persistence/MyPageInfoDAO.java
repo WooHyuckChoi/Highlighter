@@ -21,6 +21,7 @@ public interface MyPageInfoDAO
 	public List<String> selectStuId(String ext_id) throws Exception;
 	public void modifyTitle(stu_infoVO vo) throws Exception;
 	public void deleteList(stu_infoVO vo) throws Exception;
+	public String getCalStuInfoNum(stu_infoVO vo) throws Exception;
 	
 	public List<User_InfoVO> getUserInfo(String ext_id) throws Exception;
 	

@@ -135,4 +135,10 @@ public class MyPageInfoDAOImpl implements MyPageInfoDAO
 		// TODO Auto-generated method stub
 		session.update(namespace+".updateMark",user_id);
 	}
+
+	@Override
+	public String getCalStuInfoNum(stu_infoVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".getCalStuInfoNum",vo);
+	}
 }

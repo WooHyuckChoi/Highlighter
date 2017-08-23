@@ -186,12 +186,28 @@ public class MyPageController
 		
 		String stu_id=user_id;
 		
+		stu_infoVO stuVO = new stu_infoVO();
+		stuVO.setUser_id(stu_id);
+		stuVO.setExt_id(ext_id);
+		String stu_infoNum = service.getCalStuInfoNum(stuVO);
+		if(stu_infoNum==null)
+		{
+			stu_infoNum="1";
+		}
+		else
+		{
+			int number_stu_infoNum = Integer.parseInt(stu_infoNum);
+			number_stu_infoNum++;
+			stu_infoNum = Integer.toString(number_stu_infoNum);
+		}
+		
 		stu_infoVO vo = new stu_infoVO();
 		
 		vo.setExt_id(ext_id);
 		vo.setUser_id(stu_id);
 		vo.setPost_date(json.get("start").toString());
 		vo.setLearn_att(json.get("title").toString());
+		vo.setStu_infoNum(stu_infoNum);
 		service.insertCalendar(vo);
 		return "calendar";
 	}
@@ -209,7 +225,6 @@ public class MyPageController
 		vo.setLearn_att(json.get("title").toString());
 		vo.setPost_date(json.get("start").toString());
 		vo.setUser_id(stu_id);
-		
 		service.modifyTitle(vo);
 		return "calendar";
 	}
