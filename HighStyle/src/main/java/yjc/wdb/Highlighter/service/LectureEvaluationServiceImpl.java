@@ -1,7 +1,9 @@
 package yjc.wdb.Highlighter.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -68,11 +70,31 @@ public class LectureEvaluationServiceImpl implements LectureEvaluationService {
 	}
 
 	@Override
-	public List<LectureEvaluationBestScoreVO> bestScore(String ext_id) throws Exception {
+	public Map<String, Object> bestScore(String[] ext_id) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.bestScore(ext_id);
+		
+		Map<String, Object> map = new HashMap();
+		
+		for(int i=0; i<ext_id.length; i++) {
+			map.put(i+"", dao.bestScore(ext_id[i]));
+		}
+		
+		return map;
+		
 	}
 
+	@Override
+	public double bestScore2(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.bestScore2(ext_id);
+	}
+	
+	@Override
+	public List<LectureEvaluationBestScoreVO> bestScore3(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.bestScore3(ext_id);
+	}
+	
 	@Override
 	public List<ParentVO> parentLogin(ParentVO vo) throws Exception {
 		// TODO Auto-generated method stub
@@ -114,6 +136,14 @@ public class LectureEvaluationServiceImpl implements LectureEvaluationService {
 		// TODO Auto-generated method stub
 		dao.create(vo);
 	}
+
+	@Override
+	public List<String> sortEvaluation(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.sortEvaluation(ext_id);
+	}
+
+	
 
 
 }

@@ -2,6 +2,7 @@ package yjc.wdb.Highlighter.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import yjc.wdb.Highlighter.domain.Criteria;
 import yjc.wdb.Highlighter.domain.DataCheckVO;
@@ -24,7 +25,10 @@ public interface LectureEvaluationService {
 	public List<LectureEvaluationVO> listCriteria(Criteria cri) throws Exception;
 	public int listCountCriteria(Criteria cri) throws Exception;
 	
-	public List<LectureEvaluationBestScoreVO> bestScore(String ext_id) throws Exception;
+	public Map<String, Object> bestScore(String[] ext_id) throws Exception;
+	public double bestScore2(String ext_id) throws Exception;
+	public List<LectureEvaluationBestScoreVO> bestScore3(String ext_id) throws Exception;
+	public List<String> sortEvaluation(String ext_id) throws Exception;
 	
 	public List<ParentVO> parentLogin(ParentVO vo) throws Exception;
 	public List<TutorListVO> tutorList(String user_id) throws Exception;

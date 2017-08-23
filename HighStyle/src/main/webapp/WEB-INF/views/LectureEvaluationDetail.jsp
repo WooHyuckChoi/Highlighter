@@ -228,28 +228,31 @@
 		
 		var lEtutorDivBeforeInfo = $("section").children().eq(2)
 		var BeforeInfo = $("section").children().eq(2).children();
-		
-		for(var i=0; i<BeforeInfo.length; i++){
-			var beforeExt_id = lEtutorDivBeforeInfo.children().eq(i).children().eq(0).val();
-			var beforeSubject = lEtutorDivBeforeInfo.children().eq(i).children().eq(1);
-			var beforeOnOff = lEtutorDivBeforeInfo.children().eq(i).children().eq(5);
-			if(beforeExt_id.substr(2,2) == 01){
-				beforeSubject.text("과목 : 국어");
-			}
-			else if(beforeExt_id.substr(2,2) == 02){
-				beforeSubject.text("과목 : 수학");
-			}
-			else if(beforeExt_id.substr(2,2) == 03){
-				beforeSubject.text("과목 : 영어");
-			}
-			
-			if(beforeExt_id.substr(0,1) == 0){
-				beforeOnOff.text("온오프라인 : 오프라인");
-			}
-			else if(beforeExt_id.substr(0,1) == 1){
-				beforeOnOff.text("온오프라인 : 온라인");
-			}
+		var searchTrue = $("section").children().eq(2).children().is(".lEtutorDivBeforeInfoList2")
+		if(searchTrue == true){
+			for(var i=0; i<BeforeInfo.length; i++){
+				var beforeExt_id = lEtutorDivBeforeInfo.children().eq(i).children().eq(0).val();
+				var beforeSubject = lEtutorDivBeforeInfo.children().eq(i).children().eq(1);
+				var beforeOnOff = lEtutorDivBeforeInfo.children().eq(i).children().eq(5);
+				if(beforeExt_id.substr(2,2) == 01){
+					beforeSubject.text("과목 : 국어");
+				}
+				else if(beforeExt_id.substr(2,2) == 02){
+					beforeSubject.text("과목 : 수학");
+				}
+				else if(beforeExt_id.substr(2,2) == 03){
+					beforeSubject.text("과목 : 영어");
+				}
+				
+				if(beforeExt_id.substr(0,1) == 0){
+					beforeOnOff.text("온오프라인 : 오프라인");
+				}
+				else if(beforeExt_id.substr(0,1) == 1){
+					beforeOnOff.text("온오프라인 : 온라인");
+				}
+			}	
 		}
+		
 		
 		
 		 // 검색
@@ -267,12 +270,11 @@
 		 
 		 
 		$.ajax({
-	        url : './LectureEvaluationBestScore',
+	        url : './LectureEvaluationBestScore3',
 	        data : {
 	            ext_id : ext_id
 	        },
 	        dataType : 'text',
-	        async : false,
 	        success : function(data){
 	        	console.log(data);
 	        	var totalCount = 0;
@@ -321,7 +323,7 @@
 	                
 	                totalCount += parseInt(timeview(strDate2,currentDate,weekday));	
 	        	}
-	        	var tutorN = $("section").children().eq(1).children().eq(1).children().eq(3);
+	        	var tutorN = $("section").children().eq(1).children().eq(1).children().eq(2);
 	        	// tutorN.text("총 " + totalCount + "번의 수업 중 " + postCount + "개의 평가가 있습니다.");
 	        	tutorN.text("수강 횟수 : " + totalCount + "회");
 	        },
