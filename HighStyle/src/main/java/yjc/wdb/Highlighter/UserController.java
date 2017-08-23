@@ -618,19 +618,18 @@ public class UserController {
 	public void privateSearch3(HttpServletRequest req, @ModelAttribute("cri") privateSearchCriteria cri, Model model)throws Exception{
 		model.addAttribute("result", "result");
 	}
-	@RequestMapping(value ="/ApplicationClass", method = RequestMethod.GET)
+	/*@RequestMapping(value ="/ApplicationClass", method = RequestMethod.GET)
 	public void ApplicationClass(@RequestParam(value="ext_id", defaultValue="-1") String ext_id,
 			@RequestParam(value="user_id", defaultValue="-1") String user_id, Model model)throws Exception{
 		
 		model.addAttribute("ext_id", ext_id);
-		/* ���� ���� �ҷ����� */
+		 ���� ���� �ҷ����� 
 		String T_Image =service5.TImage(ext_id);
 		model.addAttribute("T_Image",T_Image);
 		
 		User_InfoVO aaa = service.read(user_id);
 		model.addAttribute("user_info", aaa);
 		
-		/* ���� ��� */
 		String a = aaa.getBirth_date();
 		int year = Integer.parseInt(a.substring(0, 4)); 
 		int month = Integer.parseInt(a.substring(5, 7));
@@ -649,24 +648,68 @@ public class UserController {
 		        age--;
 		    }
 		    aaa.setBirth_date(String.valueOf(age));
-		/* ���� ��� ��*/
-		    
-		/* ���� ���� �ҷ����� */
+		
 		Ext_InfoVO bbb = service2.read(ext_id);
 		model.addAttribute("ext_info", bbb);
 		
-		//System.out.println(bbb.getExt_id());
-		//��.�������� ���� ����
+		
 		String onoff = bbb.getExt_id().substring(0,1);
 		model.addAttribute("onoff",onoff);
-		//����.�׷� ���� ���� ����
+		
 		String pg = bbb.getExt_id().substring(1,2);
 		model.addAttribute("pg", pg);
-		//���� ���� ����
+		
 		String subject = bbb.getExt_id().substring(2,4);
 		model.addAttribute("subject",subject);
 		
-		//������ ���� ���� Ƚ�� �˾Ƴ���
+		int classCount = service.classCount(user_id);
+		model.addAttribute("classCount", classCount);
+	}*/
+	
+	@RequestMapping(value ="/ApplicationClass", method = RequestMethod.GET)
+	public void ApplicationClass(@RequestParam(value="ext_id", defaultValue="-1") String ext_id,
+			@RequestParam(value="user_id", defaultValue="-1") String user_id, Model model)throws Exception{
+		
+		model.addAttribute("ext_id", ext_id);
+		
+		String T_Image =service5.TImage(ext_id);
+		model.addAttribute("T_Image",T_Image);
+		
+		User_InfoVO aaa = service.read(user_id);
+		model.addAttribute("user_info", aaa);
+		
+		String a = aaa.getBirth_date();
+		int year = Integer.parseInt(a.substring(0, 4)); 
+		int month = Integer.parseInt(a.substring(5, 7));
+		int day = Integer.parseInt(a.substring(8, 10));
+		Calendar cal= Calendar.getInstance ();
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.MONTH, month-1);
+		cal.set(Calendar.DATE, day);
+		Calendar now = Calendar.getInstance ();
+
+		 int age = now.get(Calendar.YEAR) - cal.get(Calendar.YEAR);
+		    if (  (cal.get(Calendar.MONTH) > now.get(Calendar.MONTH))
+		            || (    cal.get(Calendar.MONTH) == now.get(Calendar.MONTH) 
+		                    && cal.get(Calendar.DAY_OF_MONTH) > now.get(Calendar.DAY_OF_MONTH)   )   
+		    ){
+		        age--;
+		    }
+		    aaa.setBirth_date(String.valueOf(age));
+		
+		Ext_InfoVO bbb = service2.read(ext_id);
+		model.addAttribute("ext_info", bbb);
+		
+		
+		String onoff = bbb.getExt_id().substring(0,1);
+		model.addAttribute("onoff",onoff);
+		
+		String pg = bbb.getExt_id().substring(1,2);
+		model.addAttribute("pg", pg);
+		
+		String subject = bbb.getExt_id().substring(2,4);
+		model.addAttribute("subject",subject);
+		
 		int classCount = service.classCount(user_id);
 		model.addAttribute("classCount", classCount);
 	}

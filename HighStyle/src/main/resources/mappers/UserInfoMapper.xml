@@ -79,4 +79,6 @@ where user_id = #{user_id}
 	insert into user_searchlog(user_id, onoff, pg, subject, location1, location2, college, str_tuit_fees, end_tuit_fees, ext_obj, carrer_yn, ext_exp, gender, ext_way, class_lev)
 	values(#{user_id}, #{onoff}, #{pg}, #{subject}, #{location1}, #{location2}, #{college}, #{str_tuit_fees}, #{end_tuit_fees}, #{ext_obj}, #{carrer_yn}, #{ext_exp}, #{gender}, #{ext_way}, #{class_lev})
 </insert>
+
+
 </mapper>

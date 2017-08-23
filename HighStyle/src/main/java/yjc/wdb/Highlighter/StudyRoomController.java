@@ -354,5 +354,9 @@ public class StudyRoomController
 		   model.addAttribute("probAnsList",probAnsList); //강사
 	   }
 	
-	
+	@RequestMapping(value="sleep", method=RequestMethod.GET)
+	public String sleep()
+	{
+		return "applicationClassFix";
+	}
 }
