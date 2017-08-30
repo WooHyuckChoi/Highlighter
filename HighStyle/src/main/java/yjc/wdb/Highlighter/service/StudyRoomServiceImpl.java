@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import yjc.wdb.Highlighter.domain.App_ClassVO;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.domain.prob_InfoVO;
@@ -88,21 +89,27 @@ public class StudyRoomServiceImpl implements StudyRoomService
 	}
 
 	@Override
-	public List<HashMap> searchTestAnswer(String test_id) throws Exception {
+	public List<HashMap> searchTestAnswer(test_resultVO test_resultVO) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.searchTestAnswer(test_id);
+		return dao.searchTestAnswer(test_resultVO);
 	}
 
 	@Override
-	public List<test_resultVO> searchStuAnswer(String test_id) throws Exception {
+	public List<test_resultVO> searchStuAnswer(test_resultVO test_resultVO) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.searchStuAnswer(test_id);
+		return dao.searchStuAnswer(test_resultVO);
 	}
 
 	@Override
 	public List<prob_InfoVO> searchProbAnswer(String test_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.searchProbAnswer(test_id);
+	}
+
+	@Override
+	public List<App_ClassVO> selectStuInfo(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectStuInfo(ext_id);
 	}
 	
 }

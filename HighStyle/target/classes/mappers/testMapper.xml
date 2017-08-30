@@ -27,11 +27,18 @@
 	insert into exam_info (user_id, test_id, test_state) 
 	values (#{user_id},#{test_id}, #{test_state}) 
 </insert>
-<!--  시험지 LIST 불러오기 -->
+<!--  시험지 LIST 불러오기 : 강사 -->
 <select id="selectTest" resultType="test_InfoVO">
+	select t.*
+	from test_info t
+	where ext_id = #{ext_id}
+	order by t.test_id desc
+</select>
+<!--  시험지 LIST 불러오기 : 학생-->
+<select id="selectTestStu" resultType="test_InfoVO">
 	select t.*, e.test_state
 	from test_info t, exam_info e
-	where ext_id = #{ext_id}
+	where ext_id = #{ext_id} and user_id = #{user_id}
 	and t.test_id = e.test_id
 	order by t.test_id desc
 </select>
@@ -59,12 +66,12 @@
 </insert>
 <update id="changeTestState">
 	update exam_info set test_state = "clear"
-	where test_id = #{test_id}
+	where test_id = #{test_id} and user_id = #{user_id}
 </update>
 <select id="testResultCount" resultType="int">
 	select count(*)
 	from test_result
-	where test_id = #{test_id}
+	where test_id = #{test_id} and user_id = #{user_id}
 </select>
 <select id="checkTestResult" resultMap="checkTestResultMap">
 	select p.test_id, p.prob_answ, r.stu_result, u.user_name

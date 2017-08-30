@@ -300,16 +300,20 @@ public class StudyRoomController
 	
 	/* 오답노트  */
 	@RequestMapping(value = "wAnswNote", method = RequestMethod.GET)
-	   public void wAnswNote(HttpServletRequest req, Model model)throws Exception{
+	   public void wAnswNote(HttpServletRequest req, Model model, HttpSession session, test_resultVO test_resultVO)throws Exception{
 		   String test_id = req.getParameter("test_id");
-
+		   String user_id = String.valueOf(session.getAttribute("id"));
+		   
 		   List<HashMap> examInfo = test_InfoService.selectExamInfo(test_id);
 		   model.addAttribute("examInfo", examInfo);
-		   System.out.println(examInfo);
+		   //System.out.println(examInfo);
 		   
 		   // 학생정답과 선생님 정답을 받아온다. 
-		   List<HashMap> searchTestAnswer = studyRoomService.searchTestAnswer(test_id);
-		   
+		   test_resultVO.setTest_id(test_id);
+		   test_resultVO.setUser_id(user_id);
+		   List<HashMap> searchTestAnswer = studyRoomService.searchTestAnswer(test_resultVO);
+		  
+		   //System.out.println("1:"+searchTestAnswer);
 		   // 정답 비교 후 새로운 결과를 담을 리스트
 		   List<String> resultTestAnswer = new ArrayList<>();
 		   
@@ -331,7 +335,9 @@ public class StudyRoomController
 		   model.addAttribute("resultTestAnswer",resultTestAnswer);
 		   
 		   /* 학생 정답 및 강사 정답 */
-		   List<test_resultVO> searchStuAnswer = studyRoomService.searchStuAnswer(test_id);
+		   List<test_resultVO> searchStuAnswer = studyRoomService.searchStuAnswer(test_resultVO);
+		   
+		   
 		   //배열로 넘길꺼야!
 		   List<String> stuAnsList = new ArrayList<>();
 		   for(int i=0; i<searchStuAnswer.size();i++)

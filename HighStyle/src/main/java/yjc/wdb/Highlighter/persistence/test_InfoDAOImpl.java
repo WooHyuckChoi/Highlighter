@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.exam_InfoVO;
 import yjc.wdb.Highlighter.domain.prob_InfoVO;
 import yjc.wdb.Highlighter.domain.test_InfoVO;
@@ -65,15 +66,15 @@ public class test_InfoDAOImpl implements test_InfoDAO {
 	}
 	/* 시험 시작 버튼 클릭 시 - 시험 상태 : clear로 변경 */
 	@Override
-	public void changeTestState(String test_id) throws Exception {
+	public void changeTestState(exam_InfoVO exam_InfoVO) throws Exception {
 		// TODO Auto-generated method stub
-		session.update(namespace+".changeTestState", test_id);
+		session.update(namespace+".changeTestState", exam_InfoVO);
 	}
 	/* 시험 답안 제출 여부 */
 	@Override
-	public int testResultCount(String test_id) throws Exception {
+	public int testResultCount(test_resultVO test_resultVO) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectOne(namespace+".testResultCount",test_id);
+		return session.selectOne(namespace+".testResultCount",test_resultVO);
 	}
 	/* 강사 입장 : 학생 시험 결과 불러오기*/
 	@Override
@@ -122,6 +123,11 @@ public class test_InfoDAOImpl implements test_InfoDAO {
 	public String TImage(String ext_id) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectOne(namespace+".TImage",ext_id);
+	}
+	@Override
+	public List<test_InfoVO> selectTestStu(Ext_InfoVO ext_InfoVO) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".selectTestStu", ext_InfoVO);
 	}
 	
 	

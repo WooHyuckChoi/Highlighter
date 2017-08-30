@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import yjc.wdb.Highlighter.domain.App_ClassVO;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.domain.prob_InfoVO;
@@ -78,18 +79,23 @@ public class StudyRoomDAOImpl implements StudyRoomDAO
 		return session.selectOne(namespace+".countExtStu",ext_id);
 	}
 	@Override
-	public List<HashMap> searchTestAnswer(String test_id) throws Exception {
+	public List<HashMap> searchTestAnswer(test_resultVO test_resultVO) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList(namespace+".searchTestAnswer",test_id);
+		return session.selectList(namespace+".searchTestAnswer",test_resultVO);
 	}
 	@Override
-	public List<test_resultVO> searchStuAnswer(String test_id) throws Exception {
+	public List<test_resultVO> searchStuAnswer(test_resultVO test_resultVO) throws Exception {
 		// TODO Auto-generated method stub
-		return session.selectList(namespace+".searchStuAnswer",test_id);
+		return session.selectList(namespace+".searchStuAnswer",test_resultVO);
 	}
 	@Override
 	public List<prob_InfoVO> searchProbAnswer(String test_id) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".searchProbAnswer",test_id);
+	}
+	@Override
+	public List<App_ClassVO> selectStuInfo(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".selectStuInfo", ext_id);
 	}
 }

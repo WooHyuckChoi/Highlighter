@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.exam_InfoVO;
 import yjc.wdb.Highlighter.domain.prob_InfoVO;
 import yjc.wdb.Highlighter.domain.test_InfoVO;
@@ -62,15 +63,15 @@ public class test_InfoserviceImpl implements test_InfoService {
 	}
 	/* 시험 시작 버튼 클릭 시 - 시험 상태 : clear로 변경 */
 	@Override
-	public void changeTestState(String test_id) throws Exception {
+	public void changeTestState(exam_InfoVO exam_InfoVO) throws Exception {
 		// TODO Auto-generated method stub
-		dao.changeTestState(test_id);
+		dao.changeTestState(exam_InfoVO);
 	}
 	/* 시험 답안 제출 여부 */
 	@Override
-	public int testResultCount(String test_id) throws Exception {
+	public int testResultCount(test_resultVO test_resultVO) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.testResultCount(test_id);
+		return dao.testResultCount(test_resultVO);
 	}
 	/* 강사 입장 : 학생 시험 결과 불러오기*/
 	@Override
@@ -120,6 +121,11 @@ public class test_InfoserviceImpl implements test_InfoService {
 	public String TImage(String ext_id) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.TImage(ext_id);
+	}
+	@Override
+	public List<test_InfoVO> selectTestStu(Ext_InfoVO ext_InfoVO) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectTestStu(ext_InfoVO);
 	}
 	
 	

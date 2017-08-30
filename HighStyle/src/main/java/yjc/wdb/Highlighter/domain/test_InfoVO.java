@@ -74,7 +74,7 @@ public class test_InfoVO {
 	}
 	@Override
 	public String toString(){
-		return "test_id: " + test_id + ", test_time:"+test_time+", test_date:"+test_date;
+		return "test_id: " + test_id + ", test_time:"+test_time+", test_date:"+test_date+" ,test_state:"+test_state;
 	}
 	
 }

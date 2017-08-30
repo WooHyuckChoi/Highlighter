@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import yjc.wdb.Highlighter.domain.App_ClassVO;
 import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.domain.prob_InfoVO;
@@ -33,10 +34,13 @@ public interface StudyRoomService
 	
 	public Integer countExtStudent(String ext_id) throws Exception;
 	
-	public List<HashMap> searchTestAnswer(String test_id) throws Exception;
+	public List<HashMap> searchTestAnswer(test_resultVO test_resultVO) throws Exception;
 	
 	//학생 정답
-	public List<test_resultVO> searchStuAnswer(String test_id) throws Exception;
+	public List<test_resultVO> searchStuAnswer(test_resultVO test_resultVO) throws Exception;
 	//강사 정답
 	public List<prob_InfoVO> searchProbAnswer(String test_id) throws Exception;
+	
+	//해당 강의의 학생 정보 
+	public List<App_ClassVO> selectStuInfo(String ext_id)throws Exception;
 }

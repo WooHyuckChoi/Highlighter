@@ -125,14 +125,14 @@
 	select t.prob_id,t.prob_answ, s.stu_result
 	from prob_info t, test_result s
 	where t.prob_id = s.prob_id and
-	t.test_id = #{test_id}
+	t.test_id = #{test_id} and user_id = #{user_id}
 	order by prob_id;
 </select>
 
 <select id="searchStuAnswer" resultType="test_resultVO">
 	select prob_id , stu_result
 	from test_result
-	where test_id=#{test_id}
+	where test_id=#{test_id} and user_id = #{user_id}
 	order by prob_id;
 </select>
 
@@ -141,5 +141,10 @@
 	from prob_info
 	where test_id=#{test_id}
 	order by prob_id;
+</select>
+<select id="selectStuInfo" resultType="App_ClassVO">
+	select * from app_class
+	where ext_id = #{ext_id}
+	and reg_stus = '결제완료'
 </select>
 </mapper>

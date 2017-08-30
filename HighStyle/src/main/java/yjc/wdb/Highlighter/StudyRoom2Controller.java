@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import yjc.wdb.Highlighter.domain.App_ClassVO;
+import yjc.wdb.Highlighter.domain.Ext_InfoVO;
 import yjc.wdb.Highlighter.domain.Ext_TimetableVO;
 import yjc.wdb.Highlighter.domain.exam_InfoVO;
 import yjc.wdb.Highlighter.domain.prob_InfoVO;
@@ -69,15 +71,28 @@ public class StudyRoom2Controller {
    
    /* 시험 페이지 띄움  */
    @RequestMapping(value="/testPage", method = RequestMethod.GET)
-   public void testPage(HttpServletRequest req, Model model)throws Exception{
+   public void testPage(HttpServletRequest req, Model model, Ext_InfoVO Ext_InfoVO, HttpSession session)throws Exception{
       String ext_id = req.getParameter("ext_id");
       model.addAttribute("ext_id", req.getParameter("ext_id"));
       
       model.addAttribute("TImage", test_InfoService.TImage(ext_id));
       
-      List<test_InfoVO> test_InfoVO = test_InfoService.selectTest(ext_id);
-      System.out.println(test_InfoVO);
-      model.addAttribute("test_InfoVO", test_InfoVO);
+      String user_grade = String.valueOf(session.getAttribute("user_grade"));
+      if(user_grade.equals("student")){
+    	  Ext_InfoVO.setExt_id(ext_id);
+          Ext_InfoVO.setUser_id(String.valueOf(session.getAttribute("id")));
+          System.out.println(String.valueOf(session.getAttribute("id")));
+          List<test_InfoVO> test_InfoVOList = test_InfoService.selectTestStu(Ext_InfoVO);
+          System.out.println("이거뭐야:"+test_InfoVOList);
+          model.addAttribute("test_InfoVO", test_InfoVOList);
+      }
+      if(user_grade.equals("teacher")){
+    	  List<test_InfoVO> test_InfoVOList = test_InfoService.selectTest(ext_id);
+    	  model.addAttribute("test_InfoVO", test_InfoVOList);
+    	  System.out.println(test_InfoVOList);
+      }
+      //System.out.println(test_InfoVO);
+      
    }
    
    /* 시험 등록 페이지 띄움 */
@@ -112,11 +127,15 @@ public class StudyRoom2Controller {
 	  }
 	  testInfoVO.setTest_id(AfterTestId);
 	  //-------------------------------exam_InfoVO 설정----------------------------------
-	  exam_InfoVO.setUser_id(session.getAttribute("id").toString());
-	  exam_InfoVO.setTest_id(AfterTestId);
-	  exam_InfoVO.setTest_state("ready");
+	  List<App_ClassVO> selectStuInfo = studyRoomService.selectStuInfo(ext_id);
 	  
-	  test_InfoService.registerExamInfo(exam_InfoVO);
+	  for(int i = 0; i<selectStuInfo.size(); i++){
+		  exam_InfoVO.setUser_id(selectStuInfo.get(i).getUser_id());
+		  exam_InfoVO.setTest_id(AfterTestId);
+		  exam_InfoVO.setTest_state("ready");
+		  test_InfoService.registerExamInfo(exam_InfoVO);
+	  }
+
 	  //-------------------------------test_InfoVO 설정----------------------------------
 	  if(file.getOriginalFilename() != ""){
 		  String savedName=
@@ -194,19 +213,24 @@ public class StudyRoom2Controller {
    /* 시험 시작 클릭시 test_state상태 : clear 변경  */
    @RequestMapping(value = "changeTestState", method = RequestMethod.POST)
    @ResponseBody
-   public String changeTestState(HttpServletRequest req)throws Exception{
+   public String changeTestState(HttpServletRequest req, exam_InfoVO exam_InfoVO, HttpSession session)throws Exception{
 	   String test_id = req.getParameter("currentExt_id");
-	   test_InfoService.changeTestState(test_id);
+	   exam_InfoVO.setTest_id(test_id);
+	   exam_InfoVO.setUser_id(String.valueOf(session.getAttribute("id")));
+	   test_InfoService.changeTestState(exam_InfoVO);
 	   
 	   return "success";
    }
    /* 시험 답안 제출 여부 */
    @RequestMapping(value = "testResultCount", method = RequestMethod.POST)
    @ResponseBody
-   public String testResultCount(HttpServletRequest req)throws Exception{
-	   String test_id = req.getParameter("test_id");
-	   int result = test_InfoService.testResultCount(test_id);
-	   System.out.println(result);
+   public String testResultCount(HttpServletRequest req, HttpSession session, test_resultVO test_resultVO)throws Exception{
+	  
+	   test_resultVO.setTest_id( req.getParameter("test_id"));
+	   test_resultVO.setUser_id(String.valueOf(session.getAttribute("id")));
+	   
+	   int result = test_InfoService.testResultCount(test_resultVO);
+	   //System.out.println(result);
 	   return result+"";
    }
    

@@ -30,6 +30,8 @@ public class App_ClassVO {
 	public void setReg_stus(String reg_stus) {
 		this.reg_stus = reg_stus;
 	}
-	
+	public String toString(){
+		return "user_id="+user_id;
+	}
 	
 }
