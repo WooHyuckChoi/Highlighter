@@ -189,14 +189,13 @@ public class HomeController {
 		
 		return "success";
 	}
-	/* ����_���� ���� */
+	/* 강의 수락 */
 	@RequestMapping(value = "/acceptClass", method = RequestMethod.POST)
 	@ResponseBody
 	public String acceptClass(HttpServletRequest req, HttpSession session)throws Exception{
 		String user_id = req.getParameter("user_id");
 		String ext_id = req.getParameter("ext_id");
-		//System.out.println("���̵�:"+user_id);
-		//System.out.println("���� �ڵ�:"+ext_id);
+		
 		logger.info("acceptClass......................");
 		
 		/* ���� ���� */
@@ -204,6 +203,9 @@ public class HomeController {
 		vo.setUser_id(user_id);
 		vo.setExt_id(ext_id);
 		service2.acceptClass(vo);
+		
+		service2.accpetClassExtYn(vo);
+		
 		
 		/* ���� ���� �� ���� ������, �ٷ� ���� ���� */
 		Ext_InfoVO vo2 = new Ext_InfoVO();

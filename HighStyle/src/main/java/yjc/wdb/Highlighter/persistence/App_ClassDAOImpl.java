@@ -62,4 +62,10 @@ public class App_ClassDAOImpl implements App_ClassDAO {
 		session.update(namespace+".cancelAcceptClass", vo);
 	}
 
+	@Override
+	public void accpetClassExtYn(App_ClassVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		session.update(namespace+".accpetClassExtYn",vo);
+	}
+
 }

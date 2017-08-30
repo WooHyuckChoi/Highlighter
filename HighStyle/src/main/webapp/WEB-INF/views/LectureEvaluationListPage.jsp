@@ -288,10 +288,12 @@ pageEncoding="UTF-8"%>
 		var searchTrue = $("section").children().is(".lEtutorDiv");
 		var lEtutorDiv = $("section").children();
 		if(searchTrue == true){
+			
 			for(var i=0; i<lEtutorDiv.length; i++){
+				
 				var ext_id = $("section").children().eq(i).children().eq(1).children().eq(0).val();
 				var lEtutorDivT = $("section").children().eq(i).children().eq(1).children().eq(1);
-				var tutorN = $("section").children().eq(i).children().eq(1).children().eq(3);
+				
 				if(ext_id.substr(2,2) == 01){
 					lEtutorDivT.text("과목 : 국어");
 				}
@@ -302,20 +304,18 @@ pageEncoding="UTF-8"%>
 					lEtutorDivT.text("과목 : 영어");
 				}
 				//////////////////////////////////
-				
-					
-				
+/* 
+				var total = new Array();
 				
 			    $.ajax({
-			        url : "./LectureEvaluationBestScore",
+			        url : "/Highlighter/LectureEvaluationBestScore",
 			        data : {
 			            ext_id : ext_id
 			        },
 			        dataType : "text",
-			        async : false,
 			        success : function(data){
 			        	console.log(data);
-			        	var totalCount = 0;
+			        	var totalCount = 0;    	
 			        	var arr = new Array();
 			        	var dayArr = new Array();
 			        	var dateArr = new Array();
@@ -359,19 +359,126 @@ pageEncoding="UTF-8"%>
 			                }
 			                var currentDate = a.getFullYear()+''+day+date;
 			                
-			                totalCount += parseInt(timeview(strDate2,currentDate,weekday));	
+			                totalCount += parseInt(timeview(strDate2,currentDate,weekday));
+			                
 			        	}
+			        	
 			        	// tutorN.text("총 " + totalCount + "번의 수업 중 " + postCount + "개의 평가가 있습니다.");
-			        	tutorN.text("수강 횟수 : " + totalCount + "회");
+			        	total.push(totalCount);
+			        	console.log(total);
+			        	for(var i=0; i<total.length; i++){
+			        		var tutorN = $("section").children().eq(i).children().eq(1).children().eq(3);
+			        		// tutorN.text("수강 횟수 : " + totalCount + "회");
+			        		tutorN.text("수강 횟수 : " + total[i] + "회");
+			        	}
 			        },
 			        error : function(){
 			         	console.log("에러");   
 			        }
+			        
 			    });	
-
+ */			    
+			    
 				
+				// console.log(total);
 				//////////////////////////////////
+				
 			}	
+			
+
+			
+			
+			var ext_arr = new Array();
+			for(var i=0; i<lEtutorDiv.length; i++){
+				var ext_id = $("section").children().eq(i).children().eq(1).children().eq(0).val();
+				ext_arr.push(ext_id);
+			}
+			
+			console.log(ext_arr);
+			
+			$.ajax({
+				type : "GET",
+				url : "./LectureEvaluationBestScore",			
+				data : {
+					ext_arr : JSON.stringify(ext_arr)
+				},
+				success : function(data){
+					console.log(data);
+					var total = new Array();
+					var length = Object.getOwnPropertyNames(data).length;
+					for(var k=0; k<length; k++){
+						var dataJson = data[k]
+						var json = JSON.stringify(dataJson);
+						
+						var totalCount = 0;    	
+			        	var arr = new Array();
+			        	var dayArr = new Array();
+			        	var dateArr = new Array();
+			        	arr = json.split(",");
+			        	
+			        	console.log("실행횟수체크시작");
+			        	console.log(arr);
+			        	console.log(data);
+			        	
+			        	console.log("실행횟수체크종료");
+			        	
+			        	for(var i=0; i<arr.length; i++){
+			        		if(i%2 == 0){
+			        			if(i==0){
+			        				dayArr.push(arr[i].substr(14,1));
+			        			}
+			        			else{
+			        				dayArr.push(arr[i].substr(13,1));
+			        			}
+			        		}
+			        		else{
+			        			dateArr.push(arr[i].substr(18,10));
+			        		}
+			        	}
+			        	for(var i=0; i<dayArr.length; i++){
+			        		var weekday = dayArr[i]+'요일';
+			                var strDate = dateArr[i].split("-");
+
+			                var strDate2 = (strDate[0]+strDate[1]+strDate[2]);
+			  
+			                var a = new Date();
+			                var day;
+			                var date;
+			                
+			                if((parseInt(a.getMonth()+1)+"").length < 2){
+			                    day = "0" + (parseInt(a.getMonth())+1);
+			                }
+			                if((parseInt(a.getMonth()+1)+"").length >= 2){
+			                    day = parseInt(a.getMonth())+1;
+			                }
+			                if((parseInt(a.getDate())+"").length < 2){
+			                    date = "0" + (parseInt(a.getDate())+1+'');
+			                }
+			                if((parseInt(a.getDate())+"").length >= 2){
+			                    date = (parseInt(a.getDate())+1+'');
+			                }
+			                var currentDate = a.getFullYear()+''+day+date;
+			                
+			                totalCount += parseInt(timeview(strDate2,currentDate,weekday));
+			                
+			        	}
+			        	
+			        	// tutorN.text("총 " + totalCount + "번의 수업 중 " + postCount + "개의 평가가 있습니다.");
+			        	total.push(totalCount);
+			        	for(var i=0; i<total.length; i++){
+			        		var tutorN = $("section").children().eq(i).children().eq(1).children().eq(3);
+			        		// tutorN.text("수강 횟수 : " + totalCount + "회");
+			        		tutorN.text("수강 횟수 : " + total[i] + "회");
+			        	}
+			        	
+					}
+					 
+				},
+				error : function(){
+					
+				}
+			});
+			
 		}
 				
 			

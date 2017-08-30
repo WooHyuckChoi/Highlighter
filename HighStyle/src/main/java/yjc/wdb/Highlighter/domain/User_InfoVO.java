@@ -20,6 +20,14 @@ public class User_InfoVO {
 	private String college_dept;
 	private String par_phone;
 	private String user_grade;
+	private String mark;
+	public String getMark() {
+		return mark;
+	}
+	public void setMark(String mark) {
+		this.mark = mark;
+	}
+
 	//진단평가용
 	private String eva_id;
 	

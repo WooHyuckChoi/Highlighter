@@ -618,19 +618,18 @@ public class UserController {
 	public void privateSearch3(HttpServletRequest req, @ModelAttribute("cri") privateSearchCriteria cri, Model model)throws Exception{
 		model.addAttribute("result", "result");
 	}
-	@RequestMapping(value ="/ApplicationClass", method = RequestMethod.GET)
+	/*@RequestMapping(value ="/ApplicationClass", method = RequestMethod.GET)
 	public void ApplicationClass(@RequestParam(value="ext_id", defaultValue="-1") String ext_id,
 			@RequestParam(value="user_id", defaultValue="-1") String user_id, Model model)throws Exception{
 		
 		model.addAttribute("ext_id", ext_id);
-		/* ���� ���� �ҷ����� */
+		 ���� ���� �ҷ����� 
 		String T_Image =service5.TImage(ext_id);
 		model.addAttribute("T_Image",T_Image);
 		
 		User_InfoVO aaa = service.read(user_id);
 		model.addAttribute("user_info", aaa);
 		
-		/* ���� ��� */
 		String a = aaa.getBirth_date();
 		int year = Integer.parseInt(a.substring(0, 4)); 
 		int month = Integer.parseInt(a.substring(5, 7));
@@ -649,24 +648,68 @@ public class UserController {
 		        age--;
 		    }
 		    aaa.setBirth_date(String.valueOf(age));
-		/* ���� ��� ��*/
-		    
-		/* ���� ���� �ҷ����� */
+		
 		Ext_InfoVO bbb = service2.read(ext_id);
 		model.addAttribute("ext_info", bbb);
 		
-		//System.out.println(bbb.getExt_id());
-		//��.�������� ���� ����
+		
 		String onoff = bbb.getExt_id().substring(0,1);
 		model.addAttribute("onoff",onoff);
-		//����.�׷� ���� ���� ����
+		
 		String pg = bbb.getExt_id().substring(1,2);
 		model.addAttribute("pg", pg);
-		//���� ���� ����
+		
 		String subject = bbb.getExt_id().substring(2,4);
 		model.addAttribute("subject",subject);
 		
-		//������ ���� ���� Ƚ�� �˾Ƴ���
+		int classCount = service.classCount(user_id);
+		model.addAttribute("classCount", classCount);
+	}*/
+	
+	@RequestMapping(value ="/ApplicationClass", method = RequestMethod.GET)
+	public void ApplicationClass(@RequestParam(value="ext_id", defaultValue="-1") String ext_id,
+			@RequestParam(value="user_id", defaultValue="-1") String user_id, Model model)throws Exception{
+		
+		model.addAttribute("ext_id", ext_id);
+		
+		String T_Image =service5.TImage(ext_id);
+		model.addAttribute("T_Image",T_Image);
+		
+		User_InfoVO aaa = service.read(user_id);
+		model.addAttribute("user_info", aaa);
+		
+		String a = aaa.getBirth_date();
+		int year = Integer.parseInt(a.substring(0, 4)); 
+		int month = Integer.parseInt(a.substring(5, 7));
+		int day = Integer.parseInt(a.substring(8, 10));
+		Calendar cal= Calendar.getInstance ();
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.MONTH, month-1);
+		cal.set(Calendar.DATE, day);
+		Calendar now = Calendar.getInstance ();
+
+		 int age = now.get(Calendar.YEAR) - cal.get(Calendar.YEAR);
+		    if (  (cal.get(Calendar.MONTH) > now.get(Calendar.MONTH))
+		            || (    cal.get(Calendar.MONTH) == now.get(Calendar.MONTH) 
+		                    && cal.get(Calendar.DAY_OF_MONTH) > now.get(Calendar.DAY_OF_MONTH)   )   
+		    ){
+		        age--;
+		    }
+		    aaa.setBirth_date(String.valueOf(age));
+		
+		Ext_InfoVO bbb = service2.read(ext_id);
+		model.addAttribute("ext_info", bbb);
+		
+		
+		String onoff = bbb.getExt_id().substring(0,1);
+		model.addAttribute("onoff",onoff);
+		
+		String pg = bbb.getExt_id().substring(1,2);
+		model.addAttribute("pg", pg);
+		
+		String subject = bbb.getExt_id().substring(2,4);
+		model.addAttribute("subject",subject);
+		
 		int classCount = service.classCount(user_id);
 		model.addAttribute("classCount", classCount);
 	}
@@ -763,13 +806,11 @@ public class UserController {
 		String[] startArr = req.getParameterValues("startArr");
 		String[] endArr = req.getParameterValues("endArr");
 		int arrlength = Integer.parseInt(req.getParameter("arrlength"));
-		//System.out.println("������ �ð�ǥ ���� : " + arrlength);
+		
 		String[] timeArr = new String[arrlength];
 		//System.out.println(startArr[0]);
 		//System.out.println(endArr[0]);
 		for(int i=0; i<arrlength; i++){
-			//System.out.print("���ǽ��� �ð� : " + startArr[0].substring((i + (5*i) + 2), (i+(5*(i+1)))) + " ");
-			//System.out.println("�������� �ð� : " + endArr[0].substring((i + (5*i) + 2), (i+(5*(i+1)))));
 			timeArr[i] = startArr[0].substring((i + (5*i) + 2), (i+(5*(i+1)))) + endArr[0].substring((i + (5*i) + 3), (i+(5*(i+1))));
 		}
 		
@@ -819,6 +860,15 @@ public class UserController {
 			tVo.setDay_week(day_week);
 			tVo.setClass_str_time(class_str_time);
 			tVo.setClass_end_time(class_end_time);
+			//그룹일시 y, 개인일시 n으로 저장.
+			if(req.getParameter("groupStaus").equals("group"))
+			{
+				tVo.setDecide_yn("y");
+			}
+			else
+			{
+				tVo.setDecide_yn("n");
+			}
 			service.ext_table_create(tVo);
 		}	
 	}

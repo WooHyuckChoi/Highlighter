@@ -140,13 +140,13 @@ public class StudyRoomController
 
 			int sum = 0;
 			int ave = 0;
-/*			for(int j=0; j<studentCount;j++)//학생수에 따라 한 배열에 모든 학생의 점수를 넣는다.
-			{*/
+			for(int j=0; j<studentCount-1;j++)//학생수에 따라 한 배열에 모든 학생의 점수를 넣는다.
+			{
 				row.put(list.get(account).get("user_name").toString() , list.get(account).get("count").toString());
 				sum+=Integer.parseInt(list.get(account).get("count").toString());
 				
 				account++;//다음에 다시 for문을 만났을때 학생이 3명일시 0이아니라 4번째에서 시작할 수 있게
-			//}
+			}
 			ave = sum/studentCount;
 			row.put("평균점수", ave);
 			
@@ -281,7 +281,9 @@ public class StudyRoomController
 			JSONObject row = new JSONObject();
 			
 			String substr = StudentList.get(i).get("test_id").toString();
-			row.put("times",substr.substring(8, 9)+"회차");
+			int subString = Integer.parseInt(substr.substring(8,10));
+			row.put("times",subString+"회차");
+			//row.put("times",substr.substring(8, 9)+"회차");
 					
 			row.put("점수", StudentList.get(i).get("count").toString());
 			jArray.add(i,row);
@@ -358,5 +360,9 @@ public class StudyRoomController
 		   model.addAttribute("probAnsList",probAnsList); //강사
 	   }
 	
-	
+	@RequestMapping(value="sleep", method=RequestMethod.GET)
+	public String sleep()
+	{
+		return "applicationClassFix";
+	}
 }

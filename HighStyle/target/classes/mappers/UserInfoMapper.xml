@@ -43,8 +43,8 @@ where user_id = #{user_id}
 
 <!-- 시간표 등록(수강 신청시) -->
 <insert id="ext_timetable_create">
-	insert into ext_timetable (user_id, ext_id, day_week, class_str_time, class_end_time)
-	values(#{user_id}, #{ext_id}, #{day_week}, #{class_str_time}, #{class_end_time})
+	insert into ext_timetable (user_id, ext_id, day_week, class_str_time, class_end_time,decide_yn)
+	values(#{user_id}, #{ext_id}, #{day_week}, #{class_str_time}, #{class_end_time},#{decide_yn})
 </insert>
 
 <select id="ext_id_select" resultType="String">
@@ -79,4 +79,6 @@ where user_id = #{user_id}
 	insert into user_searchlog(user_id, onoff, pg, subject, location1, location2, college, str_tuit_fees, end_tuit_fees, ext_obj, carrer_yn, ext_exp, gender, ext_way, class_lev)
 	values(#{user_id}, #{onoff}, #{pg}, #{subject}, #{location1}, #{location2}, #{college}, #{str_tuit_fees}, #{end_tuit_fees}, #{ext_obj}, #{carrer_yn}, #{ext_exp}, #{gender}, #{ext_way}, #{class_lev})
 </insert>
+
+
 </mapper>

@@ -4,64 +4,49 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page session="true" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<title>Highlighter</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--  -->
-<!-- bootstrap & fontawesome -->
-		<link rel="stylesheet" href="./resources/assets/css/bootstrap.min.css" />
-		<link rel="stylesheet" href="./resources/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+	<title>Highlighter</title>
 
-		<!-- page specific plugin styles -->
-		<link rel="stylesheet" href="./resources/assets/css/jquery-ui.custom.min.css" />
-		<link rel="stylesheet" href="./resources/assets/css/jquery.gritter.min.css" />
-		<link rel="stylesheet" href="./resources/assets/css/select2.min.css" />
-		<link rel="stylesheet" href="./resources/assets/css/bootstrap-datepicker3.min.css" />
-		<link rel="stylesheet" href="./resources/assets/css/bootstrap-editable.min.css" />
-		<link rel="stylesheet" href="./resources/assets/css/jquery-ui.min.css" />
-		
-		<!-- text fonts -->
-		<link rel="stylesheet" href="./resources/assets/css/fonts.googleapis.com.css" />
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-		<!-- ace styles -->
-		<link rel="stylesheet" href="./resources/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="favicon.ico">
 
-		<!--[if lte IE 9]>
-			<link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
-		<![endif]-->
-		<link rel="stylesheet" href="./resources/assets/css/ace-skins.min.css" />
-		<link rel="stylesheet" href="./resources/assets/css/ace-rtl.min.css" />
+	<!-- Web Fonts -->
+	<link rel='stylesheet' type='text/css' href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin'>
 
-		<!--[if lte IE 9]>
-		  <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
-		<![endif]-->
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="./resources/unify/assets/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./resources/unify/assets/css/style.css">
 
-		<!-- inline styles related to this page -->
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="./resources/unify/assets/css/headers/header-default.css">
+	<link rel="stylesheet" href="./resources/unify/assets/css/footers/footer-v1.css">
 
-		<!-- ace settings handler -->
-		<script src="./resources/assets/js/ace-extra.min.js"></script>
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="./resources/unify/assets/plugins/animate.css">
+	<link rel="stylesheet" href="./resources/unify/assets/plugins/line-icons/line-icons.css">
+	<link rel="stylesheet" href="./resources/unify/assets/plugins/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="./resources/unify/assets/plugins/scrollbar/css/jquery.mCustomScrollbar.css">
+	<link rel="stylesheet" href="./resources/unify/assets/plugins/sky-forms-pro/skyforms/css/sky-forms.css">
+	<link rel="stylesheet" href="./resources/unify/assets/plugins/sky-forms-pro/skyforms/custom/custom-sky-forms.css">
 
-		<!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+	<!-- CSS Page Style -->
+	<link rel="stylesheet" href="./resources/unify/assets/css/pages/profile.css">
 
-		<!--[if lte IE 8]>
-		<script src="assets/js/html5shiv.min.js"></script>
-		<script src="assets/js/respond.min.js"></script>
-		<![endif]-->
+	<!-- CSS Theme -->
+	<link rel="stylesheet" href="./resources/unify/assets/css/theme-colors/default.css" id="style_color">
+	<link rel="stylesheet" href="./resources/unify/assets/css/theme-skins/dark.css">
 
-<!--  -->
-<link href="./resources/css/privateSearch.css" rel="stylesheet">
-<link href="./resources/css/bootstrap.css" rel="stylesheet">
-<link href="./resources/css/bootstrap-responsive.css" rel="stylesheet">
-<link href="./resources/css/docs.css" rel="stylesheet">
-<link href="./resources/css/prettyPhoto.css" rel="stylesheet" type="text/css">
-<link href="./resources/js/google-code-prettify/prettify.css" rel="stylesheet">
-<link rel="shortcut icon" href="./resources/ico/HL.ico">
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="./resources/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="./resources/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="./resources/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed" href="./resources/ico/apple-touch-icon-57-precomposed.png">
+	<!-- ico -->
+	<link rel="shortcut icon" href="./resources/ico/highlighter.ico">
+	
+
 <!-- 시간표 팝업 띄우기 -->
 <script type="text/javascript">
 	function login() {
@@ -72,564 +57,793 @@
 </script>
 <style type="text/css">
 /* 시간표 팝업 */
-.layer {display:none; position:fixed; _position:absolute; top:0; left:0; width:100%; height:100%; z-index:100;}
+.layer {
+	display: none;
+	position: fixed;
+	_position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+}
 
-.layer .bg {position:absolute; top:0; left:0; width:100%; height:100%; background:#000; opacity:.5; filter:alpha(opacity=50);}
+.layer .bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	opacity: .5;
+	filter: alpha(opacity = 50);
+}
 
-.layer .pop-layer {display:block;}
+.layer .pop-layer {
+	display: block;
+}
 
-.pop-layer {display:none; position: absolute; top: 50%; left: 50%; width: 410px; height:auto;  background-color:#fff; border: 5px solid #3571B5; z-index: 10;} 
+.pop-layer {
+	display: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 410px;
+	height: auto;
+	background-color: #fff;
+	border: 5px solid #3571B5;
+	z-index: 10;
+}
 
-.pop-layer .pop-container {padding: 20px 25px;}
+.pop-layer .pop-container {
+	padding: 20px 25px;
+}
 
-.pop-layer p.ctxt {color: #666; line-height: 25px;}
+.pop-layer p.ctxt {
+	color: #666;
+	line-height: 25px;
+}
 
-.pop-layer .btn-r {width: 100%; margin:10px 0 20px; padding-top: 10px; border-top: 1px solid #DDD; text-align:right;}
+.pop-layer .btn-r {
+	width: 100%;
+	margin: 10px 0 20px;
+	padding-top: 10px;
+	border-top: 1px solid #DDD;
+	text-align: right;
+}
 
-a.cbtn {display:inline-block; height:25px; padding:0 14px 0; border:1px solid #304a8a; background-color:#3f5a9d; font-size:13px; color:#fff; line-height:25px;}
+a.cbtn {
+	display: inline-block;
+	height: 25px;
+	padding: 0 14px 0;
+	border: 1px solid #304a8a;
+	background-color: #3f5a9d;
+	font-size: 13px;
+	color: #fff;
+	line-height: 25px;
+}
 
-a.cbtn:hover {border: 1px solid #091940; background-color:#1f326a; color:#fff;}
+a.cbtn:hover {
+	border: 1px solid #091940;
+	background-color: #1f326a;
+	color: #fff;
+}
 
-div#locationSelect1{margin:0;}
-div#locationSelect2{margin:0;}
-#step1{width:10%; height:100%; text-align:center; float:left;}
-	#step2{width:10%; height:100%; text-align:center; float:left;}
-	.step{border-top:solid black 5px; border-left:solid gray 1px; border-right:solid gray 1px; border-bottom:solid gray 1px;}
-	.insertArea{border:solid black 1px;}
-	#insertArea1{display:block;}
-	#insertArea2{display:none;}
-	.banner{width:70%; background-color:#F6F6F6;}
-	#houlyWage{float:left;}
-	#houlyWageInput{float:left;}
-	#account{clear:both;}
-	.paddingTop{padding-top:3%;}
-	.insertMargin1{margin-left:15%; clear:both;}
-	.insertMargin2{margin-left:25%; }
-	#insertAccount{width:70%; margin-left:15%;}
-	.insertDiv{width:10%; float:left; clear:both; margin-top:2%;}
-	.insertForm{float:left; margin-top:2%;}
-	.tableDiv{width:100%; height:100%; float:left; clear:both;}
-	 #base {width: 100%; height: 100%; margin-top:5%; margin-left:15%;}
-    #base > .line {clear: both;}
-    #base > .line > .null{width:4%; height:4%; border: 1px solid gray; text-align:right; float: left;}
-    #base > .line > .tableColumn{width:4%; height:8%; border-right: 1px solid gray; border-left: 1px solid gray; border-bottom: 1px solid gray;  text-align:right; float: left;}
-    #base > .line > .tableRow{width:10%; height:4%; border-top: 1px solid gray; border-right: 1px solid gray; border-bottom: 1px solid gray; float: left;}
-    #base > .line > .block{width:10%; height:8%; border-right: 1px solid gray; border-bottom: 1px solid gray; float: left;}
-    .timeActive{background-color: red;}
-	
-	.textalign{text-align:center;}
-	#subjectSelect{width:%; margin-left:8%; margin-top:10%;}
-	#nextBtn {width:10%; clear:both; border: none; color: white; padding: 16px 32px; text-align: center; text-decoration: none; font-size: 16px; margin-left: 40%; margin-top: 15%; margin-bottom:5%; -webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s; cursor: pointer; background-color: #008CBA; color: white;}
-	#nextBtn:hover {background-color: white; color: black; border: 2px solid #008CBA;}
-	#beforeBtn {width:10%; border: none; color: white; padding: 16px 32px; text-align: center; text-decoration: none; font-size: 16px; -webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s; cursor: pointer; background-color: #008CBA; color: white; float:left;}
-	#beforeBtn:hover {background-color: white; color: black; border: 2px solid #008CBA;}
-	#submitBtn {width:10%; border: none; color: white; padding: 16px 32px; text-align: center; text-decoration: none; font-size: 16px; -webkit-transition-duration: 0.4s; /* Safari */ transition-duration: 0.4s; cursor: pointer; background-color: #008CBA; color: white; float:left;}
-	#submitBtn:hover {background-color: white; color: black; border: 2px solid #008CBA;}
-	#textArea{width:500%; height:100%;}
-	}
+div#locationSelect1 {
+	margin: 0;
+}
+
+div#locationSelect2 {
+	margin: 0;
+}
+
+#step1 {
+	width: 10%;
+	height: 100%;
+	text-align: center;
+	float: left;
+}
+
+#step2 {
+	width: 10%;
+	height: 100%;
+	text-align: center;
+	float: left;
+}
+
+.step {
+	border-top: solid black 5px;
+	border-left: solid gray 1px;
+	border-right: solid gray 1px;
+	border-bottom: solid gray 1px;
+}
+
+.insertArea {
+	border: solid black 1px;
+}
+
+#insertArea1 {
+	display: block;
+}
+
+#insertArea2 {
+	display: none;
+}
+
+.banner {
+	width: 70%;
+	background-color: #F6F6F6;
+}
+
+#houlyWage {
+	float: left;
+}
+
+#houlyWageInput {
+	float: left;
+}
+
+#account {
+	clear: both;
+}
+
+.paddingTop {
+	padding-top: 3%;
+}
+
+.insertMargin1 {
+	margin-left: 15%;
+	clear: both;
+}
+
+.insertMargin2 {
+	margin-left: 25%;
+}
+
+#insertAccount {
+	width: 70%;
+	margin-left: 15%;
+}
+
+.insertDiv {
+	width: 10%;
+	float: left;
+	clear: both;
+	margin-top: 2%;
+}
+
+.insertForm {
+	float: left;
+	margin-top: 2%;
+}
+
+.tableDiv {
+	width: 100%;
+	height: 100%;
+	float: left;
+	clear: both;
+}
+
+#base {
+	width: 100%;
+	height: 100%;
+	margin-top: 5%;
+	margin-left: 15%;
+}
+
+#base>.line {
+	clear: both;
+}
+
+#base>.line>.null {
+	width: 4%;
+	height: 4%;
+	border: 1px solid gray;
+	text-align: right;
+	float: left;
+}
+
+#base>.line>.tableColumn {
+	width: 4%;
+	height: 8%;
+	border-right: 1px solid gray;
+	border-left: 1px solid gray;
+	border-bottom: 1px solid gray;
+	text-align: right;
+	float: left;
+}
+
+#base>.line>.tableRow {
+	width: 10%;
+	height: 4%;
+	border-top: 1px solid gray;
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
+	float: left;
+}
+
+#base>.line>.block {
+	width: 10%;
+	height: 8%;
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
+	float: left;
+}
+
+.timeActive {
+	background-color: red;
+}
+
+.textalign {
+	text-align: center;
+}
+
+#subjectSelect {
+	width: %;
+	margin-left: 8%;
+	margin-top: 10%;
+}
+
+#nextBtn {
+	width: 10%;
+	clear: both;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	margin-left: 40%;
+	margin-top: 15%;
+	margin-bottom: 5%;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+	background-color: #008CBA;
+	color: white;
+}
+
+#nextBtn:hover {
+	background-color: white;
+	color: black;
+	border: 2px solid #008CBA;
+}
+
+#beforeBtn {
+	width: 10%;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+	background-color: #008CBA;
+	color: white;
+	float: left;
+}
+
+#beforeBtn:hover {
+	background-color: white;
+	color: black;
+	border: 2px solid #008CBA;
+}
+
+#submitBtn {
+	width: 10%;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-align: center;
+	text-decoration: none;
+	font-size: 16px;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+	cursor: pointer;
+	background-color: #008CBA;
+	color: white;
+	float: left;
+}
+
+#submitBtn:hover {
+	background-color: white;
+	color: black;
+	border: 2px solid #008CBA;
+}
+
+#textArea {
+	width: 500%;
+	height: 100%;
+}
+
+}
 /* 팝업창 */
 .Pstyle {
- opacity: 0;
- display: none;
- position: relative;
- width: auto;
- border: 5px solid #fff;
- padding: 20px;
- background-color: #fff;
+	opacity: 0;
+	display: none;
+	position: relative;
+	width: auto;
+	border: 5px solid #fff;
+	padding: 20px;
+	background-color: #fff;
 }
 
 .b-close {
- position: absolute;
- right: 5px;
- top: 5px;
- padding: 5px;
- display: inline-block;
- cursor: pointer;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	padding: 5px;
+	display: inline-block;
+	cursor: pointer;
 }
 
 #search input {
-	background-color:red;
+	background-color: red;
 }
 
 /* on/off 스위치 */
 .onoffswitch {
-    position: relative; width: 90px;
-    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+	position: relative;
+	width: 90px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 }
+
 .onoffswitch-checkbox {
-    display: none;
+	display: none;
 }
+
 .onoffswitch-label {
-    display: block; overflow: hidden; cursor: pointer;
-    border: 2px solid #FFFFFF; border-radius: 20px;
+	display: block;
+	overflow: hidden;
+	cursor: pointer;
+	border: 2px solid #FFFFFF;
+	border-radius: 20px;
 }
+
 .onoffswitch-inner {
-    display: block; width: 200%; margin-left: -100%;
-    transition: margin 0.3s ease-in 0s;
+	display: block;
+	width: 200%;
+	margin-left: -100%;
+	transition: margin 0.3s ease-in 0s;
 }
+
 .onoffswitch-inner:before, .onoffswitch-inner:after {
-    display: block; float: left; width: 50%; height: 30px; padding: 0; line-height: 30px;
-    font-size: 14px; color: white; font-family: Trebuchet, Arial, sans-serif; font-weight: bold;
-    box-sizing: border-box;
+	display: block;
+	float: left;
+	width: 50%;
+	height: 30px;
+	padding: 0;
+	line-height: 30px;
+	font-size: 14px;
+	color: white;
+	font-family: Trebuchet, Arial, sans-serif;
+	font-weight: bold;
+	box-sizing: border-box;
 }
+
 .onoffswitch-inner:before {
-    content: "ON";
-    padding-left: 10px;
-    background-color: #EBB552; color: #FFFFFF;
+	content: "ON";
+	padding-left: 10px;
+	background-color: #EBB552;
+	color: #FFFFFF;
 }
+
 .onoffswitch-inner:after {
-    content: "OFF";
-    padding-right: 10px;
-    background-color: #D6D6D6; color: #999999;
-    text-align: right;
+	content: "OFF";
+	padding-right: 10px;
+	background-color: #D6D6D6;
+	color: #999999;
+	text-align: right;
 }
+
 .onoffswitch-switch {
-    display: block; width: 14px; margin: 8px;
-    background: #FFFFFF;
-    position: absolute; top: 0; bottom: 0;
-    right: 56px;
-    border: 2px solid #FFFFFF; border-radius: 20px;
-    transition: all 0.3s ease-in 0s; 
+	display: block;
+	width: 14px;
+	margin: 8px;
+	background: #FFFFFF;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	right: 56px;
+	border: 2px solid #FFFFFF;
+	border-radius: 20px;
+	transition: all 0.3s ease-in 0s;
 }
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
-    margin-left: 0;
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
+	margin-left: 0;
 }
-.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
-    right: 0px; 
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
+	right: 0px;
 }
-.tableDiv{width:100%; height:100%; float:left; clear:both;}
- #base {width: 100%; height: 100%; margin-top:5%; margin-left:15%;}
-    #base > .line {clear: both;}
-    #base > .line > .null{width:4%; height:4%; border: 1px solid gray; text-align:right; float: left;}
-    #base > .line > .tableColumn{width:4%; height:8%; border-right: 1px solid gray; border-left: 1px solid gray; border-bottom: 1px solid gray;  text-align:right; float: left;}
-    #base > .line > .tableRow{width:10%; height:4%; border-top: 1px solid gray; border-right: 1px solid gray; border-bottom: 1px solid gray; float: left;}
-    #base > .line > .block{width:10%; height:8%; border-right: 1px solid gray; border-bottom: 1px solid gray; float: left;}
-    .timeActive{background-color: #FC9312;}
-    .textalign{text-align:center;}
+
+.tableDiv {
+	width: 100%;
+	height: 100%;
+	float: left;
+	clear: both;
+}
+
+#base {
+	width: 100%;
+	height: 100%;
+	margin-top: 5%;
+	margin-left: 15%;
+}
+
+#base>.line {
+	clear: both;
+}
+
+#base>.line>.null {
+	width: 4%;
+	height: 4%;
+	border: 1px solid gray;
+	text-align: right;
+	float: left;
+}
+
+#base>.line>.tableColumn {
+	width: 4%;
+	height: 8%;
+	border-right: 1px solid gray;
+	border-left: 1px solid gray;
+	border-bottom: 1px solid gray;
+	text-align: right;
+	float: left;
+}
+
+#base>.line>.tableRow {
+	width: 10%;
+	height: 4%;
+	border-top: 1px solid gray;
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
+	float: left;
+}
+
+#base>.line>.block {
+	width: 10%;
+	height: 8%;
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
+	float: left;
+}
+
+.timeActive {
+	background-color: #FC9312;
+}
+
+.textalign {
+	text-align: center;
+}
 </style>
-
 </head>
-<body data-spy="scroll" data-target=".bs-docs-sidebar" >
-  <%
-  	String user_id = (String)session.getAttribute("id");
-  	pageContext.setAttribute("user_id",user_id) ;
-  %>
-<div class="nav-agency">
-  <div class="navbar navbar-static-top">
-    <div class="navbar-inner">
-      <div class="container"> <a class="brand" href="/Highlighter"> <img src="./resources/img/logo.png" alt=""></a>
-      <c:if test="${user_id eq null}">
-     	 <ul id="work-filter">
-            <li><a data-filter="*" class="btn btn-success ione-col" id="login" onclick="login()">로그인</a></li>
-            <li><a href="selectRegister" data-filter=".graphics" class="btn ione-col">회원가입</a></li>
-         </ul>
-      </c:if>
-      <c:if test="${user_id ne null}" >
-       	<ul id="work-filter">
-      		<li><a href="logout" data-filter=".graphics" class="btn ione-col">로그아웃</a></li>
-      	</ul>
-      </c:if>
-        <div id="main-nav">
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li class=""><a href="index.html">Home</a> </li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> 강사 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="work.html">강사 이용방법</a></li>
-                  <li><a href="work-two-columns.html">과외 등록</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> 학생 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="pricing.html">학생 이용방법</a></li>
-                  <li><a href="pricing-three-columns.html">과외 검색</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> 학부모 <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="faq.html">학부모 이용방법</a></li>
-                  <li><a href="contact.html">자녀 학습 관리</a></li>
-                </ul>
-              </li>
-              <li><a href="index.html">사이트 소개</a> </li>
-              <li><a href="index.html">문의</a> </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- 게시판 전체 영역  -->
-	<div class="container">
-		<!-- 게시판 타이틀 -->
-		<div class="row-fluid">
-			<div class="span12">
-				<div class="page-header">
-					<div class="row-fluid">
-						<div class="span12" style="color: #303030; font-size: 30px;">
-							<img src="./resources/img/group.png">&nbsp;&nbsp;과외 조회
-						</div>
-					</div>
+
+<body>
+	<div class="wrapper">
+		<!--=== Header ===-->
+		<div class="header">
+			<div class="container">
+				<!-- Logo -->
+				<a class="logo" href="/Highlighter">
+					<img style="width:270px;"src="./resources/img/high_logo.png" alt="Logo">
+				</a>
+				<!-- End Logo -->
+
+				<!-- Topbar -->
+				<div class="topbar">
+					<ul class="loginbar pull-right">
+						<%--<li class="topbar-devider"></li> 이거 그거임 구분 짝대기 --%>
+						<li id="logout"><a href="javascript:void(0);">Logout</a></li>
+					</ul>
 				</div>
-			</div>
-		</div>
-		<!-- user profile -->
-		<div id="user-profile-1" class="user-profile row">
-			<div class="col-xs-12 col-sm-3 center">
-				<div>
-					<!-- 강사 프로필 사진 -->
-					<span class="profile-picture" style="width:200px;"> <img id="avatar"
-						class="editable img-responsive" alt="Alex's Avatar"
-						src="./resources/img/${T_Image}" >
-					</span>
+				<!-- End Topbar -->
 
-					<div class="space-4"></div>
+				<!-- Toggle get grouped for better mobile display -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="fa fa-bars"></span>
+				</button>
+				<!-- End Toggle -->
+			</div><!--/end container-->
 
-					<div
-						class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-						<div class="inline position-relative">
-							<!-- 강사 명 -->
-							<a href="#" class="user-title-label dropdown-toggle"
-								data-toggle="dropdown"> <i
-								class="ace-icon fa fa-circle light-green"></i> &nbsp; <span
-								class="white">${user_info.user_name }</span>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse mega-menu navbar-responsive-collapse">
+				<div class="container">
+					<ul class="nav navbar-nav">
+						<!-- Home -->
+						<li class="dropdown">
+							<a href="/Highlighter">Home</a>
+						</li>
+						<!-- End Home -->
+
+						<!-- teacher -->
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								강사
 							</a>
+							<ul class="dropdown-menu">
+								<!-- About Pages -->
+								<li class="dropdown-submenu">
+									<a href="#">강사 이용방법</a>
+								</li>
+								<!-- End About Pages -->
 
-							<ul
-								class="align-left dropdown-menu dropdown-caret dropdown-lighter">
-								<li class="dropdown-header">Change Status</li>
+								<!-- regist lecture -->
+								<li class="dropdown-submenu">
+									<a href="javascript:void(0);">과외등록</a>
+								</li>
+								<!-- End regist lecture -->
 
-								<li><a href="#"> <i class="ace-icon fa fa-circle green"></i>
-										&nbsp; <span class="green">Available</span>
-								</a></li>
-
-								<li><a href="#"> <i class="ace-icon fa fa-circle red"></i>
-										&nbsp; <span class="red">Busy</span>
-								</a></li>
-
-								<li><a href="#"> <i class="ace-icon fa fa-circle grey"></i>
-										&nbsp; <span class="grey">Invisible</span>
-								</a></li>
+								<!--  -->
+								<li class="dropdown-submenu">
+									<a href="javascript:void(0);">강사평가</a>
+								</li>
+								<!-- End  -->
 							</ul>
+						</li>
+						<!-- End teacher -->
+
+						<!-- Student -->
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								학생
+							</a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-submenu">
+									<a href="#">학생 이용방법</a>
+								</li>
+								<li class="dropdown-submenu">
+									<a href="#">과외 검색</a>
+								</li>
+							</ul>
+						</li>
+						<!-- End Student -->
+
+						<!-- Parents -->
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								학부모
+							</a>
+							<ul class="dropdown-menu">
+								<li class="dropdown-submenu">
+									<a href="#">학부모 이용방법</a>
+								</li>
+							</ul>
+						</li>
+						<!-- End Parents -->
+
+						<!-- Site intro -->
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								사이트 소개
+							</a>
+						</li>
+						<!-- End Site intro -->
+
+						<!--  -->
+						<li class="dropdown">
+							<a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+								문의
+							</a>
+						</li>
+						<!-- End Demo Pages -->
+					</ul>
+				</div><!--/end container-->
+			</div><!--/navbar-collapse-->
+		</div>
+		<!--=== End Header ===-->
+
+		<!--=== Profile ===-->
+		<div class="container content profile">
+			<div class="row">
+				<!--Left Sidebar-->
+				<div class="col-md-3 md-margin-bottom-40">
+					<img class="teacherImg img-responsive profile-img margin-bottom-20"
+							src="displayFile?fileName=${classMainList.prof_photo}"
+							onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
+							alt="studentProfile" />
+
+					<ul class="list-group sidebar-nav-v1 margin-bottom-40" id="sidebar-nav-1">
+						<li class="list-group-item">
+							<a href="page_profile.html"><i class="fa fa-bar-chart-o"></i> 즐겨찾기 추가</a>
+						</li>
+						<li class="list-group-item">
+							<a href="page_profile_me.html"><i class="fa fa-user"></i> 메세지 보내기</a>
+						</li>
+						<li class="list-group-item">
+							<a href="#" onclick="app_class()"><i class="fa fa-group"></i> 수강 신청</a>
+						</li>
+					</ul>
+
+					<div class="panel-heading-v2 overflow-h">
+						<h2 class="heading-xs pull-left"><i class="fa fa-bar-chart-o"></i> 수업진행횟수자리</h2>
+						<a href="#"><i class="fa fa-cog pull-right"></i></a>
+					</div>
+					<h3 class="heading-xs">Web Design <span class="pull-right">92%</span></h3>
+					<div class="progress progress-u progress-xxs">
+						<div style="width: 92%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="92" role="progressbar" class="progress-bar progress-bar-u">
+						</div>
+					</div>
+					<h3 class="heading-xs">Unify Project <span class="pull-right">85%</span></h3>
+					<div class="progress progress-u progress-xxs">
+						<div style="width: 85%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="85" role="progressbar" class="progress-bar progress-bar-blue">
+						</div>
+					</div>
+					<h3 class="heading-xs">Sony Corporation <span class="pull-right">64%</span></h3>
+					<div class="progress progress-u progress-xxs margin-bottom-40">
+						<div style="width: 64%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="64" role="progressbar" class="progress-bar progress-bar-dark">
+						</div>
+					</div>
+					<div class="margin-bottom-50"></div>
+				</div>
+				<!--End Left Sidebar-->
+
+				<!-- Profile Content -->
+				<div class="col-md-9">
+					<div class="profile-body margin-bottom-20">
+						<div class="tab-v1">
+							<ul class="nav nav-justified nav-tabs">
+								<li class="active"><a data-toggle="tab" href="#profile">강사 정보</a></li>
+								<li><a data-toggle="tab" href="#passwordTab">과외 정보</a></li>
+								<li><a data-toggle="tab" href="#payment">시간표</a></li>
+								<li><a data-toggle="tab" href="#settings">교습계획</a></li>
+							</ul>
+							<div class="tab-content">
+								<div id="profile" class="profile-edit tab-pane fade in active">
+									<h2 class="heading-md">강사 정보</h2>
+									<br>
+									<dl class="dl-horizontal">
+										<dt><strong>이름 </strong></dt>
+										<dd>
+											${user_info.user_name }(${user_info.user_id})
+										</dd>
+										<hr>
+										<dt><strong>나이 </strong></dt>
+										<dd>
+											${user_info.birth_date}
+										</dd>
+										<hr>
+										<dt><strong>이메일 </strong></dt>
+										<dd>
+											${user_info.user_email}
+										</dd>
+										<hr>
+										<dt><strong>학력 </strong></dt>
+										<dd>
+											${user_info.college}
+										</dd>
+										<hr>
+										<dt><strong>뱃지 </strong></dt>
+										<dd>
+											<c:if test="${user_info.mark eq 'y' }">보유</c:if>
+											<c:if test="${user_info.mark ne 'y' }">미보유</c:if>
+										</dd>
+										<hr>
+									</dl>
+								</div>
+
+								<div id="passwordTab" class="profile-edit tab-pane fade">
+									<h2 class="heading-md">과외 정보</h2>
+									<br>
+									<dl class="dl-horizontal">
+										<dt><strong>온/오프라인 </strong></dt>
+										<dd>
+											<c:if test="${onoff eq 1}">온라인</c:if> <c:if test="${onoff eq 0}">오프라인</c:if>
+										</dd>
+										<hr>
+										<dt><strong>수업가능지역 </strong></dt>
+										<dd>
+											<c:if test="${!empty ext_info.class_poss_area  }">
+												${ext_info.class_poss_area }
+											</c:if>
+											<c:if test="${empty ext_info.class_poss_area }">
+												온라인
+											</c:if>
+										</dd>
+										<hr>
+										<dt><strong>개인/그룹 </strong></dt>
+										<dd>
+											<c:if test="${pg eq 1}">개인</c:if>
+											<c:if test="${pg ne 1}">그룹 /(모집 인원 : ${pg}명)</c:if>
+										</dd>
+										<hr>
+										<dt><strong>수업 과목 </strong></dt>
+										<dd>
+											<c:if test="${subject eq 01}">국어</c:if>
+											<c:if test="${subject eq 02}">영어</c:if>
+											<c:if test="${subject eq 03}">수학</c:if>
+										</dd>
+										<hr>
+										<dt><strong>모집 종료 날짜 </strong></dt>
+										<dd>
+											${ext_info.end_rc_date}
+										</dd>
+										<hr>
+										<dt><strong>시간당 수업료 </strong></dt>
+										<dd>
+											${ext_info.tuit_fees}원/(1시간)
+										</dd>
+										<hr>
+										<dt><strong>과외 대상 </strong></dt>
+										<dd>
+											${ext_info.ext_obj}
+										</dd>
+										<hr>
+										<dt><strong>과외 방식 </strong></dt>
+										<dd>
+											${ext_info.ext_way}
+										</dd>
+										<hr>
+										<dt><strong>과외 레벨 </strong></dt>
+										<dd>
+											${ext_info.class_lev}
+										</dd>
+										<hr>
+									</dl>
+								</div>
+
+								<div id="payment" class="profile-edit tab-pane fade">
+									<h2 class="heading-md">시간표</h2>
+									<br>
+									<p>시간표 들어갈 자리</p>
+								</div>
+
+								<div id="settings" class="profile-edit tab-pane fade">
+									<h2 class="heading-md">수업 소개</h2>
+									<br>
+									<p>
+										<c:if test="${ext_info.intro_class eq null}">등록된 수업 소개가 없습니다.</c:if>
+										<c:if test="${ext_info.intro_class ne null}">${ext_info.intro_class}</c:if>
+									</p>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<!-- 강사 프로필 밑에 3가지 메뉴 -->
-				<div class="space-6"></div>
+				<!-- End Profile Content -->
+			</div><!--/end row-->
+		</div>
+		<!--=== End Profile ===-->
 
-				<div class="profile-contact-info">
-					<div class="profile-contact-links align-left">
-						<a href="#" class="btn btn-link"> <i
-							class="ace-icon fa fa-plus-circle bigger-120 green"></i> 즐겨찾기 추가
-						</a> <a href="#" class="btn btn-link"> <i
-							class="ace-icon fa fa-envelope bigger-120 pink"></i> 메시지 보내기
-						</a> <a href="#" class="btn btn-link" onclick="app_class()"> <i
-							class="ace-icon fa fa-globe bigger-125 blue" ></i> 수강 신청　　　　　　
-						</a>
-					</div>
-
-					<div class="space-6"></div>
-
-					<div class="profile-social-links align-center">
-						<a href="#" class="tooltip-info" title=""
-							data-original-title="Visit my Facebook"> <i
-							class="middle ace-icon fa fa-facebook-square fa-2x blue"></i>
-						</a> <a href="#" class="tooltip-info" title=""
-							data-original-title="Visit my Twitter"> <i
-							class="middle ace-icon fa fa-twitter-square fa-2x light-blue"></i>
-						</a> <a href="#" class="tooltip-error" title=""
-							data-original-title="Visit my Pinterest"> <i
-							class="middle ace-icon fa fa-pinterest-square fa-2x red"></i>
-						</a>
+		<!--=== Footer Version 1 ===-->
+		<div class="footer-v1">
+			<div class="footer">
+				<div class="container">
+					<div class="row">
+						<!-- About -->
+						<div class="col-md-3 md-margin-bottom-40">
+							<a href="index.html"><img id="logo-footer" class="footer-logo" src="./resources/img/logo.png" alt="logo"></a>
+							<p>과외 중개 사이트가 아닌 매칭 사이트.</p>
+							<p>온라인 과외 사이트</p>
+						</div><!--/col-md-3-->
+						<!-- End About -->
 					</div>
 				</div>
-				<!-- 수업 진행 횟수/여긴 미정   -->
-				<div class="hr hr12 dotted"></div>
+			</div><!--/footer-->
 
-				<div class="clearfix">
-					<div class="grid2">
-						<span class="bigger-175 blue">${classCount}</span> <br /> 수업 진행
-						횟수
-					</div>
-
-					<div class="grid2">
-						<span class="bigger-175 blue">냥냥</span> <br /> 마지막 접속 시간
-					</div>
-				</div>
-				<div class="hr hr16 dotted"></div>
-			</div>
-
-			<div class="col-xs-12 col-sm-9">
-				<!-- 과외 정보 강조 버튼 6개 -->
-				<!-- <div class="center">
-					<span class="btn btn-app btn-sm btn-light no-hover"> <span
-						class="line-height-1 bigger-170 blue"> 1,411 </span> <br /> <span
-						class="line-height-1 smaller-90"> Views </span>
-					</span> <span class="btn btn-app btn-sm btn-yellow no-hover"> <span
-						class="line-height-1 bigger-170"> 32 </span> <br /> <span
-						class="line-height-1 smaller-90"> Followers </span>
-					</span> <span class="btn btn-app btn-sm btn-pink no-hover"> <span
-						class="line-height-1 bigger-170"> 4 </span> <br /> <span
-						class="line-height-1 smaller-90"> Projects </span>
-					</span> <span class="btn btn-app btn-sm btn-grey no-hover"> <span
-						class="line-height-1 bigger-170"> 23 </span> <br /> <span
-						class="line-height-1 smaller-90"> Reviews </span>
-					</span> <span class="btn btn-app btn-sm btn-success no-hover"> <span
-						class="line-height-1 bigger-170"> 7 </span> <br /> <span
-						class="line-height-1 smaller-90"> Albums </span>
-					</span> <span class="btn btn-app btn-sm btn-primary no-hover"> <span
-						class="line-height-1 bigger-170"> 55 </span> <br /> <span
-						class="line-height-1 smaller-90"> Contacts </span>
-					</span>
-				</div> -->
-
-				<!-- 강사 정보 -->
-				<div class="space-12"></div>
-				<h4 class="widget-title blue smaller" style="color: black;">강사
-					정보</h4>
-				<div class="profile-user-info profile-user-info-striped"
-					style="border-top: 1px solid #1bbc9b">
-					<div class="profile-info-row">
-						<div class="profile-info-name">강사 명</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="username">${user_info.user_name }(${user_info.user_id})</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">나이</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="country">${user_info.birth_date}</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">이메일</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="age">${user_info.user_email}</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">학력</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="login">${user_info.college}</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">뱃지</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="about">없음.</span>
-						</div>
-					</div>
-				</div>
-				<!-- 강사 정보 끝 -->
-
-				<!-- 과외 정보 -->
-				<div class="space-12"></div>
-				<h4 class="widget-title blue smaller" style="color: black;">과외
-					정보</h4>
-				<div class="profile-user-info profile-user-info-striped"
-					style="border-top: 1px solid #1bbc9b">
-					<div class="profile-info-row">
-						<div class="profile-info-name">온/오프라인</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="username"> <c:if
-									test="${onoff eq 1}">온라인</c:if> <c:if test="${onoff eq 0}">오프라인</c:if>
-							</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">수업 가능 지역</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="about">Editable as WYSIWYG</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">개인/그룹</div>
-
-						<div class="profile-info-value">
-							<i class="fa fa-map-marker light-orange bigger-110"></i> <span
-								class="editable" id="country"> <c:if test="${pg eq 1}">개인</c:if>
-								<c:if test="${pg ne 1}">그룹 /(모집 인원 : ${pg}명)</c:if>
-							</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">수업 과목</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="age"> <c:if
-									test="${subject eq 01}">국어</c:if> <c:if test="${subject eq 02}">영어</c:if>
-								<c:if test="${subject eq 03}">수학</c:if>
-							</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">모집 종료 날짜</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="signup">${ext_info.end_rc_date}</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">시간당 수업료</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="login">${ext_info.tuit_fees}원/(1시간)</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">과외 대상</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="about">${ext_info.ext_obj}</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">과외 방식</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="about">${ext_info.ext_way}</span>
-						</div>
-					</div>
-
-					<div class="profile-info-row">
-						<div class="profile-info-name">과외 레벨</div>
-
-						<div class="profile-info-value">
-							<span class="editable" id="about">${ext_info.class_lev}</span>
-						</div>
-					</div>
-				</div>
-				<!-- 과외 정보 끝 -->
-
-				<!-- 시간표/교습계획 -->
-				<div class="space-20"></div>
-
-				<div class="widget-box transparent">
-					<div class="widget-header widget-header-small">
-						<h4 class="widget-title blue smaller">
-							<i class="ace-icon fa fa-rss orange"></i> 시간표/교습계획
-						</h4>
-					</div>
-				</div>
-
-				<div class="hr hr2 hr-double"></div>
-				<!-- 시간표/교습계획 출력하는 공간 -->
-				<div class="col-sm-6">
-					<h3 class="header blue lighter smaller">
-						<i class="ace-icon fa fa-folder-o smaller-90"></i> Tabs
-					</h3>
-
-					<div id="tabs" >
-						<ul>
-							<li><a href="#tabs-1">수업 시간표</a></li>
-
-							<li><a href="#tabs-2">수업 소개</a></li>
-						</ul>
-
-<!-- 						<div id="tabs-1" style="height:420px;">
-							<div id="timeTable" class="tableDiv">
-					    		<div id="base">
-								    <div class="line">
-								      <div class="null">&nbsp</div>	<div class="textalign tableRow">월</div><div class="textalign tableRow">화</div><div class="textalign tableRow">수</div><div class="textalign tableRow">목</div><div class="textalign tableRow">금</div><div class="textalign tableRow">토</div><div class="textalign tableRow">일</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">9</div>	<div id="a9" class="block">&nbsp</div><div id="b9" class="block">&nbsp</div><div id="c9" class="block">&nbsp</div><div id="d9" class="block">&nbsp</div><div id="e9" class="block">&nbsp</div><div id="f9" class="block">&nbsp</div><div id="g9" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">10</div>  <div id="a10" class="block">&nbsp</div><div id="b10" class="block">&nbsp</div><div id="c10" class="block">&nbsp</div><div id="d10" class="block">&nbsp</div><div id="e10" class="block">&nbsp</div><div id="f10" class="block">&nbsp</div><div id="g10" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">11</div>  <div id="a11" class="block">&nbsp</div><div id="b11" class="block">&nbsp</div><div id="c11" class="block">&nbsp</div><div id="d11" class="block">&nbsp</div><div id="e11" class="block">&nbsp</div><div id="f11" class="block">&nbsp</div><div id="g11" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">12</div>  <div id="a12" class="block">&nbsp</div><div id="b12" class="block">&nbsp</div><div id="c12" class="block">&nbsp</div><div id="d12" class="block">&nbsp</div><div id="e12" class="block">&nbsp</div><div id="f12" class="block">&nbsp</div><div id="g12" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">1</div>  <div id="a13" class="block">&nbsp</div><div id="b13" class="block">&nbsp</div><div id="c13" class="block">&nbsp</div><div id="d13" class="block">&nbsp</div><div id="e13" class="block">&nbsp</div><div id="f13" class="block">&nbsp</div><div id="g13" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">2</div>  <div id="a14" class="block">&nbsp</div><div id="b14" class="block">&nbsp</div><div id="c14" class="block">&nbsp</div><div id="d14" class="block">&nbsp</div><div id="e14" class="block">&nbsp</div><div id="f14" class="block">&nbsp</div><div id="g14" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">3</div>  <div id="a15" class="block">&nbsp</div><div id="b15" class="block">&nbsp</div><div id="c15" class="block">&nbsp</div><div id="d15" class="block">&nbsp</div><div id="e15" class="block">&nbsp</div><div id="f15" class="block">&nbsp</div><div id="g15" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">4</div>  <div id="a16" class="block">&nbsp</div><div id="b16" class="block">&nbsp</div><div id="c16" class="block">&nbsp</div><div id="d16" class="block">&nbsp</div><div id="e16" class="block">&nbsp</div><div id="f16" class="block">&nbsp</div><div id="g16" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">5</div>  <div id="a17" class="block">&nbsp</div><div id="b17" class="block">&nbsp</div><div id="c17" class="block">&nbsp</div><div id="d17" class="block">&nbsp</div><div id="e17" class="block">&nbsp</div><div id="f17" class="block">&nbsp</div><div id="g17" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">6</div>  <div id="a18" class="block">&nbsp</div><div id="b18" class="block">&nbsp</div><div id="c18" class="block">&nbsp</div><div id="d18" class="block">&nbsp</div><div id="e18" class="block">&nbsp</div><div id="f18" class="block">&nbsp</div><div id="g18" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">7</div>  <div id="a19" class="block">&nbsp</div><div id="b19" class="block">&nbsp</div><div id="c19" class="block">&nbsp</div><div id="d19" class="block">&nbsp</div><div id="e19" class="block">&nbsp</div><div id="f19" class="block">&nbsp</div><div id="g19" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">8</div>  <div id="a20" class="block">&nbsp</div><div id="b20" class="block">&nbsp</div><div id="c20" class="block">&nbsp</div><div id="d20" class="block">&nbsp</div><div id="e20" class="block">&nbsp</div><div id="f20" class="block">&nbsp</div><div id="g20" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">9</div>  <div id="a21" class="block">&nbsp</div><div id="b21" class="block">&nbsp</div><div id="c21" class="block">&nbsp</div><div id="d21" class="block">&nbsp</div><div id="e21" class="block">&nbsp</div><div id="f21" class="block">&nbsp</div><div id="g21" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">10</div>  <div id="a22" class="block">&nbsp</div><div id="b22" class="block">&nbsp</div><div id="c22" class="block">&nbsp</div><div id="d22" class="block">&nbsp</div><div id="e22" class="block">&nbsp</div><div id="f22" class="block">&nbsp</div><div id="g22" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">11</div>  <div id="a23" class="block">&nbsp</div><div id="b23" class="block">&nbsp</div><div id="c23" class="block">&nbsp</div><div id="d23" class="block">&nbsp</div><div id="e23" class="block">&nbsp</div><div id="f23" class="block">&nbsp</div><div id="g23" class="block">&nbsp</div>
-								    </div>
-								    <div class="line">
-								      <div class="tableColumn">12</div>  <div id="a24" class="block">&nbsp</div><div id="b24" class="block">&nbsp</div><div id="c24" class="block">&nbsp</div><div id="d24" class="block">&nbsp</div><div id="e24" class="block">&nbsp</div><div id="f24" class="block">&nbsp</div><div id="g24" class="block">&nbsp</div>
-								    </div>
-				  				</div>
-					    	</div>
-						</div>  --> 
-
-						<div id="tabs-2">
+			<div class="copyright">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
 							<p>
-							<c:if test="${ext_info.intro_class eq null}">등록된 수업 소개가 없습니다.</c:if>
-							<c:if test="${ext_info.intro_class ne null}">${ext_info.intro_class}</c:if>
+								2015 &copy; All Rights Reserved.
+								<a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
 							</p>
 						</div>
-
 					</div>
 				</div>
-				<!-- ./col -->
-				
-		<!-- 시간표/교습계획 출력하는 공간 끝-->
-				<div class="space-6"></div>
-			
-				<div class="center">
-					<button type="button"
-						class="btn btn-sm btn-primary btn-white btn-round">
-						<i class="ace-icon fa fa-rss bigger-150 middle orange2"></i> <span
-							class="bigger-110">View more activities</span> <i
-							class="icon-on-right ace-icon fa fa-arrow-right"></i>
-					</button>
-				</div>
-			</div>
+			</div><!--/copyright-->
 		</div>
-	</div>
-	
- <!-- 시간표 선택 -->
+		<!--=== End Footer Version 1 ===-->
+		
+		<!-- 시간표 선택 -->
  	<div class="layer">
 		<div class="bg"></div>
 			<div id="layer2" class="pop-layer">
@@ -705,44 +919,26 @@ div#locationSelect2{margin:0;}
 				</div>
 		</div>
 	</div>
-	<!-- user profile -->
-<!-- footer -->
-    <hr class="soften1 copyhr">
-    <div class="row-fluid copyright">
-      <div class="span12">Copyright &copy; 2012. Greepit.com</div>
-    </div>
+	</div><!--/wrapper-->
 
-<script src="http://platform.twitter.com/widgets.js"></script>
-<script src="./resources/js/jquery.js"></script>
-<script src="./resources/js/google-code-prettify/prettify.js"></script>
-<script src="./resources/js/bootstrap-transition.js"></script>
-<script src="./resources/js/bootstrap-alert.js"></script>
-<script src="./resources/js/bootstrap-modal.js"></script>
-<script src="./resources/js/bootstrap-dropdown.js"></script>
-<script src="./resources/js/bootstrap-scrollspy.js"></script>
-<script src="./resources/js/bootstrap-tab.js"></script>
-<script src="./resources/js/bootstrap-tooltip.js"></script>
-<script src="./resources/js/bootstrap-popover.js"></script>
-<script src="./resources/js/bootstrap-button.js"></script>
-<script src="./resources/js/bootstrap-collapse.js"></script>
-<script src="./resources/js/bootstrap-carousel.js"></script>
-<script src="./resources/js/bootstrap-typeahead.js"></script>
-<script src="./resources/js/bootstrap-affix.js"></script>
-<script src="./resources/js/application.js"></script>
-<script src="./resources/js/superfish.js"></script>
-<!-- <script src="./resources/js/custom.js"></script> -->
-<script src="./resources/js/jquery.bpopup.min.js"></script>
-<!--  -->
-		<!-- basic scripts -->
-
-		<!--[if !IE]> -->
-		<script src="./resources/assets/js/jquery-2.1.4.min.js"></script>
-
-		<!-- <![endif]-->
-
-		<!--[if IE]>
-<script src="assets/js/jquery-1.11.3.min.js"></script>
-<![endif]-->
+	<!-- JS Global Compulsory -->
+	<script type="text/javascript" src="./resources/unify/assets/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="./resources/unify/assets/plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/plugins/smoothScroll.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/plugins/circles-master/circles.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/plugins/sky-forms-pro/skyforms/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/plugins/scrollbar/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="./resources/unify/assets/js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="./resources/unify/assets/js/app.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/js/plugins/datepicker.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/js/plugins/circles-master.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/js/plugins/style-switcher.js"></script>
+	
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='./resources/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
@@ -756,9 +952,41 @@ div#locationSelect2{margin:0;}
 		<script src="./resources/assets/js/ace-elements.min.js"></script>
 		<script src="./resources/assets/js/ace.min.js"></script>
 
-<!--  -->
+	<script src="./resources/js/jquery.bpopup.min.js"></script>
+	<script src="./resources/js/bootstrap-tooltip.js"></script>
+	<script src="./resources/js/bootstrap-popover.js"></script>
+	<script src="./resources/js/bootstrap-button.js"></script>
+	<script src="./resources/js/bootstrap-collapse.js"></script>
+	<script src="./resources/js/bootstrap-carousel.js"></script>
+	<script src="./resources/js/bootstrap-typeahead.js"></script>
+	<script src="./resources/js/bootstrap-affix.js"></script>
+	<script src="./resources/js/application.js"></script>
+	<script src="./resources/js/superfish.js"></script>
+	<script src="http://platform.twitter.com/widgets.js"></script>
+	<script src="./resources/js/jquery.js"></script>
+	<script src="./resources/js/google-code-prettify/prettify.js"></script>
+	<script src="./resources/js/bootstrap-transition.js"></script>
+	<script src="./resources/js/bootstrap-alert.js"></script>
+	<script src="./resources/js/bootstrap-modal.js"></script>
+	<script src="./resources/js/bootstrap-dropdown.js"></script>
+	<script src="./resources/js/bootstrap-scrollspy.js"></script>
+	<script src="./resources/js/bootstrap-tab.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function() { /* bootstrap - scroll 최상위로 */
+			App.init();
+			App.initScrollBar();
+			Datepicker.initDatepicker();
+			CirclesMaster.initCirclesMaster1();
+			StyleSwitcher.initStyleSwitcher();
+		});
+		$("#logout").on("click", function(){
+			window.location.href="logout";
+		});
+	</script>
+
 <script>
 $(document).ready(function(){
+	alert("아랑닐");
 	$.ajax({
 		type : "GET",
 		url : "lectureSchedule",
@@ -1067,7 +1295,8 @@ $(document).ready(function(){
 				.selectmenu({ position: { my : "left bottom", at: "left top" } })
 					
 			});
-		</script>
+</script>
+	
 <!-- 수강 신청  -->
 <script>
  function app_class(){

@@ -62,8 +62,18 @@
 	</select>
 	
 	<insert id="instCalendar">
-		<![CDATA[insert into stu_info (ext_id,user_id,post_date,learn_att) values (#{ext_id},#{user_id},#{post_date},#{learn_att})]]>
+		<![CDATA[insert into stu_info (ext_id,user_id,post_date,learn_att,stu_infoNum) values (#{ext_id},#{user_id},#{post_date},#{learn_att},#{stu_infoNum})]]>
 	</insert>
+	
+	<select id="getCalStuInfoNum" resultType="String">
+		<![CDATA[
+			select stu_infoNum
+			from stu_info
+			where ext_id=#{ext_id} and
+					user_id=#{user_id}
+					order by stu_infoNum desc limit 1
+		]]>
+	</select>
 	
 	<select id="calendarList" resultType="stu_infoVO">
 		<![CDATA[

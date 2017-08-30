@@ -42,6 +42,14 @@ group by e.ext_id;
 ]]>
 </select>
 
+<select id="sortEvaluation" resultType="String">
+<![CDATA[
+	select evaluation_content
+	from lecture_evaluation
+	where #{ext_id}
+]]>
+</select>
+
 <select id="search" resultType="LectureEvaluationVO">
 <![CDATA[
 select u.prof_photo prof_photo, u.user_name user_name, e.ext_id ext_id, e.class_poss_area class_poss_area, e.best_score best_score
@@ -101,6 +109,13 @@ select distinct(t.day_week) day_week, e.str_class_date str_class_date
 from ext_timetable t, ext_info e
 where t.ext_id = e.ext_id
 and t.ext_id = #{ext_id}
+]]>
+</select>
+<select id="bestScore2" resultType="double">
+<![CDATA[
+select ifnull(avg(evaluation_grade), 0)
+from lecture_evaluation
+where ext_id = #{ext_id}
 ]]>
 </select>
 <select id="parentLogin" resultType="ParentVO">
@@ -187,4 +202,11 @@ and user_id = #{user_id}
 insert into lecture_evaluation (ext_id, user_id, evaluation_content, evaluation_grade)
 values(#{ext_id},#{user_id},#{evaluation_content},#{evaluation_grade})
 </insert>
+
+<update id="scoreUpdate">
+update ext_info
+set best_score = (select avg(evaluation_grade) best_score from lecture_evaluation where ext_id = #{ext_id})
+where ext_id = #{ext_id}
+</update>
+
 </mapper>

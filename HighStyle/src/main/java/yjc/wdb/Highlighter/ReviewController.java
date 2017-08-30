@@ -356,7 +356,8 @@ public class ReviewController
 		System.out.println(curT2);
 		String location = json.get("location").toString();
 		String destination = json.get("destination").toString();
-		System.out.println("추출시간 : "+curT+"\n"+"추출할 영상 : "+location+"\n"+"저장할 지역 : "+destination);
+		String memo = json.get("memo").toString();
+		System.out.println("추출시간 : "+curT+"\n"+"추출할 영상 : "+location+"\n"+"저장할 지역 : "+destination+"\n 메모 : "+memo);
 		
 		//섬네일 번호 만들자!
 		String post_id = json.get("post_id").toString();
@@ -400,7 +401,7 @@ public class ReviewController
 			thumbVO.setPost_id(post_id);
 			thumbVO.setThumb_name(result);
 			thumbVO.setThumb_time(curT);
-			thumbVO.setThumb_memo(null);
+			thumbVO.setThumb_memo(memo);
 			reviewService.insertThumbInfo(thumbVO);
 			//끝
 			//return result;

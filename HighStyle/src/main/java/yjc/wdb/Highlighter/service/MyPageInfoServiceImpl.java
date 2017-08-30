@@ -112,5 +112,10 @@ public class MyPageInfoServiceImpl implements MyPageInfoService
 		// TODO Auto-generated method stub
 		dao.updateMark(user_id);
 	}
+	@Override
+	public String getCalStuInfoNum(stu_infoVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.getCalStuInfoNum(vo);
+	}
 	
 }

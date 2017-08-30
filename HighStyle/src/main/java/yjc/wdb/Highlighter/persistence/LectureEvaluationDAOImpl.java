@@ -88,6 +88,18 @@ public class LectureEvaluationDAOImpl implements LectureEvaluationDAO{
 	}
 
 	@Override
+	public double bestScore2(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".bestScore2", ext_id);
+	}
+	
+	@Override
+	public List<LectureEvaluationBestScoreVO> bestScore3(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".scoreUpdate", ext_id);
+	}
+	
+	@Override
 	public List<ParentVO> parentLogin(ParentVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".parentLogin", vo);
@@ -128,6 +140,14 @@ public class LectureEvaluationDAOImpl implements LectureEvaluationDAO{
 		// TODO Auto-generated method stub
 		session.insert(namespace+".create", vo);
 	}
+
+	@Override
+	public List<String> sortEvaluation(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".sortEvaluation", ext_id);
+	}
+
+	
 
 
 }
