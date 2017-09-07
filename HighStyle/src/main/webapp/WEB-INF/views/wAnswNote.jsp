@@ -68,6 +68,53 @@
 	.probChecked{
 		background-color: #999;
 	}
+	
+	
+	#ansNote{
+	margin:10px;
+	width:350px;
+	height:730px;
+	float:left;
+	}
+	#ansNotePlace{
+	width : 600px;
+	height:665px;
+	margin-bottom:10px;
+	display:auto;
+	border:1px solid lightgray;
+	background-color:white;
+	overflow: auto;
+	}
+	.ansList{
+		margin:20px;
+		height:700px;
+		border:1px solid lightgray;
+		display: none;
+	}
+	
+	#answerRegist{
+		width : 140px;
+		margin:5px 10px 20px 0;
+		font-size:25px;
+		font-weight:bold;
+		text-align:center;
+		color:gray;
+		border:1px dotted lightgray;
+		display: inline-block;
+	}
+	#answerDelete{
+		width:140px;
+		margin:0 0 20px 10px;
+		font-size:25px;
+		font-weight:bold;
+		text-align:center;
+		color:gray;
+		border:1px dotted lightgray;
+		display: inline-block;
+	}
+	.co{
+		display: none;
+	}
 </style>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
@@ -97,6 +144,8 @@
 			<div id="answerSheetTitle" class="answerSheetTitle">답안지 작성</div>
 			<div id="confirmAnswer" class="confirmAnswer">정답확인</div>
 			<script>
+				
+				
 				var probCount = '${examInfo.prob_count}';
 				var resultTestAnswer = ${resultTestAnswer};
 				var stuAnsList = ${stuAnsList};
@@ -106,35 +155,35 @@
 					{
 						if(parseInt(stuAnsList[i])==1)
 						{
-							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right'>"+(i+1)+
+							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right' onclick='myFunction("+i+")'>"+(i+1)+
 									"</div><div class='selectNum stuChecked'>1</div><div class='selectNum'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else if(parseInt(stuAnsList[i])==2)
 						{
-							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right'>"+(i+1)+
+							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right' onclick='myFunction("+i+")'>"+(i+1)+
 									"</div><div class='selectNum'>1</div><div class='selectNum stuChecked'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else if(parseInt(stuAnsList[i])==3)
 						{
-							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right'>"+(i+1)+
+							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right' onclick='myFunction("+i+")'>"+(i+1)+
 									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
 									"<div class='selectNum stuChecked'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else if(parseInt(stuAnsList[i])==4)
 						{
-							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right'>"+(i+1)+
+							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right' onclick='myFunction("+i+")'>"+(i+1)+
 									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum stuChecked'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else
 						{
-							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right'>"+(i+1)+
+							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum right' onclick='myFunction("+i+")'>"+(i+1)+
 									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum stuChecked'>5</div></div>");
@@ -185,6 +234,13 @@
 								"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
 								"<div class='selectNum'>5</div></div>");
 					}
+				}
+				function myFunction(e)
+				{
+					$(".ansList").css("display","none");
+					$(".co").css("display","none");
+					$(".countIndex"+e).css("display","block");
+					$("#hidden"+e).css("display","block");
 				}
 			</script>
 			</div>
@@ -603,6 +659,135 @@
 			</div>
 		</div>
 		</c:forEach>
+		<%-- <c:forEach items="${examInfo}" var="examInfo" varStatus="status">
+			<div id="ansNote" class="ansNote" style="display: block;">
+				<div id="ansNotePlace" class="ansNotePlace"> 
+				<div id="answerSheetTitle" class="answerSheetTitle">오답 노트</div>
+					<script>
+						var count = '${examInfo.prob_count}';
+						for(var i = 0; i < parseInt(count); i++)
+						{
+							/* if('${noteList[status.index].w_answ_note}' == null)
+							{ */
+								if(i<10)
+								{
+									document.write("<div id=hidden"+(i+1)+" class='ansList' style='height:630px; margin-bottom:10px;'>"+
+									"<input id='file1' class='file1' type='file' style='width: 500px;' accept='image/*' onchange='fileInfo(this)' />"+
+									"<input id='prob_id' type='hidden' value='${test_id}0"+i+"' />"+
+									"<div id='img_box' style='height:600px;'><img src='displayFile?fileName=${noteList[status.index].w_answ_note}' style='width:530px; height:600px;' onerror='javascript:this.src=./resources/unify/assets/img/team/img32-md.jpg' /></div>"+
+									"<div id='answerRegist' class='answerRegist'>등록</div><div id='answerDelete' class='answerDelete'>삭제</div></div>");
+								}//<img src='displayFile?fileName=${noteList[status.index].w_answ_note}' />
+								else
+								{
+									document.write("<div id=hidden"+(i+1)+" class='ansList' style='height:630px; margin-bottom:10px;'>"+
+									"<input id='file1' class='file1' type='file' style='width: 500px;' accept='image/*' onchange='fileInfo(this)' />"+
+									"<input id='prob_id' type='hidden' value='${test_id}"+i+"' />"+
+									"<div id='img_box' style='height:600px;'><img src='displayFile?fileName=${noteList[status.index].w_answ_note}' style='width:530px; height:600px;' onerror='javascript:this.src=./resources/unify/assets/img/team/img32-md.jpg' /></div>"+
+									"<div id='answerRegist' class='answerRegist'>등록</div><div id='answerDelete' class='answerDelete'>삭제</div></div>");
+								}
+							/* } */
+							/* else
+							{
+								if(i<10)
+								{
+									document.write("<div id=hidden"+(i+1)+" class='ansList' style='height:630px; margin-bottom:10px;'>"+
+									"<input id='file1' class='file1' type='file' style='width: 500px;' accept='image/*' onchange='fileInfo(this)' />"+
+									"<input id='prob_id' type='hidden' value='${test_id}0"+i+"' />"+
+									"<div id='img_box' style='height:600px;'><img src='displayFile?fileName=${noteList[status.index].w_answ_note}' style='width:530px; height:600px;' /></div>"+
+									"<div id='answerRegist' class='answerRegist'>등록</div><div id='answerDelete' class='answerDelete'>삭제</div></div>");
+								}
+								else
+								{
+									document.write("<div id=hidden"+(i+1)+" class='ansList' style='height:630px; margin-bottom:10px;'>"+
+									"<input id='file1' class='file1' type='file' style='width: 500px;' accept='image/*' onchange='fileInfo(this)' />"+
+									"<input id='prob_id' type='hidden' value='${test_id}"+i+"' />"+
+									"<div id='img_box' style='height:600px;'></div>"+
+									"<div id='answerRegist' class='answerRegist'>등록</div><div id='answerDelete' class='answerDelete'>삭제</div></div>");
+								} 
+							} */
+						}
+						
+						
+						function fileInfo(f){
+							var file = f.files; // files 를 사용하면 파일의 정보를 알 수 있음
+
+							var reader = new FileReader(); // FileReader 객체 사용
+							reader.onload = function(rst){ // 이미지를 선택후 로딩이 완료되면 실행될 부분
+								$('#img_box').html('<img style="width:280px; height:500px;" src="' + rst.target.result + '">'); // append 메소드를 사용해서 이미지 추가
+								$("#img_regist").click(function(){
+									$(".main_image").html('<img style="width:150px; height:150px;" src="' + rst.target.result + '">');
+									$(".btn-layerClose").trigger("click");
+								});
+								// 이미지는 base64 문자열로 추가
+								// 이 방법을 응용하면 선택한 이미지를 미리보기 할 수 있음
+							}
+							reader.readAsDataURL(file[0]); // 파일을 읽는다, 배열이기 때문에 0 으로 접근
+						}
+					</script>
+				</div>
+			</div>
+		</c:forEach> --%>
+		
+		<%-- 오답노트 등록부분! --%>
+				<div id="ansNote" class="ansNote" style="display: block;">
+					<div id="ansNotePlace" class="ansNotePlace"> 
+						<div id="answerSheetTitle" class="answerSheetTitle">오답 노트</div>
+						<c:forEach items="${noteList}" var="list" varStatus="status">
+						<div id="answerSheetTitle" class="answerSheetTitle co countIndex${status.index}">${status.index+1}번</div>
+							<div id="hidden${status.index}" class='ansList' style="height:630px; margin-bottom:10px;">
+								<input id='file${status.index}' class='file1' type='file' style="width: 500px;" accept='image/*' onchange='fileInfo(this,${status.index })' />
+								<input id='prob_id${status.index}' type='hidden' value="${test_id}0${status.index}" />
+								<div id='img_box' class="img_box${status.index }" style='height:600px;'>
+									<img src='displayFile?fileName=${list}' style='width:530px; height:600px;'
+									onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'" />
+								</div>
+								<div id='answerRegist' class='answerRegist' onclick="registImg(${status.index})">등록</div>
+								<div id='answerDelete' class='answerDelete'>삭제</div>
+							</div>
+						</c:forEach>
+					</div>
+				</div>
+		<script>
+			function fileInfo(f,e){
+				var file = f.files; // files 를 사용하면 파일의 정보를 알 수 있음
+	
+				var reader = new FileReader(); // FileReader 객체 사용
+				reader.onload = function(rst){ // 이미지를 선택후 로딩이 완료되면 실행될 부분
+					$('.img_box'+e).html('<img style="width:530px; height:600px;" src="' + rst.target.result + '">'); // append 메소드를 사용해서 이미지 추가
+					$("#img_regist").click(function(){
+						$(".main_image").html('<img style="width:150px; height:150px;" src="' + rst.target.result + '">');
+						$(".btn-layerClose").trigger("click");
+					});
+					// 이미지는 base64 문자열로 추가
+					// 이 방법을 응용하면 선택한 이미지를 미리보기 할 수 있음
+				}
+				reader.readAsDataURL(file[0]); // 파일을 읽는다, 배열이기 때문에 0 으로 접근
+			}
+			
+			function registImg(e)
+			{
+				var file =$("#file"+e)[0].files[0];
+				var prob_id=$("#prob_id"+e).val();
+				
+				
+				var formData = new FormData();
+				formData.append("file",file);
+				formData.append("prob_id",prob_id);
+				
+				
+				$.ajax({
+					url : "/Highlighter/uploadwAnswNote",
+					data : formData,
+					dataType : 'text',
+					processData : false,
+					contentType : false,
+					type : 'POST',
+					success : function(data) {
+						alert("등록하였습니다");
+					}
+				});
+			}
+		</script>
 	</div>
 	<script src="http://platform.twitter.com/widgets.js"></script>
 	<script src="./resources/js/jquery.js"></script>
@@ -624,6 +809,8 @@
 	<script src="./resources/js/superfish.js"></script>
 	<script src="./resources/js/custom.js"></script>
 	<script>
+	
+		
 		$(".selectNum").on("click", function(){
 			console.log($(this).parent().children('.checked').text());
 			if($(this).parent().children('.checked').text().length> 0){

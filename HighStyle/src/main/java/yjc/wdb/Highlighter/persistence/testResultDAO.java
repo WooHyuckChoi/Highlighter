@@ -12,7 +12,10 @@ public interface testResultDAO {
 	public void w_answ_note_cont(test_resultVO vo) throws Exception; 
 	public int correctAnswercount(test_resultVO vo) throws Exception;
 	public String WrongNote(test_resultVO vo) throws Exception;
-	/*ÇÐ»ý °ü¸® Å×ÀÌºí Á¤´ä °¹¼ö Ãâ·Â*/
+	/*ï¿½Ð»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½*/
 	public List<test_resultVO> weekCorrectAnsw(String user_id,String ext_id) throws Exception;
 	public List<HashMap> ListWeeksCorrect(String user_id,String ext_id) throws Exception;
+	
+	public void updateWansNote(test_resultVO vo) throws Exception;
+	public List<String> selectWansNote(test_resultVO vo) throws Exception;
 }

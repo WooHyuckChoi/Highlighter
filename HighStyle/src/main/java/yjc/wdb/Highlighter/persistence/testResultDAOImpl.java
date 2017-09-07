@@ -48,7 +48,7 @@ public class testResultDAOImpl implements testResultDAO {
 		return session.selectOne(namespace+".WrongNote",vo);
 	}
 	
-	/*ÇÐ»ý °ü¸® Å×ÀÌºí Á¤´ä °¹¼ö Ãâ·Â*/
+	/*ï¿½Ð»ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìºï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½*/
 	@Override
 	public List<test_resultVO> weekCorrectAnsw(String user_id,String ext_id) throws Exception {
 		// TODO Auto-generated method stub
@@ -68,6 +68,18 @@ public class testResultDAOImpl implements testResultDAO {
 		
 	
 		return session.selectList(namespace+".ListWeeksCorrect",paramMap);
+	}
+
+	@Override
+	public void updateWansNote(test_resultVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		session.update(namespace+".uploadWansNote",vo);
+	}
+
+	@Override
+	public List<String> selectWansNote(test_resultVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".selectWansNote",vo);
 	}
 
 

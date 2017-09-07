@@ -58,6 +58,18 @@ public class testResultServiceImpl implements testResultService {
 		// TODO Auto-generated method stub
 		return dao.ListWeeksCorrect(user_id, ext_id);
 	}
+
+	@Override
+	public void updateWansNote(test_resultVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.updateWansNote(vo);
+	}
+
+	@Override
+	public List<String> selectWansNote(test_resultVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		return dao.selectWansNote(vo);
+	}
 	
 
 
