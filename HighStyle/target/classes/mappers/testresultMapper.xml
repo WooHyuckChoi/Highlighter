@@ -70,4 +70,14 @@ and a.test_id =#{test_id}
                 group by a.user_id,a.test_id
 	]]>
 	</select>
+	
+	<update id="uploadWansNote">
+		update test_result set w_answ_note=#{w_answ_note} where prob_id=#{prob_id} and user_id=#{user_id}
+	</update>
+	
+	<select id="selectWansNote" resultType="String">
+		select IFNULL(w_answ_note,'null') w_answ_note 
+		from test_result 
+		where user_id = #{user_id} and test_id=#{test_id}
+	</select>
 </mapper>

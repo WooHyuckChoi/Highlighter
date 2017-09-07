@@ -352,7 +352,7 @@ div#locationSelect2{margin:0;}
           <label for="user_id">아이디</label>
              <input type="text" name="user_id" id="user_id" tabindex="3" required>
              <label for="user_pw">비밀번호</label>
-             <input type="text" name="user_pw" id="user_pw" tabindex="3" required>
+             <input type="password" name="user_pw" id="user_pw" tabindex="3" required>
              <hr/>
              <input name="submit" class="btn btn-success" type="submit" id="user_login" tabindex="5" value="로그인">
         </div>
@@ -1201,7 +1201,8 @@ $(document).ready(function () {
                $("#user_pw").val('');
               }
               else{
-                 alert($("#user_id").val()+"야 안녕");
+            	 /* var user_name = '${user_name}; */
+                 alert($("#user_id").val()+"님 환영합니다.");
                  $("#user_id").val('');
                  $("#user_pw").val('');
                  location.href="/Highlighter";

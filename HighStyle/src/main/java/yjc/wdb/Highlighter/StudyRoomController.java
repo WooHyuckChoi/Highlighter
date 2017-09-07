@@ -2,11 +2,14 @@ package yjc.wdb.Highlighter;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 
+
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,6 +18,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,7 +27,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+import yjc.wdb.Highlighter.domain.TestResultVO;
 import yjc.wdb.Highlighter.domain.User_InfoVO;
 import yjc.wdb.Highlighter.domain.prob_InfoVO;
 import yjc.wdb.Highlighter.domain.stu_infoVO;
@@ -32,6 +39,9 @@ import yjc.wdb.Highlighter.service.StudyRoomService;
 import yjc.wdb.Highlighter.service.User_InfoService;
 import yjc.wdb.Highlighter.service.testResultService;
 import yjc.wdb.Highlighter.service.test_InfoService;
+import yjc.wdb.bbs.util.uploadReviewFileUtils;
+
+import static org.apache.commons.lang3.StringUtils.*;
 
 @Controller
 public class StudyRoomController 
@@ -48,6 +58,8 @@ public class StudyRoomController
 	private User_InfoService userInfoService;
 	@Inject
 	private test_InfoService test_InfoService;
+	@Resource(name = "uploadPath")
+	private String uploadPath;
 
 
 	@RequestMapping(value = "/newLecturePage", method = RequestMethod.GET)//classMain newLecturePage
@@ -305,9 +317,11 @@ public class StudyRoomController
 	   public void wAnswNote(HttpServletRequest req, Model model, HttpSession session, test_resultVO test_resultVO)throws Exception{
 		   String test_id = req.getParameter("test_id");
 		   String user_id = String.valueOf(session.getAttribute("id"));
+		   model.addAttribute("test_id",test_id);
 		   
 		   List<HashMap> examInfo = test_InfoService.selectExamInfo(test_id);
 		   model.addAttribute("examInfo", examInfo);
+		   model.addAttribute("prob_count",examInfo.get(0).get("prob_count"));
 		   //System.out.println(examInfo);
 		   
 		   // 학생정답과 선생님 정답을 받아온다. 
@@ -358,11 +372,39 @@ public class StudyRoomController
 		   }
 		   //model.addAttribute("searchProbAnswer",searchProbAnswer); //강사
 		   model.addAttribute("probAnsList",probAnsList); //강사
+		   
+		   
+		   test_resultVO tVO = new test_resultVO();
+		   tVO.setUser_id(user_id);
+		   tVO.setTest_id(test_id);
+		   
+		   List<String> noteList = testResultService.selectWansNote(tVO);
+		   model.addAttribute("noteList",noteList);
 	   }
 	
 	@RequestMapping(value="sleep", method=RequestMethod.GET)
 	public String sleep()
 	{
 		return "applicationClassFix";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/uploadwAnswNote", method=RequestMethod.POST)
+	public ResponseEntity<String> uploadwAnswNote(MultipartFile file,String prob_id,HttpSession session) throws Exception
+	{
+		String user_id = (String) session.getAttribute("id");
+		String savedName=
+				uploadReviewFileUtils.uploadFile(uploadPath, file.getOriginalFilename(), file.getBytes());
+		
+		test_resultVO vo = new test_resultVO();
+		vo.setProb_id(prob_id);
+		vo.setUser_id(user_id);
+		vo.setW_answ_note(savedName);
+		testResultService.updateWansNote(vo);
+		
+		System.out.println(prob_id);
+		System.out.println(user_id);
+		System.out.println(savedName);
+		return new ResponseEntity<>(file.getOriginalFilename(),HttpStatus.CREATED);
 	}
 }
