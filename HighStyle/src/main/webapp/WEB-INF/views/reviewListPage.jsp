@@ -243,7 +243,7 @@
 													<div class="thumbnail">
 														<div class="videoSpace">
 															<video preload="auto"
-																width="150" id="${list.post_id}" class="detailReview" height="130" src="video?fileName=${list.att_file }">
+																width="150" id="${list.post_id}" class="detailReview" height="130" src="video?fileName=${list.att_file}">
 															</video>
 														</div>
 														<div class="caption">
