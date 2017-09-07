@@ -21,7 +21,7 @@
 		<property name="url" value="jdbc:mariadb://localhost:33060/highlighter"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="1234"></property>
-	</bean>
+	</bean>  
 	<!-- 서버 업로드용 디비 -->
 	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
@@ -30,12 +30,12 @@
 		<property name="password" value="A12qwaszx!"></property>
 	</bean> -->
 	<!-- 로컬에서 서버접속용 디비 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://jump7797.cafe24.com:3306/jump7797"></property>
 		<property name="username" value="jump7797"></property>
 		<property name="password" value="A12qwaszx!"></property>
-	</bean>
+	</bean>  -->
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
