@@ -35,11 +35,8 @@
 		<property name="url" value="jdbc:mysql://jump7797.cafe24.com:3306/jump7797"></property>
 		<property name="username" value="jump7797"></property>
 		<property name="password" value="A12qwaszx!"></property>
-<<<<<<< HEAD
 	</bean>  -->
-=======
-	</bean> -->
->>>>>>> branch 'master' of https://github.com/WooHyuckChoi/Highlighter.git
+
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
