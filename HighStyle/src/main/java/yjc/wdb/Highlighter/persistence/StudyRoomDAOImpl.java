@@ -98,4 +98,9 @@ public class StudyRoomDAOImpl implements StudyRoomDAO
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".selectStuInfo", ext_id);
 	}
+	@Override
+	public Integer countTest(String ext_id) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(namespace+".countTest",ext_id);
+	}
 }

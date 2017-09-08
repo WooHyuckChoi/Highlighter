@@ -132,40 +132,53 @@ public class StudyRoomController
 		model.addAttribute("nameList",nameList);
 		
 		List<HashMap> list = studyRoomService.selectTestResult(ext_id);
+		
 		//System.out.println(list);
 		//System.out.println(list.size());
 		JSONObject jsonMain = new JSONObject();
 		
 		JSONArray jArray = new JSONArray();
 		
+		int countTest = studyRoomService.countTest(ext_id); // 해당 과외의 시험갯수
 		int studentCount = studyRoomService.countStudent(ext_id); //총 학생 수 
 		int account=0; //배열에 넣을 값들이 0으로 초기화 되지 않게 하기 위해
-
-		for(int i=0 ; i<studentCount ; i++)//3명이면 3번만 돌게
+		
+		if(list.size()%studentCount!=0) // 총학생성적수를 학생수로 나누어 나머지값이 0 이 아닐경우 마지막 시험은 포함 하지 않는다.
 		{
-			System.out.println(i+"번째");
+			countTest-=1;
+			/* 시험이 3회까지 진행되었고 총학생은 2명일 경우 성적갯수는 6개가된다 하지만 한명이 3회차 시험을 치지 않았을 경우
+			   성적갯수는 5개가 되므로 배열에러 발생 그러므로 총학생성적갯수%학생수를 하여 0 이 아닐경우 마지막 시험은 포함하지 않고 반복문을 돌린다. */
+		}
+		for(int i=0 ; i<countTest ; i++)//3명이면 3번만 돌게. 이게 명수로 돌아야하나? 시험 갯수로 돌려야 하는것 아닌가?
+		{
+			/*if(list.get(account+1).isEmpty())
+			{
+				break;
+			}*/
 			//int sum=0;
 			JSONObject row = new JSONObject();
 			
 			String substr = String.valueOf((list.get(account)).get("test_id"));
 			row.put("times",substr.substring(9, 10)+"회차");
-
+			
 			int sum = 0;
 			int ave = 0;
-			for(int j=0; j<studentCount-1;j++)//학생수에 따라 한 배열에 모든 학생의 점수를 넣는다.
+			for(int j=0; j<studentCount;j++)//학생수에 따라 한 배열에 모든 학생의 점수를 넣는다.	
 			{
+				
 				row.put(list.get(account).get("user_name").toString() , list.get(account).get("count").toString());
 				sum+=Integer.parseInt(list.get(account).get("count").toString());
-				
 				account++;//다음에 다시 for문을 만났을때 학생이 3명일시 0이아니라 4번째에서 시작할 수 있게
+				
 			}
+			
 			ave = sum/studentCount;
 			row.put("평균점수", ave);
-			
 			//sum += Integer.parseInt(list.get(j).get("count").toString());
 			//int ave = sum/list.size();
 			//row.put("ave", ave);
 			jArray.add(i,row);
+			System.out.println(row);
 		}
 		jsonMain.put("sendData",jArray);
 		
