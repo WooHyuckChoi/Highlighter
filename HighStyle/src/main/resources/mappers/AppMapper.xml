@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yjc.wdb.Highlighter.AppMapper">
+<select id="app_Login" resultType="User_InfoVO">
+select * from user_info where user_id = #{user_id} and user_pw = #{user_pw}
+</select>
+
+
+<select id="app_home" resultMap="app_homeMap">
+<![CDATA[
+select c.ext_id, (select user_name from user_info where user_id = c.users) user_name, 
+count(c.user_name) count_Stu, (select str_class_date from ext_info where ext_id = c.ext_id) str_class_date, 
+(select prof_photo from user_info where user_id = c.users) prof_photo 
+from app_class a, (select b.user_id, u.user_name, b.ext_id, e.str_class_date, u.prof_photo, e.user_id users 
+					from app_class b, user_info u, ext_info e 
+					where b.user_id = u.user_id 
+					and b.reg_stus = '결제완료' 
+					and b.ext_id = e.ext_id) c 
+where a.ext_id = c.ext_id 
+and c.user_id = #{user_id}
+and sysdate() >= c.str_class_date 			
+group by c.ext_id
+]]>
+</select>
+<resultMap id="app_homeMap" type="java.util.HashMap">
+	<result property="ext_id" column="ext_id"></result>
+	<result property="user_name" column="user_name"></result>
+	<result property="count_Stu" column="count_Stu"></result>
+	<result property="str_class_date" column="str_class_date"></result>
+	<result property="prof_photo" column="prof_photo"></result>
+</resultMap>
+
+
+<select id="app_Calender" resultMap="app_CalenderMap">
+select t.*, e.user_name 
+from ext_timetable t, (select u.user_name, e.ext_id from user_info u, ext_info e where u.user_id = e.user_id) e 
+where t.user_id = #{user_id}
+and t.ext_id = e.ext_id
+and SUBSTR(t.ext_id, 2, 1) = '1' 
+</select>
+<resultMap id="app_CalenderMap" type="java.util.HashMap">
+	<result property="ext_id" column="ext_id"></result>
+	<result property="day_week" column="day_week"></result>
+	<result property="class_str_time" column="class_str_time"></result>
+	<result property="class_end_time" column="class_end_time"></result>
+	<result property="user_name" column="user_name"></result>
+</resultMap>
+
+
+<select id="app_Calender2" resultMap="app_Calender2Map">
+select e.*, u.user_name 
+from ext_timetable e, user_info u 
+where ext_id = (select ext_id from app_class 
+				where user_id = #{user_id}
+				and SUBSTR(ext_id, 2,1) != '1') 
+and e.user_id = u.user_id
+</select>
+<resultMap id="app_Calender2Map" type="java.util.HashMap">
+	<result property="ext_id" column="ext_id"></result>
+	<result property="day_week" column="day_week"></result>
+	<result property="class_str_time" column="class_str_time"></result>
+	<result property="class_end_time" column="class_end_time"></result>
+	<result property="user_name" column="user_name"></result>
+</resultMap>
+
+<select id="lecturePage" resultMap="lecturePageMap">
+select u.user_name, u.prof_photo, e.ext_obj, e.ext_way, e.class_lev, e.tuit_fees 
+from user_info u, ext_info e 
+where u.user_id = e.user_id 
+and ext_id = #{ext_id}
+</select>
+<resultMap id="lecturePageMap" type="java.util.HashMap">
+	<result property="user_name" column="user_name"></result>
+	<result property="prof_photo" column="prof_photo"></result>
+	<result property="ext_obj" column="ext_obj"></result>
+	<result property="ext_way" column="ext_way"></result>
+	<result property="class_lev" column="class_lev"></result>
+	<result property="tuit_fees" column="tuit_fees"></result>
+</resultMap>
+
+<select id="replayList" resultMap="replayListMap">
+select post_id, post_title, post_cont, att_file, post_date
+from posting_list 
+where ext_id = #{ext_id} and post_code = '1' 
+</select>
+<resultMap id="replayListMap" type="java.util.HashMap">
+	<result property="post_id" column="post_id"></result>
+	<result property="post_title" column="post_title"></result>
+	<result property="post_cont" column="post_cont"></result>
+	<result property="att_file" column="att_file"></result>
+	<result property="post_date" column="post_date"></result>
+</resultMap>
+
+<select id="homeworkHtmlCont" resultMap="homeworkHtmlContMap">
+select pl.post_id, pl.post_title, pl.post_cont, pl.post_date, pl.end_date, h.post_id AS 'submitStus'
+from posting_list pl left outer join homework_info h on pl.post_id = h.post_id
+where pl.ext_id = #{ext_id} and pl.post_code = '2'
+</select>
+<resultMap id="homeworkHtmlContMap" type="java.util.HashMap">
+	<result property="post_id" column="post_id"></result>
+	<result property="post_title" column="post_title"></result>
+	<result property="post_cont" column="post_cont"></result>
+	<result property="post_date" column="post_date"></result>
+	<result property="end_date" column="end_date"></result>
+	<result property="submitStus" column="submitStus"></result>
+</resultMap>
+
+<select id="app_testList" resultMap="app_testListMap">
+select a.test_id, count(*) AS count, a.date_gaze, b.test_date, 
+(select count(w_answ_note) AS count from test_result where w_answ_note != '' AND test_id = a.test_id) AS wrong_note 
+from test_result a, (select b.prob_id, b.prob_answ, t.ext_id, t.test_date from prob_info b, test_info t where b.test_id = t.test_id) b 
+where a.prob_id = b.prob_id 
+and a.stu_result = b. prob_answ 
+and a.user_id = #{user_id}
+and b.ext_id = #{ext_id}
+group by a.test_id
+</select>
+<resultMap id="app_testListMap" type="java.util.HashMap">
+	<result property="test_id" column="test_id"></result>
+	<result property="count" column="count"></result>
+	<result property="date_gaze" column="date_gaze"></result>
+	<result property="wrong_note" column="wrong_note"></result>
+	<result property="test_date" column="test_date"></result>
+</resultMap>
+
+<select id="app_testResultList" resultMap="app_testResultListMap">
+select t.test_id, t.prob_id, t.stu_result, p.prob_answ, t.date_gaze, t.w_answ_note 
+from prob_info p, (select test_id, prob_id, stu_result, date_gaze, w_answ_note 
+					from test_result 
+					where user_id = #{user_id} and test_id = #{test_id}) t 
+where p.prob_id = t.prob_id
+order by prob_id
+</select>
+<resultMap id="app_testResultListMap" type="java.util.HashMap">
+	<result property="test_id" column="test_id"></result>
+	<result property="prob_id" column="prob_id"></result>
+	<result property="stu_result" column="stu_result"></result>
+	<result property="prob_answ" column="prob_answ"></result>
+	<result property="date_gaze" column="date_gaze"></result>
+	<result property="w_answ_note" column="w_answ_note"></result>
+</resultMap>
+
+<update id="storeWrongNoteCont">
+update test_result set w_answ_note = #{wrongNoteCont} where prob_id = #{prob_id} and user_id = #{user_id}
+</update>
+
+<select id="app_stuInfoContList" resultMap="app_stuInfoContListMap">
+select * 
+from stu_info 
+where user_id = #{user_id} and ext_id = #{ext_id}
+order by post_date desc
+</select>
+<resultMap id="app_stuInfoContListMap" type="java.util.HashMap">
+	<result property="ext_id" column="ext_id"></result>
+	<result property="user_id" column="user_id"></result>
+	<result property="post_date" column="post_date"></result>
+	<result property="learn_att" column="learn_att"></result>
+	<result property="stu_infoNum" column="stu_infoNum"></result>
+</resultMap>
+
+<select id="app_totalClassCount" resultMap="app_totalClassCountMap">
+select distinct(t.day_week) AS day_week, e.str_class_date 
+from ext_timetable t, ext_info e 
+where t.ext_id = e.ext_id 
+and t.ext_id = #{ext_id}
+</select>
+<resultMap id="app_totalClassCountMap" type="java.util.HashMap">
+	<result property="day_week" column="day_week"></result>
+	<result property="str_class_date" column="str_class_date"></result>
+</resultMap>
+
+</mapper>
