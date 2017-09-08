@@ -48,4 +48,6 @@ public interface StudyRoomDAO
 	
 	//해당 강의의 학생 정보 
 	public List<App_ClassVO> selectStuInfo(String ext_id)throws Exception;
+	
+	public Integer countTest(String ext_id) throws Exception;
 }

@@ -646,7 +646,7 @@ div#locationSelect2 {
 				<!--Left Sidebar-->
 				<div class="col-md-3 md-margin-bottom-40">
 					<img class="teacherImg img-responsive profile-img margin-bottom-20"
-							src="displayFile?fileName=${classMainList.prof_photo}"
+							src="displayFile?fileName=${user_info.prof_photo}"
 							onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'"
 							alt="studentProfile" />
 

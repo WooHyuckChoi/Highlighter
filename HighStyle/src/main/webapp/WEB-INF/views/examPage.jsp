@@ -30,6 +30,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="./resources/unify/assets/css/examPage.css">
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
+
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 	<div>
@@ -48,7 +49,15 @@
 	<div id="test">
 		<c:forEach items="${examInfo}" var="examInfo">
 		<div id="testImage">
-			<img src="displayFile?fileName=${examInfo.test_file}">
+			<c:if test="${examInfo.test_file ne null }">
+				<img style="width:880px; height:730px;" src="displayFile?fileName=${examInfo.test_file}">
+			</c:if>
+			<c:if test="${examInfo.test_file2 ne null }">
+				<img style="width:880px; height:730px;" src="displayFile?fileName=${examInfo.test_file2}">
+			</c:if>
+			<c:if test="${examInfo.test_file3 ne null }">
+				<img style="width:880px; height:730px;" src="displayFile?fileName=${examInfo.test_file3}">
+			</c:if>
 		</div>
 		<div id="answerSheet">
 			<div id="answerSheetPlace">
@@ -56,11 +65,31 @@
 			<script>
 				var probCount = '${examInfo.prob_count}';
 				for(var i = 1; i < parseInt(probCount)+1; i++){
-					document.write("<div id="+i+" class='selectAnswer'><div class='probNum'>"+i+
-							"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
-							"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
-							"<div class='selectNum'>5</div></div>");
+					if(i==5)
+					{
+						document.write("<div id="+i+" class='selectAnswer'><div class='probNum'>"+i+
+								"</div><div class='selectNum' onclick='movePage()'>1</div><div class='selectNum' onclick='movePage()'>2</div>"+
+								"<div class='selectNum' onclick='movePage()'>3</div><div class='selectNum' onclick='movePage()'>4</div>"+
+								"<div class='selectNum' onclick='movePage()'>5</div></div>");
+					}
+					else
+					{
+						document.write("<div id="+i+" class='selectAnswer'><div class='probNum'>"+i+
+								"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
+								"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
+								"<div class='selectNum'>5</div></div>");
+					}
 				}
+				
+				function movePage()
+				{
+					$("#testImage img:eq(0)").hide();
+					$("#testImage img:eq(1)").show();
+				}
+				$(document).ready(function(){
+					$("#testImage img:eq(1)").hide();
+					$("#testImage img:eq(2)").hide();
+				});
 			</script>
 			</div>
 			<button id="submitTest" onclick="submitTest('${examInfo.prob_count}','${examInfo.test_id}')">제출하기</button>

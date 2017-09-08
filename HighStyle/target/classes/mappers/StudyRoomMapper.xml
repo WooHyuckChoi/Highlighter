@@ -147,4 +147,11 @@
 	where ext_id = #{ext_id}
 	and reg_stus = '결제완료'
 </select>
+
+<!-- 시험 갯수 -->
+<select id="countTest" resultType="int">
+	select count(test_id)
+	from test_info
+	where ext_id=#{ext_id};
+</select>
 </mapper>

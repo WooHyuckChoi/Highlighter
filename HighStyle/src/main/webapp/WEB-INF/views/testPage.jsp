@@ -453,6 +453,7 @@
 					success:function(data){
 						if(data == "success"){
 							window.open("examPage?test_id="+test_id,"Highlighter","width=1300, height=800, resizable=no");
+							history.go(0);
 						}
 					}
 				});	

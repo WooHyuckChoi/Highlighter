@@ -31,6 +31,19 @@
 <link rel="stylesheet" href="./resources/unify/assets/css/examPage.css">
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 
+	<!-- CSS Global Compulsory -->
+	<link rel="stylesheet" href="./resources/unify/assets/plugins/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="./resources/unify/assets/css/style.css">
+
+	<!-- CSS Header and Footer -->
+	<link rel="stylesheet" href="./resources/unify/assets/css/headers/header-default.css">
+	<link rel="stylesheet" href="./resources/unify/assets/css/footers/footer-v1.css">
+
+	<!-- CSS Implementing Plugins -->
+	<link rel="stylesheet" href="./resources/unify/assets/plugins/animate.css">
+	<link rel="stylesheet" href="./resources/unify/assets/plugins/line-icons/line-icons.css">
+	<link rel="stylesheet" href="./resources/unify/assets/plugins/font-awesome/css/font-awesome.min.css">
+
 <style>
 	.right{
 		background-image: url("./resources/img/right.png");
@@ -78,7 +91,7 @@
 	}
 	#ansNotePlace{
 	width : 600px;
-	height:665px;
+	height:730px;
 	margin-bottom:10px;
 	display:auto;
 	border:1px solid lightgray;
@@ -115,6 +128,12 @@
 	.co{
 		display: none;
 	}
+	#answerSheetPlace{
+		height: 730px;
+	}
+	#centerImage button{
+		text-align: center;
+	}
 </style>
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
@@ -131,13 +150,30 @@
 		<%-- 학생 정답 나와야함 --%>
 		<c:forEach items="${examInfo}" var="examInfo">
 		<div id="testImage">
-			<div id="leftButton"></div>
 			<div id="centerImage">
-				<img id="test_file" src="displayFile?fileName=${examInfo.test_file}">
-				<img id="test_file2" src="displayFile?fileName=${examInfo.test_file2}">
-				<img id="test_file3" src="displayFile?fileName=${examInfo.test_file3}">
+				<c:if test="${examInfo.test_file ne null }">
+					<img style="width:880px; height:730px; margin-bottom:1px;" src="displayFile?fileName=${examInfo.test_file}" />
+					<div id="buttonMenu1">
+						<button id="prev1" class="btn-u btn-u-default" style="margin-left:390px;">이전</button>
+						<button id="next1" class="btn-u btn-u-default">다음</button>
+					</div>
+				</c:if>
+				<c:if test="${examInfo.test_file2 ne null }">
+					<img style="width:880px; height:730px; margin-bottom:1px;" src="displayFile?fileName=${examInfo.test_file2}" />
+					<div id="buttonMenu2">
+						<button id="prev2" class="btn-u btn-u-default" style="margin-left:390px;">이전</button>
+						<button id="next2" class="btn-u btn-u-default">다음</button>
+					</div>
+				</c:if>
+				<c:if test="${examInfo.test_file3 ne null }">
+					<img style="width:880px; height:730px; margin-bottom:1px;" src="displayFile?fileName=${examInfo.test_file3}" />
+					<div id="buttonMenu3">
+						<button id="prev3" class="btn-u btn-u-default" style="margin-left:390px;">이전</button>
+						<button id="next3" class="btn-u btn-u-default">다음</button>
+					</div>
+				</c:if>
+				
 			</div>
-			<div id="rightButton"></div>
 		</div>
 		<div id="answerSheet" class="answerSheet">
 			<div id="answerSheetPlace" class="answerSheetPlace">
@@ -193,35 +229,35 @@
 					{
 						if(parseInt(stuAnsList[i])==1)
 						{
-							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong'>"+(i+1)+
+							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong' onclick='myFunction("+i+")'>"+(i+1)+
 									"</div><div class='selectNum stuChecked'>1</div><div class='selectNum'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else if(parseInt(stuAnsList[i])==2)
 						{
-							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong'>"+(i+1)+
+							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong' onclick='myFunction("+i+")'>"+(i+1)+
 									"</div><div class='selectNum'>1</div><div class='selectNum stuChecked'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else if(parseInt(stuAnsList[i])==3)
 						{
-							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong'>"+(i+1)+
+							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong' onclick='myFunction("+i+")'>"+(i+1)+
 									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
 									"<div class='selectNum stuChecked'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else if(parseInt(stuAnsList[i])==4)
 						{
-							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong'>"+(i+1)+
+							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong' onclick='myFunction("+i+")'>"+(i+1)+
 									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum stuChecked'>4</div>"+
 									"<div class='selectNum'>5</div></div>");
 						}
 						else
 						{
-							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong'>"+(i+1)+
+							document.write("<div id="+(i+1)+" class='selectAnswer'><div class='probNum wrong' onclick='myFunction("+i+")'>"+(i+1)+
 									"</div><div class='selectNum'>1</div><div class='selectNum'>2</div>"+
 									"<div class='selectNum'>3</div><div class='selectNum'>4</div>"+
 									"<div class='selectNum stuChecked'>5</div></div>");
@@ -808,6 +844,20 @@
 	<script src="./resources/js/application.js"></script>
 	<script src="./resources/js/superfish.js"></script>
 	<script src="./resources/js/custom.js"></script>
+	
+	
+	<!-- JS Global Compulsory -->
+	<script type="text/javascript" src="./resources/unify/assets/plugins/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/plugins/jquery/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="./resources/unify/assets/plugins/back-to-top.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/plugins/smoothScroll.js"></script>
+	<!-- JS Customization -->
+	<script type="text/javascript" src="./resources/unify/assets/js/custom.js"></script>
+	<!-- JS Page Level -->
+	<script type="text/javascript" src="./resources/unify/assets/js/plugins/style-switcher.js"></script>
+	<script type="text/javascript" src="./resources/unify/assets/js/app.js"></script>
 	<script>
 	
 		
@@ -901,8 +951,41 @@
 	</script>
 	<script>
 		$(document).ready(function(){
-			$("#test_file2").hide();
-			$("#test_file3").hide();
+			$("#testImage img:eq(1)").hide();
+			$("#testImage img:eq(2)").hide();
+			$("#buttonMenu2").hide();
+			$("#buttonMenu3").hide();
+			
+			$("#next1").click(function(){
+				$("#testImage img:eq(0)").hide();
+				$("#testImage img:eq(1)").show();
+				$("#buttonMenu1").hide();
+				$("#buttonMenu2").show();
+			});
+			
+			$("#prev2").click(function(){
+				$("#testImage img:eq(1)").hide();
+				$("#testImage img:eq(0)").show();
+				$("#buttonMenu2").hide();
+				$("#buttonMenu1").show();
+			});
+			
+			$("#next2").click(function(){
+				if($("#buttonMenu3").length)
+				{
+					$("#testImage img:eq(1)").hide();
+					$("#testImage img:eq(2)").show();
+					$("#buttonMenu2").hide();
+					$("#buttonMenu3").show();	
+				}
+			});
+			
+			$("#prev3").click(function(){
+				$("#testImage img:eq(2)").hide();
+				$("#testImage img:eq(1)").show();
+				$("#buttonMenu3").hide();
+				$("#buttonMenu2").show();
+			});
 		});
 	</script>
 </body>
