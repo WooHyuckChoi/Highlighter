@@ -77,7 +77,7 @@ public class testResultDAOImpl implements testResultDAO {
 	}
 
 	@Override
-	public List<String> selectWansNote(test_resultVO vo) throws Exception {
+	public List<HashMap> selectWansNote(test_resultVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return session.selectList(namespace+".selectWansNote",vo);
 	}

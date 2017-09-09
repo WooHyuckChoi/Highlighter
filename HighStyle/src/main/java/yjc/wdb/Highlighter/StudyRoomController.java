@@ -391,7 +391,7 @@ public class StudyRoomController
 		   tVO.setUser_id(user_id);
 		   tVO.setTest_id(test_id);
 		   
-		   List<String> noteList = testResultService.selectWansNote(tVO);
+		   List<HashMap> noteList = testResultService.selectWansNote(tVO);
 		   model.addAttribute("noteList",noteList);
 	   }
 	
@@ -403,7 +403,7 @@ public class StudyRoomController
 	
 	@ResponseBody
 	@RequestMapping(value="/uploadwAnswNote", method=RequestMethod.POST)
-	public ResponseEntity<String> uploadwAnswNote(MultipartFile file,String prob_id,HttpSession session) throws Exception
+	public ResponseEntity<String> uploadwAnswNote(MultipartFile file,String prob_id,String text_val,HttpSession session) throws Exception
 	{
 		String user_id = (String) session.getAttribute("id");
 		String savedName=
@@ -412,12 +412,14 @@ public class StudyRoomController
 		test_resultVO vo = new test_resultVO();
 		vo.setProb_id(prob_id);
 		vo.setUser_id(user_id);
-		vo.setW_answ_note(savedName);
+		vo.setW_answ_note(text_val);
+		vo.setW_answ_note_cont(savedName);
 		testResultService.updateWansNote(vo);
 		
 		System.out.println(prob_id);
 		System.out.println(user_id);
 		System.out.println(savedName);
+		System.out.println(text_val);
 		return new ResponseEntity<>(file.getOriginalFilename(),HttpStatus.CREATED);
 	}
 }
