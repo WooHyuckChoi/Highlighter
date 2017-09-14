@@ -101,7 +101,6 @@ body{
 								success:function(data)
 								{
 									alert("평가가 등록 되었습니다");
-									history.go(0);
 								}
 							});
 							calendar.fullCalendar('renderEvent',

@@ -102,6 +102,8 @@
 		from stu_info
 		where ext_id=#{ext_id} and
 			  user_id = #{user_id}
+			  order by post_date desc
+			  limit 5
 	]]>
 </select>
 

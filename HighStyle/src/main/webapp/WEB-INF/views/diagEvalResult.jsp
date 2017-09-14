@@ -190,7 +190,7 @@
 			<c:forEach items="${diagEvalList}" var="diagEvalList">
 			<li class="col-md-4 col-sm-6 md-margin-bottom-30" style="margin-bottom:20px;">
 				<div class="easy-block-v1">
-						<img class="img-responsive" src="displayFile?fileName=${diagEvalList.prof_photo }" alt="" onerror="this.src='./resources/unify/assets/img/mockup/img1.jpg'">
+						<img style="width:350px; height:395px;"class="img-responsive" src="displayFile?fileName=${diagEvalList.prof_photo }" alt="" onerror="this.src='./resources/unify/assets/img/mockup/img1.jpg'">
 					<!-- <div class="easy-block-v1-badge rgba-purple">Unify Template</div> -->
 				</div>
 				<div class="block-grid-v2-info rounded-bottom">
