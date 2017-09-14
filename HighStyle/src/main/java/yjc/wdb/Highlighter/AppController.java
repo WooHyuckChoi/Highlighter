@@ -335,4 +335,69 @@ public class AppController {
 		}
 		return jsonArr;
 	}
+	
+	@RequestMapping(value = "/app_parentLogin", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONArray app_parentLogin(HttpServletRequest req) throws Exception {
+		String par_phone = req.getParameter("par_phone");
+		
+		List<HashMap> app_parentLogin = dao.app_parentLogin(par_phone);
+		
+		String result = "fail";
+		JSONArray jsonArr = new JSONArray();
+		JSONObject object = null;
+		
+		if(app_parentLogin != null){
+			for(int i = 0; i<app_parentLogin.size(); i++){
+				result = "success" ;
+		    	object = new JSONObject();
+		    	object.put("result",result);
+		    	object.put("user_id",app_parentLogin.get(i).get("user_id"));
+		    	object.put("par_ip",app_parentLogin.get(i).get("par_ip"));
+		    	jsonArr.add(object);
+			}
+		}
+		return jsonArr;
+	}
+	
+	@RequestMapping(value = "/app_checkParent", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONArray app_checkParent(HttpServletRequest req) throws Exception {
+		String par_phone = req.getParameter("par_phone");
+	 	String stu_name = req.getParameter("stu_name");
+	 	String stu_birthDate = req.getParameter("stu_birthDate");
+		
+		List<HashMap> app_checkParent = dao.app_checkParent(par_phone, stu_name, stu_birthDate);
+		
+		String result = "fail";
+		JSONArray jsonArr = new JSONArray();
+		JSONObject object = null;
+		
+		if(app_checkParent != null){
+			for(int i = 0; i<app_checkParent.size(); i++){
+				result = "success" ;
+		    	object = new JSONObject();
+		    	object.put("result",result);
+		    	object.put("user_id",app_checkParent.get(i).get("user_id"));
+		    	jsonArr.add(object);
+			}
+		}
+		return jsonArr;
+	}
+	
+	@RequestMapping(value = "/app_registerParentIp", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject app_registerParentIp(HttpServletRequest req) throws Exception {
+		String par_phone = req.getParameter("par_phone");
+	 	String stu_name = req.getParameter("stu_name");
+	 	String stu_birthDate = req.getParameter("stu_birthDate");
+	 	String currentIp = req.getRemoteAddr();
+	 	
+	 	dao.app_registerParentIp(currentIp, par_phone, stu_name, stu_birthDate);
+	 	
+	 	JSONObject object = new JSONObject();
+    	object.put("result", "success");
+
+    	return object;
+	}
 }

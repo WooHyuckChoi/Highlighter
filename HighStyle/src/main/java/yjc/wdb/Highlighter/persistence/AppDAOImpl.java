@@ -113,4 +113,34 @@ public class AppDAOImpl implements AppDAO {
 		return session.selectList(namespace+".app_totalClassCount", ext_id);
 	}
 
+	@Override
+	public List<HashMap> app_parentLogin(String par_phone) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectList(namespace+".app_parentLogin", par_phone);
+	}
+
+	@Override
+	public List<HashMap> app_checkParent(String par_phone, String stu_name, String stu_birthDate) throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
+		map.put("par_phone", par_phone);
+		map.put("stu_name", stu_name);
+		map.put("stu_birthDate", stu_birthDate);
+		
+		return session.selectList(namespace+".app_checkParent", map);
+	}
+
+	@Override
+	public void app_registerParentIp(String currentIp, String par_phone, String stu_name, String stu_birthDate)
+			throws Exception {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new LinkedHashMap<String, Object>();
+		map.put("currentIp", currentIp);
+		map.put("par_phone", par_phone);
+		map.put("stu_name", stu_name);
+		map.put("stu_birthDate", stu_birthDate);
+		
+		session.update(namespace+".app_registerParentIp", map);
+	}
+
 }

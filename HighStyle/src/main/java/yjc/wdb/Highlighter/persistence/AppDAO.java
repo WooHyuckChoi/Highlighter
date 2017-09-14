@@ -18,4 +18,7 @@ public interface AppDAO {
 	public void app_storeWrongNoteCont(String wrongNoteCont, String prob_id, String user_id)throws Exception;
 	public List<HashMap> app_stuInfoContList(String ext_id, String user_id)throws Exception;
 	public List<HashMap> app_totalClassCount(String ext_id)throws Exception;
+	public List<HashMap> app_parentLogin(String par_phone)throws Exception;
+	public List<HashMap> app_checkParent(String par_phone, String stu_name, String stu_birthDate)throws Exception;
+	public void app_registerParentIp(String currentIp, String par_phone, String stu_name, String stu_birthDate)throws Exception;
 }
