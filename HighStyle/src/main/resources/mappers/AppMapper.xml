@@ -171,4 +171,29 @@ and t.ext_id = #{ext_id}
 	<result property="str_class_date" column="str_class_date"></result>
 </resultMap>
 
+<select id="app_parentLogin" resultMap="app_parentLoginMap">
+select * 
+from user_info 
+where par_phone = #{par_phone}
+</select>
+<resultMap id="app_parentLoginMap" type="java.util.HashMap">
+	<result property="user_id" column="user_id"></result>
+	<result property="par_ip" column="par_ip"></result>
+</resultMap>
+
+<select id="app_checkParent" resultMap="app_checkParentMap">
+select * 
+from user_info 
+where par_phone = #{par_phone} and user_name = #{stu_name} and birth_date = #{stu_birthDate}
+</select>
+<resultMap id="app_checkParentMap" type="java.util.HashMap">
+	<result property="user_id" column="user_id"></result>
+	<result property="par_ip" column="par_ip"></result>
+</resultMap>
+
+<update id="app_registerParentIp">
+update user_info 
+set par_ip = #{currentIp}
+where par_phone = #{par_phone} and user_name = #{stu_name} and birth_date = #{stu_birthDate}
+</update>
 </mapper>

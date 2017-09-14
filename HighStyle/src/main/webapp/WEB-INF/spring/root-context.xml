@@ -28,7 +28,12 @@
 		<property name="url" value="jdbc:mysql://localhost:3306/jump7797"></property>
 		<property name="username" value="jump7797"></property>
 		<property name="password" value="A12qwaszx!"></property>
+<<<<<<< HEAD
 	</bean>
+=======
+	</bean> 
+
+>>>>>>> branch 'master' of https://github.com/WooHyuckChoi/Highlighter.git
 	<!-- 로컬에서 서버접속용 디비 -->
 	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
