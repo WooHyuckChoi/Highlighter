@@ -66,7 +66,7 @@ public class testResultServiceImpl implements testResultService {
 	}
 
 	@Override
-	public List<String> selectWansNote(test_resultVO vo) throws Exception {
+	public List<HashMap> selectWansNote(test_resultVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		return dao.selectWansNote(vo);
 	}

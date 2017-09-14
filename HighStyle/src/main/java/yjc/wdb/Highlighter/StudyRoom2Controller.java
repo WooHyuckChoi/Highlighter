@@ -145,13 +145,13 @@ public class StudyRoom2Controller {
 	  }
 	  if(file2.getOriginalFilename() != ""){
 		  String savedName2=
-			uploadReviewFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(), file.getBytes());
+			uploadReviewFileUtils.uploadFile(uploadPath, file2.getOriginalFilename(), file2.getBytes());
 			
 		  testInfoVO.setTest_file2(savedName2); 
 	  }
 	  if(file3.getOriginalFilename() != ""){
 		  String savedName3=
-			uploadReviewFileUtils.uploadFile(uploadPath, file3.getOriginalFilename(), file.getBytes());
+			uploadReviewFileUtils.uploadFile(uploadPath, file3.getOriginalFilename(), file3.getBytes());
 			
 		  testInfoVO.setTest_file3(savedName3);
 	  }

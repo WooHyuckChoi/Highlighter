@@ -591,7 +591,7 @@
 								if(data=="success"){
 									alert("성공!");
 									window.location.reload();
-									window.open("https://106.249.38.98:443/board.html?ext_id=${ext_id}&id=${user_id}"); //106.249.38.98,192.168.43.136 106.249.38.110 192.168.43.136
+									window.open("https://192.168.43.136:443/board.html?ext_id=${ext_id}&id=${user_id}"); //106.249.38.98,192.168.43.136 106.249.38.110 192.168.43.136
 								}
 							},
 							error : function(data) {
@@ -601,7 +601,7 @@
 				}
 				else if(user_grade=="student")
 				{
-					window.open("https://106.249.38.98:443/board.html?ext_id=${ext_id}&id=${user_id}"); //192.168.51.19
+					window.open("https://192.168.43.136:443/board.html?ext_id=${ext_id}&id=${user_id}"); //192.168.51.19
 				}
 			});
 			$("#classExit").click(function(){ //이거 추가해야함 그리고 버튼도 만들고 css도 추가같이 해야함

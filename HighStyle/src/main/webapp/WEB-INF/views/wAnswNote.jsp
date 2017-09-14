@@ -770,16 +770,27 @@
 						<div id="answerSheetTitle" class="answerSheetTitle">오답 노트</div>
 						<c:forEach items="${noteList}" var="list" varStatus="status">
 						<div id="answerSheetTitle" class="answerSheetTitle co countIndex${status.index}">${status.index+1}번</div>
-							<div id="hidden${status.index}" class='ansList' style="height:630px; margin-bottom:10px;">
-								<input id='file${status.index}' class='file1' type='file' style="width: 500px;" accept='image/*' onchange='fileInfo(this,${status.index })' />
-								<input id='prob_id${status.index}' type='hidden' value="${test_id}0${status.index}" />
-								<div id='img_box' class="img_box${status.index }" style='height:600px;'>
-									<img src='displayFile?fileName=${list}' style='width:530px; height:600px;'
-									onerror="javascript:this.src='./resources/unify/assets/img/team/img32-md.jpg'" />
+							<c:if test="${list.w_answ_note_cont eq 'null' }">
+								<div id="hidden${status.index}" class='ansList' style="height:630px; margin-bottom:10px;">
+									<input id='file${status.index}' class='file1' type='file' accept='image/*' onchange='fileInfo(this,${status.index })' />
+									<div id='img_box' class="img_box${status.index }"></div>
+									<textarea id="textIndex${status.index}" rows="20" cols="30" style="margin: 5px 0px 0px 20px; width: 490px; height: 540px; font-size:14px;"></textarea>
+									<input id='prob_id${status.index}' type='hidden' value="${test_id}0${status.index}" />
+									<div id='answerRegist' class='answerRegist' onclick="registImg(${status.index})" style="margin-left:20px;">등록</div>
+									<div id='answerDelete' class='answerDelete'>삭제</div>
 								</div>
-								<div id='answerRegist' class='answerRegist' onclick="registImg(${status.index})">등록</div>
-								<div id='answerDelete' class='answerDelete'>삭제</div>
-							</div>
+							</c:if>
+							<c:if test="${list.w_answ_note_cont ne 'null'}">
+								<div id="hidden${status.index}" class='ansList' style="height:630px; margin-bottom:10px;">
+									<input id='file${status.index}' class='file1' type='file' />
+									<div id='img_box' class="img_box${status.index }" style='height:600px;'>
+										<img src='displayFile?fileName=${list.w_answ_note_cont}' style='width:530px; height:600px;' />
+									</div>
+									<textarea id="textIndex${status.index}" rows="20" cols="30" style="margin: 5px 0px 0px 20px; width: 490px; height: 540px; font-size:14px;">${list.w_answ_note}</textarea>
+									<div id='answerRegist' class='answerRegist' onclick="registImg(${status.index})" style="margin-left:20px;">등록</div>
+									<div id='answerDelete' class='answerDelete'>삭제</div>
+								</div>
+							</c:if>
 						</c:forEach>
 					</div>
 				</div>
@@ -789,11 +800,7 @@
 	
 				var reader = new FileReader(); // FileReader 객체 사용
 				reader.onload = function(rst){ // 이미지를 선택후 로딩이 완료되면 실행될 부분
-					$('.img_box'+e).html('<img style="width:530px; height:600px;" src="' + rst.target.result + '">'); // append 메소드를 사용해서 이미지 추가
-					$("#img_regist").click(function(){
-						$(".main_image").html('<img style="width:150px; height:150px;" src="' + rst.target.result + '">');
-						$(".btn-layerClose").trigger("click");
-					});
+					$('.img_box'+e).html('<img style="width:530px; height:600px; margin:10px 0;" src="' + rst.target.result + '">'); // append 메소드를 사용해서 이미지 추가
 					// 이미지는 base64 문자열로 추가
 					// 이 방법을 응용하면 선택한 이미지를 미리보기 할 수 있음
 				}
@@ -804,12 +811,12 @@
 			{
 				var file =$("#file"+e)[0].files[0];
 				var prob_id=$("#prob_id"+e).val();
-				
+				var text_val = $("#textIndex"+e).val();
 				
 				var formData = new FormData();
 				formData.append("file",file);
 				formData.append("prob_id",prob_id);
-				
+				formData.append("text_val",text_val);
 				
 				$.ajax({
 					url : "/Highlighter/uploadwAnswNote",
@@ -820,6 +827,7 @@
 					type : 'POST',
 					success : function(data) {
 						alert("등록하였습니다");
+						
 					}
 				});
 			}

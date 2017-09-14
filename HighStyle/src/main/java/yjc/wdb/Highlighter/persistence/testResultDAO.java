@@ -17,5 +17,5 @@ public interface testResultDAO {
 	public List<HashMap> ListWeeksCorrect(String user_id,String ext_id) throws Exception;
 	
 	public void updateWansNote(test_resultVO vo) throws Exception;
-	public List<String> selectWansNote(test_resultVO vo) throws Exception;
+	public List<HashMap> selectWansNote(test_resultVO vo) throws Exception;
 }

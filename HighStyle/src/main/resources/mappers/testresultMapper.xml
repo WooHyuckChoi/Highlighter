@@ -72,12 +72,18 @@ and a.test_id =#{test_id}
 	</select>
 	
 	<update id="uploadWansNote">
-		update test_result set w_answ_note=#{w_answ_note} where prob_id=#{prob_id} and user_id=#{user_id}
+		update test_result set w_answ_note=#{w_answ_note},w_answ_note_cont=#{w_answ_note_cont} where prob_id=#{prob_id} and user_id=#{user_id}
 	</update>
 	
-	<select id="selectWansNote" resultType="String">
-		select IFNULL(w_answ_note,'null') w_answ_note 
+	
+	<resultMap id="selectWansNoteList" type="java.util.HashMap">
+		<result property="w_answ_note" column="w_answ_note"></result>
+		<result property="w_answ_note_cont" column="w_answ_note_cont"></result>	
+	</resultMap>
+	<select id="selectWansNote" resultMap="selectWansNoteList">
+		select IFNULL(w_answ_note_cont,'null') w_answ_note_cont , IFNULL(w_answ_note,'null') w_answ_note
 		from test_result 
-		where user_id = #{user_id} and test_id=#{test_id}
+		where user_id = #{user_id} and test_id= #{test_id}
+		order by prob_id
 	</select>
 </mapper>
